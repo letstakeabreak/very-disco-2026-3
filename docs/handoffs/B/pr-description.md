@@ -11,3 +11,5 @@
 실제 iPhone Safari의 3분 플레이·터치 취소/복귀, A/C와 통합된 게임 루프는 미검증입니다. 네 asset은 `generated-unverified`로 유지합니다. [시각 판정](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/art-review.md)에 목표와의 구도 차이·오른쪽 보관 홈 일부 잘림·작은 화면 손상 식별·재질 세부의 미달을 기록했습니다. snapshot에 저장 물건의 압축/손상 수치가 없는 제약도 남습니다. 원본/런타임 카세트 단면에서 내부 코어 형상이 없음을 확인했으며 투명 유리 완성으로 표시하지 않습니다. 램의 상부 하우징에는 생성 자산의 교차가 남고, 압착 진입의 즉각 이동은 추가 개선 대상입니다.
 
 이전 게이지 보완 revision의 Mac Safari 임시 Private Browsing 창에서 정적 빌드·압력 직접 조작·파손을 확인했고 당시 최종 콘솔은 비어 있었습니다. 현재 램/반사 변경 뒤에는 Safari를 다시 검사하지 않았습니다. 일반 프로필에서는 원인 미확정 Script error가 관찰되어 [Safari 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/safari-desktop.md)에 따로 남겼습니다. Safari 전체 환경의 오류 없음으로 확대하지 않습니다. 이 PR은 integration/v1 대상 draft이며 main 머지·배포·대회 제출은 하지 않습니다.
+
+외부 404 제보에 대해 인증 없는 HTTP·fresh filtered clone·B 브랜치 fetch/문서 읽기 검사를 추가했습니다. 공개 상태와 정확한 브랜치 주소, 팀원 초대 수락 상태의 경계를 [접근 안내](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/repository-access.md)에 기록합니다. 상대 환경의 원인은 아직 미확정입니다.
