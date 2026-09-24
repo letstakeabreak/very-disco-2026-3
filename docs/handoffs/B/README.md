@@ -2,6 +2,8 @@
 
 담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
+현재 검증한 구현 커밋: `285244075ea2e680bd8defa77fe3c55c66f69454`. 실측 당시에는 직전 HEAD 위의 미커밋 변경이었으며, JSON의 소스 해시가 이 구현과 일치한다. 이후 문서만 보완한 커밋과 구분한다.
+
 최신 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남은 Draft**다.
 
 ## 연결 방법
