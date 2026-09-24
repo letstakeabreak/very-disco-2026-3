@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-24T12:35:50.471457+00:00",
+  "blenderVersion": "5.1.1",
+  "pipelineConfig": "assets/source/pipeline/mobile-models.json",
+  "jpegQuality": 88,
+  "geometryCompression": "none; standard glTF no decoder dependency",
+  "combinedRuntimeBytes": 8956848,
+  "assets": [
+    {
+      "assetId": "press-chamber",
+      "sourcePath": "assets/source/meshy/press-chamber/press-chamber-master.glb",
+      "sourceSha256": "704e35da19ae42305994bdbcc456c5049523074ffe4bc8f73b57ac53d13fbf46",
+      "sourceBytes": 47883172,
+      "sourceTriangles": 775612,
+      "sourceTextures": [
+        {
+          "name": "Image_0",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "Image_1",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "Image_2",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "sourceBoundsBlender": [
+        [
+          -0.6858800053596497,
+          -0.668595016002655,
+          -0.9520390033721924
+        ],
+        [
+          0.6846780180931091,
+          0.6694869995117188,
+          0.9510290026664734
+        ]
+      ],
+      "sourceToMetersScale": 0.5781592754739596,
+      "sourceBaseCenterBlender": [
+        -0.0005896762595511973,
+        0.00045934575609862804,
+        -0.9517607092857361
+      ],
+      "runtimePath": "public/assets/models/press-chamber.glb",
+      "runtimeSha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+      "runtimeBytes": 2872664,
+      "triangles": 42998,
+      "parts": [
+        {
+          "name": "press-ram",
+          "triangles": 6499,
+          "boundsGltfMeters": [
+            [
+              -0.14274193346500397,
+              0.5510312914848328,
+              -0.226652592420578
+            ],
+            [
+              0.18569011986255646,
+              0.8309574723243713,
+              0.03930474445223808
+            ]
+          ],
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "press-frame",
+          "triangles": 36499,
+          "boundsGltfMeters": [
+            [
+              -0.3960045576095581,
+              0.0,
+              -0.38662955164909363
+            ],
+            [
+              0.3960045576095581,
+              1.100000023841858,
+              0.38662955164909363
+            ]
+          ],
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "textures": [
+        {
+          "name": "press-chamber-baseColor",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "press-chamber-metallicRoughness",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "press-chamber-normal",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        }
+      ],
+      "normalizedAxis": "glTF +Y up, +Z front",
+      "pivot": "base-center; part origins share model base-center",
+      "status": "offline-prepared-device-unverified",
+      "anchors": {
+        "coordinateSpace": "asset root, meters, glTF +Y up +Z front",
+        "workbedTopY": 0.36873742938041687,
+        "specimenBase": [
+          0.021474093198776245,
+          0.36873742938041687,
+          -0.09367392398416996
+        ],
+        "platenRestBottomY": 0.5510312914848328,
+        "ramTopConnectionY": 0.824894937955354,
+        "ramLowerFlangeTopY": 0.636993173426317,
+        "ramCenterXZ": [
+          0.021474093198776245,
+          -0.09367392398416996
+        ],
+        "floorClearance": 0.003,
+        "maxDownwardTravel": 0.1792938621044159,
+        "translationRangeY": [
+          -0.1792938621044159,
+          0
+        ],
+        "contactFormula": "ram.position.y = min(0, max(-maxDownwardTravel, workbedTopY + specimenRenderedHeight + floorClearance - platenRestBottomY))",
+        "connectionNote": "A pure downward translation opens an upper connection gap. Keep upper attachment fixed and extend the cylinder body, or add a derived telescoping connection. Do not stretch the lower flange."
+      },
+      "pbrRebake": {
+        "method": "Cycles selected-to-active; master -> new shared smart UV atlas",
+        "baseColor": "2048 sRGB",
+        "metallicRoughness": "1024 Non-Color; original G roughness/B metallic",
+        "normal": "2048 tangent-space Non-Color",
+        "cageExtrusionM": 0.003,
+        "maxRayDistanceM": 0.025,
+        "marginPx": 12,
+        "normals": "45 degree sharp edges + area weighted normals",
+        "runtimeTangents": "omitted; Three.js derives tangent frame",
+        "atlasDirectory": null,
+        "bakeImagePolicy": "Textures embedded in runtime GLB; intermediate PNGs omitted to avoid duplicate repository payload; regeneratable with --keep-bake-images"
+      }
+    },
+    {
+      "assetId": "salvage-cassette",
+      "sourcePath": "assets/source/meshy/salvage-cassette/salvage-cassette-master.glb",
+      "sourceSha256": "80ef1c8ab4cd8ef2ca1b25b26ce8aed83e6da1aea8b75791bbadcee826a1a960",
+      "sourceBytes": 63499220,
+      "sourceTriangles": 1158358,
+      "sourceTextures": [
+        {
+          "name": "Image_0",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "Image_1",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "Image_2",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "sourceBoundsBlender": [
+        [
+          -0.9518489837646484,
+          -0.4699079990386963,
+          -0.45738300681114197
+        ],
+        [
+          0.9509919881820679,
+          0.4715679883956909,
+          0.4562259912490845
+        ]
+      ],
+      "sourceToMetersScale": 0.1472220218135751,
+      "sourceBaseCenterBlender": [
+        -0.00047958659706637263,
+        0.0011897681979462504,
+        -0.4572102427482605
+      ],
+      "runtimePath": "public/assets/models/salvage-cassette.glb",
+      "runtimeSha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+      "runtimeBytes": 2109280,
+      "triangles": 15000,
+      "parts": [
+        {
+          "name": "salvage-cassette",
+          "triangles": 15000,
+          "boundsGltfMeters": [
+            [
+              -0.13999998569488525,
+              0.0,
+              -0.06923850625753403
+            ],
+            [
+              0.13999998569488525,
+              0.1342819482088089,
+              0.06923850625753403
+            ]
+          ],
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "textures": [
+        {
+          "name": "salvage-cassette-baseColor",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "salvage-cassette-metallicRoughness",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "salvage-cassette-normal",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        }
+      ],
+      "normalizedAxis": "glTF +Y up, +Z front",
+      "pivot": "base-center; part origins share model base-center",
+      "status": "offline-prepared-device-unverified",
+      "pbrRebake": {
+        "method": "Cycles selected-to-active; master -> new shared smart UV atlas",
+        "baseColor": "2048 sRGB",
+        "metallicRoughness": "1024 Non-Color; original G roughness/B metallic",
+        "normal": "2048 tangent-space Non-Color",
+        "cageExtrusionM": 0.003,
+        "maxRayDistanceM": 0.025,
+        "marginPx": 12,
+        "normals": "45 degree sharp edges + area weighted normals",
+        "runtimeTangents": "omitted; Three.js derives tangent frame",
+        "atlasDirectory": null,
+        "bakeImagePolicy": "Textures embedded in runtime GLB; intermediate PNGs omitted to avoid duplicate repository payload; regeneratable with --keep-bake-images"
+      }
+    },
+    {
+      "assetId": "salvage-core",
+      "sourcePath": "assets/source/meshy/salvage-core/salvage-core-master.glb",
+      "sourceSha256": "f09d4af4d18441bd77f8a1557b67878b4a3839f0bdcc3ad3b14365f177b2dd3a",
+      "sourceBytes": 70216656,
+      "sourceTriangles": 1398932,
+      "sourceTextures": [
+        {
+          "name": "Image_0",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "Image_1",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "Image_2",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "sourceBoundsBlender": [
+        [
+          -0.9523019790649414,
+          -0.6209390163421631,
+          -0.64301598072052
+        ],
+        [
+          0.9510179758071899,
+          0.6204929947853088,
+          0.6418190002441406
+        ]
+      ],
+      "sourceToMetersScale": 0.11685671673986833,
+      "sourceBaseCenterBlender": [
+        -0.0011482095578685403,
+        -0.0002652266703080386,
+        -0.6419693827629089
+      ],
+      "runtimePath": "public/assets/models/salvage-core.glb",
+      "runtimeSha256": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+      "runtimeBytes": 1901316,
+      "triangles": 11500,
+      "parts": [
+        {
+          "name": "salvage-core",
+          "triangles": 11500,
+          "boundsGltfMeters": [
+            [
+              -0.11112511903047562,
+              0.0,
+              -0.07245302945375443
+            ],
+            [
+              0.11112511903047562,
+              0.15000000596046448,
+              0.07245302945375443
+            ]
+          ],
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "textures": [
+        {
+          "name": "salvage-core-baseColor",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "salvage-core-metallicRoughness",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "salvage-core-normal",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        }
+      ],
+      "normalizedAxis": "glTF +Y up, +Z front",
+      "pivot": "base-center; part origins share model base-center",
+      "status": "offline-prepared-device-unverified",
+      "pbrRebake": {
+        "method": "Cycles selected-to-active; master -> new shared smart UV atlas",
+        "baseColor": "2048 sRGB",
+        "metallicRoughness": "1024 Non-Color; original G roughness/B metallic",
+        "normal": "2048 tangent-space Non-Color",
+        "cageExtrusionM": 0.003,
+        "maxRayDistanceM": 0.025,
+        "marginPx": 12,
+        "normals": "45 degree sharp edges + area weighted normals",
+        "runtimeTangents": "omitted; Three.js derives tangent frame",
+        "atlasDirectory": null,
+        "bakeImagePolicy": "Textures embedded in runtime GLB; intermediate PNGs omitted to avoid duplicate repository payload; regeneratable with --keep-bake-images"
+      }
+    },
+    {
+      "assetId": "salvage-lens",
+      "sourcePath": "assets/source/meshy/salvage-lens/salvage-lens-master.glb",
+      "sourceSha256": "6c1804a11b44a4a54411f6e980af7329ae4ef345bbf2aaaac5051875f67f6397",
+      "sourceBytes": 144142508,
+      "sourceTriangles": 3952752,
+      "sourceTextures": [
+        {
+          "name": "Image_0",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "Image_1",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "Image_2",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "sourceBoundsBlender": [
+        [
+          -0.9519349932670593,
+          -0.6827300190925598,
+          -0.8279110193252563
+        ],
+        [
+          0.9510210156440735,
+          0.7060750126838684,
+          0.826545000076294
+        ]
+      ],
+      "sourceToMetersScale": 0.09086568288190762,
+      "sourceBaseCenterBlender": [
+        -0.005291709676384926,
+        0.013024711050093174,
+        -0.8258152008056641
+      ],
+      "runtimePath": "public/assets/models/salvage-lens.glb",
+      "runtimeSha256": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+      "runtimeBytes": 2073588,
+      "triangles": 11500,
+      "parts": [
+        {
+          "name": "lens-glass",
+          "triangles": 2000,
+          "boundsGltfMeters": [
+            [
+              -0.03828728199005127,
+              0.03450527414679527,
+              0.043544236570596695
+            ],
+            [
+              0.041725412011146545,
+              0.11544550210237503,
+              0.05420868471264839
+            ]
+          ],
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "lens-housing",
+          "triangles": 9500,
+          "boundsGltfMeters": [
+            [
+              -0.08689707517623901,
+              0.0,
+              -0.06267403811216354
+            ],
+            [
+              0.08689707517623901,
+              0.14999999105930328,
+              0.06267403811216354
+            ]
+          ],
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "textures": [
+        {
+          "name": "salvage-lens-baseColor",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "salvage-lens-metallicRoughness",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "salvage-lens-normal",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        }
+      ],
+      "normalizedAxis": "glTF +Y up, +Z front",
+      "pivot": "base-center; part origins share model base-center",
+      "status": "offline-prepared-device-unverified",
+      "pbrRebake": {
+        "method": "Cycles selected-to-active; master -> new shared smart UV atlas",
+        "baseColor": "2048 sRGB",
+        "metallicRoughness": "1024 Non-Color; original G roughness/B metallic",
+        "normal": "2048 tangent-space Non-Color",
+        "cageExtrusionM": 0.003,
+        "maxRayDistanceM": 0.025,
+        "marginPx": 12,
+        "normals": "45 degree sharp edges + area weighted normals",
+        "runtimeTangents": "omitted; Three.js derives tangent frame",
+        "atlasDirectory": null,
+        "bakeImagePolicy": "Textures embedded in runtime GLB; intermediate PNGs omitted to avoid duplicate repository payload; regeneratable with --keep-bake-images"
+      }
+    }
+  ]
+}

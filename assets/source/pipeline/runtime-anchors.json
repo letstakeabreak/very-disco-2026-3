@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "coordinateSpace": "asset root; meters; glTF +Y up +Z front; identity transforms and baked vertices",
+  "press": {
+    "parts": [
+      "press-frame",
+      "press-ram"
+    ],
+    "sharedMaterial": true,
+    "coordinateSpace": "asset root, meters, glTF +Y up +Z front",
+    "workbedTopY": 0.36873742938041687,
+    "specimenBase": [
+      0.021474093198776245,
+      0.36873742938041687,
+      -0.09367392398416996
+    ],
+    "platenRestBottomY": 0.5510312914848328,
+    "ramTopConnectionY": 0.824894937955354,
+    "ramLowerFlangeTopY": 0.636993173426317,
+    "ramCenterXZ": [
+      0.021474093198776245,
+      -0.09367392398416996
+    ],
+    "floorClearance": 0.003,
+    "maxDownwardTravel": 0.1792938621044159,
+    "translationRangeY": [
+      -0.1792938621044159,
+      0
+    ],
+    "contactFormula": "ram.position.y = min(0, max(-maxDownwardTravel, workbedTopY + specimenRenderedHeight + floorClearance - platenRestBottomY))",
+    "connectionNote": "A pure downward translation opens an upper connection gap. Keep upper attachment fixed and extend the cylinder body, or add a derived telescoping connection. Do not stretch the lower flange."
+  },
+  "lens": {
+    "parts": [
+      {
+        "name": "lens-glass",
+        "triangles": 2000,
+        "boundsMeters": [
+          [
+            -0.03828728199005127,
+            0.03450527414679527,
+            0.043544236570596695
+          ],
+          [
+            0.041725412011146545,
+            0.11544550210237503,
+            0.05420868471264839
+          ]
+        ],
+        "bakedVertices": true
+      },
+      {
+        "name": "lens-housing",
+        "triangles": 9500,
+        "boundsMeters": [
+          [
+            -0.08689707517623901,
+            0.0,
+            -0.06267403811216354
+          ],
+          [
+            0.08689707517623901,
+            0.14999999105930328,
+            0.06267403811216354
+          ]
+        ],
+        "bakedVertices": true
+      }
+    ],
+    "sharedMaterial": true,
+    "glassNode": "lens-glass",
+    "glassRigid": true,
+    "sourceMaterial": "OPAQUE, no transmission; replace only glass material in renderer"
+  },
+  "measuredFrom": "glb-validation.json"
+}

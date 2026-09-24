@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071719" />
+    <title>DEEP PRESS — Render Study</title>
+  </head>
+  <body>
+    <main class="study" aria-label="DEEP PRESS renderer study">
+      <canvas id="study-canvas" aria-label="Live 3D renderer, controlled by test fixtures"></canvas>
+      <header class="study-header">
+        <div class="wordmark">DEEP<span>PRESS</span><span class="study-label">RENDER STUDY</span></div>
+        <div class="status"><span class="status-light" id="status-light"></span><span id="render-status">INITIALIZING</span></div>
+      </header>
+      <div class="scene-note" aria-hidden="true"><span>VISUAL FIXTURES</span><span>NOT GAMEPLAY</span></div>
+      <p class="fatal-message" id="fatal-message" role="alert" hidden></p>
+      <section class="control-dock" aria-label="Renderer study controls">
+        <div class="select-row">
+          <label class="select-control"><span>STATE</span><select id="phase" aria-label="Fixture phase">
+            <option value="idle">Idle</option><option value="inspecting" selected>Inspecting</option>
+            <option value="compressing">Compressing</option><option value="settling">Settling</option>
+            <option value="stored">Stored</option><option value="failed">Failed</option>
+            <option value="complete">Complete</option><option value="paused">Paused</option>
+          </select></label>
+          <label class="select-control"><span>SPECIMEN</span><select id="specimen" aria-label="Specimen">
+            <option value="salvage-core">Metal core</option><option value="salvage-lens">Optical lens</option><option value="salvage-cassette">Data cassette</option>
+          </select></label>
+        </div>
+        <div class="range-row">
+          <label class="range-control"><span>PRESSURE <output id="pressure-value">0%</output></span><input id="pressure" type="range" min="0" max="1" step="0.01" value="0" aria-label="Pressure" /></label>
+          <label class="range-control"><span>INTEGRITY <output id="integrity-value">100%</output></span><input id="integrity" type="range" min="0" max="1" step="0.01" value="1" aria-label="Integrity" /></label>
+          <label class="range-control"><span>ROTATION <output id="yaw-value">0°</output></span><input id="yaw" type="range" min="-180" max="180" step="1" value="0" aria-label="Inspection rotation in degrees" /></label>
+          <label class="range-control"><span>STORED <output id="stored-value">0 / 3</output></span><input id="stored" type="range" min="0" max="3" step="1" value="0" aria-label="Stored specimen count" /></label>
+        </div>
+        <footer class="study-footer"><span>CONTRACT <span id="contract-version">1.0.0</span> · NO AUDIO</span><span id="performance" aria-live="off">MEASURING</span></footer>
+      </section>
+    </main>
+    <script type="module" src="./preview.ts"></script>
+  </body>
+</html>

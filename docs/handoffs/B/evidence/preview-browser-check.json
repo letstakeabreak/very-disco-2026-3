@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-09-24T12:19:46.256Z",
+  "kind": "Desktop Chromium render harness QA; not iPhone or gameplay validation",
+  "url": "http://127.0.0.1:5173/docs/handoffs/B/preview.html",
+  "viewports": [
+    {
+      "dockHeight": 130,
+      "headerHeight": 50,
+      "height": 844,
+      "horizontalOverflow": false,
+      "metrics": {
+        "elapsedMs": 3869.20000000298,
+        "fps": 38.31201757845512,
+        "maxFrameMs": 866.6999999999999,
+        "p95FrameMs": 33.200000000000045,
+        "rendererStatus": {
+          "engine": "three.js r186"
+        },
+        "sampleFrames": 136,
+        "totalFrames": 137,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "probeErrors": [],
+      "width": 390
+    },
+    {
+      "dockHeight": 130,
+      "headerHeight": 50,
+      "height": 900,
+      "horizontalOverflow": false,
+      "metrics": {
+        "elapsedMs": 6285.29999999702,
+        "fps": 47.0970769643336,
+        "maxFrameMs": 866.6999999999999,
+        "p95FrameMs": 16.800000000000182,
+        "rendererStatus": {
+          "engine": "three.js r186"
+        },
+        "sampleFrames": 281,
+        "totalFrames": 282,
+        "viewport": {
+          "dpr": 1,
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "probeErrors": [],
+      "width": 1440
+    }
+  ],
+  "phases": [
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "idle"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "inspecting"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "compressing"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "settling"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "stored"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "failed"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "complete"
+    },
+    {
+      "errors": 0,
+      "immutable": true,
+      "phase": "paused"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

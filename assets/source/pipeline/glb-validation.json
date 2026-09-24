@@ -1,0 +1,416 @@
+{
+  "schemaVersion": 1,
+  "validation": "passed",
+  "combinedBytes": 8956848,
+  "combinedTriangles": 80998,
+  "assets": [
+    {
+      "assetId": "press-chamber",
+      "path": "public/assets/models/press-chamber.glb",
+      "sha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+      "bytes": 2872664,
+      "triangles": 42998,
+      "dimensionsMetersXYZ": [
+        0.7920091152191162,
+        1.100000023841858,
+        0.7732591032981873
+      ],
+      "boundsMeters": [
+        [
+          -0.3960045576095581,
+          0.0,
+          -0.38662955164909363
+        ],
+        [
+          0.3960045576095581,
+          1.100000023841858,
+          0.38662955164909363
+        ]
+      ],
+      "parts": [
+        {
+          "name": "press-ram",
+          "triangles": 6499,
+          "boundsMeters": [
+            [
+              -0.14274193346500397,
+              0.5510312914848328,
+              -0.226652592420578
+            ],
+            [
+              0.18569011986255646,
+              0.8309574723243713,
+              0.03930474445223808
+            ]
+          ],
+          "bakedVertices": true
+        },
+        {
+          "name": "press-frame",
+          "triangles": 36499,
+          "boundsMeters": [
+            [
+              -0.3960045576095581,
+              0.0,
+              -0.38662955164909363
+            ],
+            [
+              0.3960045576095581,
+              1.100000023841858,
+              0.38662955164909363
+            ]
+          ],
+          "bakedVertices": true
+        }
+      ],
+      "textures": [
+        {
+          "name": "normal",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 386081
+        },
+        {
+          "name": "baseColor",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 441385
+        },
+        {
+          "name": "metallicRoughness",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "bytes": 124491
+        }
+      ],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "press-chamber-rebaked-PBR.001",
+          "normalTexture": {
+            "index": 0
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          }
+        }
+      ],
+      "selfContained": true,
+      "extensionsRequired": [],
+      "validation": "passed"
+    },
+    {
+      "assetId": "salvage-cassette",
+      "path": "public/assets/models/salvage-cassette.glb",
+      "sha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+      "bytes": 2109280,
+      "triangles": 15000,
+      "dimensionsMetersXYZ": [
+        0.2799999713897705,
+        0.1342819482088089,
+        0.13847701251506805
+      ],
+      "boundsMeters": [
+        [
+          -0.13999998569488525,
+          0.0,
+          -0.06923850625753403
+        ],
+        [
+          0.13999998569488525,
+          0.1342819482088089,
+          0.06923850625753403
+        ]
+      ],
+      "parts": [
+        {
+          "name": "salvage-cassette",
+          "triangles": 15000,
+          "boundsMeters": [
+            [
+              -0.13999998569488525,
+              0.0,
+              -0.06923850625753403
+            ],
+            [
+              0.13999998569488525,
+              0.1342819482088089,
+              0.06923850625753403
+            ]
+          ],
+          "bakedVertices": true
+        }
+      ],
+      "textures": [
+        {
+          "name": "normal",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 562436
+        },
+        {
+          "name": "baseColor",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 626543
+        },
+        {
+          "name": "metallicRoughness",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "bytes": 217545
+        }
+      ],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "salvage-cassette-rebaked-PBR.001",
+          "normalTexture": {
+            "index": 0
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          }
+        }
+      ],
+      "selfContained": true,
+      "extensionsRequired": [],
+      "validation": "passed"
+    },
+    {
+      "assetId": "salvage-core",
+      "path": "public/assets/models/salvage-core.glb",
+      "sha256": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+      "bytes": 1901316,
+      "triangles": 11500,
+      "dimensionsMetersXYZ": [
+        0.22225023806095123,
+        0.15000000596046448,
+        0.14490605890750885
+      ],
+      "boundsMeters": [
+        [
+          -0.11112511903047562,
+          0.0,
+          -0.07245302945375443
+        ],
+        [
+          0.11112511903047562,
+          0.15000000596046448,
+          0.07245302945375443
+        ]
+      ],
+      "parts": [
+        {
+          "name": "salvage-core",
+          "triangles": 11500,
+          "boundsMeters": [
+            [
+              -0.11112511903047562,
+              0.0,
+              -0.07245302945375443
+            ],
+            [
+              0.11112511903047562,
+              0.15000000596046448,
+              0.07245302945375443
+            ]
+          ],
+          "bakedVertices": true
+        }
+      ],
+      "textures": [
+        {
+          "name": "normal",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 538015
+        },
+        {
+          "name": "baseColor",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 634227
+        },
+        {
+          "name": "metallicRoughness",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "bytes": 191744
+        }
+      ],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "salvage-core-rebaked-PBR.001",
+          "normalTexture": {
+            "index": 0
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          }
+        }
+      ],
+      "selfContained": true,
+      "extensionsRequired": [],
+      "validation": "passed"
+    },
+    {
+      "assetId": "salvage-lens",
+      "path": "public/assets/models/salvage-lens.glb",
+      "sha256": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+      "bytes": 2073588,
+      "triangles": 11500,
+      "dimensionsMetersXYZ": [
+        0.17379415035247803,
+        0.14999999105930328,
+        0.1253480762243271
+      ],
+      "boundsMeters": [
+        [
+          -0.08689707517623901,
+          0.0,
+          -0.06267403811216354
+        ],
+        [
+          0.08689707517623901,
+          0.14999999105930328,
+          0.06267403811216354
+        ]
+      ],
+      "parts": [
+        {
+          "name": "lens-glass",
+          "triangles": 2000,
+          "boundsMeters": [
+            [
+              -0.03828728199005127,
+              0.03450527414679527,
+              0.043544236570596695
+            ],
+            [
+              0.041725412011146545,
+              0.11544550210237503,
+              0.05420868471264839
+            ]
+          ],
+          "bakedVertices": true
+        },
+        {
+          "name": "lens-housing",
+          "triangles": 9500,
+          "boundsMeters": [
+            [
+              -0.08689707517623901,
+              0.0,
+              -0.06267403811216354
+            ],
+            [
+              0.08689707517623901,
+              0.14999999105930328,
+              0.06267403811216354
+            ]
+          ],
+          "bakedVertices": true
+        }
+      ],
+      "textures": [
+        {
+          "name": "normal",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 549488
+        },
+        {
+          "name": "baseColor",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 608923
+        },
+        {
+          "name": "metallicRoughness",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "bytes": 202408
+        }
+      ],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "salvage-lens-rebaked-PBR",
+          "normalTexture": {
+            "index": 0
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          }
+        }
+      ],
+      "selfContained": true,
+      "extensionsRequired": [],
+      "validation": "passed"
+    }
+  ],
+  "unverified": [
+    "real iPhone load",
+    "runtime shader deformation",
+    "browser GPU performance",
+    "gameplay integration"
+  ]
+}

@@ -1,36 +1,303 @@
-import { AmbientLight, BoxGeometry, Color, DirectionalLight, Mesh, MeshStandardMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
-import type { GameRenderer, GameSnapshot, RendererOptions } from '../contracts';
+import {
+  ACESFilmicToneMapping, AmbientLight, Box3, DirectionalLight, Group, Matrix4, Mesh,
+  MeshLambertMaterial, MeshPhysicalMaterial, MeshStandardMaterial, OrthographicCamera, PCFSoftShadowMap, PerspectiveCamera,
+  Plane, PlaneGeometry, PMREMGenerator, Raycaster, Scene, ShaderMaterial,
+  ShadowMaterial, SRGBColorSpace, TextureLoader, Vector2, Vector3, WebGLRenderer,
+} from 'three';
+import type { Object3D, Texture, WebGLRenderTarget } from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import type { AssetId, GameRenderer, GameSnapshot, RendererOptions, SalvageId } from '../contracts';
+import { deformSpecimen, type Deformation } from './deformation';
+import { disposeObjects } from './resources';
+import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state';
+import { animateRam, PRESS_ANCHORS } from './ram';
+import { ASSET_REGISTRY } from './assets';
 
-/** Neutral DEV probe only. Camera, primitive and materials are not an approved art direction. */
+const STAGE_ASPECT = 2 / 3;
+const ASSET_IDS: readonly AssetId[] = ['press-chamber', ...SPECIMEN_IDS];
+const assetUrl = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
+type Prop = { root: Object3D; bounds: Box3; deformation: Deformation; compression: number; damage: number; initialized: boolean };
+
+/** Fixed-camera 2.5D workshop with four real PBR meshes. It consumes, never judges, state. */
 export function createRenderer({ canvas, onFatal }: RendererOptions): GameRenderer {
-  let renderer: WebGLRenderer;
-  try { renderer = new WebGLRenderer({ canvas, antialias: true, alpha: false }); }
+  let gpu: WebGLRenderer;
+  try { gpu = new WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' }); }
   catch (error) { onFatal({ code: 'webgl-unavailable', message: String(error) }); return { resize() {}, render() {}, dispose() {} }; }
-  const scene = new Scene();
-  scene.background = new Color('#191b20');
-  const camera = new PerspectiveCamera(42, 1, 0.1, 40);
-  camera.position.set(3, 2, 4); camera.lookAt(0, 0, 0);
-  scene.add(new AmbientLight('#ffffff', 2));
-  const light = new DirectionalLight('#ffffff', 3); light.position.set(2, 8, 4); scene.add(light);
-  const geometry = new BoxGeometry(0.7, 0.7, 0.7);
-  const material = new MeshStandardMaterial({ color: '#858d9e', wireframe: true });
-  const meshes = new Map<string, Mesh>();
   let disposed = false;
   let failed = false;
-  function sync(snapshot: GameSnapshot): void {
-    const ids = new Set(snapshot.entities.map((entity) => entity.id));
-    for (const [id, mesh] of meshes) if (!ids.has(id)) { scene.remove(mesh); meshes.delete(id); }
-    for (const entity of snapshot.entities) {
-      let mesh = meshes.get(entity.id);
-      if (!mesh) { mesh = new Mesh(geometry, material); meshes.set(entity.id, mesh); scene.add(mesh); }
-      mesh.position.set(entity.position.x, entity.position.y, entity.position.z);
-      mesh.rotation.set(entity.rotationRad.x, entity.rotationRad.y, entity.rotationRad.z, 'XYZ');
-      mesh.scale.set(entity.scale.x, entity.scale.y, entity.scale.z);
-    }
+  let ready = false;
+  let loaded = 0;
+  let width = 1;
+  let height = 1;
+  let stageWidth = 1;
+  let stageHeight = 1;
+  let previousSeed: number | null = null;
+  let previousTick = 0;
+  let hasSynced = false;
+  const roots: Object3D[] = [];
+  const props = new Map<SalvageId, Prop>();
+  const storedLooks = new Map<SalvageId, { compression: number; damage: number }>();
+  const depths: { dispose(): void }[] = [];
+  let press: Object3D | null = null;
+  let ram: ReturnType<typeof animateRam> | null = null;
+  let plate: Texture | null = null;
+  let environment: WebGLRenderTarget | null = null;
+  canvas.dataset['renderState'] = 'loading';
+  canvas.dataset['loadedAssets'] = '0';
+
+  function fail(error: unknown): void {
+    if (disposed || failed) return;
+    failed = true;
+    canvas.dataset['renderState'] = 'error';
+    onFatal({ code: 'render-failed', message: String(error) });
   }
+  const contextLost = (event: Event): void => { event.preventDefault(); fail(new Error('WebGL context lost; recreate renderer to retry')); };
+  canvas.addEventListener('webglcontextlost', contextLost);
+  gpu.setClearColor('#071316', 1);
+  gpu.autoClear = false;
+  gpu.outputColorSpace = SRGBColorSpace;
+  gpu.toneMapping = ACESFilmicToneMapping;
+  gpu.toneMappingExposure = 0.95;
+  gpu.shadowMap.enabled = true;
+  gpu.shadowMap.type = PCFSoftShadowMap;
+  gpu.info.autoReset = false;
+
+  const scene = new Scene();
+  const stage = new Group();
+  scene.add(stage);
+  const camera = new PerspectiveCamera(34, STAGE_ASPECT, 0.05, 20);
+  camera.position.set(0, 1.55, 3.4);
+  camera.lookAt(0, 0.34, 0);
+  camera.updateMatrixWorld();
+  const ray = new Raycaster();
+  const floor = new Plane(new Vector3(0, 1, 0), 0);
+  function onTable(u: number, v: number): Vector3 {
+    ray.setFromCamera(new Vector2(u * 2 - 1, 1 - v * 2), camera);
+    return ray.ray.intersectPlane(floor, new Vector3())!;
+  }
+  const trays = [onTable(0.105, 0.49), onTable(0.09, 0.595), onTable(0.10, 0.655)];
+  const slots = [onTable(0.862, 0.551), onTable(0.912, 0.563), onTable(0.962, 0.575)];
+  scene.add(new AmbientLight('#7bb6bf', 0.35));
+  const key = new DirectionalLight('#ffe1ac', 3.2);
+  key.position.set(-1.8, 2.8, 2.0);
+  key.target.position.set(0, 0.45, 0);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.camera.left = -1.3; key.shadow.camera.right = 1.3;
+  key.shadow.camera.top = 1.8; key.shadow.camera.bottom = -1.0;
+  key.shadow.camera.near = 0.2; key.shadow.camera.far = 7;
+  key.shadow.normalBias = 0.008;
+  key.shadow.bias = -0.0002;
+  scene.add(key, key.target);
+  const rim = new DirectionalLight('#67b4c6', 2.3);
+  rim.position.set(1.2, 1.7, -1.2); scene.add(rim);
+  const fill = new DirectionalLight('#abc5ca', 0.8);
+  fill.position.set(0.2, 1.8, 3.5); scene.add(fill);
+  const shadow = new Mesh(new PlaneGeometry(5, 5), new ShadowMaterial({ opacity: 0.52, depthWrite: false }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.001; shadow.receiveShadow = true;
+  scene.add(shadow); roots.push(shadow);
+  const bedShadow = new Mesh(new PlaneGeometry(0.30, 0.27), new ShadowMaterial({ opacity: 0.4, depthWrite: false }));
+  bedShadow.rotation.x = -Math.PI / 2;
+  bedShadow.position.set(PRESS_ANCHORS.x, PRESS_ANCHORS.workbedY + 0.001, PRESS_ANCHORS.z);
+  stage.add(bedShadow); roots.push(bedShadow);
+
+  const background = new Scene();
+  const flatCamera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const plateMaterial = new ShaderMaterial({
+    depthTest: false, depthWrite: false, toneMapped: false,
+    uniforms: { plate: { value: null }, stageFraction: { value: new Vector2(1, 1) } },
+    vertexShader: 'varying vec2 vUv; void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}',
+    fragmentShader: `uniform sampler2D plate; uniform vec2 stageFraction; varying vec2 vUv;
+      void main(){
+        vec2 stageUv=(vUv-.5)/stageFraction+.5;
+        vec3 surround=mix(vec3(.0045,.006,.006),vec3(.002,.009,.012),vUv.x)*(.8+.2*(1.0-vUv.y));
+        vec3 workshop=texture2D(plate,clamp(stageUv,0.0,1.0)).rgb;
+        vec2 edge=min(stageUv,1.0-stageUv);
+        float blend=smoothstep(-.012,.015,min(edge.x,edge.y));
+        gl_FragColor=vec4(mix(surround,workshop,blend),1.0);
+        #include <colorspace_fragment>
+      }`,
+  });
+  const backdrop = new Mesh(new PlaneGeometry(2, 2), plateMaterial);
+  background.add(backdrop); roots.push(backdrop);
+
+  try {
+    const generator = new PMREMGenerator(gpu);
+    const room = new RoomEnvironment();
+    // Reflection cards follow the same warm-left / cool-right lighting as the generated plate.
+    room.traverse((object) => {
+      if (object instanceof Mesh && object.material instanceof MeshLambertMaterial) {
+        object.material.emissive.set(object.position.x < -8 ? '#ffd095' : object.position.x > 8 ? '#70bdce' : '#c1d5d6');
+      }
+    });
+    environment = generator.fromScene(room, 0.06);
+    scene.environment = environment.texture;
+    scene.environmentIntensity = 0.75;
+    room.dispose(); generator.dispose();
+  } catch (error) { fail(error); }
+
+  function prepareMesh(root: Object3D): void {
+    root.traverse((object) => {
+      if (!(object instanceof Mesh)) return;
+      object.castShadow = true; object.receiveShadow = true;
+      if (object.name.startsWith('lens-glass')) {
+        // Meshy's baked opaque reflection is replaced on the original generated glass faces.
+        object.material = new MeshPhysicalMaterial({ color: '#add9d8', roughness: 0.09, metalness: 0,
+          transmission: 0.72, thickness: 0.025, ior: 1.48, clearcoat: 1, clearcoatRoughness: 0.05,
+          attenuationColor: '#63a6ab', attenuationDistance: 0.16, envMapIntensity: 1.2 });
+        object.castShadow = false;
+      }
+      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+        if (!(material instanceof MeshStandardMaterial)) continue;
+        material.envMapIntensity = 0.75;
+        if (material.normalMap) material.normalScale.set(0.55, 0.55);
+      }
+    });
+  }
+  const loader = new GLTFLoader();
+  const loading = ASSET_IDS.map(async (id) => {
+    const path = ASSET_REGISTRY[id].runtimePath;
+    if (!path) throw new Error(`No runtime asset registered for ${id}`);
+    const gltf = await loader.loadAsync(`${import.meta.env.BASE_URL}${path}`).catch((error: unknown) => {
+      throw new Error(`Could not load ${id}: ${String(error)}`);
+    });
+    if (disposed || failed) { disposeObjects([gltf.scene]); return; }
+    const root = gltf.scene;
+    prepareMesh(root);
+    roots.push(root); stage.add(root);
+    if (id === 'press-chamber') {
+      press = root; ram = animateRam(root); depths.push(...ram.depthMaterials);
+      press.add(bedShadow);
+    } else {
+      const deformation = deformSpecimen(root, id);
+      depths.push(...deformation.depthMaterials);
+      props.set(id, { root, bounds: new Box3().setFromObject(root), deformation, compression: 0, damage: 0, initialized: false });
+      root.visible = false;
+    }
+    loaded += 1; canvas.dataset['loadedAssets'] = String(loaded);
+  });
+  const loadingPlate = new TextureLoader().loadAsync(assetUrl('textures/workshop.webp')).then((texture) => {
+    if (disposed || failed) { texture.dispose(); return; }
+    plate = texture; texture.colorSpace = SRGBColorSpace;
+    plateMaterial.uniforms['plate']!.value = texture;
+  });
+  void Promise.all([...loading, loadingPlate]).then(() => {
+    if (!disposed && !failed) { ready = true; canvas.dataset['renderState'] = 'ready'; }
+  }).catch(fail);
+
+  function sync(snapshot: GameSnapshot, dt: number): void {
+    if (previousSeed !== snapshot.seed || snapshot.tick < previousTick || (snapshot.phase === 'idle' && snapshot.storedSpecimenIds.length === 0)) {
+      storedLooks.clear();
+      for (const prop of props.values()) prop.initialized = false;
+      hasSynced = false;
+    }
+    previousSeed = snapshot.seed; previousTick = snapshot.tick;
+    const phase = snapshot.phase === 'paused' ? snapshot.resumePhase : snapshot.phase;
+    const paused = snapshot.phase === 'paused';
+    // Pause can cancel an uncommitted stroke: show its authoritative settled state immediately.
+    const blend = paused || !hasSynced ? 1 : 1 - Math.exp(-dt / 65);
+    let currentTop: number = PRESS_ANCHORS.workbedY;
+    if (press) {
+      const entity = snapshot.entities.find((item) => item.assetId === 'press-chamber');
+      press.position.set(entity?.position.x ?? 0, entity?.position.y ?? 0, entity?.position.z ?? 0);
+      press.rotation.set(entity?.rotationRad.x ?? 0, entity?.rotationRad.y ?? 0, entity?.rotationRad.z ?? 0, 'XYZ');
+      press.scale.set(entity?.scale.x ?? 1, entity?.scale.y ?? 1, entity?.scale.z ?? 1);
+      press.updateMatrixWorld(true);
+    }
+    for (const visual of specimenVisuals(snapshot)) {
+      const prop = props.get(visual.id);
+      if (!prop) continue;
+      prop.root.visible = visual.location !== 'hidden';
+      let look = { compression: visual.compression, damage: visual.damage };
+      if (visual.location === 'press') storedLooks.set(visual.id, look);
+      if (visual.location === 'case') look = storedLooks.get(visual.id) ?? look;
+      const factor = prop.initialized ? blend : 1;
+      prop.compression += (look.compression - prop.compression) * factor;
+      prop.damage += (look.damage - prop.damage) * factor;
+      prop.initialized = true;
+      prop.deformation.compression.value = prop.compression;
+      prop.deformation.damage.value = prop.damage;
+      for (const material of prop.deformation.materials) if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
+      prop.root.scale.setScalar(1);
+      prop.root.rotation.set(0, visual.yaw, 0);
+      if (visual.location === 'press') {
+        prop.root.position.set(PRESS_ANCHORS.x, PRESS_ANCHORS.workbedY + PRESS_ANCHORS.clearance, PRESS_ANCHORS.z);
+        if (press) {
+          prop.root.position.applyMatrix4(press.matrixWorld);
+          prop.root.rotation.set(press.rotation.x, press.rotation.y + visual.yaw, press.rotation.z);
+          prop.root.scale.copy(press.scale);
+        }
+      } else if (visual.location === 'tray') {
+        prop.root.position.copy(trays[visual.index]!); prop.root.rotation.y = -0.15;
+      } else if (visual.location === 'case') {
+        prop.root.position.copy(slots[visual.index]!); prop.root.rotation.y = -0.32; prop.root.scale.setScalar(0.43);
+      }
+      const entity = snapshot.entities.find((item) => item.assetId === visual.id);
+      if (entity) {
+        prop.root.position.set(entity.position.x, entity.position.y, entity.position.z);
+        prop.root.rotation.set(entity.rotationRad.x, entity.rotationRad.y + visual.yaw, entity.rotationRad.z, 'XYZ');
+        prop.root.scale.set(entity.scale.x, entity.scale.y, entity.scale.z);
+      }
+      if (visual.location === 'press' && press) {
+        // Contact uses rendered bounds in press-local meters, including caller transforms.
+        prop.root.updateMatrixWorld(true);
+        const toPress = new Matrix4().copy(press.matrixWorld).invert().multiply(prop.root.matrixWorld);
+        const renderedHeight = prop.deformation.height * (1 - prop.compression * (visual.id === 'salvage-lens' ? 0.12 : 0.52));
+        currentTop = -Infinity;
+        for (const x of [prop.bounds.min.x, prop.bounds.max.x]) for (const y of [0, renderedHeight]) for (const z of [prop.bounds.min.z, prop.bounds.max.z]) {
+          currentTop = Math.max(currentTop, new Vector3(x, y, z).applyMatrix4(toPress).y);
+        }
+      }
+    }
+    if (ram) {
+      const inContact = snapshot.currentSpecimen !== null && (phase === 'compressing' || phase === 'settling' || phase === 'failed');
+      const target = inContact ? Math.min(PRESS_ANCHORS.travel, Math.max(0, PRESS_ANCHORS.platenY - currentTop)) : 0;
+      // During contact the platen follows the deformed surface without a second easing lag.
+      ram.travel.value = inContact ? target : ram.travel.value + (target - ram.travel.value) * blend;
+    }
+    hasSynced = true;
+  }
+
   return {
-    resize({ width, height, dpr }) { if (disposed || failed || width <= 0 || height <= 0) return; renderer.setPixelRatio(Math.min(2, Math.max(1, dpr))); renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix(); },
-    render(snapshot, _dtMs) { if (disposed || failed) return; try { sync(snapshot); renderer.render(scene, camera); } catch (error) { failed = true; onFatal({ code: 'render-failed', message: String(error) }); } },
-    dispose() { if (disposed) return; disposed = true; geometry.dispose(); material.dispose(); renderer.dispose(); meshes.clear(); },
+    resize(size) {
+      if (disposed || failed || !Number.isFinite(size.width) || !Number.isFinite(size.height) || size.width <= 0 || size.height <= 0) return;
+      width = size.width; height = size.height;
+      const dpr = Number.isFinite(size.dpr) ? Math.min(2, Math.max(1, size.dpr)) : 1;
+      gpu.setPixelRatio(dpr); gpu.setSize(width, height, false);
+      stageHeight = Math.min(height, width / STAGE_ASPECT); stageWidth = stageHeight * STAGE_ASPECT;
+      (plateMaterial.uniforms['stageFraction']!.value as Vector2).set(stageWidth / width, stageHeight / height);
+    },
+    render(snapshot, dtMs) {
+      if (disposed || failed) return;
+      try {
+        const dt = finiteFrameDelta(dtMs);
+        gpu.info.reset();
+        gpu.setViewport(0, 0, width, height); gpu.clear();
+        if (plate) gpu.render(background, flatCamera);
+        if (ready) {
+          sync(snapshot, dt);
+          gpu.clearDepth();
+          gpu.setViewport((width - stageWidth) / 2, (height - stageHeight) / 2, stageWidth, stageHeight);
+          gpu.render(scene, camera);
+        }
+        canvas.dataset['triangles'] = String(gpu.info.render.triangles);
+        canvas.dataset['drawCalls'] = String(gpu.info.render.calls);
+        let visibleTriangles = 0;
+        stage.traverseVisible((object) => {
+          if (object instanceof Mesh) visibleTriangles += (object.geometry.index?.count ?? object.geometry.getAttribute('position').count) / 3;
+        });
+        canvas.dataset['visibleTriangles'] = String(visibleTriangles);
+      } catch (error) { fail(error); }
+    },
+    dispose() {
+      if (disposed) return;
+      disposed = true; canvas.dataset['renderState'] = 'disposed';
+      canvas.removeEventListener('webglcontextlost', contextLost);
+      disposeObjects(roots, plate ? [plate] : []);
+      depths.forEach((material) => material.dispose());
+      environment?.dispose(); key.shadow.dispose();
+      props.clear(); storedLooks.clear(); gpu.dispose();
+    },
   };
 }

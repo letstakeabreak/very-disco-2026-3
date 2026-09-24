@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "axis": "glTF +Y up, +Z front; Blender +Z up, -Y front",
+  "textureMaxDimension": 2048,
+  "textureMaxDimensionByImageName": {
+    "Image_1": 1024
+  },
+  "jpegQuality": 88,
+  "combinedMaxBytes": 14000000,
+  "assets": [
+    {
+      "id": "press-chamber",
+      "source": "assets/source/meshy/press-chamber/press-chamber-master.glb",
+      "output": "public/assets/models/press-chamber.glb",
+      "normalizeDimension": "height",
+      "targetMeters": 1.1,
+      "maxTriangles": 45000,
+      "parts": [
+        {
+          "name": "press-ram",
+          "triangleBudget": 6500,
+          "sourceFaceCenterBoxBlender": [
+            [
+              -0.245,
+              -0.085,
+              -0.005
+            ],
+            [
+              0.32,
+              0.405,
+              0.475
+            ]
+          ]
+        },
+        {
+          "name": "press-frame",
+          "triangleBudget": 36500,
+          "remainder": true
+        }
+      ],
+      "calibration": {
+        "sourceBedSampleBoxBlender": [
+          [
+            -0.2,
+            -0.1,
+            -0.41
+          ],
+          [
+            0.26,
+            0.2,
+            -0.31
+          ]
+        ],
+        "ramTopConnectionSourceZ": 0.475,
+        "ramLowerFlangeSourceZ": 0.15,
+        "floorClearanceMeters": 0.003
+      }
+    },
+    {
+      "id": "salvage-cassette",
+      "source": "assets/source/meshy/salvage-cassette/salvage-cassette-master.glb",
+      "output": "public/assets/models/salvage-cassette.glb",
+      "normalizeDimension": "width",
+      "targetMeters": 0.28,
+      "maxTriangles": 16000,
+      "parts": [
+        {
+          "name": "salvage-cassette",
+          "triangleBudget": 15000,
+          "remainder": true
+        }
+      ]
+    },
+    {
+      "id": "salvage-core",
+      "source": "assets/source/meshy/salvage-core/salvage-core-master.glb",
+      "output": "public/assets/models/salvage-core.glb",
+      "normalizeDimension": "height",
+      "targetMeters": 0.15,
+      "maxTriangles": 12000,
+      "parts": [
+        {
+          "name": "salvage-core",
+          "triangleBudget": 11500,
+          "remainder": true
+        }
+      ]
+    },
+    {
+      "id": "salvage-lens",
+      "source": "assets/source/meshy/salvage-lens/salvage-lens-master.glb",
+      "output": "public/assets/models/salvage-lens.glb",
+      "normalizeDimension": "height",
+      "targetMeters": 0.15,
+      "maxTriangles": 12000,
+      "parts": [
+        {
+          "name": "lens-glass",
+          "triangleBudget": 2000,
+          "sourceFrontDiskBlender": {
+            "centerXZ": [
+              0.01,
+              -0.01
+            ],
+            "radius": 0.435,
+            "maxY": -0.25
+          }
+        },
+        {
+          "name": "lens-housing",
+          "triangleBudget": 9500,
+          "remainder": true
+        }
+      ]
+    }
+  ],
+  "combinedMaxTriangles": 90000
+}

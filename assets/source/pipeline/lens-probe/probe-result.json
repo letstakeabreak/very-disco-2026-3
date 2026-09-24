@@ -1,0 +1,165 @@
+{
+  "status": "experimental-offline-unverified",
+  "sourceSha256": "6c1804a11b44a4a54411f6e980af7329ae4ef345bbf2aaaac5051875f67f6397",
+  "inputRuntimeSha256": "6f7d46ad61c2fce0a6cb67f40a13fca330c41dc7de3d6a2a36f25b6ef9f21a4c",
+  "outputSha256": "7feace25bfab9c3bedb88e2e49d496e89f9e583874c86a51bf207c2d07ae71bb",
+  "outputBytes": 2330268,
+  "triangleCounts": {
+    "lens-glass": 2000,
+    "lens-housing": 9500
+  },
+  "limitations": [
+    "Base color and tangent normals baked; metalness/roughness are temporary constants, not source PBR maps.",
+    "Transparent glass requires runtime material replacement.",
+    "Offline inspection only, no gameplay/device verification."
+  ],
+  "visualQualityPassed": false,
+  "promotionStatus": "Do not promote this experimental GLB; generic rebake_mobile.py owns production outputs.",
+  "diagnosis": {
+    "baseColorUvDistortionConfirmed": true,
+    "splitVerticesBeforeWeld": {
+      "lens-glass": {
+        "vertices": 5021,
+        "uniquePositionsRounded1e6": 1379
+      },
+      "lens-housing": {
+        "vertices": 27653,
+        "uniquePositionsRounded1e6": 4225
+      }
+    },
+    "newAtlasBaseColorImproved": true,
+    "remainingProblem": "This probe cleared inherited normals and welded but did not apply sharp-edge weighted normals; full PBR remains faceted. Production pipeline uses the independently completed weighted-normal rebake."
+  },
+  "outputArtifactRetained": false,
+  "outputArtifactHistory": "The failed salvage-lens-rebaked.glb was inspected, then removed during source package cleanup. outputSha256/outputBytes describe that historical experiment, not a file currently present.",
+  "retainedEvidence": [
+    {
+      "file": "runtime-basecolor-only.png",
+      "sha256": "060a3fc730b57b5e35cd279f37811da0f852754cf73a77d926b98e4115893e82"
+    },
+    {
+      "file": "rebaked-runtime-basecolor-only.png",
+      "sha256": "885ee0289273ee984082ea2881456699696c1309e54b49c3505da808780af614"
+    }
+  ],
+  "cleanup": {
+    "reason": "Reduce clone size; keep only representative UV before/after evidence and reproducibility records.",
+    "removedArtifacts": [
+      {
+        "file": "bake-weld.log",
+        "bytes": 2834,
+        "sha256": "a418067d2a0b986de06b06b4f0bc9f7c999ed40681cc8b827f86a824eb57a0cb",
+        "retained": false
+      },
+      {
+        "file": "bake.log",
+        "bytes": 2699,
+        "sha256": "1c1901924cf755c52c8678bf32a2b0cb40d93a40778129bf19f5192839d1c87b",
+        "retained": false
+      },
+      {
+        "file": "diagnose.log",
+        "bytes": 2605,
+        "sha256": "a21f6b32ac23f9235daaef71d5d5ebded9130096668243f154618937e2bae553",
+        "retained": false
+      },
+      {
+        "file": "lens-glass-basecolor.png",
+        "bytes": 1963371,
+        "sha256": "b7fdaad12f0d44a39e8682e816be0d1203858b87221ccac39b7f0aecc28efd6c",
+        "retained": false
+      },
+      {
+        "file": "lens-glass-normal.png",
+        "bytes": 2284492,
+        "sha256": "96b65fe4a0ddb8f4435ccfba0b17436f3af5900c807585d02142accc9fb8cad4",
+        "retained": false
+      },
+      {
+        "file": "lens-housing-basecolor.png",
+        "bytes": 3734063,
+        "sha256": "644cd0161e5b0b37092926450991cd4e97bdb5129456ab93f2553c56bc3ad790",
+        "retained": false
+      },
+      {
+        "file": "lens-housing-normal.png",
+        "bytes": 3434213,
+        "sha256": "d1e354691ba82a083717a2afa354e091c875247207a44187d18416b3f6b6fc0f",
+        "retained": false
+      },
+      {
+        "file": "normalized-source.png",
+        "bytes": 969880,
+        "sha256": "47d24d6eff4f1823b5cb8cf13fbbd30e4233399b447a530cf371ea353b308f15",
+        "retained": false
+      },
+      {
+        "file": "rebaked-runtime-original.png",
+        "bytes": 890396,
+        "sha256": "cc5ba6f6c5afd852cc82357ba902bada0f143ca6943fb4a527dbb00d16fad4ba",
+        "retained": false
+      },
+      {
+        "file": "rebaked-runtime-texture-without-normalmap.png",
+        "bytes": 889675,
+        "sha256": "b2c98dcd5e99ee66e1d36e612eea165a8079a2603122ceccd3a69674acf769c6",
+        "retained": false
+      },
+      {
+        "file": "rebaked-runtime-uniform-recomputed-normals.png",
+        "bytes": 827370,
+        "sha256": "9b8dab0f7d5ae4e94ffec5efc05a70fa668fa5f7e8cc5db67995b75309d51fef",
+        "retained": false
+      },
+      {
+        "file": "rebaked-runtime-uniform-with-original-normals.png",
+        "bytes": 827385,
+        "sha256": "f873de1b9bbfb5a768f3a43b12019b3aa5bc6d0855bf1746b549bb9ffad4f545",
+        "retained": false
+      },
+      {
+        "file": "runtime-original.png",
+        "bytes": 904669,
+        "sha256": "bc443d3fbddee6818c20d0054777a41234d93758a30ff54b301c3f33148a72c4",
+        "retained": false
+      },
+      {
+        "file": "runtime-rebaked.png",
+        "bytes": 914364,
+        "sha256": "0c014fa25e4b4fa669d9ef77dd0cdbe6df6c41b151aeca6dd4367a8302d5e590",
+        "retained": false
+      },
+      {
+        "file": "runtime-texture-without-normalmap.png",
+        "bytes": 903197,
+        "sha256": "93575c9f6e64a00ce55ace263e8fe7829d813d540d8759f558e7b96b5dd397ef",
+        "retained": false
+      },
+      {
+        "file": "runtime-uniform-recomputed-normals.png",
+        "bytes": 846238,
+        "sha256": "86841874e0fcd05a7309c9e87c0ffb2d07489ad37c1bab5bd3360404daf1c3ff",
+        "retained": false
+      },
+      {
+        "file": "runtime-uniform-with-original-normals.png",
+        "bytes": 846172,
+        "sha256": "d8490da5eb4e473fb43c13736027b3ac7fe4e91dadf36abe755250ed9034da35",
+        "retained": false
+      },
+      {
+        "file": "salvage-lens-rebaked.glb",
+        "bytes": 2330268,
+        "sha256": "7feace25bfab9c3bedb88e2e49d496e89f9e583874c86a51bf207c2d07ae71bb",
+        "retained": false
+      },
+      {
+        "file": "verify-bake.log",
+        "bytes": 2645,
+        "sha256": "ee883a9e18af104291023cd98f05935184e45b55602a549aeab4aa6cb70e63d2",
+        "retained": false
+      }
+    ],
+    "runtimeProductionFilesModified": false
+  }
+}
