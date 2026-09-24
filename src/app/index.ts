@@ -60,7 +60,8 @@ export function mountApp(root: HTMLElement): () => void {
   let renderedChoices = '';
   let previousTime: number | null = null;
 
-  const createAppRenderer = (targetCanvas: HTMLCanvasElement) => createRenderer({ canvas: targetCanvas, onFatal: ({ code }) => { fatalMessage = code; } });
+  let handleRendererFatal = (): void => {};
+  const createAppRenderer = (targetCanvas: HTMLCanvasElement) => createRenderer({ canvas: targetCanvas, onFatal: ({ code }) => { fatalMessage = code; handleRendererFatal(); } });
   let renderer = createAppRenderer(canvas);
   const runtime = createRuntime(game, renderer, (events) => consumeEvents(events));
   const input = createInputController({
@@ -70,6 +71,11 @@ export function mountApp(root: HTMLElement): () => void {
       if (!tutorialComplete && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 1);
     },
   });
+  handleRendererFatal = () => {
+    const phase = game.snapshot().phase;
+    if (!input.cancel() && isGameplayPhase(phase)) runtime.dispatch({ type: 'pause' });
+    renderUi(game.snapshot());
+  };
 
   function consumeEvents(events: readonly GameEvent[]): void {
     for (const event of events) {
@@ -141,7 +147,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (copy && key === 'failed') copy.textContent = failureReason === 'capacity-exceeded'
       ? '케이스 용량을 초과했습니다. 이미 보관한 회수품은 유지됩니다.'
       : '회수물이 한계 압력에 도달했습니다. 이미 확보한 점수만 정산할 수 있습니다.';
-    if (copy && key === 'fatal') copy.textContent = `3D 초기화 오류 (${fatalMessage}). 그래픽 연결을 다시 시도하거나 페이지를 새로고침해 주세요.`;
+    if (copy && key === 'fatal') copy.textContent = `3D 초기화 오류 (${fatalMessage}). 현재 작업은 일시 정지되었습니다. 그래픽 연결을 다시 시도하거나 페이지를 새로고침해 주세요.`;
   }
 
   function renderChoices(snapshot: GameSnapshot): void {
