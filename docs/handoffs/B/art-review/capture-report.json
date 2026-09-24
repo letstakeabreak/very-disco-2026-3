@@ -1,0 +1,783 @@
+{
+  "checkedAt": "2026-09-24T13:23:23.888Z",
+  "head": "3a66f9abbfe0436c93f62092cbff2efe828e97eb",
+  "kind": "Actual desktop Chromium WebGL art evidence. Scene fixture and independent asset inspector are distinct. Not iPhone or gameplay proof.",
+  "captures": [
+    {
+      "target": "01",
+      "variant": "canonical",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
+      "screenshot": "captures/01-canonical.png",
+      "screenshotSha256": "5f976ff9b89f020cda3322f92fede7ec47cc18641902c0b7f47da6c41a5d1d85",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "errors": [],
+      "frames": 170,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "inspecting",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": null,
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 0,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 1536,
+        "width": 1024
+      }
+    },
+    {
+      "target": "01",
+      "variant": "390",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
+      "screenshot": "captures/01-390.png",
+      "screenshotSha256": "677d1a363ee4bc437982e163664b4dd835b9b533852127d8c74a5a5733cc9315",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "frames": 141,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "inspecting",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": null,
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 0,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "target": "01",
+      "variant": "320",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
+      "screenshot": "captures/01-320.png",
+      "screenshotSha256": "fef3793ce7047e752df7180cc8e6802551638883537c989309f176e781de54c0",
+      "dimensions": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "frames": 141,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "inspecting",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": null,
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 0,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      }
+    },
+    {
+      "target": "02",
+      "variant": "canonical",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
+      "screenshot": "captures/02-canonical.png",
+      "screenshotSha256": "493d5e51133ebab06bfea9767db4cbecebd8c4ee09417044d65a5e694d1a3c51",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "errors": [],
+      "frames": 161,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 1000,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "compressing",
+        "pressure01": 0.6,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": null,
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 60,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 1536,
+        "width": 1024
+      }
+    },
+    {
+      "target": "02",
+      "variant": "390",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
+      "screenshot": "captures/02-390.png",
+      "screenshotSha256": "37aedd0460765e75104099d36b9cb8a081fbfcffc6c89a1cd05eefc3c1ffa0be",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "frames": 140,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 1000,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "compressing",
+        "pressure01": 0.6,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": null,
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 60,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "target": "02",
+      "variant": "320",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
+      "screenshot": "captures/02-320.png",
+      "screenshotSha256": "4985d5ccdbfc900f487a3f91c892a8f0055608cba975f09eb655647448288305",
+      "dimensions": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "frames": 139,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 1000,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "compressing",
+        "pressure01": 0.6,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": null,
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 60,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      }
+    },
+    {
+      "target": "03",
+      "variant": "canonical",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=03",
+      "screenshot": "captures/03-canonical.png",
+      "screenshotSha256": "e161f297966750f745794aef68a444b1e92bd00a5cd5d032d7ba1dd942ad0d30",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "errors": [],
+      "frames": 150,
+      "ready": true,
+      "snapshot": null,
+      "status": {
+        "assetId": "salvage-cassette",
+        "cameraDirection": "-0.42107596053325946,0.3368607684266076,0.8421519210665189",
+        "drawCalls": "3",
+        "engine": "three.js r186",
+        "materialCount": "1",
+        "renderState": "ready",
+        "runtimePath": "assets/models/salvage-cassette.glb",
+        "triangles": "15000",
+        "viewer": "independent-static-asset"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 1254,
+        "width": 1254
+      }
+    },
+    {
+      "target": "04",
+      "variant": "canonical",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=04",
+      "screenshot": "captures/04-canonical.png",
+      "screenshotSha256": "07ef17489d5651b8b7c232717678350659191e87736be4edb0bf32881cf56889",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "errors": [],
+      "frames": 177,
+      "ready": true,
+      "snapshot": null,
+      "status": {
+        "assetId": "press-chamber",
+        "cameraDirection": "-0.335914446766792,0.2911258538645531,0.8957718580447787",
+        "drawCalls": "9",
+        "engine": "three.js r186",
+        "gauge": "production createGauge / pressure 0",
+        "materialCount": "2",
+        "renderState": "ready",
+        "runtimePath": "assets/models/press-chamber.glb",
+        "triangles": "42998",
+        "viewer": "independent-static-asset"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 1254,
+        "width": 1254
+      }
+    },
+    {
+      "target": "05",
+      "variant": "canonical",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
+      "screenshot": "captures/05-canonical.png",
+      "screenshotSha256": "06dc6f4633d1cb1f0420a54751e7292b0eb731cfc07992bdc077218718864972",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "errors": [],
+      "frames": 142,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "complete",
+        "pressure01": 0,
+        "remainingSpecimenIds": [],
+        "resumePhase": null,
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "tick": 0,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 1536,
+        "width": 1024
+      }
+    },
+    {
+      "target": "05",
+      "variant": "390",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
+      "screenshot": "captures/05-390.png",
+      "screenshotSha256": "5154564d006938bcfd2a4dbafceb5e64be87902b032f1f411783d31e190e54cd",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "frames": 166,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "complete",
+        "pressure01": 0,
+        "remainingSpecimenIds": [],
+        "resumePhase": null,
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "tick": 0,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "target": "05",
+      "variant": "320",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
+      "screenshot": "captures/05-320.png",
+      "screenshotSha256": "1521ed9dc5fb8c5e9d88517dcc7d8c77dad3cbb8192cc9af611587bca58abfa6",
+      "dimensions": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "frames": 144,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "complete",
+        "pressure01": 0,
+        "remainingSpecimenIds": [],
+        "resumePhase": null,
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "tick": 0,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      }
+    }
+  ],
+  "errors": [],
+  "hashesBefore": {
+    "docs/art/concepts/01-workbench.png": "0011ca9bfe720c5c5ab8107439772026a3366fd400856f6ad4569bd4129894ac",
+    "docs/art/concepts/02-pressure-state.png": "86edce465c8346c7a271305eaf23c673f8416d2837c6e5f2462ebca7c86b1337",
+    "docs/art/concepts/03-salvage-cassette-reference.png": "038dc2c2f644021268acf359bfaef20d56d593c7f617368f43cf9da7c1121ee7",
+    "docs/art/concepts/04-press-chamber-reference.png": "dcc5368e13272b4fc9785610eaebedb07ad71402413a0c11ce6e50a0a1e9fae5",
+    "docs/art/concepts/05-success-state.png": "17e944d7b64acc743cd9b1fa197685c8b95173be69e561dfdf4adfc1a2a8ea61",
+    "docs/handoffs/B/art-review/capture.css": "b54b1dc9475edfacb5211ac61ab6c2b8fea7c6df84167252b7c13da647e3be8d",
+    "docs/handoffs/B/art-review/capture.mjs": "c161d86ee4a3786caff17824446537b828067ff7ef1a84cd0a8b4c487b90ee8e",
+    "docs/handoffs/B/art-review/capture.ts": "d809040fa803f90621ca525b3d497b9f6c67d2984050405fb16b5a70c4eda02a",
+    "docs/handoffs/B/art-review/inspector.ts": "d1ae948dd2ba163a01df3dd3e5b65fc5bd49e0883f124c7b06092bfc034ef4f5",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+    "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/index.ts": "05700800323d60430d45b2133d99e3e8f7427d1e1537319692a1dc289063f301",
+    "src/render/ram.ts": "98f3912978555284d500e76ab296b36539392b6700d818dd2e780adb051dcbaa",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"
+  },
+  "hashesAfter": {
+    "docs/art/concepts/01-workbench.png": "0011ca9bfe720c5c5ab8107439772026a3366fd400856f6ad4569bd4129894ac",
+    "docs/art/concepts/02-pressure-state.png": "86edce465c8346c7a271305eaf23c673f8416d2837c6e5f2462ebca7c86b1337",
+    "docs/art/concepts/03-salvage-cassette-reference.png": "038dc2c2f644021268acf359bfaef20d56d593c7f617368f43cf9da7c1121ee7",
+    "docs/art/concepts/04-press-chamber-reference.png": "dcc5368e13272b4fc9785610eaebedb07ad71402413a0c11ce6e50a0a1e9fae5",
+    "docs/art/concepts/05-success-state.png": "17e944d7b64acc743cd9b1fa197685c8b95173be69e561dfdf4adfc1a2a8ea61",
+    "docs/handoffs/B/art-review/capture.css": "b54b1dc9475edfacb5211ac61ab6c2b8fea7c6df84167252b7c13da647e3be8d",
+    "docs/handoffs/B/art-review/capture.mjs": "c161d86ee4a3786caff17824446537b828067ff7ef1a84cd0a8b4c487b90ee8e",
+    "docs/handoffs/B/art-review/capture.ts": "d809040fa803f90621ca525b3d497b9f6c67d2984050405fb16b5a70c4eda02a",
+    "docs/handoffs/B/art-review/inspector.ts": "d1ae948dd2ba163a01df3dd3e5b65fc5bd49e0883f124c7b06092bfc034ef4f5",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+    "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/index.ts": "05700800323d60430d45b2133d99e3e8f7427d1e1537319692a1dc289063f301",
+    "src/render/ram.ts": "98f3912978555284d500e76ab296b36539392b6700d818dd2e780adb051dcbaa",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"
+  },
+  "passed": true
+}

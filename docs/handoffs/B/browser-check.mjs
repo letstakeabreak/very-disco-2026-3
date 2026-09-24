@@ -20,9 +20,10 @@ const run = (...args) => {
 };
 const evaluate = (source) => run('eval', source).result;
 const fingerprint = () => Object.fromEntries([
-  ...['index.ts','deformation.ts','ram.ts','resources.ts','visual-state.ts','assets.ts'].map(name=>`src/render/${name}`),
+  ...['index.ts','deformation.ts','ram.ts','gauge.ts','resources.ts','visual-state.ts','assets.ts'].map(name=>`src/render/${name}`),
   ...['press-chamber','salvage-core','salvage-lens','salvage-cassette'].map(id=>`public/assets/models/${id}.glb`),
   'public/assets/textures/workshop.webp',
+  'public/assets/textures/pressure-dial.webp',
 ].map(path=>[path,createHash('sha256').update(readFileSync(`${root}${path}`)).digest('hex')]));
 mkdirSync(evidenceDir, { recursive: true });
 const report = { checkedAt: new Date().toISOString(), kind: 'Actual WebGL render fixture QA in desktop Chromium; not iPhone or gameplay validation', url: `${baseUrl}/docs/handoffs/B/preview.html`, viewports: [], phases: [], specimens: [], errors: [] };

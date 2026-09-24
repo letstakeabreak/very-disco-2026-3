@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { BoxGeometry, Group, Mesh, MeshStandardMaterial, Texture } from 'three';
-import type { WebGLProgramParametersWithUniforms, WebGLRenderer } from 'three';
+import { BoxGeometry, Group, Mesh, MeshStandardMaterial, Texture, Vector3 } from 'three';
+import type { Object3D, WebGLProgramParametersWithUniforms, WebGLRenderer } from 'three';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
 import { deepFreeze } from '../../src/contracts/validate';
 import type { GameSnapshot } from '../../src/contracts';
@@ -38,6 +38,12 @@ vi.mock('three/addons/loaders/GLTFLoader.js', () => ({ GLTFLoader: class { loadA
 import { createRenderer } from '../../src/render';
 
 const flush = async (): Promise<void> => { for (let i = 0; i < 8; i += 1) await Promise.resolve(); };
+function dialLoad(): { url: string; pending: { resolve: (value: unknown) => void; reject: (error: Error) => void } } {
+  const candidates = [...boundary.loads].filter(([url]) => !url.endsWith('.glb') && !url.endsWith('workshop.webp'));
+  expect(candidates).toHaveLength(1);
+  const [url, pending] = candidates[0]!;
+  return { url, pending };
+}
 function canvas(): HTMLCanvasElement {
   return Object.assign(new EventTarget(), { dataset: {} }) as unknown as HTMLCanvasElement;
 }
@@ -56,6 +62,24 @@ async function finishLoading(): Promise<Map<string, ReturnType<typeof model>>> {
   }
   await flush(); return models;
 }
+function needleTip(scene: Object3D): Vector3 {
+  const needle = scene.getObjectByName('pressure-needle');
+  expect(needle).toBeInstanceOf(Group);
+  needle!.updateWorldMatrix(true, true);
+  const origin = needle!.getWorldPosition(new Vector3());
+  let tip = new Vector3();
+  needle!.traverse((object) => {
+    if (!(object instanceof Mesh)) return;
+    const positions = object.geometry.getAttribute('position');
+    for (let i = 0; i < positions.count; i += 1) {
+      const point = new Vector3().fromBufferAttribute(positions, i).applyMatrix4(object.matrixWorld).sub(origin);
+      if (point.lengthSq() > tip.lengthSq()) tip = point;
+    }
+  });
+  expect(tip.length()).toBeGreaterThan(0.07);
+  return tip.normalize();
+}
+
 function uniform(mesh: Mesh<BoxGeometry, MeshStandardMaterial>, name: string): { value: number } {
   const shader = { uniforms: {}, vertexShader: '#include <begin_vertex>', fragmentShader: '#include <color_fragment>' } as WebGLProgramParametersWithUniforms;
   mesh.material.onBeforeCompile(shader, {} as WebGLRenderer);
@@ -104,6 +128,56 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     expect(dispose).toHaveBeenCalledTimes(1); renderer.dispose();
   });
 
+  it('keeps the 3D stage loading until the dial texture joins the four models and workshop', async () => {
+    const surface = canvas(); const onFatal = vi.fn(); const renderer = createRenderer({ canvas: surface, onFatal });
+    const dial = dialLoad();
+    for (const [url, pending] of boundary.loads) {
+      if (url === dial.url) continue;
+      pending.resolve(url.endsWith('.glb') ? { scene: model(url.includes('press-chamber')).scene } : new Texture());
+    }
+    await flush();
+    expect(surface.dataset['loadedAssets']).toBe('4'); expect(surface.dataset['renderState']).toBe('loading');
+    renderer.render(SNAPSHOT_FIXTURES.inspecting, 16);
+    expect(boundary.draw.mock.calls.some(([scene]) => scene.getObjectByName('press-ram-test'))).toBe(false);
+    dial.pending.resolve(new Texture()); await flush();
+    expect(surface.dataset['renderState']).toBe('ready');
+    renderer.render(SNAPSHOT_FIXTURES.inspecting, 16);
+    expect(boundary.draw.mock.calls.some(([scene]) => scene.getObjectByName('press-ram-test'))).toBe(true);
+    expect(onFatal).not.toHaveBeenCalled(); renderer.dispose();
+  });
+
+  it('reports a failed dial once even when another asset fails afterwards', async () => {
+    const surface = canvas(); const onFatal = vi.fn(); const renderer = createRenderer({ canvas: surface, onFatal });
+    const dial = dialLoad(); dial.pending.reject(new Error('Missing pressure dial')); await flush();
+    expect(surface.dataset['renderState']).toBe('error');
+    expect(onFatal).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({ code: 'render-failed', message: expect.stringContaining('Missing pressure dial') }));
+    for (const [url, pending] of boundary.loads) if (url !== dial.url) pending.reject(new Error('Later asset failure'));
+    await flush(); renderer.render(SNAPSHOT_FIXTURES.inspecting, 16);
+    expect(onFatal).toHaveBeenCalledTimes(1); expect(boundary.draw).not.toHaveBeenCalled(); renderer.dispose();
+  });
+
+  it('disposes a dial arriving after early shutdown instead of attaching it or becoming ready', async () => {
+    const surface = canvas(); const onFatal = vi.fn(); const renderer = createRenderer({ canvas: surface, onFatal });
+    const dial = dialLoad(); const texture = new Texture(); const dispose = vi.spyOn(texture, 'dispose');
+    renderer.dispose(); renderer.dispose(); dial.pending.resolve(texture);
+    for (const [url, pending] of boundary.loads) {
+      if (url !== dial.url) pending.resolve(url.endsWith('.glb') ? { scene: model().scene } : new Texture());
+    }
+    await flush(); renderer.render(SNAPSHOT_FIXTURES.inspecting, 16);
+    expect(dispose).toHaveBeenCalledTimes(1); expect(surface.dataset['renderState']).toBe('disposed');
+    expect(boundary.draw).not.toHaveBeenCalled(); expect(onFatal).not.toHaveBeenCalled();
+  });
+
+  it('owns and disposes the loaded dial texture exactly once on repeated shutdown', async () => {
+    const surface = canvas(); const renderer = createRenderer({ canvas: surface, onFatal: vi.fn() });
+    const dial = dialLoad(); const texture = new Texture(); const dispose = vi.spyOn(texture, 'dispose');
+    for (const [url, pending] of boundary.loads) {
+      pending.resolve(url === dial.url ? texture : url.endsWith('.glb') ? { scene: model(url.includes('press-chamber')).scene } : new Texture());
+    }
+    await flush(); expect(surface.dataset['renderState']).toBe('ready'); expect(dispose).not.toHaveBeenCalled();
+    renderer.dispose(); renderer.dispose(); expect(dispose).toHaveBeenCalledTimes(1);
+  });
+
   it('accepts all immutable fixtures after assets are ready and enforces the DPR cap', async () => {
     const surface = canvas(); const onFatal = vi.fn(); const renderer = createRenderer({ canvas: surface, onFatal });
     await finishLoading();
@@ -115,6 +189,34 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
       const before = JSON.stringify(fixture); renderer.render(fixture, 16.7); expect(JSON.stringify(fixture)).toBe(before);
     }
     expect(boundary.draw).toHaveBeenCalled(); expect(onFatal).not.toHaveBeenCalled(); renderer.dispose();
+  });
+
+  it('points the actual needle left/up/right from pressure and snaps to a paused snapshot', async () => {
+    const onFatal = vi.fn(); const renderer = createRenderer({ canvas: canvas(), onFatal }); await finishLoading();
+    const tipAt = (snapshot: GameSnapshot): Vector3 => {
+      const before = JSON.stringify(snapshot); renderer.render(snapshot, 16);
+      expect(JSON.stringify(snapshot)).toBe(before);
+      const stage = boundary.draw.mock.calls.map(([scene]) => scene as Object3D).reverse().find((scene) => scene.getObjectByName('pressure-needle'));
+      expect(stage).toBeDefined();
+      return needleTip(stage!);
+    };
+    const paused: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.settling, phase: 'paused', resumePhase: 'settling' });
+    const firstPausedTip = tipAt(paused);
+    expect(firstPausedTip.x).toBeCloseTo(0, 6); expect(firstPausedTip.y).toBeCloseTo(1, 6);
+    // These three snapshots differ only in authoritative pressure; no renderer-side
+    // volume, score, damage or compression rule should decide the needle direction.
+    const tips = [0, 0.5, 1].map((pressure01) => tipAt(deepFreeze({ ...SNAPSHOT_FIXTURES.compressing, pressure01 })));
+    expect(tips[0]!.x).toBeLessThan(-0.95); expect(tips[0]!.y).toBeGreaterThan(0);
+    expect(tips[1]!.x).toBeCloseTo(0, 6); expect(tips[1]!.y).toBeCloseTo(1, 6);
+    expect(tips[2]!.x).toBeGreaterThan(0.95); expect(tips[2]!.y).toBeGreaterThan(0);
+    expect(tips[0]!.y).toBeCloseTo(tips[2]!.y, 6);
+    const pausedTip = tipAt(paused);
+    expect(pausedTip.distanceTo(tips[1]!)).toBeLessThan(1e-6);
+    renderer.render(paused, 100); renderer.render(paused, 0);
+    expect(tipAt(paused).distanceTo(pausedTip)).toBeLessThan(1e-6);
+    const cancelled: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.inspecting, phase: 'paused', resumePhase: 'inspecting' });
+    expect(tipAt(cancelled).distanceTo(tips[0]!)).toBeLessThan(1e-6);
+    expect(onFatal).not.toHaveBeenCalled(); renderer.dispose();
   });
 
   it('snaps a cancelled stroke to committed shape on pause and stays fixed on repeated paused frames', async () => {

@@ -1,6 +1,6 @@
 # B renderer 검증 기록
 
-2026-09-24, 계약 1.0.0, `role/b-render`. 출발 `bootstrap-v2`의 annotated tag object는 `ba2f00e700c04402cfa6574c4db9cf5ab0d7c2a0`, 실제 공통 출발 commit (`bootstrap-v2^{commit}`)은 `c739b527449b2527e46b567bfffbd4a7122f571c`다. 테스트·하네스 담당은 production renderer, A core, C app, 공유 고정 파일을 수정하지 않았다. commit/push 없음.
+2026-09-24, 계약 1.0.0, `role/b-render`. 출발 `bootstrap-v2`의 annotated tag object는 `ba2f00e700c04402cfa6574c4db9cf5ab0d7c2a0`, 실제 공통 출발 commit (`bootstrap-v2^{commit}`)은 `c739b527449b2527e46b567bfffbd4a7122f571c`다. B 소유 범위에서 구현·테스트·하네스를 작성했고 A core, C app, 공유 고정 파일은 수정하지 않았다. 기여 대상은 integration/v1의 Draft PR #1이다.
 
 ## 테스트가 확인하는 범위
 
@@ -19,7 +19,7 @@ node docs/handoffs/B/browser-check.mjs
 
 GPU 품질은 CPU 테스트로 승인하지 않는다. 부피·점수·손상 계산은 A의 책임이며 위 테스트에서 게임 공식을 복제하지 않는다.
 
-최종 bake와 외곽 배경 수정 후 renderer 테스트 **31개 통과**, 공통 typecheck·하네스 독립 typecheck·B 소유권·diff 공백 검사 통과. generated-unverified registry 네 항목과 최종 런타임/준비 보고서 해시를 대조했다.
+계기판 보완 후 renderer 테스트 **36개 통과**, 전체 테스트 **47개 통과**. 계기판 로딩 대기, 실패 1회 통지, 늦게 도착한 텍스처 및 정상 텍스처의 해제, 바늘 geometry의 실제 방향, 첫 일시정지·정지 유지·취소 복원 검증 5개를 추가했다. 공통 typecheck·하네스 독립 typecheck·B 소유권·diff 공백 검사 통과. generated-unverified registry 네 항목과 최종 런타임/준비 보고서 해시를 대조했다.
 
 ## 실제 브라우저 증거
 
@@ -31,29 +31,32 @@ GPU 품질은 CPU 테스트로 승인하지 않는다. 부피·점수·손상 �
 
 ## 최종 자동·시각 결과
 
-최종 실행 시작 **2026-09-24 21:51:31 KST** (`2026-09-24T12:51:31.966Z`). idle의 세 번째 트레이 위치 수정까지 포함했다. `passed: true`, GLB 4개 ready, 실제 select와 네 range의 키보드 이벤트 통과, 두 viewport 배치 통과, 8개 phase와 9개 specimen 조합 통과, probe/browser 오류 0. 렌더러·GLB·배경 파일의 검사 시작/끝 SHA가 동일하다. 검사 전용 Chromium 세션은 종료했다.
+최종 실행 시작 **2026-09-24 22:24:01 KST** (`2026-09-24T13:24:01.796Z`). 계기판 동작·렌즈 파손 조각·PCFShadowMap 직접 지정까지 포함했다. `passed: true`, GLB 4개 ready, 실제 select와 네 range의 키보드 이벤트 통과, 두 viewport 배치 통과, 8개 phase와 9개 specimen 조합 통과, probe/browser 오류 0. 렌더러·GLB·배경·계기판 파일의 검사 시작/끝 SHA가 동일하다. 검사 전용 Chromium 세션은 종료했다.
 
 | viewport | DPR | 표본 | FPS | P95 | visibleTriangles | triangles 전체 패스 | draw calls |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| 390×844 | 1 | 120 frames / 119 intervals | 60.001 | 16.7ms | 81,000 | 239,000 | 19 |
-| 1440×900 | 1 | 120 frames / 119 intervals | 60.004 | 16.8ms | 81,000 | 239,000 | 19 |
+| 390×844 | 1 | 120 frames / 119 intervals | 60.004 | 16.7ms | 81,024 | 239,048 | 27 |
+| 1440×900 | 1 | 120 frames / 119 intervals | 60.004 | 16.8ms | 81,024 | 239,048 | 27 |
 
-위 수치는 약 2초의 **desktop Chromium, DPR 1** 표본이다. 모든 패스 239,000과 고유 visible triangles 81,000을 구분한다. 이 기록은 실기기 3분 성능 조건을 대체하지 않는다.
+위 수치는 약 2초의 **desktop Chromium, DPR 1** 표본이다. 모든 패스 239,048과 고유 visible triangles 81,024를 구분한다. 이 기록은 실기기 3분 성능 조건을 대체하지 않는다.
 
 실제 캡처를 열어 확인한 사항:
 
 - [390×844](runtime-390x844.png)와 [1440×900](runtime-1440x900.png)에서 금속·광학 렌즈·카세트·작업대가 로드된다. 넓은 화면 외곽에는 트레이/케이스 복제 없이 어두운 배경이 보인다.
 - [complete](runtime-phase-complete.png): 세 보관물이 390px 화면 안에 들어온다. 초기의 오른쪽 잘림은 수정됐다.
-- [정상 렌즈](runtime-salvage-lens-inspecting.png)와 [파손 렌즈](runtime-salvage-lens-failed.png): 원판 균열과 밝은 점선, 하우징 어두워짐이 보인다. 다만 디스크 자체가 작아 정상/파손을 즉시 구분하는 가독성은 제한적이다. 선명한 파손 전달을 완성했다고 단정하지 않는다.
+- [정상 렌즈](runtime-salvage-lens-inspecting.png)와 [파손 렌즈](runtime-salvage-lens-failed.png): 균열·하우징 어두워짐에 더해 심한 손상에서 조각이 빠진 실루엣을 표시한다. 이전의 온전한 원판처럼 보이던 문제는 줄었지만 디스크 자체가 작고 전체 모바일 상태 가독성에는 미달 항목이 남아 있다.
+- 압력계는 바늘 없는 ImageGen 원본과 실제 기능 바늘을 사용한다. 0/50/100%의 왼쪽/위/오른쪽, pause 즉시 반영, 기존 바늘 가림을 확인했다. 계기판은 24 triangles를 더하며 총 draw calls 27은 예산 80 이내다.
 - [idle](runtime-phase-idle.png): 세 번째 slot을 왼쪽 트레이 앞쪽으로 옮긴 최종 캡처에서 코어·렌즈·카세트가 모두 선명하게 보인다. 초기의 프레스 뒤 가림은 수정됐다. inspecting의 두 대기 물건도 트레이 순서 압축으로 잘 보인다.
 - paused, compressing, settling, stored를 포함한 8장에는 검은 화면·누락 모델·UI의 작업대 가림이 관찰되지 않았다. 이미지 비교는 실제 입력이나 게임 판정 검증과 다르다.
 
 초기 중도 실패 뒤 최종 파일로 전체 재실행하여 위 결과를 얻었다. 최초 개발용 placeholder 기록은 별도 `preview-browser-check.json`에 보존되어 있다.
 
+[5개 목표 비교](../art-review.md)에는 원본과 같은 출력 크기의 실제 WebGL 캡처 및 390/320px 캡처 총 11장, 7항목별 판정이 있다. 구도·물건 크기·케이스 슬롯 배치·작은 화면 가독성 등은 **미달**이다. 캡처 수집 및 자동 검사의 PASS를 아트 전체 합격으로 확대하지 않는다.
+
 실제 iPhone Safari, 3분 성능, touch/cancel 전체 입력, A/C와 연결된 게임 루프, 대회 제출 경로는 이 독립 렌더 작업에서 검증하지 않았다.
 
 ## 데스크톱 3분 연속 측정
 
-`soak-check.mjs` 최종 실행: **PASS**, 180.005초, 10,801 rAF 표본, 평균 60.004 FPS, P95 16.7ms, max 16.8ms, 오류 0. 390×844 CSS pixels / DPR2 / framebuffer780×1688. HeadlessChrome153 / ANGLE Metal Apple M5. 검사·압착·파손·보관·완료·정지 fixture를 30초 간격으로 바꿨다. 시작/끝 renderer·GLB·배경 SHA 동일. 이 값은 **데스크톱 rAF 간격**이며 실제 iPhone13 Safari 또는 GPU 실행시간/터치지연 보증이 아니다. [전체 기록](desktop-soak.json).
+`soak-check.mjs` 최종 실행 시작 `2026-09-24T13:25:45.467Z`: **PASS**, 180.015초, 10,802 rAF 표본, 평균 60.006 FPS, P95 16.7ms, max 16.8ms, 오류 0. 390×844 CSS pixels / DPR2 / framebuffer780×1688. HeadlessChrome153 / ANGLE Metal Apple M5. 검사·압착·파손·보관·완료·정지 fixture를 30초 간격으로 바꿨다. 시작/끝 renderer·GLB·배경·계기판 SHA 동일. 이 값은 **데스크톱 rAF 간격**이며 실제 iPhone13 Safari 또는 GPU 실행시간/터치지연 보증이 아니다. [전체 기록](desktop-soak.json).
 
-root의 전체 `npm run check`: 9개 파일 **42 tests** 통과, frozen23파일일치, TS/모듈경계/build통과. B ownership과diff검사통과. [Mac Safari 별도 UI 관찰](safari-desktop.md)은 새 로드 후 입력/화면 확인이며 HMR중일시적Script error도기록했다.
+root의 전체 `npm run check`: 9개 파일 **47 tests** 통과, frozen23파일일치, TS/모듈경계/build통과. B ownership과diff검사통과. [Mac Safari 별도 UI 관찰](safari-desktop.md)은 일반 프로필의 원인 미확정 Script error, 별도 임시 창의 정상 조작·빈 콘솔을 모두 기록했다.

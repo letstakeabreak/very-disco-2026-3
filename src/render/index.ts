@@ -1,6 +1,6 @@
 import {
   ACESFilmicToneMapping, AmbientLight, Box3, DirectionalLight, Group, Matrix4, Mesh,
-  MeshLambertMaterial, MeshPhysicalMaterial, MeshStandardMaterial, OrthographicCamera, PCFSoftShadowMap, PerspectiveCamera,
+  MeshLambertMaterial, MeshPhysicalMaterial, MeshStandardMaterial, OrthographicCamera, PCFShadowMap, PerspectiveCamera,
   Plane, PlaneGeometry, PMREMGenerator, Raycaster, Scene, ShaderMaterial,
   ShadowMaterial, SRGBColorSpace, TextureLoader, Vector2, Vector3, WebGLRenderer,
 } from 'three';
@@ -9,6 +9,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import type { AssetId, GameRenderer, GameSnapshot, RendererOptions, SalvageId } from '../contracts';
 import { deformSpecimen, type Deformation } from './deformation';
+import { createGauge } from './gauge';
 import { disposeObjects } from './resources';
 import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state';
 import { animateRam, PRESS_ANCHORS } from './ram';
@@ -41,7 +42,9 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   const depths: { dispose(): void }[] = [];
   let press: Object3D | null = null;
   let ram: ReturnType<typeof animateRam> | null = null;
+  let gauge: ReturnType<typeof createGauge> | null = null;
   let plate: Texture | null = null;
+  let dial: Texture | null = null;
   let environment: WebGLRenderTarget | null = null;
   canvas.dataset['renderState'] = 'loading';
   canvas.dataset['loadedAssets'] = '0';
@@ -60,7 +63,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   gpu.toneMapping = ACESFilmicToneMapping;
   gpu.toneMappingExposure = 0.95;
   gpu.shadowMap.enabled = true;
-  gpu.shadowMap.type = PCFSoftShadowMap;
+  gpu.shadowMap.type = PCFShadowMap;
   gpu.info.autoReset = false;
 
   const scene = new Scene();
@@ -182,8 +185,15 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     plate = texture; texture.colorSpace = SRGBColorSpace;
     plateMaterial.uniforms['plate']!.value = texture;
   });
-  void Promise.all([...loading, loadingPlate]).then(() => {
-    if (!disposed && !failed) { ready = true; canvas.dataset['renderState'] = 'ready'; }
+  const loadingDial = new TextureLoader().loadAsync(assetUrl('textures/pressure-dial.webp')).then((texture) => {
+    if (disposed || failed) { disposeObjects([], [texture]); return; }
+    dial = texture; texture.colorSpace = SRGBColorSpace;
+  }).catch((error: unknown) => { throw new Error(`Could not load pressure dial: ${String(error)}`); });
+  void Promise.all([...loading, loadingPlate, loadingDial]).then(() => {
+    if (!disposed && !failed && press && dial) {
+      gauge = createGauge(dial); press.add(gauge.root);
+      ready = true; canvas.dataset['renderState'] = 'ready';
+    }
   }).catch(fail);
 
   function sync(snapshot: GameSnapshot, dt: number): void {
@@ -195,6 +205,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     previousSeed = snapshot.seed; previousTick = snapshot.tick;
     const phase = snapshot.phase === 'paused' ? snapshot.resumePhase : snapshot.phase;
     const paused = snapshot.phase === 'paused';
+    gauge?.setPressure(snapshot.pressure01);
     // Pause can cancel an uncommitted stroke: show its authoritative settled state immediately.
     const blend = paused || !hasSynced ? 1 : 1 - Math.exp(-dt / 65);
     let currentTop: number = PRESS_ANCHORS.workbedY;
@@ -294,7 +305,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       if (disposed) return;
       disposed = true; canvas.dataset['renderState'] = 'disposed';
       canvas.removeEventListener('webglcontextlost', contextLost);
-      disposeObjects(roots, plate ? [plate] : []);
+      disposeObjects(roots, [plate, dial].filter((texture): texture is Texture => texture !== null));
       depths.forEach((material) => material.dispose());
       environment?.dispose(); key.shadow.dispose();
       props.clear(); storedLooks.clear(); gpu.dispose();

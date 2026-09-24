@@ -11,7 +11,7 @@ const run = (...args) => {
   return response.data;
 };
 const evaluate = (source) => run('eval', source).result;
-const paths = ['src/render/index.ts','src/render/deformation.ts','src/render/ram.ts','src/render/visual-state.ts','public/assets/models/press-chamber.glb','public/assets/models/salvage-core.glb','public/assets/models/salvage-lens.glb','public/assets/models/salvage-cassette.glb','public/assets/textures/workshop.webp'];
+const paths = ['src/render/index.ts','src/render/deformation.ts','src/render/ram.ts','src/render/gauge.ts','src/render/resources.ts','src/render/visual-state.ts','src/render/assets.ts','public/assets/models/press-chamber.glb','public/assets/models/salvage-core.glb','public/assets/models/salvage-lens.glb','public/assets/models/salvage-cassette.glb','public/assets/textures/workshop.webp','public/assets/textures/pressure-dial.webp'];
 const hashes = () => Object.fromEntries(paths.map(path => [path, createHash('sha256').update(readFileSync(`${root}${path}`)).digest('hex')]));
 const report = { kind: 'Desktop Chromium WebGL fixture workload, 390x844 with DPR 2; NOT a physical iPhone or gameplay test', checkedAt: new Date().toISOString(), startHashes: hashes(), samples: [] };
 try {

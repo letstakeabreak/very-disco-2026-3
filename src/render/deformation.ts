@@ -61,13 +61,20 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
             float radius = length(fracturePosition);
             float angle = atan(fracturePosition.y, fracturePosition.x);
             float ray = abs(sin(angle * 4.0 + sin(radius * 37.0) * 0.13));
-            float crack = (1.0-smoothstep(0.012,0.065,ray)) * smoothstep(0.035,0.085,radius);
-            crack = max(crack, 1.0-smoothstep(0.004,0.012,abs(radius-0.24-sin(angle*7.0)*0.018)));
-            diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.025,0.07,0.075), crack*pressDamage);
+            float pixel = max(fwidth(ray), 0.015);
+            float crack = (1.0-smoothstep(0.015,0.035+pixel,ray)) * smoothstep(0.035,0.085,radius);
+            crack = max(crack, 1.0-smoothstep(0.004,0.012+fwidth(radius),abs(radius-0.24-sin(angle*7.0)*0.018)));
+            // An authored missing shard makes severe damage readable at phone scale.
+            // Only snapshot integrity drives this look; this does not decide a failure.
+            float missing = smoothstep(0.4,0.95,pressDamage);
+            float wedgeEdge = abs(angle-0.45) - missing*0.72 - sin(radius*62.0)*0.045;
+            if (missing > 0.0 && wedgeEdge < 0.0 && radius > 0.04) discard;
+            float chippedEdge = (1.0-smoothstep(0.015,0.04+fwidth(wedgeEdge),abs(wedgeEdge))) * missing;
+            diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.68,0.82,0.79), max(crack*pressDamage,chippedEdge)*0.85);
           `).replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = min(1.0, roughnessFactor + pressDamage * 0.65);');
         }
       };
-      material.customProgramCacheKey = () => `deep-press-shell-v2-${glassSurface}`;
+      material.customProgramCacheKey = () => `deep-press-shell-v3-${glassSurface}`;
       deformation.materials.push(material);
       return material;
     });
