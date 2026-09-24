@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../../../../', import.meta.url)); const directory = fileURLToPath(new URL('./', import.meta.url));
 const run = (...args) => { const r = JSON.parse(execFileSync('npx', ['--yes', 'agent-browser@0.38.1', '--session', 'deep-press-case-proof', '--json', ...args], { cwd: root, encoding: 'utf8', timeout: 45000 })); if (!r.success) throw new Error(JSON.stringify(r.error)); return r.data; };
 const sha = path => createHash('sha256').update(readFileSync(root + path)).digest('hex');
-const paths = ['src/render/index.ts', 'src/render/case-depth.ts', 'src/render/deformation.ts', 'src/render/ram.ts', 'public/assets/textures/workshop-v4.webp',
+const paths = ['src/render/index.ts', 'src/render/cassette.ts', 'src/render/case-depth.ts', 'src/render/deformation.ts', 'src/render/ram.ts', 'public/assets/textures/workshop-v4.webp',
   ...['press-chamber', 'salvage-core', 'salvage-lens', 'salvage-cassette'].map(id => `public/assets/models/${id}.glb`), 'docs/handoffs/B/layout-study/foreground.ts'];
 const hashes = () => Object.fromEntries(paths.map(p => [p, sha(p)]));
 const report = { checkedAt: new Date().toISOString(), kind: 'Actual WebGL production renderer with synthetic stored-history fixtures. CPU projection of actual deformed GLB vertices plus synchronous GPU pixel comparison with depth on/off and empty case. Not physical containment, C HUD, gameplay or iPhone validation.', sourceHashesBefore: hashes(), layouts: [], captures: [] };

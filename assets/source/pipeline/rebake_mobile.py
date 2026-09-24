@@ -37,6 +37,8 @@ def make_active(obj, source=None):
 
 
 def bake_asset(asset):
+    if asset.get("assembly"):
+        raise ValueError("Prepare the original housing before rebaking a composed asset, then rerun its assembly script")
     asset_id = asset["assetId"]
     directory = HERE / "baked" / asset_id
     directory.mkdir(parents=True, exist_ok=True)
@@ -155,6 +157,7 @@ def bake_asset(asset):
     print(f"REBAKED {asset_id} {output_path.stat().st_size} bytes", flush=True)
 
 
-for asset in REPORT["assets"]:
-    if asset["assetId"] in ASSET_IDS:
-        bake_asset(asset)
+if __name__ == "__main__":
+    for asset in REPORT["assets"]:
+        if asset["assetId"] in ASSET_IDS:
+            bake_asset(asset)

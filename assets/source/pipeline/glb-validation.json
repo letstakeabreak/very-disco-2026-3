@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "validation": "passed",
-  "combinedBytes": 8956848,
-  "combinedTriangles": 80998,
+  "combinedBytes": 10885424,
+  "combinedTriangles": 89998,
   "assets": [
     {
       "assetId": "press-chamber",
@@ -116,9 +116,9 @@
     {
       "assetId": "salvage-cassette",
       "path": "public/assets/models/salvage-cassette.glb",
-      "sha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
-      "bytes": 2109280,
-      "triangles": 15000,
+      "sha256": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+      "bytes": 4037856,
+      "triangles": 24000,
       "dimensionsMetersXYZ": [
         0.2799999713897705,
         0.1342819482088089,
@@ -153,6 +153,23 @@
             ]
           ],
           "bakedVertices": true
+        },
+        {
+          "name": "cassette-interior",
+          "triangles": 9000,
+          "boundsMeters": [
+            [
+              -0.09021440148353577,
+              0.04164525121450424,
+              -0.03255224600434303
+            ],
+            [
+              0.09020844846963882,
+              0.10659630596637726,
+              0.03225835785269737
+            ]
+          ],
+          "bakedVertices": true
         }
       ],
       "textures": [
@@ -182,6 +199,33 @@
             1024
           ],
           "bytes": 217545
+        },
+        {
+          "name": "cassette-interior-normal",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 563928
+        },
+        {
+          "name": "cassette-interior-baseColor",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "bytes": 642186
+        },
+        {
+          "name": "cassette-interior-metallicRoughness",
+          "mimeType": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "bytes": 182477
         }
       ],
       "materials": [
@@ -197,6 +241,21 @@
             },
             "metallicRoughnessTexture": {
               "index": 2
+            }
+          }
+        },
+        {
+          "doubleSided": true,
+          "name": "cassette-interior-rebaked-PBR",
+          "normalTexture": {
+            "index": 3
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 4
+            },
+            "metallicRoughnessTexture": {
+              "index": 5
             }
           }
         }

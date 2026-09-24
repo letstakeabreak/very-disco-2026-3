@@ -1,6 +1,20 @@
 # B renderer 검증 기록
 
-## 2026-09-25 — 케이스 깊이 가림과 안착 (현재)
+## 2026-09-25 — 카세트 내부 축과 투명 깊이 (현재)
+
+새 ImageGen 내부 부품을 Meshy7으로 재구성하고9,000삼각형·2K/1K PBR 파생본을 기존 카세트에 합쳤다. 외피 버퍼는 바뀌지 않았다. 유리 패스를 분리해 내부 축·반대쪽 외피를 투과시키고 광학 마스크와 snapshot 손상 셰이더를 순서대로 합성한다. 프레임 압축 중 유리·내부 축은 강체 이동하며 램 높이도 같은 계수를 쓴다. [생성·기각·개선 기록](../cassette-insert-study/README.md)을 따른다.
+
+- npm run check: frozen23, strictTS,17모듈 경계,11파일58테스트, build 통과. 새 회귀는 광학/손상 합성·강체 부품 uniform·공유 자원1회 해제를 확인한다. GPU 품질 검사를 대신하지 않는다.
+- 실제 GLB 검사:4파일10,885,424bytes/89,998triangles, self-contained·좌표·유한정점·단위normal·index·6개 카세트 PBR이미지와2K상한 통과.
+- 아트11장: ready·생산용GLB4·오류0·전후hash일치. 대표 visible105,096(유리 외피 중복15k/depth72/숨은 면 포함), 전체패스281,192, draw33. 03근접·390폭01/02·320폭05를 열어 확인했고 아트 미달은 유지했다.
+- 일반 브라우저:3크기·8상태·9물건/상태 조합·입력·전후해시 검사 통과. [기록](runtime-browser-check.json).
+- [보관36조합](../layout-study/foreground-report.json):앞면 누출 0픽셀, 케이스 밖 변화 0픽셀, 각 홈 가시 픽셀 최소 624. 내부/유리 mesh를 같은 카세트로 묶어 CPUbounds도 검사했다. 마스크로 버린 면까지 포함한 보수적 범위이며 물리 수납 증거가 아니다.
+- dist12,168,095bytes, JS675,808bytes/gzip174.20kB. Vite500kB 경고는 남는다.
+- [3분 desktop 측정](desktop-soak.json):180.012초/10,802 rAF/평균60.0072FPS/P95 16.7ms/max16.8ms/오류0. AppleM5·Chromium153·390×844/DPR2.15개 source/asset SHA 전후일치. 별도 정적 하네스이며 실제 iPhone·입력 지연·통제된 시스템부하 시험이 아니다.
+
+아래는 각 시점의 이력이다. 과거 mobile triangle/파일크기/성능을 현재값과 합치지 않는다. 기존 케이스 시점 soak는 [보존 기록](desktop-soak-20260924T161036.json)에 있다. 현재 기여는 integration/v1 대상 B Draft이며 완성 아트·실제 iPhone·통합게임 검증은 남았다.
+
+## 2026-09-25 — 케이스 깊이 가림과 안착 (카세트 내부 추가 전 이력)
 
 원본 ImageGen plate와 네 Meshy GLB는 그대로 두고 폼 입구·아래쪽 벽을 가리는72삼각형 depth-only 형상을 추가했다. 보관물은18mm 내려 놓는다. 픽셀 기반 폼 경계는 같은 카메라의 작업대 평면에 역투영하며160mm 아래쪽 깊이는 아트 설정이다. 가시3D케이스나 물리 수납 모델이 아니다.
 

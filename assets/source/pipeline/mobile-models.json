@@ -54,6 +54,11 @@
       "normalizeDimension": "width",
       "targetMeters": 0.28,
       "maxTriangles": 16000,
+      "assembly": {
+        "maxTriangles": 24000,
+        "materialCount": 2,
+        "nodeNames": ["salvage-cassette", "cassette-interior"]
+      },
       "parts": [
         {
           "name": "salvage-cassette",

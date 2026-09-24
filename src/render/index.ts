@@ -15,6 +15,7 @@ import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state'
 import { animateRam, PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from './ram';
 import { ASSET_REGISTRY } from './assets';
 import { createCaseDepth } from './case-depth';
+import { prepareCassette } from './cassette';
 
 const STAGE_ASPECT = 2 / 3;
 const WORKTOP_Y = 0.22;
@@ -194,6 +195,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         if (material.normalMap) material.normalScale.set(0.55, 0.55);
       }
     });
+    if (id === 'salvage-cassette') prepareCassette(root);
   }
   const loader = new GLTFLoader();
   const loading = ASSET_IDS.map(async (id) => {
@@ -269,7 +271,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       let look = { compression: visual.compression, damage: visual.damage };
       if (visual.location === 'press') storedLooks.set(visual.id, look);
       if (visual.location === 'case') look = storedLooks.get(visual.id) ?? look;
-      const compressionScale = visual.id === 'salvage-lens' ? 0.12 : 0.52;
+      const compressionScale = visual.id === 'salvage-core' ? 0.52 : 0.12;
       prop.root.scale.setScalar(1);
       prop.root.rotation.set(0, visual.yaw, 0);
       if (visual.location === 'press') {

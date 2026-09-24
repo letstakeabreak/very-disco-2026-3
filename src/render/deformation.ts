@@ -38,7 +38,7 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
     shader.uniforms['pressCompression'] = deformation.compression;
     shader.uniforms['pressDamage'] = deformation.damage;
     shader.uniforms['pressHeight'] = { value: Math.max(size.y, 0.01) };
-    shader.uniforms['pressIsGlass'] = { value: id === 'salvage-lens' ? 1 : 0 };
+    shader.uniforms['pressIsGlass'] = { value: id === 'salvage-core' ? 0 : 1 };
     shader.uniforms['pressGlassSurface'] = { value: glassSurface ? 1 : 0 };
     shader.vertexShader = DECLARATIONS + shader.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n' + VERTEX);
   };
@@ -46,13 +46,16 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
     if (!(object instanceof Mesh)) return;
     const source = Array.isArray(object.material) ? object.material : [object.material];
     const glassSurface = object.name.startsWith('lens-glass');
+    const rigidSurface = glassSurface || object.name === 'cassette-window' || object.name === 'cassette-interior';
     const glassBox = new Box3().setFromObject(object);
     const glassCenter = glassBox.getCenter(new Vector3());
     const glassSize = glassBox.getSize(new Vector3());
     object.material = source.map((original) => {
       const material = original as MeshStandardMaterial;
-      material.onBeforeCompile = (shader) => {
-        patchVertex(shader, glassSurface);
+      const prepareOptics = material.onBeforeCompile;
+      const opticsKey = material.customProgramCacheKey();
+      material.onBeforeCompile = (shader, renderer) => {
+        patchVertex(shader, rigidSurface);
         shader.fragmentShader = 'uniform float pressDamage;\n' + shader.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>\n diffuseColor.rgb *= mix(vec3(1.0), vec3(0.30, 0.24, 0.21), pressDamage * 0.72);`);
         if (glassSurface) {
           shader.vertexShader = 'varying vec2 fracturePosition;\n' + shader.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\nfracturePosition = (position.xy - vec2(${glassCenter.x.toFixed(8)}, ${glassCenter.y.toFixed(8)})) / vec2(${glassSize.x.toFixed(8)}, ${glassSize.y.toFixed(8)});`);
@@ -73,15 +76,17 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
             diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.68,0.82,0.79), max(crack*pressDamage,chippedEdge)*0.85);
           `).replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = min(1.0, roughnessFactor + pressDamage * 0.65);');
         }
+        // Optical masks must read the original albedo before damage darkens it.
+        prepareOptics.call(material, shader, renderer);
       };
-      material.customProgramCacheKey = () => `deep-press-shell-v3-${glassSurface}`;
+      material.customProgramCacheKey = () => `deep-press-shell-v4-${id}-${rigidSurface}-${opticsKey}`;
       deformation.materials.push(material);
       return material;
     });
     if (object.material.length === 1) object.material = object.material[0]!;
     const depth = new MeshDepthMaterial({ depthPacking: RGBADepthPacking });
-    depth.onBeforeCompile = (shader) => patchVertex(shader, object.name.startsWith('lens-glass'));
-    depth.customProgramCacheKey = () => `deep-press-shell-depth-v2-${object.name.startsWith('lens-glass')}`;
+    depth.onBeforeCompile = (shader) => patchVertex(shader, rigidSurface);
+    depth.customProgramCacheKey = () => `deep-press-shell-depth-v3-${id}-${rigidSurface}`;
     object.customDepthMaterial = depth;
     deformation.depthMaterials.push(depth);
     object.frustumCulled = false;

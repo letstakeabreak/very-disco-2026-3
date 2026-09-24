@@ -1,0 +1,61 @@
+{
+  "assetId": "salvage-cassette",
+  "component": "cassette-interior",
+  "status": "integrated-generated-unverified",
+  "purpose": "New art-designed interior for the existing cassette. The older Meshy master contains no recovered internal core.",
+  "imagegen": {
+    "generator": "built-in ImageGen",
+    "input": "input.png",
+    "prompt": "imagegen-request.json",
+    "supportingReference": "docs/art/concepts/03-salvage-cassette-reference.png",
+    "referenceSha256": "038dc2c2f644021268acf359bfaef20d56d593c7f617368f43cf9da7c1121ee7",
+    "inputSha256": "8dbd7850c316df38693af163ecb877ad8d3f760f9d9278b95d09db5ebd9daa19",
+    "outputFileModifiedAt": "2026-09-24T16:19:27.615Z",
+    "timestampNote": "Preserved original output file mtime, not a service-reported generation timestamp",
+    "productionBrief": "prompt.md"
+  },
+  "meshy": {
+    "resource": "image-to-3d",
+    "taskId": "01a0d437-8bf7-7546-80c3-0cca9fe2975a",
+    "cliVersion": "0.4.0",
+    "requestedModel": "meshy-7",
+    "modelEvidence": "CLI standard is documented as Meshy7; create also explicitly sent ai_model=meshy-7. Finished task does not echo model identifier.",
+    "settings": {
+      "model_type": "standard",
+      "should_texture": true,
+      "enable_pbr": true,
+      "texture_resolution": "4k",
+      "ultra_mode": false,
+      "target_formats": [
+        "glb"
+      ]
+    },
+    "status": "SUCCEEDED",
+    "consumedCredits": 30,
+    "createdAt": "2026-09-24T16:20:07.492Z",
+    "finishedAt": "2026-09-24T16:22:20.625Z",
+    "estimate": {
+      "source": "meshy make image --dry-run (CLI planner)",
+      "credits": 30
+    },
+    "projectDirectory": "assets/source/meshy/salvage-cassette/insert-v1/.meshy-local/20260925_012036_cassette-insert-v1_01a0d437",
+    "privateMetadataNote": "CLI snapshots and signed download URLs are local-only and ignored by Git."
+  },
+  "master": {
+    "file": "insert-master.glb",
+    "bytes": 76046332,
+    "sha256": "d827e2e8017a948101ddf251a1dc019fa1e3a8c70c8a00f4073915119c96afcf",
+    "triangles": 1620068,
+    "meshes": 1,
+    "materials": 1
+  },
+  "preview": {
+    "file": "preview.png",
+    "sha256": "4a206a08fb240eb8accfe4ffa016d058b456fc7a548c2a4ac7e46edc42e52ac1",
+    "visuallyInspected": true,
+    "observation": "Complete cylindrical part with copper annular bands, dark barrel, connecting ribs and two end shafts. This render does not establish topology or device quality."
+  },
+  "assemblyReport": "assembly-report.json",
+  "mobileReport": "mobile-report.json",
+  "textureVerification": "Source base color and normal 4096x4096; metallic/roughness 2048x2048. Request was 4k, not a claim that all maps are 4K."
+}

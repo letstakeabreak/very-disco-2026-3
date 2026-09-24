@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import type { GameRenderer } from '../../../../src/contracts';
 import { createGauge } from '../../../../src/render/gauge';
+import { prepareCassette } from '../../../../src/render/cassette';
 
 /** Documentation-only static asset inspection, not an alternate game renderer.
  * Loads the exact shipping GLB. Geometry and embedded PBR maps are not replaced.
@@ -87,6 +88,7 @@ export function createInspector(canvas: HTMLCanvasElement, id: 'salvage-cassette
         if (material.normalMap) material.normalScale.set(0.55,0.55);
       }
     });
+    if (id === 'salvage-cassette') prepareCassette(root);
     if (dial) { const gauge=createGauge(dial); gauge.setPressure(0); root.add(gauge.root); canvas.dataset['gauge']='production createGauge / pressure 0'; }
     bounds.setFromObject(root); bounds.getCenter(center);
     radius = bounds.getSize(new Vector3()).length() / 2;

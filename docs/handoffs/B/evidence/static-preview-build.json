@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-24T16:08:29.350Z",
+  "builtAt": "2026-09-24T16:47:52.802Z",
   "purpose": "Static production build of B fixture harness without Vite HMR; not the integrated game or itch deployment validation",
   "root": "/Users/miro/Developer/very-disco-2026-3/",
   "outDir": "/tmp/deep-press-b-static-preview",
@@ -8,11 +8,12 @@
     "docs/handoffs/B/preview.html": "766400f098a369f917fadd648bb7071d98d5221849f65c8a457f0c7b8c8b741d",
     "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
     "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
-    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
     "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
-    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "85dbf6c6b786ceb0ce8c179d4b71bce875806ed246400f322b0e87970429b24b",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
+    "src/render/index.ts": "876a9aff68bcf7739e52815fff279ca92b180e4ad1eb32ce0ecdc0e871f9f895",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
@@ -26,11 +27,12 @@
     "docs/handoffs/B/preview.html": "766400f098a369f917fadd648bb7071d98d5221849f65c8a457f0c7b8c8b741d",
     "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
     "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
-    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
     "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
-    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "85dbf6c6b786ceb0ce8c179d4b71bce875806ed246400f322b0e87970429b24b",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
+    "src/render/index.ts": "876a9aff68bcf7739e52815fff279ca92b180e4ad1eb32ce0ecdc0e871f9f895",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
@@ -50,8 +52,8 @@
       "sha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75"
     },
     "assets/models/salvage-cassette.glb": {
-      "bytes": 2109280,
-      "sha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee"
+      "bytes": 4037856,
+      "sha256": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c"
     },
     "assets/models/salvage-core.glb": {
       "bytes": 1901316,
@@ -61,13 +63,13 @@
       "bytes": 2073588,
       "sha256": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc"
     },
-    "assets/preview-BH2gVqHA.js": {
-      "bytes": 675350,
-      "sha256": "ed89b517b22bafc393e8a7ad86078b673442dc2116d6e74d2a3d0a26700a87c0"
-    },
     "assets/preview-BXghWxwx.css": {
       "bytes": 4119,
       "sha256": "d770d61ef68980bf1c20f2d7db81f8fc4033e8d4c2c925d7108a175bbfdeae08"
+    },
+    "assets/preview-CHRcEROJ.js": {
+      "bytes": 676871,
+      "sha256": "24983f498853f056757c09fc3193ead627a3b7b085ce37c0b0cef9eef8b6f2b1"
     },
     "assets/textures/pressure-dial.webp": {
       "bytes": 90242,
@@ -83,7 +85,7 @@
     },
     "docs/handoffs/B/preview.html": {
       "bytes": 3136,
-      "sha256": "54e58fd1af7d48fb703c1d1de934d605b4af1fe18c3a4308981215a384fb9506"
+      "sha256": "ccf83795cb7e6cf7f4a9abe400681ff2858c0e69ae21617c6158d19e6a903def"
     }
   }
 }

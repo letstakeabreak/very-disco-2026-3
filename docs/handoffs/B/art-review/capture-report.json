@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-24T16:07:46.043Z",
-  "head": "6d928d1364938b22e6421a1ff4e56bc9c91bcd59",
+  "checkedAt": "2026-09-24T16:45:31.256Z",
+  "head": "7551a1b8fe2818b2b2c175691e936428a94c3463",
   "kind": "Actual desktop Chromium WebGL art evidence. Scene fixture and independent asset inspector are distinct. Not iPhone or gameplay proof.",
   "captures": [
     {
@@ -8,13 +8,13 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
       "screenshot": "captures/01-canonical.png",
-      "screenshotSha256": "655b7dd2aa0efb67d9ffab1910724f24953450d4aabc15eb09c35b4e2b6e9335",
+      "screenshotSha256": "45c9663d6cb5d29a21d7a1d052e9a58fe346231ca662b58ad996b299ed0ffa56",
       "dimensions": {
         "width": 1024,
         "height": 1536
       },
       "errors": [],
-      "frames": 138,
+      "frames": 105,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -66,12 +66,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -84,13 +84,13 @@
       "variant": "390",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
       "screenshot": "captures/01-390.png",
-      "screenshotSha256": "623f49463e63449c459331156490b4752cbbf2d6e30b8e43085d3936008fff56",
+      "screenshotSha256": "b2874f02f18889ae8dcc457a416c32042b10c7b5da2752aec474522465244dff",
       "dimensions": {
         "width": 390,
         "height": 844
       },
       "errors": [],
-      "frames": 138,
+      "frames": 127,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -142,12 +142,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -160,13 +160,13 @@
       "variant": "320",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
       "screenshot": "captures/01-320.png",
-      "screenshotSha256": "f643900ae1383f2bd98fc8fe91d58a30f21c3dca5760a3055cd2d6a0f8550fa7",
+      "screenshotSha256": "1a43e007306fe16abc79e7aded6695b3db4c70c9ac4917fecfbe8d60e57f95b6",
       "dimensions": {
         "width": 320,
         "height": 568
       },
       "errors": [],
-      "frames": 136,
+      "frames": 138,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -218,12 +218,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -236,13 +236,13 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
       "screenshot": "captures/02-canonical.png",
-      "screenshotSha256": "44d6eb14bc69343bf55d9935b4bcd1b13c7f452c4ffde274a8e04d2efec347ea",
+      "screenshotSha256": "2ff4183de0bc762168dfd6a01d5b6a579ef22fe9f8ab7727042302aa988dc88b",
       "dimensions": {
         "width": 1024,
         "height": 1536
       },
       "errors": [],
-      "frames": 157,
+      "frames": 152,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -294,12 +294,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -312,13 +312,13 @@
       "variant": "390",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
       "screenshot": "captures/02-390.png",
-      "screenshotSha256": "5f9c471f17b3daa4a636c907c2f7c43c7d356158db4078bc7b299f80fab37ee0",
+      "screenshotSha256": "355cc729a09c04b6d41374bfc5e1752332673ca86a2571519a22ae0b645c4cc4",
       "dimensions": {
         "width": 390,
         "height": 844
       },
       "errors": [],
-      "frames": 138,
+      "frames": 135,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -370,12 +370,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -388,7 +388,7 @@
       "variant": "320",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
       "screenshot": "captures/02-320.png",
-      "screenshotSha256": "9d4abb35a161251dedf774c11cfde8ff165318c42e4ae6ea8d916363128c131d",
+      "screenshotSha256": "e21ac4e91043149b63bb139258d9246f2cbdf3924f7003df41fa35971816af36",
       "dimensions": {
         "width": 320,
         "height": 568
@@ -446,12 +446,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -464,24 +464,24 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=03",
       "screenshot": "captures/03-canonical.png",
-      "screenshotSha256": "51678f3156d96dfac60ebf8bfe8bc8e5d74dbdf162a9b22bd2ed129bb9c288ba",
+      "screenshotSha256": "05ff41487099a9b7c2a75dcf9a08bf7f37a268d7faa428eb4aca16d4ef724413",
       "dimensions": {
         "width": 1254,
         "height": 1254
       },
       "errors": [],
-      "frames": 144,
+      "frames": 91,
       "ready": true,
       "snapshot": null,
       "status": {
         "assetId": "salvage-cassette",
         "cameraDirection": "-0.42107596053325946,0.3368607684266076,0.8421519210665189",
-        "drawCalls": "3",
+        "drawCalls": "8",
         "engine": "three.js r186",
-        "materialCount": "1",
+        "materialCount": "2",
         "renderState": "ready",
         "runtimePath": "assets/models/salvage-cassette.glb",
-        "triangles": "15000",
+        "triangles": "24000",
         "viewer": "independent-static-asset"
       },
       "viewport": {
@@ -501,7 +501,7 @@
         "height": 1254
       },
       "errors": [],
-      "frames": 148,
+      "frames": 198,
       "ready": true,
       "snapshot": null,
       "status": {
@@ -527,13 +527,13 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-canonical.png",
-      "screenshotSha256": "f4613bbf8e6036656bf0dfc137dd51832ede0d57ffd60b92e2a93e357ad966ba",
+      "screenshotSha256": "df69b8f82894cbd8846f9a9168ac86bb6a58fc11b8e638beb648fb6281f20b0c",
       "dimensions": {
         "width": 1024,
         "height": 1536
       },
       "errors": [],
-      "frames": 142,
+      "frames": 138,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -578,12 +578,12 @@
         "volumeUsed": 0.585
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -596,13 +596,13 @@
       "variant": "390",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-390.png",
-      "screenshotSha256": "83830fda4e8454fe91dbc0e7d68c937e7f6db0bd858ac08184d7c8ae4a09aedc",
+      "screenshotSha256": "760ead23ee2d66fd50aeb5f04a2f8f5aede52400ccf2a78209a207b42b04d54f",
       "dimensions": {
         "width": 390,
         "height": 844
       },
       "errors": [],
-      "frames": 143,
+      "frames": 137,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -647,12 +647,12 @@
         "volumeUsed": 0.585
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -665,13 +665,13 @@
       "variant": "320",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-320.png",
-      "screenshotSha256": "3c0a467295fab7038f89504b3bc56a4acdd890f4c7bf95dfe671ca2248ae3515",
+      "screenshotSha256": "5e0d25d0c5747ab1682f1ee21486686b6655e3d0e18d25e8fde09a6d63e4e3d2",
       "dimensions": {
         "width": 320,
         "height": 568
       },
       "errors": [],
-      "frames": 139,
+      "frames": 135,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -716,12 +716,12 @@
         "volumeUsed": 0.585
       },
       "status": {
-        "drawCalls": "29",
+        "drawCalls": "33",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239192",
-        "visibleTriangles": "81096"
+        "triangles": "281192",
+        "visibleTriangles": "105096"
       },
       "viewport": {
         "dpr": 1,
@@ -740,19 +740,20 @@
     "docs/handoffs/B/art-review/capture.css": "b54b1dc9475edfacb5211ac61ab6c2b8fea7c6df84167252b7c13da647e3be8d",
     "docs/handoffs/B/art-review/capture.mjs": "c161d86ee4a3786caff17824446537b828067ff7ef1a84cd0a8b4c487b90ee8e",
     "docs/handoffs/B/art-review/capture.ts": "d809040fa803f90621ca525b3d497b9f6c67d2984050405fb16b5a70c4eda02a",
-    "docs/handoffs/B/art-review/inspector.ts": "f4f69303a3d405bb084b44832fa1b45a6b040fc9eb4ad48eda50b25de1cfee40",
+    "docs/handoffs/B/art-review/inspector.ts": "1a751268f2b5869546e46663a3d8a9ef26cd2d3e738e59fe517e836fd5d902ab",
     "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
-    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
     "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
     "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
     "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
     "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
     "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
-    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
     "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
-    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "85dbf6c6b786ceb0ce8c179d4b71bce875806ed246400f322b0e87970429b24b",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
+    "src/render/index.ts": "876a9aff68bcf7739e52815fff279ca92b180e4ad1eb32ce0ecdc0e871f9f895",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"
@@ -766,19 +767,20 @@
     "docs/handoffs/B/art-review/capture.css": "b54b1dc9475edfacb5211ac61ab6c2b8fea7c6df84167252b7c13da647e3be8d",
     "docs/handoffs/B/art-review/capture.mjs": "c161d86ee4a3786caff17824446537b828067ff7ef1a84cd0a8b4c487b90ee8e",
     "docs/handoffs/B/art-review/capture.ts": "d809040fa803f90621ca525b3d497b9f6c67d2984050405fb16b5a70c4eda02a",
-    "docs/handoffs/B/art-review/inspector.ts": "f4f69303a3d405bb084b44832fa1b45a6b040fc9eb4ad48eda50b25de1cfee40",
+    "docs/handoffs/B/art-review/inspector.ts": "1a751268f2b5869546e46663a3d8a9ef26cd2d3e738e59fe517e836fd5d902ab",
     "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
-    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
     "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
     "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
     "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
     "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
     "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
-    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
     "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
-    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "85dbf6c6b786ceb0ce8c179d4b71bce875806ed246400f322b0e87970429b24b",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
+    "src/render/index.ts": "876a9aff68bcf7739e52815fff279ca92b180e4ad1eb32ce0ecdc0e871f9f895",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"

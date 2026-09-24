@@ -91,5 +91,10 @@
     "optimize mesh/textures to PRD mobile budget",
     "measure scale/pivot/axes",
     "real renderer and actual iPhone fidelity/performance test"
-  ]
+  ],
+  "runtimeAssembly": {
+    "addedComponent": "insert-v1/provenance.json",
+    "report": "insert-v1/assembly-report.json",
+    "note": "The original master is unchanged. Runtime cassette adds a separately ImageGen-designed and Meshy7-reconstructed internal spindle."
+  }
 }

@@ -101,12 +101,15 @@ for spec in CONFIG["assets"]:
         assert max(dimensions_px) <= CONFIG["textureMaxDimension"]
         textures.append({"name": im.get("name"), "mimeType": im["mimeType"], "dimensions": dimensions_px, "bytes": len(raw)})
     triangles = sum(part["triangles"] for part in parts)
-    assert triangles <= spec["maxTriangles"]
-    assert len(doc["materials"]) == 1
-    material = doc["materials"][0]
-    assert "normalTexture" in material
-    assert "baseColorTexture" in material["pbrMetallicRoughness"]
-    assert "metallicRoughnessTexture" in material["pbrMetallicRoughness"]
+    assembly = spec.get("assembly")
+    assert triangles <= (assembly["maxTriangles"] if assembly else spec["maxTriangles"])
+    assert len(doc["materials"]) == (assembly["materialCount"] if assembly else 1)
+    if assembly:
+        assert sorted(node["name"] for node in doc["nodes"]) == sorted(assembly["nodeNames"])
+    for material in doc["materials"]:
+        assert "normalTexture" in material
+        assert "baseColorTexture" in material["pbrMetallicRoughness"]
+        assert "metallicRoughnessTexture" in material["pbrMetallicRoughness"]
     reports.append({"assetId": spec["id"], "path": spec["output"], "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data), "triangles": triangles, "dimensionsMetersXYZ": dimensions, "boundsMeters": box, "parts": parts, "textures": textures, "materials": doc["materials"], "selfContained": True, "extensionsRequired": doc.get("extensionsRequired", []), "validation": "passed"})
 total_bytes = sum(report["bytes"] for report in reports)
 total_triangles = sum(report["triangles"] for report in reports)

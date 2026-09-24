@@ -5,7 +5,7 @@
   "pipelineConfig": "assets/source/pipeline/mobile-models.json",
   "jpegQuality": 88,
   "geometryCompression": "none; standard glTF no decoder dependency",
-  "combinedRuntimeBytes": 8956848,
+  "combinedRuntimeBytes": 10885424,
   "assets": [
     {
       "assetId": "press-chamber",
@@ -214,9 +214,9 @@
         -0.4572102427482605
       ],
       "runtimePath": "public/assets/models/salvage-cassette.glb",
-      "runtimeSha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
-      "runtimeBytes": 2109280,
-      "triangles": 15000,
+      "runtimeSha256": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+      "runtimeBytes": 4037856,
+      "triangles": 24000,
       "parts": [
         {
           "name": "salvage-cassette",
@@ -237,6 +237,27 @@
             0,
             0,
             0
+          ]
+        },
+        {
+          "name": "cassette-interior",
+          "triangles": 9000,
+          "nodeTranslation": [
+            0,
+            0,
+            0
+          ],
+          "boundsGltfMeters": [
+            [
+              -0.09021440148353577,
+              0.04164525121450424,
+              -0.03255224600434303
+            ],
+            [
+              0.09020844846963882,
+              0.10659630596637726,
+              0.03225835785269737
+            ]
           ]
         }
       ],
@@ -261,6 +282,27 @@
             2048,
             2048
           ]
+        },
+        {
+          "name": "cassette-interior-baseColor",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "cassette-interior-metallicRoughness",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "cassette-interior-normal",
+          "dimensions": [
+            2048,
+            2048
+          ]
         }
       ],
       "normalizedAxis": "glTF +Y up, +Z front",
@@ -278,6 +320,11 @@
         "runtimeTangents": "omitted; Three.js derives tangent frame",
         "atlasDirectory": null,
         "bakeImagePolicy": "Textures embedded in runtime GLB; intermediate PNGs omitted to avoid duplicate repository payload; regeneratable with --keep-bake-images"
+      },
+      "assembly": {
+        "report": "assets/source/meshy/salvage-cassette/insert-v1/assembly-report.json",
+        "componentReport": "assets/source/meshy/salvage-cassette/insert-v1/mobile-report.json",
+        "regenerate": "Prepare/rebake the original housing, then run insert-v1/assemble.py"
       }
     },
     {

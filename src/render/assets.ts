@@ -107,7 +107,7 @@ export const ASSET_REGISTRY: AssetRegistry = deepFreeze({
     },
     "licenseNote": "Original ImageGen reference reconstructed using Meshy 7. Request, task and source evidence are preserved in sourcePath/provenance.json; service model echo and legal clearance are not asserted. Runtime geometry, PBR rebake and optical material restoration are derived from that source.",
     "geometry": {
-      "triangles": 15000,
+      "triangles": 24000,
       "heightM": 0.1342819482088089,
       "pivot": "base-center",
       "upAxis": "+Y",

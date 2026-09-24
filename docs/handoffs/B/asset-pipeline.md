@@ -1,6 +1,6 @@
 # B — 모바일 모델 파이프라인 인계
 
-2026-09-24. 출발 `bootstrap-v2` / `c739b527449b2527e46b567bfffbd4a7122f571c`, 작업 브랜치 `role/b-render`, 계약 v1.0.0. 이 하위 작업은 commit/push를 하지 않았다. 런타임 모델 네 개와 `assets/source/pipeline/**`, 이 문서만 담당했다. 생성 원본·renderer·registry·공통 계약은 수정하지 않았다.
+2026-09-25 갱신. 출발 bootstrap-v2, 계약 v1.0.0, B 소유 범위. 카세트는 기존 외피와 [추가 생성한 내부 축](cassette-insert-study/README.md)을 조립한 GLB다. 아래 최종 파일 표와 파이프라인 보고서는 현재 파일 기준이며, 프레스 접촉 좌표의 과거 베이크 값은 별도 runtime anchor를 따른다.
 
 ## 최종 파일
 
@@ -9,14 +9,14 @@
 | 파일 | 삼각형 | bytes | 치수 m |
 |---|---:|---:|---|
 | `public/assets/models/press-chamber.glb` | 42,998 | 2,872,664 | 0.792009 × **1.100000** × 0.773259 |
-| `public/assets/models/salvage-cassette.glb` | 15,000 | 2,109,280 | **0.280000** × 0.134282 × 0.138477 |
+| `public/assets/models/salvage-cassette.glb` | 24,000 | 4,037,856 | **0.280000** × 0.134282 × 0.138477 |
 | `public/assets/models/salvage-core.glb` | 11,500 | 1,901,316 | 0.222250 × **0.150000** × 0.144906 |
 | `public/assets/models/salvage-lens.glb` | 11,500 | 2,073,588 | 0.173794 × **0.150000** × 0.125348 |
-| 합계 | **80,998** | **8,956,848** | |
+| 합계 | **89,998** | **10,885,424** | |
 
-최초 두 모델 합계는 4,981,944 bytes로 8MB 예산 안에 있다. 네 모델도 90k triangle / 14MB 목표 안에 있다. 이 수는 모델 자체의 삼각형 합계이며 shadow pass를 포함한 GPU 실행 횟수·draw count가 아니다.
+프레스와 조립된 카세트 합계는 6,910,520 bytes다. 네 모델도 90k triangle / 14MB 목표 안에 있다. 이 수는 모델 자체의 삼각형 합계이며 shadow pass를 포함한 GPU 실행 횟수·draw count가 아니다.
 
-모두 +Y up/+Z front, 전체 모델 base-center, identity node transform이다. 정규화가 vertex 좌표에 직접 들어 있으므로 `position.y`를 사용하는 변형에 연결할 수 있다. Base color/normal 2048², MR 1024², JPEG 품질 88이다. 원본 4K color/normal과 2K MR은 master에 보존했다.
+모두 +Y up/+Z front, 전체 모델 base-center, identity node transform이다. 카세트 내부 축은 같은 모델 좌표에서 중심Y=.074m이며 자체 바닥으로 다시 피벗을 바꾸지 않는다. 정규화가 vertex 좌표에 직접 들어 있으므로 `position.y`를 사용하는 변형에 연결할 수 있다. Base color/normal 2048², MR 1024², JPEG 품질 88이다. 원본 4K color/normal과 2K MR은 master에 보존했다.
 
 ## 프레스 부품과 접촉 좌표
 
@@ -52,6 +52,8 @@ Meshy 원본은 OPAQUE이며 투과·굴절이 없다. 이 파일도 원본 PBR�
 ## 품질 수정과 재현
 
 단순 decimation+원래 UV 유지 결과에는 금속 호일 같은 삼각형 무늬가 생겼다. 조명 없는 baseColor 렌더에도 무늬가 남았고, 단색 geometry에서는 사라져 atlas 보간 손상을 확인했다. glTF 재수입 때 corner normal/UV 때문에 갈라진 동일 좌표도 다시 weld했다. 이후 새 shared UV atlas, 45° sharp edge와 면적 가중 노멀, master의 **색·MR·normal 세 채널 재베이크**로 수정했다. 최종 네 모델의 원본/결과 비교 렌더를 실제로 열어 확인했다. 생성 PNG를 게임 캡처로 사용하지 않았다.
+
+카세트 외피의 재베이크 이후에는 insert-v1/assemble.py로 내부 축을 합쳐야 한다. 조립된 GLB를 외피 원본 하나로 재베이크하려 하면 오류를 낸다. 추가 부품의 원본·프롬프트·유료 작업 및 파생본 해시는 insert-v1/provenance.json과 assembly-report.json을 따른다.
 
 재현 명령과 스크립트 역할은 [pipeline README](../../../assets/source/pipeline/README.md)에 있다. `prepare_mobile.py`만 실행한 중간 결과를 최종 파일로 배포하지 않는다. 재베이크 normal map에는 저폴리 표면 보정도 포함되므로 normalScale을 임의로 낮추면 geometry의 각진 음영이 다시 드러날 수 있다.
 

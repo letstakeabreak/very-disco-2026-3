@@ -37,7 +37,7 @@ function measure(): Record<string, unknown>[] {
   const result = new Map<string, { id: string; minX: number; minY: number; maxX: number; maxY: number; compression: number; vertices: number }>();
   const point = new Vector3();
   for (const [mesh, uniforms] of meshes) {
-    const id = mesh.name.startsWith('lens-') ? 'salvage-lens' : mesh.name;
+    const id = mesh.name.startsWith('lens-') ? 'salvage-lens' : mesh.name.startsWith('cassette-') ? 'salvage-cassette' : mesh.name;
     const bounds = result.get(id) ?? { id, minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity, compression: 0, vertices: 0 };
     const number = (key: string): number => Number(uniforms[key]!.value);
     const h = number('pressHeight'); const compression = number('pressCompression'); const damage = number('pressDamage');
