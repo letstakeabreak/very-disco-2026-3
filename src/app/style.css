@@ -1,0 +1,15 @@
+:root { font-family: system-ui, sans-serif; color: #eff6ec; background: #191b20; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+#app { position: relative; width: 100%; min-height: 100svh; }
+canvas { display: block; width: 100%; height: 100svh; }
+.panel { position: absolute; left: max(16px, env(safe-area-inset-left)); right: max(16px, env(safe-area-inset-right)); top: max(16px, env(safe-area-inset-top)); padding: 20px; max-width: 420px; border: 1px solid #89a18a; background: #17191eed; border-radius: 16px; }
+h1 { font-size: 24px; margin: 8px 0; }
+p { font-size: 14px; line-height: 1.5; }
+.badge { color: #ffd780; font-weight: 700; letter-spacing: 0.12em; }
+button, select { font: inherit; min-height: 44px; border: 1px solid #799784; border-radius: 8px; padding: 10px; color: #f1f6ef; background: #2d323f; }
+button { margin: 4px; cursor: pointer; }
+#hold { touch-action: none; user-select: none; -webkit-user-select: none; }
+button:active { background: #52693c; }
+button:focus-visible, select:focus-visible { outline: 3px solid #ffd780; }
+#fatal { color: #ffbba0; }

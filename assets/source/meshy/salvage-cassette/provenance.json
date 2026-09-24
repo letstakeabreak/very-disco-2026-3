@@ -1,0 +1,95 @@
+{
+  "assetId": "salvage-cassette",
+  "status": "generated-unverified",
+  "sourceImage": "docs/art/concepts/03-salvage-cassette-reference.png",
+  "sourceSha256": "038dc2c2f644021268acf359bfaef20d56d593c7f617368f43cf9da7c1121ee7",
+  "promptFile": "docs/art/prompts.json",
+  "generator": "Meshy image-to-3d",
+  "requestedModel": "meshy-7",
+  "modelEvidence": "CLI standard explicitly documents Meshy7 and request payload explicitly ai_model=meshy-7; task result does not echo model identifier",
+  "settings": {
+    "model_type": "standard",
+    "should_texture": true,
+    "enable_pbr": true,
+    "texture_resolution": "4k",
+    "ultra_mode": false
+  },
+  "taskId": "01a0d316-ae28-71d1-be43-533ccd61421b",
+  "statusFromService": "SUCCEEDED",
+  "consumedCredits": 30,
+  "createdAtUnixMs": 1790247876903,
+  "finishedAtUnixMs": 1790248005270,
+  "masterFile": "salvage-cassette-master.glb",
+  "bytes": 63499220,
+  "sha256": "80ef1c8ab4cd8ef2ca1b25b26ce8aed83e6da1aea8b75791bbadcee826a1a960",
+  "geometry": {
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "triangleCount": 1158358,
+    "nodeCount": 1,
+    "riggingVerified": false,
+    "axisPivotScaleVerified": false
+  },
+  "embeddedImages": [
+    {
+      "imageIndex": 0,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    },
+    {
+      "imageIndex": 1,
+      "mimeType": "image/jpeg",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "imageIndex": 2,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metallicFactor": 1.0,
+        "roughnessFactor": 1.0,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 2,
+        "texCoord": 0
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    }
+  ],
+  "verification": {
+    "binaryParsed": true,
+    "runtimeOptimized": false,
+    "iPhoneTested": false,
+    "visualFidelityPassed": false,
+    "servicePreviewInspected": true,
+    "previewObservation": "recognizable intended metal housing and amber core; single-view preview only"
+  },
+  "remaining": [
+    "author compression/deformation states",
+    "optimize mesh/textures to PRD mobile budget",
+    "measure scale/pivot/axes",
+    "real renderer and actual iPhone fidelity/performance test"
+  ]
+}

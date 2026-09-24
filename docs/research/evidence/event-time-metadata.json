@@ -1,0 +1,13 @@
+{
+  "retrieved_at_utc": "2026-09-24T10:26:50.572033+00:00",
+  "url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+  "public_html_init_ViewJam": {
+    "voting_end_date": "2026-10-10 17:00:00",
+    "end_date": "2026-09-25 16:59:59",
+    "id": 419949,
+    "start_date": "2026-09-14 05:00:00"
+  },
+  "utc_confirmation_url": "https://itch.io/jams/sort-date/ranked",
+  "utc_confirmation_value": "2026-09-25T16:59:59Z",
+  "caution": "voting_end_date is public page configuration, not a separately confirmed organizer announcement of final results or showcase date"
+}

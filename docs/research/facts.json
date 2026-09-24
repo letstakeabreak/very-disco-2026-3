@@ -1,0 +1,334 @@
+{
+  "version": "VD26.3-v2.0",
+  "created_at": "2026-09-24T10:37:22.825837+00:00",
+  "timezone": "Asia/Seoul",
+  "facts": [
+    {
+      "id": "F01",
+      "claim": "공식 테마는 COMPACT",
+      "status": "CONFIRMED",
+      "source_url": "https://img.itch.zone/aW1nLzI5OTgxNTc5LnBuZw==/original/Mc4iXn.png",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "공식 이미지 Safari 및 로컬 이미지 시각 확인"
+    },
+    {
+      "id": "F02",
+      "claim": "제출 시작 2026-09-14T14:00:00+09:00",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": ""
+    },
+    {
+      "id": "F03",
+      "claim": "제출 마감 2026-09-26T01:59:59+09:00",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "UTC 2026-09-25T16:59:59Z와 교차 확인"
+    },
+    {
+      "id": "F04",
+      "claim": "공식 팀 인원 3–6명",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "소속 자격까지 자동 충족한다는 뜻 아님"
+    },
+    {
+      "id": "F05",
+      "claim": "iPhone 플레이 가능해야 함",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "브라우저/네이티브 세부 인정 경로 미확인"
+    },
+    {
+      "id": "F06",
+      "claim": "기한 내 제출, 짧은 게임 설명, 전원 이름 필요",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": ""
+    },
+    {
+      "id": "F07",
+      "claim": "심사축 Strong Core Loop / Good Cohesion / Distinctly Apple",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "가중치·최종 집계 방식 미확인"
+    },
+    {
+      "id": "F08",
+      "claim": "현재 공개 심사위원 TBA",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "향후 변경 가능"
+    },
+    {
+      "id": "F09",
+      "claim": "Ranked 목록에 분류됨",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jams/sort-date/ranked",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "상금·수상 방식·투표권 확정 근거 아님"
+    },
+    {
+      "id": "F10",
+      "claim": "CJKT Academy 구성원 대상 소개",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "외부/타 아카데미 혼합팀 자격 미확인"
+    },
+    {
+      "id": "F11",
+      "claim": "생성 AI 허용·금지·고지 범위 미확인",
+      "status": "UNKNOWN",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "과거 AI 사용 사례나 이용자 댓글을 현행 정책으로 적용하지 않음"
+    },
+    {
+      "id": "F12",
+      "claim": "외부 에셋 라이선스 확인과 필요한 크레딧 요구",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": ""
+    },
+    {
+      "id": "F13",
+      "claim": "61 Joined / 4 Entries, 일반 목록 3작 표시",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3/entries",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "시점 의존; Joined는 팀 수 아님"
+    },
+    {
+      "id": "F14",
+      "claim": "xyzxyz 제출에 실격 표시",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/4928594",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "사유 미공개"
+    },
+    {
+      "id": "F15",
+      "claim": "tight fit: 공간 압축 액션·iPhone 지원 설명",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/5037728",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "제작자 설명; 실제 플레이 미검증"
+    },
+    {
+      "id": "F16",
+      "claim": "The wheat mill: 수확·운반·압축·판매 루프 설명",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/5040708",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "제작자 설명; 실제 플레이 미검증"
+    },
+    {
+      "id": "F17",
+      "claim": "RhythmTago: 리듬 응답, iPhone/Mac·TestFlight 설명",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/5035103",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "외부 TestFlight 링크 작동·설치 미검증"
+    },
+    {
+      "id": "F18",
+      "claim": "공개 Community에 토픽 없음",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3/community",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "비공개 공지 없음이라는 뜻 아님"
+    },
+    {
+      "id": "F19",
+      "claim": "voting_end_date=2026-10-10 17:00:00",
+      "status": "OBSERVED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "checked_at": "2026-09-24",
+      "scope": "2026.3",
+      "caveat": "공개 HTML 설정; 결과 발표일로 해석 금지"
+    },
+    {
+      "id": "F20",
+      "claim": "2026.1 9작, Forest Patrol Overall 1위 3.556",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-1/results",
+      "checked_at": "2026-09-24",
+      "scope": "2026.1 historical",
+      "caveat": "별도 상금/트로피 증거 아님"
+    },
+    {
+      "id": "F21",
+      "claim": "2026.2 16작, Terminal Capacity와 Capsized Overall 공동1위 4.333",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/jam/very-disco-game-jam-2026-2/results",
+      "checked_at": "2026-09-24",
+      "scope": "2026.2 historical",
+      "caveat": "과거 기준 Hook/Gameplay/Cohesion; 현회차와 다름"
+    },
+    {
+      "id": "F22",
+      "claim": "첫 TestFlight 외부 빌드는 심사 절차 필요",
+      "status": "CONFIRMED",
+      "source_url": "https://developer.apple.com/help/app-store-connect/test-a-beta-version/invite-external-testers/",
+      "checked_at": "2026-09-24",
+      "scope": "platform",
+      "caveat": "마감 전 승인 시간 보장 없음"
+    },
+    {
+      "id": "F23",
+      "claim": "HTML5 업로드 및 모바일 설정을 지원함",
+      "status": "CONFIRMED",
+      "source_url": "https://itch.io/docs/creators/html5",
+      "checked_at": "2026-09-24",
+      "scope": "platform",
+      "caveat": "설정 존재는 실제 iPhone 동작·대회 배포 적합성 검증 아님"
+    },
+    {
+      "id": "F24",
+      "claim": "팀은 사용자 포함 3명이며 모두 개발; GitHub ID letstakeabreak / sy-Lee-01 / magic3ightball",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team",
+      "caveat": "사용자 후속 지시. 실명·소속·역량 검증을 뜻하지 않음"
+    },
+    {
+      "id": "F25",
+      "claim": "초기 조사에서 꾹! 스프링 택배 후보 우선 시험을 제안함",
+      "status": "PROPOSAL",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team strategy",
+      "caveat": "폐기된 과거 연구 제안. 현재 개발 기준은 DEEP PRESS PRD 1.0.0"
+    },
+    {
+      "id": "F26",
+      "claim": "내부 제출 목표 2026-09-25T22:00:00+09:00",
+      "status": "PROPOSAL",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team schedule",
+      "caveat": "공식 마감과 구분"
+    },
+    {
+      "id": "F27",
+      "claim": "팀 게임 구현·iPhone QA·참가 신청·잼 제출은 이번 조사에서 미실시",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "research execution",
+      "caveat": "사용자 자신의 별도 작업 상태는 미확인"
+    },
+    {
+      "id": "F28",
+      "claim": "PRD 작성·기술 선택을 총괄 AI에 위임",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team",
+      "caveat": "사용자 최신 수정. PRD 사용자 직접 작성 예정은 대체됨"
+    },
+    {
+      "id": "F29",
+      "claim": "세 명 모두 독립 개발하며 최종 역할·convention·파일 소유권은 루트 instruction.md를 따름",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team",
+      "caveat": "초기 A코어/B디자인/C검증 전담안은 현재 배정 아님"
+    },
+    {
+      "id": "F30",
+      "claim": "극도로 사실적인 그래픽; 귀여운 장난감 표현 배제; 시각 에셋 ImageGen, 3D Meshy 7 flagship/high-quality texture; 현재 오디오 제외",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team asset requirements",
+      "caveat": "사용자 최신 요구. 생성 완료·대회 AI 허용·기기 성능을 증명하지 않음"
+    },
+    {
+      "id": "F31",
+      "claim": "COMPACT BLOOM·꽃섬·스프링 콘셉트는 사용자 최신 지시로 폐기",
+      "status": "REJECTED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "current implementation baseline",
+      "caveat": "기존 명세·에셋·작업 지시는 현재 개발 기준으로 사용 금지"
+    },
+    {
+      "id": "F32",
+      "claim": "TypeScript + Three.js + Vite 웹 3D 선택",
+      "status": "DESIGN_DECISION",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "current implementation baseline",
+      "caveat": "DEEP PRESS 기반 스택 확정, 정확한 버전은 계약/잠금 파일. scaffold 빌드 확인은 완성 게임·iPhone 성능 증거 아님"
+    },
+    {
+      "id": "F33",
+      "claim": "협업 저장소와 공유 Drive를 지정함",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team sharing",
+      "caveat": "사용자 제공. 원격 게시·Drive 파일 업로드·타 AI 수신 완료는 별도 결과"
+    },
+    {
+      "id": "F34",
+      "claim": "2026년 실제 신호와 2027년 불확실한 전망을 구분해 새 게임 콘셉트를 연구",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "user latest research request",
+      "caveat": "유행 보장·장르 통계로 제시하지 않음; 최종 PRD 아님"
+    },
+    {
+      "id": "F35",
+      "claim": "DEEP PRESS: 심해 회수품의 압착·가치 보존·1L 수용량 게임; PRD 1.0.0 executionReady=true",
+      "status": "DESIGN_DECISION",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "current implementation baseline",
+      "caveat": "사용자가 위임한 설계. 흥행·우승·구현 완료 주장 아님"
+    }
+  ],
+  "updated_at": "2026-09-24T11:06:00Z",
+  "research_snapshot_date_kst": "2026-09-24",
+  "team_updates_source": "사용자 후속 지시와 총괄 AI의 위임에 따른 설계 v1",
+  "collaboration_links": {
+    "repository": "https://github.com/letstakeabreak/very-disco-2026-3",
+    "shared_drive": "https://drive.google.com/drive/folders/1xtekUGeYoumuf2wn8YIGpkEAt1_bvjEr",
+    "github_ids": [
+      "letstakeabreak",
+      "sy-Lee-01",
+      "magic3ightball"
+    ]
+  }
+}

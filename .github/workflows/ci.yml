@@ -1,0 +1,30 @@
+name: integration-checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Verify role ownership
+        if: github.event_name == 'pull_request'
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          case "$HEAD_BRANCH" in
+            role/a-core) npm run ownership -- --role A ;;
+            role/b-render) npm run ownership -- --role B ;;
+            role/c-app) npm run ownership -- --role C ;;
+            *) echo "Integration branch: role ownership is checked before integration." ;;
+          esac

@@ -1,0 +1,95 @@
+{
+  "assetId": "press-chamber",
+  "status": "generated-unverified",
+  "sourceImage": "docs/art/concepts/04-press-chamber-reference.png",
+  "sourceSha256": "dcc5368e13272b4fc9785610eaebedb07ad71402413a0c11ce6e50a0a1e9fae5",
+  "promptFile": "docs/art/prompts.json",
+  "generator": "Meshy image-to-3d",
+  "requestedModel": "meshy-7",
+  "modelEvidence": "CLI standard explicitly documents Meshy7 and request payload explicitly ai_model=meshy-7; task result does not echo model identifier",
+  "settings": {
+    "model_type": "standard",
+    "should_texture": true,
+    "enable_pbr": true,
+    "texture_resolution": "4k",
+    "ultra_mode": false
+  },
+  "taskId": "01a0d317-344c-74d4-8ae3-2a66fcd0e490",
+  "statusFromService": "SUCCEEDED",
+  "consumedCredits": 30,
+  "createdAtUnixMs": 1790247911541,
+  "finishedAtUnixMs": 1790248041726,
+  "masterFile": "press-chamber-master.glb",
+  "bytes": 47883172,
+  "sha256": "704e35da19ae42305994bdbcc456c5049523074ffe4bc8f73b57ac53d13fbf46",
+  "geometry": {
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "triangleCount": 775612,
+    "nodeCount": 1,
+    "riggingVerified": false,
+    "axisPivotScaleVerified": false
+  },
+  "embeddedImages": [
+    {
+      "imageIndex": 0,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    },
+    {
+      "imageIndex": 1,
+      "mimeType": "image/jpeg",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "imageIndex": 2,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metallicFactor": 1.0,
+        "roughnessFactor": 1.0,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 2,
+        "texCoord": 0
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    }
+  ],
+  "verification": {
+    "binaryParsed": true,
+    "runtimeOptimized": false,
+    "iPhoneTested": false,
+    "visualFidelityPassed": false,
+    "servicePreviewInspected": true,
+    "previewObservation": "recognizable two-column hydraulic press; one mesh requires moving-part separation"
+  },
+  "remaining": [
+    "separate moving press parts and set pivot",
+    "optimize mesh/textures to PRD mobile budget",
+    "measure scale/pivot/axes",
+    "real renderer and actual iPhone fidelity/performance test"
+  ]
+}

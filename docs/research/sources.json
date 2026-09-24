@@ -1,0 +1,1060 @@
+{
+  "version": "VD26.3-v2.0",
+  "created_at": "2026-09-24T10:37:22.825837+00:00",
+  "sources": [
+    {
+      "id": "S001",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3",
+      "title": "대회 공식 안내",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "ASSET_RESOURCES.md",
+        "agent-findings/event-rules.md",
+        "agent-findings/competition-history.md",
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S002",
+      "url": "https://itch.io/jams/sort-date/ranked",
+      "title": "itch.io의 Ranked 목록",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/event-rules.md"
+      ]
+    },
+    {
+      "id": "S003",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/entries",
+      "title": "목록",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S004",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/feed",
+      "title": "피드",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/event-rules.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S005",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/5037728",
+      "title": "tight fit",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "STRATEGY_AND_SPRINT.md",
+        "agent-findings/event-rules.md",
+        "agent-findings/competition-history.md",
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S006",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/5040708",
+      "title": "The wheat mill",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S007",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/5035103",
+      "title": "RhythmTago",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "STRATEGY_AND_SPRINT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S008",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/rate/4928594",
+      "title": "xyzxyz",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S009",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/results",
+      "title": "2026.1",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S010",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/results",
+      "title": "2026.2",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S011",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4723467",
+      "title": "Terminal Capacity",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S012",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4731625",
+      "title": "Capsized",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S013",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4649808",
+      "title": "Forest Patrol",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S014",
+      "url": "https://itch.io/docs/creators/html5",
+      "title": "itch.io HTML5 문서",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S015",
+      "url": "https://developer.apple.com/help/app-store-connect/test-a-beta-version/invite-external-testers/",
+      "title": "Apple 외부 테스터 안내",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "TEAM_AI_CONTEXT.md",
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S016",
+      "url": "https://kenney.nl/assets",
+      "title": "Kenney",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S017",
+      "url": "https://opengameart.org/",
+      "title": "OpenGameArt",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S018",
+      "url": "https://poly.pizza/",
+      "title": "Poly Pizza",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S019",
+      "url": "https://game-icons.net/",
+      "title": "Game Icons",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S020",
+      "url": "https://www.mixamo.com/",
+      "title": "Mixamo",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S021",
+      "url": "https://lospec.com/",
+      "title": "Lospec",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S022",
+      "url": "https://fonts.google.com/",
+      "title": "Google Fonts",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S023",
+      "url": "https://www.fontsquirrel.com/",
+      "title": "Font Squirrel",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S024",
+      "url": "https://freesound.org/",
+      "title": "Freesound",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S025",
+      "url": "https://freemusicarchive.org/",
+      "title": "Free Music Archive",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S026",
+      "url": "https://incompetech.com/music/royalty-free",
+      "title": "Incompetech",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S027",
+      "url": "https://sonniss.com/gameaudiogdc",
+      "title": "Sonniss GDC Audio Bundle",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S028",
+      "url": "https://www.photopea.com/",
+      "title": "Photopea",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S029",
+      "url": "https://www.beepbox.co/",
+      "title": "BeepBox",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S030",
+      "url": "https://boscaceoil.net/",
+      "title": "Bosca Ceoil",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S031",
+      "url": "https://sfbgames.itch.io/chiptone",
+      "title": "Chiptone",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S032",
+      "url": "https://www.drpetter.se/project_sfxr.html",
+      "title": "SFXR",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S033",
+      "url": "https://jannikboysen.itch.io/easy-releasy",
+      "title": "Easy Releasy",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S034",
+      "url": "https://tinytools.directory/",
+      "title": "Tiny Tools",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 안내에 연결됨; 개별 리소스/라이선스 미감사",
+      "status": "LINKED_NOT_AUDITED",
+      "referenced_in": [
+        "ASSET_RESOURCES.md"
+      ]
+    },
+    {
+      "id": "S035",
+      "url": "https://liminalbeams.itch.io/",
+      "title": "liminalbeams",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/event-rules.md",
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S036",
+      "url": "https://img.itch.zone/aW1nLzI5OTgxNTc5LnBuZw==/original/Mc4iXn.png",
+      "title": "공식 이미지",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공식 테마 이미지 시각 판독",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/event-rules.md"
+      ]
+    },
+    {
+      "id": "S037",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-3/community",
+      "title": "Community",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/event-rules.md"
+      ]
+    },
+    {
+      "id": "S038",
+      "url": "https://itch.io/profile/liminalbeams",
+      "title": "주최자 공개 community profile",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/event-rules.md"
+      ]
+    },
+    {
+      "id": "S039",
+      "url": "https://tsukuyom.itch.io/tight-fit",
+      "title": "게임 페이지",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "제작자 공개 페이지 열람; 기능은 제작자 설명",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S040",
+      "url": "https://wedyson86.itch.io/the-wheat-mill",
+      "title": "게임 페이지",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "제작자 공개 페이지 열람; 기능은 제작자 설명",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S041",
+      "url": "https://bkchoi.itch.io/rhythm-tago",
+      "title": "게임 페이지",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "제작자 공개 페이지 열람; 기능은 제작자 설명",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S042",
+      "url": "https://keremcagdas.itch.io/space-soldiers",
+      "title": "게임 페이지",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "제작자 공개 페이지 열람; 기능은 제작자 설명",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S043",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1",
+      "title": "2026.1",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S044",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2",
+      "title": "2026.2",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S045",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4643685",
+      "title": "Luna",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S046",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4651747",
+      "title": "Almost There",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S047",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4650135",
+      "title": "BitterSweet",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S048",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4652563",
+      "title": "Animal Kaisar",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S049",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4652318",
+      "title": "Space Bizzare Adventure",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S050",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4652389",
+      "title": "Chain 'Em Up!",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S051",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4652557",
+      "title": "Farm of Chains",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S052",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/rate/4652432",
+      "title": "PingoHunter",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S053",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4724763",
+      "title": "Cap or Jail",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S054",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4727127",
+      "title": "StackHouse",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S055",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4726778",
+      "title": "Adventure Cap",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S056",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4728298",
+      "title": "We Don't Know",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S057",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4727213",
+      "title": "cappow",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S058",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4725502",
+      "title": "Uncap the Spirit",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S059",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4716047",
+      "title": "All Points South",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S060",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4727508",
+      "title": "13 Days of Deceit",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S061",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4731557",
+      "title": "The Soda Sniper",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S062",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4727865",
+      "title": "TYPEREICH",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S063",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4731575",
+      "title": "Almost get the cap",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S064",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4727686",
+      "title": "Don't Trust Your App : Manual Override",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S065",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4728023",
+      "title": "The Scene",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S066",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-2/rate/4727171",
+      "title": "Pechevre",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 제출·결과·피드백 열람; 실제 플레이 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S067",
+      "url": "https://itch.io/jam/very-disco-game-jam-2026-1/community",
+      "title": "community",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "공개 페이지 열람; 현재 회차와 과거 회차를 URL로 구분",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/competition-history.md"
+      ]
+    },
+    {
+      "id": "S068",
+      "url": "https://itch.io/docs/creators/game-jams",
+      "title": "itch.io game jam submission process",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S069",
+      "url": "https://itch.io/docs/creators/access-control",
+      "title": "Controlling who can access your project",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S070",
+      "url": "https://webkit.org/blog/6784/new-video-policies-for-ios/",
+      "title": "WebKit media policies",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S071",
+      "url": "https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/",
+      "title": "TestFlight overview",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S072",
+      "url": "https://developer.apple.com/documentation/xcode/distributing-your-app-to-registered-devices",
+      "title": "Distributing your app to registered devices",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S073",
+      "url": "https://developer.apple.com/help/account/provisioning-profiles/create-an-ad-hoc-provisioning-profile",
+      "title": "Create an ad hoc provisioning profile",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S074",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/designing-for-games/",
+      "title": "Designing for games",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S075",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/game-controls",
+      "title": "Game controls",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S076",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/playing-haptics",
+      "title": "Playing haptics",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S077",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/playing-audio",
+      "title": "Playing audio",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "플랫폼 공식 문서 열람; 팀 기기 실제 시험 아님",
+      "status": "READ",
+      "referenced_in": [
+        "agent-findings/iphone-delivery.md"
+      ]
+    },
+    {
+      "id": "S078",
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3",
+      "title": "협업 GitHub 저장소",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "사용자 제공 협업 링크·ID. 프로필·권한·업로드 완료의 독립 검증을 뜻하지 않음",
+      "status": "USER_PROVIDED",
+      "referenced_in": [
+        "README.md",
+        "TEAM_AI_CONTEXT.md",
+        "TEAM_STATE.md"
+      ]
+    },
+    {
+      "id": "S079",
+      "url": "https://drive.google.com/drive/folders/1xtekUGeYoumuf2wn8YIGpkEAt1_bvjEr",
+      "title": "사용자 지정 공유 Drive",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "사용자 제공 협업 링크·ID. 프로필·권한·업로드 완료의 독립 검증을 뜻하지 않음",
+      "status": "USER_PROVIDED",
+      "referenced_in": [
+        "README.md",
+        "TEAM_AI_CONTEXT.md",
+        "TEAM_STATE.md"
+      ]
+    },
+    {
+      "id": "S080",
+      "url": "https://github.com/letstakeabreak",
+      "title": "사용자 GitHub ID",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "사용자 제공 협업 링크·ID. 프로필·권한·업로드 완료의 독립 검증을 뜻하지 않음",
+      "status": "USER_PROVIDED",
+      "referenced_in": [
+        "README.md",
+        "TEAM_AI_CONTEXT.md",
+        "TEAM_STATE.md"
+      ]
+    },
+    {
+      "id": "S081",
+      "url": "https://github.com/sy-Lee-01",
+      "title": "팀원 GitHub ID",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "사용자 제공 협업 링크·ID. 프로필·권한·업로드 완료의 독립 검증을 뜻하지 않음",
+      "status": "USER_PROVIDED",
+      "referenced_in": [
+        "README.md",
+        "TEAM_AI_CONTEXT.md",
+        "TEAM_STATE.md"
+      ]
+    },
+    {
+      "id": "S082",
+      "url": "https://github.com/magic3ightball",
+      "title": "팀원 GitHub ID",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "사용자 제공 협업 링크·ID. 프로필·권한·업로드 완료의 독립 검증을 뜻하지 않음",
+      "status": "USER_PROVIDED",
+      "referenced_in": [
+        "README.md",
+        "TEAM_AI_CONTEXT.md",
+        "TEAM_STATE.md"
+      ]
+    },
+    {
+      "id": "T01",
+      "url": "https://store.steampowered.com/charts/topselling/global",
+      "title": "Steam Global Top Sellers",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T02",
+      "url": "https://store.steampowered.com/app/2488370/Cash_Cleaner_Simulator/",
+      "title": "Cash Cleaner Simulator",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T03",
+      "url": "https://store.steampowered.com/app/3643170/Roadside_Research/",
+      "title": "Roadside Research",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T04",
+      "url": "https://store.steampowered.com/app/3241660/REPO/",
+      "title": "R.E.P.O.",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T05",
+      "url": "https://store.steampowered.com/app/3527290/PEAK/",
+      "title": "PEAK",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T06",
+      "url": "https://store.steampowered.com/app/3314790/CloverPit/",
+      "title": "CloverPit",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T07",
+      "url": "https://store.steampowered.com/app/2653790/The_Exit_8/",
+      "title": "The Exit 8",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T08",
+      "url": "https://store.steampowered.com/app/1161580/Hardspace__Shipbreaker/",
+      "title": "Hardspace: Shipbreaker",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T09",
+      "url": "https://store.steampowered.com/app/526870/Satisfactory/",
+      "title": "Satisfactory",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    },
+    {
+      "id": "T10",
+      "url": "https://store.steampowered.com/app/2406770/Bodycam/",
+      "title": "Bodycam",
+      "checked_date_kst": "2026-09-24",
+      "review_scope": "2027 전망 조사: Steam 공식 매출차트 또는 제작자 게임 설명·플랫폼 리뷰 스냅샷. 직접 플레이·장르 시계열·영상 공유율 검증 아님",
+      "status": "READ",
+      "referenced_in": [
+        "trends-2027.md"
+      ]
+    }
+  ],
+  "updated_at": "2026-09-24T10:53:00.425423+00:00",
+  "research_snapshot_date_kst": "2026-09-24",
+  "team_instruction_source": {
+    "source_type": "user_conversation",
+    "checked_date_kst": "2026-09-24",
+    "summary": "3인 모두 개발; PRD·기술 선택 AI 위임; 극도로 사실적인 그래픽; ImageGen/Meshy 7 flagship/high-quality texture; 오디오 현재 제외; COMPACT BLOOM 사용자 거절; 2027 전망 조사 요청",
+    "caveat": "대회 공식 규정 출처와 구분"
+  }
+}
