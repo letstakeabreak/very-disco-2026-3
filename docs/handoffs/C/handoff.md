@@ -6,7 +6,8 @@ Contract: 1.0.0
 PRD: 1.0.1 (`executionReady: true`)  
 Target branch: `role/c-app`  
 Implementation commit: `06e8d24d1c02b9c04df39ecb8e2ce2b251a69172` (official `bootstrap-v2` parent)
-PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), open against `integration/v1`
+Original C PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), merged into `integration/v1` at `554e2a1182bba9027c28bfac8d1702bbefaff407`  
+Short-viewport follow-up: `role/c-app-followup` (based on the merged integration commit)
 
 ## Starting point and provenance
 
@@ -19,6 +20,7 @@ The archive does not contain Git metadata, so the initial local work used a synt
 - Replaced the development probe with a DEEP PRESS app screen: 1L capacity and score HUD, specimen selection, pressure display, hold-to-press, store/discard/cash-out controls, tutorial steps, pause/resume, failure and completion overlays, and restart.
 - Added pointer capture for horizontal specimen inspection and press hold. A single active pointer is accepted; duplicate pointers/releases are ignored. Pointer cancellation and capture loss pause the game, and visibility loss pauses without auto-resuming.
 - Added keyboard press support, safe-area-aware layout, 44px minimum touch targets, a 320px minimum width, and WebGL error messaging. Audio remains absent.
+- Reduced the vertical grid gap only at heights up to 580px after a 320×568 browser viewport showed 3.6px of document overflow.
 - Kept score, capacity and specimen outcomes core-owned. Storage availability uses only the documented action prerequisites; fixture outcomes are not used as live gameplay.
 - Added C tests for pointer lifecycle, cancellation, rotation, presentation labels, storage prerequisites and paused runtime timing.
 
@@ -32,11 +34,10 @@ Environment: Node `v22.22.3`, npm `10.9.8`; the repository pins Node `26.8.2` an
 - `npm run ownership -- --role C --base archive-bootstrap-v2` — passed against the local archive base. The archive tree hash exactly matches the official bootstrap commit tree, so the checked file contents are the official base contents.
 - `git diff --check` — passed after the handoff update.
 - Browser review on the development server covered the start overlay, starting a round, drag-to-inspect tutorial progression, press/release, pause and explicit resume. The visible 3D scene is still the scaffold placeholder; this is not final game art or complete gameplay because the core still reports `implementation: scaffold`.
+- Responsive browser review used explicit 320×568 and 320×667 CSS viewports. At 320×568, the start and pause dialogs fit; all active controls were visible and at least 44px high, but the page was 3.6px taller than the viewport. A short-height-only 2px gap reduction removed that overflow; the final active screen measured 320×568 with no document overflow and its footer note visible. The screenshot was captured in the Codex browser QA output. This desktop-browser viewport override does not emulate iPhone safe-area insets or Safari.
 
 ## Remaining work and limits
 
-- Review PR [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3) on `integration/v1`; its implementation commit uses official parent `c739b527449b2527e46b567bfffbd4a7122f571c`.
 - The local environment is Node `v22.22.3` / npm `10.9.8`, while the repository pins Node `26.8.2` / npm `11.19.1`; `npm ci` and `npm run check` passed with an engine mismatch warning. Re-run on the pinned runtime if available.
-- Verify the 320 CSS px layout and safe-area behavior at an actual mobile viewport; no viewport emulation was available in this review.
 - Test the full connected core/render loop and a real iPhone Safari session after A/B integrations. Those checks remain unverified.
-- The actual mobile Safari and post-integration core/render loop remain unverified.
+- Actual iPhone Safari safe-area behavior, device touch handling, and post-integration core/render loop remain unverified. The PR currently has no GitHub status checks or reviewer comments.
