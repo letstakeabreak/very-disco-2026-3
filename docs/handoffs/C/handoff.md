@@ -1,20 +1,20 @@
 # C role handoff — DEEP PRESS
 
-Date: 2026-09-24 (Asia/Seoul)  
+Date: 2026-09-25 (Asia/Seoul)
 Role: C — app, input, HUD (`magic3ightball`, verified through the connected GitHub identity tool)  
 Contract: 1.0.0  
 PRD: 1.0.1 (`executionReady: true`)  
 Target branch: `role/c-app`  
 Implementation commit: `06e8d24d1c02b9c04df39ecb8e2ce2b251a69172` (official `bootstrap-v2` parent)
 Original C PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), merged into `integration/v1` at `554e2a1182bba9027c28bfac8d1702bbefaff407`
-Short-viewport follow-up: `role/c-app-followup` (based on the merged integration commit)
+Short-viewport follow-up: `role/c-app-followup` at `00c1b8f4dffd8bb679ee476df6341e23fe86bc5a` (based on the merged integration commit)
 Follow-up PR: [#5](https://github.com/letstakeabreak/very-disco-2026-3/pull/5), open against `integration/v1`
 
 ## Starting point and provenance
 
 The Drive archive `DEEP-PRESS-bootstrap-v2.zip` was downloaded from the user-provided project folder and its SHA-256 matched the value in `00-START-HERE.md`: `4bbe967e112f2a89188e9e1a880e7385057d18cf2b31e993bb39ac1e9fe69d24`. Its top-level directory is named `c739b527449b2527e46b567bfffbd4a7122f571c`; `docs/bootstrap.json` records `bootstrap-v2`, PRD 1.0.1, contract 1.0.0 and 23 frozen-file hashes. `npm run bootstrap:check` passed those 23 frozen-file checks.
 
-The archive does not contain Git metadata, so the initial local work used a synthetic Git commit. After GitHub access became available, the official `bootstrap-v2` annotated tag was resolved: tag object `ba2f00e700c04402cfa6574c4db9cf5ab0d7c2a0` points to commit `c739b527449b2527e46b567bfffbd4a7122f571c`. The `integration/v1` branch currently points to the same commit. The local archive's Git tree hash (`b0e6095ebf9c51eb7fb9711cae4ddb30970cd12d`) exactly matches the official commit's tree hash, confirming the checked source tree is identical. The synthetic local commit is not used as the parent of the GitHub contribution branch.
+The archive does not contain Git metadata, so the initial local work used a synthetic Git commit. The official `bootstrap-v2` annotated tag was resolved: tag object `ba2f00e700c04402cfa6574c4db9cf5ab0d7c2a0` points to commit `c739b527449b2527e46b567bfffbd4a7122f571c`. At verification time `integration/v1` pointed to that commit; after C PR #3 merged, its current head became `554e2a1182bba9027c28bfac8d1702bbefaff407`. The local archive's Git tree hash (`b0e6095ebf9c51eb7fb9711cae4ddb30970cd12d`) exactly matches the official bootstrap commit's tree hash, confirming the checked source tree is identical. The synthetic local commit is not used as the parent of either GitHub contribution branch.
 
 ## Implemented
 
@@ -34,11 +34,12 @@ Environment: Node `v22.22.3`, npm `10.9.8`; the repository pins Node `26.8.2` an
 - `npm run check` — passed: bootstrap check, typecheck, boundary lint, 8 test files / 21 tests, and Vite build. Vite reports the current JS bundle at about 547 kB minified, above its 500 kB advisory threshold.
 - `npm run ownership -- --role C --base archive-bootstrap-v2` — passed against the local archive base. The archive tree hash exactly matches the official bootstrap commit tree, so the checked file contents are the official base contents.
 - `git diff --check` — passed after the handoff update.
-- Browser review on the development server covered the start overlay, starting a round, drag-to-inspect tutorial progression, press/release, pause and explicit resume. The visible 3D scene is still the scaffold placeholder; this is not final game art or complete gameplay because the core still reports `implementation: scaffold`.
+- Browser review on the development server covered the start overlay, starting a round, drag-to-inspect tutorial progression, press/release, pause and explicit resume. The visible 3D scene on current `integration/v1` is still the neutral renderer stub, and the core snapshot reports `implementation: scaffold`; this is not final art or complete gameplay.
 - Responsive browser review used explicit 320×568 and 320×667 CSS viewports. At 320×568, the start and pause dialogs fit; all active controls were visible and at least 44px high, but the page was 3.6px taller than the viewport. A short-height-only 2px gap reduction removed that overflow; the final active screen measured 320×568 with no document overflow and its footer note visible. The screenshot was captured in the Codex browser QA output. This desktop-browser viewport override does not emulate iPhone safe-area insets or Safari.
 
 ## Remaining work and limits
 
 - The local environment is Node `v22.22.3` / npm `10.9.8`, while the repository pins Node `26.8.2` / npm `11.19.1`; `npm ci` and `npm run check` passed with an engine mismatch warning. Re-run on the pinned runtime if available.
-- Test the full connected core/render loop and a real iPhone Safari session after A/B integrations. Those checks remain unverified.
-- Actual iPhone Safari safe-area behavior, device touch handling, and post-integration core/render loop remain unverified. The PR currently has no GitHub status checks or reviewer comments.
+- Test the full connected core/render loop and a real iPhone Safari session after A/B integrations. Those checks remain unverified. At the latest audit, no A role branch or PR was available and B PR #1 remained draft, so the integrated core/render path is not ready for this check.
+- Actual iPhone Safari safe-area behavior and device touch handling remain unverified. The 320×568/667 check was a desktop Chromium CSS viewport override, not an iPhone or Safari run.
+- Follow-up PR #5 is open and mergeable, with zero GitHub status checks and no reviewer comments at the latest audit. Do not merge from role C; the project instructions reserve final integration for role A after all roles are ready.
