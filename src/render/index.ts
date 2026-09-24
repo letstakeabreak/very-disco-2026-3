@@ -17,9 +17,18 @@ import { ASSET_REGISTRY } from './assets';
 
 const STAGE_ASPECT = 2 / 3;
 const WORKTOP_Y = 0.22;
+const RAM_APPROACH_METERS_PER_MS = 0.0007;
 const ASSET_IDS: readonly AssetId[] = ['press-chamber', ...SPECIMEN_IDS];
 const assetUrl = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
 type Prop = { root: Object3D; bounds: Box3; deformation: Deformation; compression: number; damage: number; initialized: boolean };
+
+function surfaceTop(bounds: Box3, height: number, toPress: Matrix4): number {
+  let top = -Infinity;
+  for (const x of [bounds.min.x, bounds.max.x]) for (const y of [0, height]) for (const z of [bounds.min.z, bounds.max.z]) {
+    top = Math.max(top, new Vector3(x, y, z).applyMatrix4(toPress).y);
+  }
+  return top;
+}
 
 /** Fixed-camera 2.5D workshop with four real PBR meshes. It consumes, never judges, state. */
 export function createRenderer({ canvas, onFatal }: RendererOptions): GameRenderer {
@@ -240,6 +249,8 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     gauge?.setPressure(snapshot.pressure01);
     // Pause can cancel an uncommitted stroke: show its authoritative settled state immediately.
     const blend = paused || !hasSynced ? 1 : 1 - Math.exp(-dt / 65);
+    const inContact = snapshot.currentSpecimen !== null && (phase === 'compressing' || phase === 'settling' || phase === 'failed');
+    let contactReached = paused || !hasSynced;
     let currentTop: number = PRESS_ANCHORS.workbedY;
     if (press) {
       const entity = snapshot.entities.find((item) => item.assetId === 'press-chamber');
@@ -255,14 +266,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       let look = { compression: visual.compression, damage: visual.damage };
       if (visual.location === 'press') storedLooks.set(visual.id, look);
       if (visual.location === 'case') look = storedLooks.get(visual.id) ?? look;
-      const factor = prop.initialized ? blend : 1;
-      prop.compression += (look.compression - prop.compression) * factor;
-      prop.damage += (look.damage - prop.damage) * factor;
-      prop.initialized = true;
-      prop.deformation.compression.value = prop.compression;
-      prop.deformation.damage.value = prop.damage;
-      const renderedHeight = prop.deformation.height * (1 - prop.compression * (visual.id === 'salvage-lens' ? 0.12 : 0.52));
-      for (const material of prop.deformation.materials) if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
+      const compressionScale = visual.id === 'salvage-lens' ? 0.12 : 0.52;
       prop.root.scale.setScalar(1);
       prop.root.rotation.set(0, visual.yaw, 0);
       if (visual.location === 'press') {
@@ -278,9 +282,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       } else if (visual.location === 'case') {
         const slot = slots[visual.index]!;
         prop.root.quaternion.copy(slot.rotation); prop.root.scale.setScalar(0.52);
-        // The front (+Z) faces up; recenter after lying down and after deformation.
-        caseOffset.set(0, renderedHeight / 2, 0).applyQuaternion(slot.rotation).multiplyScalar(0.52);
-        prop.root.position.copy(slot.center).sub(caseOffset);
+        prop.root.position.copy(slot.center);
       }
       const entity = snapshot.entities.find((item) => item.assetId === visual.id);
       if (entity) {
@@ -288,21 +290,42 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         prop.root.rotation.set(entity.rotationRad.x, entity.rotationRad.y + visual.yaw, entity.rotationRad.z, 'XYZ');
         prop.root.scale.set(entity.scale.x, entity.scale.y, entity.scale.z);
       }
+      let toPress: Matrix4 | null = null;
+      let compressionBlend = prop.initialized ? blend : 1;
       if (visual.location === 'press' && press) {
-        // Contact uses rendered bounds in press-local meters, including caller transforms.
         prop.root.updateMatrixWorld(true);
-        const toPress = new Matrix4().copy(press.matrixWorld).invert().multiply(prop.root.matrixWorld);
-        currentTop = -Infinity;
-        for (const x of [prop.bounds.min.x, prop.bounds.max.x]) for (const y of [0, renderedHeight]) for (const z of [prop.bounds.min.z, prop.bounds.max.z]) {
-          currentTop = Math.max(currentTop, new Vector3(x, y, z).applyMatrix4(toPress).y);
+        toPress = new Matrix4().copy(press.matrixWorld).invert().multiply(prop.root.matrixWorld);
+        if (inContact && ram && prop.initialized && !paused && hasSynced) {
+          // Hold the existing shape until the platen reaches it. Only the remaining
+          // frame time advances compression, so split frames give the same approach.
+          const top = surfaceTop(prop.bounds, prop.deformation.height * (1 - prop.compression * compressionScale), toPress);
+          const contact = Math.min(PRESS_ANCHORS.travel, Math.max(0, PRESS_ANCHORS.platenY - top));
+          const approachMs = Math.max(0, contact - ram.travel.value) / RAM_APPROACH_METERS_PER_MS;
+          contactReached = approachMs <= dt;
+          compressionBlend = 1 - Math.exp(-Math.max(0, dt - approachMs) / 65);
         }
+      }
+      prop.compression += (look.compression - prop.compression) * compressionBlend;
+      prop.damage += (look.damage - prop.damage) * (prop.initialized ? blend : 1);
+      prop.initialized = true;
+      prop.deformation.compression.value = prop.compression;
+      prop.deformation.damage.value = prop.damage;
+      const renderedHeight = prop.deformation.height * (1 - prop.compression * compressionScale);
+      for (const material of prop.deformation.materials) if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
+      if (toPress) currentTop = surfaceTop(prop.bounds, renderedHeight, toPress);
+      if (visual.location === 'case' && !entity) {
+        // The front (+Z) faces up; recenter after lying down and after deformation.
+        const slot = slots[visual.index]!;
+        caseOffset.set(0, renderedHeight / 2, 0).applyQuaternion(slot.rotation).multiplyScalar(0.52);
+        prop.root.position.sub(caseOffset);
       }
     }
     if (ram) {
-      const inContact = snapshot.currentSpecimen !== null && (phase === 'compressing' || phase === 'settling' || phase === 'failed');
       const target = inContact ? Math.min(PRESS_ANCHORS.travel, Math.max(0, PRESS_ANCHORS.platenY - currentTop)) : RAM_RETRACTED_TRAVEL;
-      // During contact the platen follows the deformed surface without a second easing lag.
-      ram.travel.value = inContact ? target : ram.travel.value + (target - ram.travel.value) * blend;
+      // After approach, follow the deformed surface without a second easing lag.
+      ram.travel.value = inContact
+        ? contactReached ? target : Math.min(target, ram.travel.value + RAM_APPROACH_METERS_PER_MS * dt)
+        : ram.travel.value + (target - ram.travel.value) * blend;
     }
     hasSynced = true;
   }

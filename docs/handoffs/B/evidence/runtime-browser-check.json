@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-09-24T14:35:15.453Z",
+  "checkedAt": "2026-09-24T15:09:10.767Z",
   "kind": "Actual WebGL render fixture QA in desktop Chromium; not iPhone or gameplay validation",
-  "url": "http://127.0.0.1:5173/docs/handoffs/B/preview.html",
+  "url": "http://127.0.0.1:4174/docs/handoffs/B/preview.html",
   "viewports": [
     {
       "dockHeight": 130,
@@ -9,9 +9,9 @@
       "height": 844,
       "horizontalOverflow": false,
       "metrics": {
-        "elapsedMs": 1998.70000000298,
-        "fps": 60.00100842030961,
-        "maxFrameMs": 16.700000000000728,
+        "elapsedMs": 2001.20000000298,
+        "fps": 60.00403388463088,
+        "maxFrameMs": 16.80000000000109,
         "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
@@ -38,10 +38,10 @@
       "height": 900,
       "horizontalOverflow": false,
       "metrics": {
-        "elapsedMs": 1998.4000000059605,
-        "fps": 60.004033884630935,
+        "elapsedMs": 1992.300000011921,
+        "fps": 60.00403388463088,
         "maxFrameMs": 16.80000000000109,
-        "p95FrameMs": 16.700000000000728,
+        "p95FrameMs": 16.799999999999272,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -67,10 +67,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 4279.100000008941,
-        "fps": 60.00234384155631,
+        "elapsedMs": 4063,
+        "fps": 60.00296310928933,
         "maxFrameMs": 16.80000000000109,
-        "p95FrameMs": 16.700000000000728,
+        "p95FrameMs": 16.799999999999272,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -79,8 +79,8 @@
           "triangles": "239048",
           "visibleTriangles": "81024"
         },
-        "sampleFrames": 256,
-        "totalFrames": 257,
+        "sampleFrames": 243,
+        "totalFrames": 244,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -95,10 +95,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 5640.20000000298,
-        "fps": 60.00284879994303,
-        "maxFrameMs": 16.80000000000291,
-        "p95FrameMs": 16.700000000000728,
+        "elapsedMs": 5578.800000011921,
+        "fps": 60.0028743891923,
+        "maxFrameMs": 16.80000000000109,
+        "p95FrameMs": 16.799999999999272,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -107,8 +107,8 @@
           "triangles": "239048",
           "visibleTriangles": "81024"
         },
-        "sampleFrames": 337,
-        "totalFrames": 338,
+        "sampleFrames": 334,
+        "totalFrames": 335,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -123,10 +123,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 8097.40000000596,
-        "fps": 60.00247432883832,
-        "maxFrameMs": 16.80000000000291,
-        "p95FrameMs": 16.700000000000728,
+        "elapsedMs": 6995.70000000298,
+        "fps": 60.002864098524974,
+        "maxFrameMs": 16.80000000000109,
+        "p95FrameMs": 16.799999999999272,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -135,8 +135,8 @@
           "triangles": "239048",
           "visibleTriangles": "81024"
         },
-        "sampleFrames": 485,
-        "totalFrames": 486,
+        "sampleFrames": 419,
+        "totalFrames": 420,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -151,9 +151,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 9446,
-        "fps": 60.002973598691625,
-        "maxFrameMs": 16.80000000000291,
+        "elapsedMs": 8480.5,
+        "fps": 59.885190522312264,
+        "maxFrameMs": 33.30000000000291,
         "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
@@ -163,8 +163,8 @@
           "triangles": "239048",
           "visibleTriangles": "81024"
         },
-        "sampleFrames": 565,
-        "totalFrames": 566,
+        "sampleFrames": 507,
+        "totalFrames": 508,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -179,9 +179,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 10821.60000000894,
-        "fps": 60.002400096003846,
-        "maxFrameMs": 16.80000000000291,
+        "elapsedMs": 10090.80000001192,
+        "fps": 59.90235915457804,
+        "maxFrameMs": 33.30000000000291,
         "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
@@ -192,7 +192,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 649,
+        "totalFrames": 604,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -207,9 +207,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 12205.60000000894,
-        "fps": 60.002400096003825,
-        "maxFrameMs": 16.80000000000291,
+        "elapsedMs": 11830,
+        "fps": 59.80265125087213,
+        "maxFrameMs": 33.39999999999782,
         "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
@@ -220,7 +220,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 732,
+        "totalFrames": 708,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -235,10 +235,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 13601.30000001192,
-        "fps": 60.002400096003825,
-        "maxFrameMs": 16.80000000000291,
-        "p95FrameMs": 16.799999999999272,
+        "elapsedMs": 13300.80000001192,
+        "fps": 59.80324731632929,
+        "maxFrameMs": 33.39999999999782,
+        "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -248,7 +248,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 816,
+        "totalFrames": 796,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -263,10 +263,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 14957.40000000596,
-        "fps": 59.902957209320896,
-        "maxFrameMs": 33.400000000001455,
-        "p95FrameMs": 16.799999999999272,
+        "elapsedMs": 14700.60000000894,
+        "fps": 59.80324731632929,
+        "maxFrameMs": 33.39999999999782,
+        "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -276,7 +276,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 896,
+        "totalFrames": 880,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -293,10 +293,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 16893.60000000894,
-        "fps": 59.90235915457804,
-        "maxFrameMs": 33.400000000001455,
-        "p95FrameMs": 16.799999999999272,
+        "elapsedMs": 16116.5,
+        "fps": 59.80265125087213,
+        "maxFrameMs": 33.39999999999782,
+        "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -306,7 +306,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1012,
+        "totalFrames": 965,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -321,10 +321,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 18274,
-        "fps": 59.90235915457804,
-        "maxFrameMs": 33.400000000001455,
-        "p95FrameMs": 16.799999999999272,
+        "elapsedMs": 17534.80000001192,
+        "fps": 59.902957209320896,
+        "maxFrameMs": 33.39999999999782,
+        "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -334,7 +334,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1095,
+        "totalFrames": 1050,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -349,10 +349,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 19714,
-        "fps": 59.90235915457804,
-        "maxFrameMs": 33.400000000001455,
-        "p95FrameMs": 16.799999999999272,
+        "elapsedMs": 18939.90000000596,
+        "fps": 59.80324731632927,
+        "maxFrameMs": 33.39999999999782,
+        "p95FrameMs": 16.700000000000728,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -362,7 +362,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1182,
+        "totalFrames": 1133,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -377,9 +377,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 21114.10000000894,
-        "fps": 59.90235915457804,
-        "maxFrameMs": 33.400000000001455,
+        "elapsedMs": 20371.20000000298,
+        "fps": 59.80324731632927,
+        "maxFrameMs": 33.39999999999782,
         "p95FrameMs": 16.799999999999272,
         "rendererStatus": {
           "drawCalls": "27",
@@ -390,7 +390,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1266,
+        "totalFrames": 1219,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -405,10 +405,10 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 22474.80000001192,
-        "fps": 59.902359154578065,
-        "maxFrameMs": 33.400000000001455,
-        "p95FrameMs": 16.799999999999272,
+        "elapsedMs": 21794.80000001192,
+        "fps": 59.90235915457802,
+        "maxFrameMs": 33.20000000000073,
+        "p95FrameMs": 16.700000000004366,
         "rendererStatus": {
           "drawCalls": "27",
           "engine": "three.js r186",
@@ -418,7 +418,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1347,
+        "totalFrames": 1305,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -433,9 +433,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 23832.60000000894,
-        "fps": 59.90295720932092,
-        "maxFrameMs": 33.400000000001455,
+        "elapsedMs": 23195.10000000894,
+        "fps": 59.90235915457802,
+        "maxFrameMs": 33.20000000000073,
         "p95FrameMs": 16.700000000004366,
         "rendererStatus": {
           "drawCalls": "27",
@@ -446,7 +446,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1429,
+        "totalFrames": 1389,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -461,9 +461,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 25201.20000000298,
-        "fps": 60.002400096003825,
-        "maxFrameMs": 16.80000000000291,
+        "elapsedMs": 24617.30000001192,
+        "fps": 59.902957209320874,
+        "maxFrameMs": 33.20000000000073,
         "p95FrameMs": 16.700000000004366,
         "rendererStatus": {
           "drawCalls": "27",
@@ -474,7 +474,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1511,
+        "totalFrames": 1474,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -489,9 +489,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 26577.60000000894,
-        "fps": 60.002400096003846,
-        "maxFrameMs": 16.80000000000291,
+        "elapsedMs": 26034.5,
+        "fps": 59.80324731632927,
+        "maxFrameMs": 33.400000000001455,
         "p95FrameMs": 16.700000000004366,
         "rendererStatus": {
           "drawCalls": "27",
@@ -502,7 +502,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1593,
+        "totalFrames": 1558,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -517,9 +517,9 @@
       "errors": [],
       "immutable": true,
       "metrics": {
-        "elapsedMs": 27960.20000000298,
-        "fps": 60.002400096003825,
-        "maxFrameMs": 16.80000000000291,
+        "elapsedMs": 27512.40000000596,
+        "fps": 59.8026512508721,
+        "maxFrameMs": 33.400000000001455,
         "p95FrameMs": 16.700000000004366,
         "rendererStatus": {
           "drawCalls": "27",
@@ -530,7 +530,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1676,
+        "totalFrames": 1647,
         "viewport": {
           "dpr": 1,
           "height": 844,
@@ -544,7 +544,7 @@
   ],
   "errors": [],
   "fileHashesBefore": {
-    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/index.ts": "bd0c8eeae3a552e55ff893d037cf61e8562c36b9dd6a3c55b1f9eb71d5f4a42b",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
@@ -561,10 +561,10 @@
   "initialReady": {
     "errors": [],
     "metrics": {
-      "elapsedMs": 1971.3999999910593,
-      "fps": 52.6964403293684,
-      "maxFrameMs": 250,
-      "p95FrameMs": 16.799999999999955,
+      "elapsedMs": 2022.79999999702,
+      "fps": 53.33595910362766,
+      "maxFrameMs": 233.3,
+      "p95FrameMs": 16.700000000000273,
       "rendererStatus": {
         "drawCalls": "27",
         "engine": "three.js r186",
@@ -573,8 +573,8 @@
         "triangles": "239048",
         "visibleTriangles": "81024"
       },
-      "sampleFrames": 101,
-      "totalFrames": 102,
+      "sampleFrames": 104,
+      "totalFrames": 105,
       "viewport": {
         "dpr": 1,
         "height": 633,
@@ -592,7 +592,7 @@
     "yawDeg": -179
   },
   "fileHashesAfter": {
-    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/index.ts": "bd0c8eeae3a552e55ff893d037cf61e8562c36b9dd6a3c55b1f9eb71d5f4a42b",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",

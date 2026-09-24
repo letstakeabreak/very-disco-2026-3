@@ -64,10 +64,22 @@ GPU 품질은 CPU 테스트로 승인하지 않는다. 부피·점수·손상 �
 
 재현 시 먼저 `node docs/handoffs/B/build-static-preview.mjs`로 빌드하고 `npx vite preview --outDir /tmp/deep-press-b-static-preview --host 127.0.0.1 --port 4174 --strictPort`로 정적 서버를 연다. 이번 측정 전 빌드는 해당 파일을 실제 실행해 생성했다. 3분 측정 중에는 해당 출력 디렉터리를 재빌드하지 않는다. 기본 측정 주소도 개발 서버 대신 4174로 고정했다.
 
-`soak-check.mjs` 최종 실행 시작 `2026-09-24T14:35:14.297Z`: **PASS**, 정적 production 하네스에서 180.007초, 10,801 rAF 표본, 평균 60.003 FPS, P95 16.7ms, max 16.8ms, 오류 0. 390×844 CSS pixels / DPR2 / framebuffer780×1688. HeadlessChrome153 / ANGLE Metal Apple M5. 검사·압착·파손·보관·완료·정지 fixture를 30초 간격으로 바꿨다. 시작/끝 renderer·GLB·배경·계기판 SHA 동일. 이 값은 **데스크톱 rAF 간격**이며 실제 iPhone13 Safari 또는 GPU 실행시간/터치지연 보증이 아니다. [전체 기록](desktop-soak.json).
+`soak-check.mjs` 이전 실행 시작 `2026-09-24T14:35:14.297Z`: **PASS**, 정적 production 하네스에서 180.007초, 10,801 rAF 표본, 평균 60.003 FPS, P95 16.7ms, max 16.8ms, 오류 0. 390×844 CSS pixels / DPR2 / framebuffer780×1688. HeadlessChrome153 / ANGLE Metal Apple M5. 검사·압착·파손·보관·완료·정지 fixture를 30초 간격으로 바꿨다. 시작/끝 renderer·GLB·배경·계기판 SHA 동일. 이 값은 **데스크톱 rAF 간격**이며 실제 iPhone13 Safari 또는 GPU 실행시간/터치지연 보증이 아니다. [이전 전체 기록](desktop-soak-20260924T143514.json).
 
 root의 전체 `npm run check`: 10개 파일 **54 tests** 통과, frozen23파일일치, TS/모듈경계/build통과. B ownership과diff검사통과. [Mac Safari 별도 UI 관찰](safari-desktop.md)은 이전 게이지 revision에서 일반 프로필의 원인 미확정 Script error, 별도 임시 창의 정상 조작·빈 콘솔을 모두 기록했다. 현재 램/반사 보완 뒤 Safari를 재검사한 결과는 아니다. 23:35 KST의 Xcode 실제 기기 목록에는 모든 iPhone이 offline으로 표시되어 실기기 검증을 실행하지 못했다.
 
 이전 성공한 3분 측정은 `desktop-soak-20260924T141112.json`에 보존했다. 이번 3분 측정 초반에는 별도 데스크톱 브라우저 검사가 병행되어 완전히 격리된 부하 측정이 아니다. 그래도 전체 관측 10,801프레임의 최대 간격은 16.8ms였으며 이 수치를 실제 iPhone 성능으로 확대하지 않는다.
 
-램 검사 위치와 취소/재시작 동기화 회귀 테스트는 기존 target=0 구현에서 실패하고 수정 후 통과했다. [램 geometry 조사](../retraction-study/README.md)는 90mm 후퇴에서 상단 고정과 교차 한계를, [환경 반사 비교](../reflection-study/README.md)는 선택한 조명을 기록한다. 압착 진입은 여전히 즉시 접촉 위치로 이동하므로 긴 거리의 진입 애니메이션은 미완료다.
+램 검사 위치와 취소/재시작 동기화 회귀 테스트는 기존 target=0 구현에서 실패하고 수정 후 통과했다. [램 geometry 조사](../retraction-study/README.md)는 90mm 후퇴에서 상단 고정과 교차 한계를, [환경 반사 비교](../reflection-study/README.md)는 선택한 조명을 기록한다. 위 2026-09-24 revision의 즉시 접촉 이동은 아래 진입 애니메이션으로 대체했다.
+
+## 2026-09-25 접촉 진입 보완
+
+프레스는 물건에 닿기 전 0.7m/s로 이동하고, 접근 중 기존 형태를 보존한다. 남은 프레임 시간만 압축에 사용해 공중 변형을 막는다. 첫 snapshot과 pause 취소는 즉시 authoritative 형태를 반영한다. lifecycle 회귀에서 기존 구현의 즉각 이동/공중 압축 기대값 3개가 실패한 뒤 수정 후 통과했다. 10/30/60/120Hz 분할에서 같은 300ms 후 위치·압축을 대조하고 0ms, 짧은 release/settling, 취소 후 재진입을 확인했다.
+
+`npm run check`는 frozen23·TS·15개 파일 모듈 경계·**10개 파일 56개 테스트**·build 통과. 마지막 테스트의 30Hz 비교 추가 뒤 해당 21개 lifecycle 테스트를 재실행해 통과했다. 하네스/새 motion viewer의 strict typecheck 및 B 소유권·diff 공백 검사도 통과했다. 현재 dist 10,002,161 bytes / JS667,948 bytes(gzip171.70kB), 기존 chunk500kB 경고 유지.
+
+[실제 production renderer의 motion report](../retraction-study/motion-report.json)는 세 물건 각각 31 프레임, 390×844/DPR1, immutable fixture와 실제 GLB를 사용한다. 기존 shader uniform을 관찰하고 GLB의 모든 정점에 수직 shader 변형을 적용해 상하 간격을 측정했다. 16ms 단위 첫 접촉은 카세트176ms / 코어·렌즈144ms, 접근 중 압축0, 최소 간격0m, 오류0. 6개 카세트 GPU 캡처 중 0/96/320ms를 직접 대조했다. 하우징 교차·콘셉트 미달은 남아 있고, 이 수직 간격 측정은 임의 transform의 완전한 3D 충돌 인증이 아니다.
+
+최신 `runtime-browser-check.json`은 새 production 소스를 정적으로 빌드한 뒤 재실행했다. 두 화면 크기·8상태·9물건/상태 조합·select/range 이벤트·4개 GLB 로드·immutable snapshot·오류0 확인, 검사 시작/끝 소스 SHA 일치. 5개 아트 목표의 이전 정적 비교와 다른 study report는 당시 revision의 기록으로 유지한다. 그 파일들의 renderer SHA가 최신이라는 주장은 하지 않는다.
+
+최신 3분 정적 측정(`2026-09-24T15:10:20.791Z`, 09-25 KST)은 **PASS**: 180.016초 / 10,800 rAF 표본 / 평균59.9947FPS / P95 16.7ms / max50ms / 오류0. 390×844 CSS/DPR2/780×1688 buffer, Apple M5의 Chromium153이다. 앞선 브라우저 검사 세션을 닫은 뒤 실행했고 다른 QA 브라우저 검사를 병행하지 않았다. 일반 데스크톱의 백그라운드 부하까지 통제한 시험은 아니다. 시작/끝 13개 production 소스·자산 해시가 같고 현재 파일과도 대조했다. [최신 전체 기록](desktop-soak.json)은 데스크톱 fixture 성능이며 실기기 합격으로 확대하지 않는다. 이전 결과는 별도 JSON으로 보존했다. 최신 complete/렌즈 압착 캡처도 육안 확인했으며 오른쪽 보관함 일부 잘림 등 기존 아트 한계는 남는다.

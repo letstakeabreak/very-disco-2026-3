@@ -232,13 +232,16 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
     const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
     const compression = uniform(core.mesh, 'pressCompression');
-    renderer.render(SNAPSHOT_FIXTURES.inspecting, 16); renderer.render(SNAPSHOT_FIXTURES.compressing, 16);
+    renderer.render(SNAPSHOT_FIXTURES.inspecting, 16);
+    for (let i = 0; i < 15; i += 1) renderer.render(SNAPSHOT_FIXTURES.compressing, 16);
     expect(compression.value).toBeGreaterThan(0); expect(compression.value).toBeLessThan(0.4);
     const paused: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.compressing, phase: 'paused', resumePhase: 'inspecting', pressure01: 0 });
     renderer.render(paused, 16); expect(compression.value).toBe(0);
     for (let i = 0; i < 10; i += 1) renderer.render(paused, 100);
     expect(compression.value).toBe(0);
-    renderer.render(SNAPSHOT_FIXTURES.compressing, 16); expect(compression.value).toBeGreaterThan(0);
+    renderer.render(SNAPSHOT_FIXTURES.compressing, 16); expect(compression.value).toBe(0);
+    for (let i = 0; i < 15; i += 1) renderer.render(SNAPSHOT_FIXTURES.compressing, 16);
+    expect(compression.value).toBeGreaterThan(0);
     renderer.dispose();
   });
 
@@ -249,6 +252,8 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     renderer.render({ ...SNAPSHOT_FIXTURES.inspecting, tick: 10 }, 0);
     expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
     renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 11 }, 16);
+    expect(travel.value).toBeGreaterThan(RAM_RETRACTED_TRAVEL); expect(travel.value).toBeLessThan(0);
+    for (let i = 0; i < 15; i += 1) renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 11 }, 16);
     expect(travel.value).toBeGreaterThan(0);
     const contact = travel.value;
     const inspecting: GameSnapshot = { ...SNAPSHOT_FIXTURES.inspecting, tick: 12 };
@@ -264,6 +269,58 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     renderer.render(paused, 100); expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
     renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 15 }, 16);
     renderer.render(SNAPSHOT_FIXTURES.idle, 0); expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
+    renderer.dispose();
+  });
+
+  it('approaches continuously without compressing in mid-air, then keeps the platen on the surface', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
+    const press = [...models.entries()].find(([url]) => url.includes('press-chamber'))![1];
+    const compression = uniform(core.mesh, 'pressCompression'); const travel = uniform(press.mesh, 'ramTravel');
+    const inspecting = deepFreeze({ ...SNAPSHOT_FIXTURES.inspecting, tick: 10 });
+    const pressing = deepFreeze({ ...SNAPSHOT_FIXTURES.compressing, tick: 11 });
+    renderer.render(inspecting, 0);
+    const gap = (): number => PRESS_ANCHORS.platenY - travel.value -
+      (PRESS_ANCHORS.workbedY + PRESS_ANCHORS.clearance + core.mesh.geometry.boundingBox!.max.y * 1.1 * (1 - compression.value * 0.52));
+    const initialGap = gap(); let previousTravel = travel.value; let touching = false;
+    for (let frame = 0; frame < 30; frame += 1) {
+      renderer.render(pressing, 16);
+      if (frame === 0) { expect(gap()).toBeGreaterThan(initialGap * 0.8); expect(compression.value).toBe(0); }
+      expect(gap()).toBeGreaterThanOrEqual(-1e-7);
+      if (gap() > 1e-7) {
+        expect(compression.value).toBe(0);
+        expect(travel.value - previousTravel).toBeCloseTo(0.7 * 0.016, 7);
+      } else { touching = true; expect(gap()).toBeCloseTo(0, 7); }
+      previousTravel = travel.value;
+      const still = [travel.value, compression.value];
+      renderer.render(pressing, 0); expect([travel.value, compression.value]).toEqual(still);
+    }
+    expect(initialGap).toBeGreaterThan(0.1); expect(touching).toBe(true);
+    expect(compression.value).toBeGreaterThan(0.39);
+    renderer.dispose();
+  });
+
+  it('uses only time remaining after approach and preserves a short release through settling', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
+    const press = [...models.entries()].find(([url]) => url.includes('press-chamber'))![1];
+    const compression = uniform(core.mesh, 'pressCompression'); const travel = uniform(press.mesh, 'ramTravel');
+    const sample = (steps: number[]): number[] => {
+      renderer.render({ ...SNAPSHOT_FIXTURES.inspecting, tick: 0 }, 0);
+      for (const dt of steps) renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 1 }, dt);
+      return [travel.value, compression.value];
+    };
+    const slow = sample([100, 100, 100]);
+    for (const count of [9, 18, 36]) {
+      const fast = sample(Array<number>(count).fill(300 / count));
+      expect(fast[0]).toBeCloseTo(slow[0]!, 7); expect(fast[1]).toBeCloseTo(slow[1]!, 7);
+    }
+    renderer.render({ ...SNAPSHOT_FIXTURES.inspecting, tick: 0 }, 0);
+    renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 1, pressure01: 0.03 }, 16);
+    expect(compression.value).toBe(0);
+    for (let i = 0; i < 3; i += 1) renderer.render({ ...SNAPSHOT_FIXTURES.settling, tick: 2, pressure01: 0.03 }, 100);
+    expect(compression.value).toBeGreaterThan(0.025); expect(compression.value).toBeLessThan(0.03);
+    expect(travel.value).toBeGreaterThan(0);
     renderer.dispose();
   });
 
