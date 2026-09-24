@@ -2,6 +2,10 @@
 
 심해 회수품을 압착해 1L 케이스에 담는 iPhone 게임. 더 작게 만들수록 많이 회수할 수 있지만 내부 코어의 가치가 떨어진다. 이 저장소는 3인 독립 개발을 위한 **PRD·계약·연구·아트 원본·실행 가능한 개발 기반**이다. 현재 DEV 화면은 완성 게임이 아니다.
 
+## 팀 작업 문서
+
+[각 역할의 최신 작업 문서 목록](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/docs/work-documents.md)에서 실제 공개된 브랜치의 문서를 엽니다. [B 렌더링·그래픽 인계](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/README.md)는 `role/b-render`에 있습니다. AI용 원문 링크도 문서 목록에 함께 있습니다.
+
 ## 각자 시작하기
 
 저장소를 clone하고 Codex에서 연 뒤 [goal.md](goal.md)의 공통 요청 또는 자기 계정 요청을 한 번 보낸다. Codex는 [AGENTS.md](AGENTS.md) → [instruction.md](instruction.md) → [prd.md](prd.md)와 계약을 읽고, 인증 계정 또는 명시한 역할을 찾아 지속 Goal을 설정한다. clone 자체가 Goal을 만들지는 않는다.
