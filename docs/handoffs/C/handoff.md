@@ -16,7 +16,7 @@ Current integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec9991
 
 - App HUD, specimen controls, hold-to-press, tutorial, pause/resume, failure/completion overlays and pointer/keyboard input are in `src/app/**`.
 - The short-height layout uses a tighter grid gap at heights up to 580px. Prior desktop Chromium CSS viewport checks covered 320×568 and 320×667; these do not verify iPhone Safari safe areas or touch.
-- Renderer fatal errors now offer **다시 시도**. Retrying creates a fresh canvas and renderer, replaces the failed renderer in the fixed-step runtime, resets its accumulator, resizes it, and preserves the game state. Runtime cleanup disposes the old/current renderer exactly once; an offered renderer after runtime cleanup is disposed immediately.
+- Renderer fatal errors cancel active input and pause gameplay before offering **다시 시도**. Retrying creates a fresh canvas and renderer, replaces the failed renderer in the fixed-step runtime, resets its accumulator, resizes it, and preserves the paused game state. Runtime cleanup disposes the old/current renderer exactly once; an offered renderer after runtime cleanup is disposed immediately.
 - Audio remains out of scope. Score, compression outcomes and game rules remain core-owned.
 
 ## Verification for renderer recovery change
