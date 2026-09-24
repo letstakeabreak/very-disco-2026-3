@@ -2,6 +2,8 @@
 
 담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
+현재 구현·시각 증거 commit: `78f235061603051bb7cf5a7f01a21ff78f717972`. 이후 문서만 갱신한 commit은 이 렌더러·에셋 상태를 바꾸지 않는다. 캡처/브라우저/3분 측정 JSON의 파일 SHA를 현재 소스와 대조해 모두 일치함을 확인했다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
+
 ## 연결 방법
 
 공개 API는 그대로다. C는 자신이 만든 canvas로 `createRenderer({canvas,onFatal})`를 호출하고, 크기 변경 시 `resize`, 매 프레임 immutable `GameSnapshot`과 ms 단위 delta를 `render`에 전달한다. 종료 시 `dispose`한다. B는 DOM·입력·이벤트 큐·점수·부피 규칙을 소유하지 않는다.
