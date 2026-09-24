@@ -43,7 +43,7 @@ Environment: the default runtime is Node `v22.22.3` / npm `10.9.8`; additional c
 - `PATH='/opt/homebrew/bin':$PATH npm run check` — passed under Node `v25.8.1` / npm `11.11.0`: bootstrap (23 frozen files), typecheck, boundary lint (12 TypeScript files), 8 test files / 21 tests, and build. Vite reports the same 546.73 kB minified JS chunk advisory.
 - `PATH='/Users/hyerimjeong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:$PATH npm run check` — also passed under Node `v24.19.0` / npm `10.9.8`.
 - `npm run ownership -- --role C --base archive-bootstrap-v2` — passed; the archive tree remains identical to the official bootstrap tree.
-- A fresh GitHub read found PR #5 open, non-draft and mergeable against `integration/v1` at base `554e2a1182bba9027c28bfac8d1702bbefaff407`. The head `33a9db7b3c86e60ad0ba5123d995c49f5c752cb3` has no status checks, reviews, or inline review threads. B PR #1 remains draft; no A `role/a-core` branch or A PR appeared in the repository search.
+- A fresh GitHub recheck after this handoff update found PR #5 open, non-draft and mergeable against `integration/v1` at base `554e2a1182bba9027c28bfac8d1702bbefaff407`; its status-check list, reviews and inline review threads are empty. B PR #1 remains draft; no A `role/a-core` branch or A PR appeared in the repository search.
 - Browser recheck at a desktop Chromium CSS viewport of 320×568 covered the start screen, active screen, pause and explicit resume. Content fit the viewport; this remains an emulated desktop viewport, not an iPhone Safari/device check.
 
 ## Remaining work and limits
