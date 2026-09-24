@@ -2,7 +2,7 @@
 
 담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
-최신 보완은 ImageGen 전경 케이스와 확대된 보관 배치다. [36개 배치 증거](layout-study/foreground-report.json), 최신 브라우저·아트 캡처의 소스 SHA로 구현을 식별한다. 램 진입 motion report는 직전 구현 `7007b48ff6faa3f1803082e15dd897c2c7b808e2`에서 수행한 기록이며 이번 케이스 변경의 증거와 구분한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
+최신 보완은 ImageGen 전경 케이스와 확대된 보관 배치이며 구현 commit은 `68a68ec65a8d72f55bae0ed953febe22c86b0efe`다. [36개 배치 증거](layout-study/foreground-report.json), 최신 브라우저·아트 캡처의 소스 SHA로 구현을 식별한다. 이후 문서 commit은 구현 변경과 구분한다. 램 진입 motion report는 직전 구현 `7007b48ff6faa3f1803082e15dd897c2c7b808e2`에서 수행한 기록이며 이번 케이스 변경의 증거와 구분한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
 
 ## 연결 방법
 

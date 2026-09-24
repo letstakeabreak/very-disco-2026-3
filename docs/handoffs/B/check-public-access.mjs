@@ -13,7 +13,7 @@ const temporary = mkdtempSync(join(tmpdir(), 'deep-press-public-access-'));
 const cleanGitEnv = { PATH: process.env.PATH, GIT_CONFIG_GLOBAL: '/dev/null', GIT_CONFIG_NOSYSTEM: '1', GIT_TERMINAL_PROMPT: '0', GIT_ASKPASS: '/usr/bin/false', SSH_ASKPASS: '/usr/bin/false' };
 const git = (...args) => execFileSync('git', ['-c', 'credential.helper=', '-c', 'http.extraHeader=', ...args], { encoding: 'utf8', timeout: 60000, env: cleanGitEnv, stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 try {
-  const endpoints = [
+  const endpoints = new Map([
     [`https://api.github.com/repos/${repo}`, 200], [web, 200],
     [`${web}/blob/main/AGENTS.md`, 200], [`${web}/blob/main/instruction.md`, 200],
     [`${raw}/main/goal.md`, 200], [`${web}/pull/1`, 200],
@@ -21,7 +21,17 @@ try {
     [`${raw}/role/b-render/docs/handoffs/B/README.md`, 200],
     [`${web}/blob/main/docs/work-documents.md`, 200],
     [`${raw}/main/docs/work-documents.md`, 200],
-  ];
+  ]);
+  const catalogUrl = `${raw}/main/docs/work-documents.md`;
+  const catalogResponse = await fetch(catalogUrl, { headers: { 'User-Agent': 'DEEP-PRESS-public-access-check', 'Cache-Control': 'no-cache' }, signal: AbortSignal.timeout(20000) });
+  if (!catalogResponse.ok) throw new Error(`Cannot read work-document catalog: HTTP ${catalogResponse.status}`);
+  const catalog = await catalogResponse.text();
+  // Follow the live catalog, so newly published role documents join the check.
+  // The invitation is account-specific and is not a public document.
+  for (const [, url] of catalog.matchAll(/\]\((https:\/\/[^)\s]+)\)/g)) {
+    if ((url.startsWith(`${web}/`) || url.startsWith(`${raw}/`)) && url !== `${web}/invitations`) endpoints.set(url, 200);
+  }
+  report.catalog = { url: catalogUrl, publicEndpoints: endpoints.size, invitationExcluded: true };
   for (const [url, expected] of endpoints) {
     const response = await fetch(url, { headers: { 'User-Agent': 'DEEP-PRESS-public-access-check', 'Cache-Control': 'no-cache' }, signal: AbortSignal.timeout(20000) });
     const body = await response.text();
@@ -44,7 +54,7 @@ try {
   if (!handoff.includes('B 작업 인계')) throw new Error('Anonymous fetch cannot read B handoff');
   report.clone = { defaultHead, bHead, filtered: true, checkout: false, readAgents: true, readBHandoff: true };
   report.passed = true;
-  console.log('Anonymous HTTP, instruction reads, filtered clone and B branch fetch passed. Main work-document catalog is reachable.');
+  console.log(`Anonymous HTTP passed for ${endpoints.size} public endpoints, including every live catalog link. Instruction reads, filtered clone and B branch fetch passed.`);
 } catch (error) {
   report.failure = String(error); process.exitCode = 1;
 } finally {
