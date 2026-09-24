@@ -44,6 +44,7 @@ Environment: the default runtime is Node `v22.22.3` / npm `10.9.8`; additional c
 - `PATH='/Users/hyerimjeong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:$PATH npm run check` — also passed under Node `v24.19.0` / npm `10.9.8`.
 - `npm run ownership -- --role C --base archive-bootstrap-v2` — passed; the archive tree remains identical to the official bootstrap tree.
 - A fresh GitHub recheck after this handoff update found PR #5 open, non-draft and mergeable against `integration/v1` at base `554e2a1182bba9027c28bfac8d1702bbefaff407`; its status-check list, reviews and inline review threads are empty. B PR #1 remains draft; no A `role/a-core` branch or A PR appeared in the repository search.
+- B PR #1 current head `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb` remains draft. Source review of B `src/render/index.ts` and C `src/app/index.ts` found the public `createRenderer({ canvas, onFatal })` call and `resize`/`render(snapshot, dtMs)`/`dispose` lifecycle shapes compatible with the v1 `GameRenderer` contract. This is a static API check only; the combined modules were not built or run together.
 - Browser recheck at a desktop Chromium CSS viewport of 320×568 covered the start screen, active screen, pause and explicit resume. Content fit the viewport; this remains an emulated desktop viewport, not an iPhone Safari/device check.
 
 ## Remaining work and limits
