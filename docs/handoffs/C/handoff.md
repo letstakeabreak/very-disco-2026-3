@@ -21,7 +21,7 @@ The archive does not contain Git metadata, so the initial local work used a synt
 - Kept score, capacity and specimen outcomes core-owned. Storage availability uses only the documented action prerequisites; fixture outcomes are not used as live gameplay.
 - Added C tests for pointer lifecycle, cancellation, rotation, presentation labels, storage prerequisites and paused runtime timing.
 
-Changed paths: `src/app/index.ts`, `src/app/input.ts`, `src/app/presentation.ts`, `src/app/style.css`, `tests/app/input.test.ts`, `tests/app/presentation.test.ts`, `tests/app/runtime.test.ts`.
+Implementation paths: `src/app/index.ts`, `src/app/input.ts`, `src/app/presentation.ts`, `src/app/style.css`, `tests/app/input.test.ts`, `tests/app/presentation.test.ts`, `tests/app/runtime.test.ts`. Handoff: `docs/handoffs/C/handoff.md`.
 
 ## Verification
 
@@ -29,12 +29,12 @@ Environment: Node `v22.22.3`, npm `10.9.8`; the repository pins Node `26.8.2` an
 
 - `npm run check` — passed: bootstrap check, typecheck, boundary lint, 8 test files / 21 tests, and Vite build. Vite reports the current JS bundle at about 547 kB minified, above its 500 kB advisory threshold.
 - `npm run ownership -- --role C --base archive-bootstrap-v2` — passed against the local archive base. The archive tree hash exactly matches the official bootstrap commit tree, so the checked file contents are the official base contents.
-- `git diff --check` — passed before the implementation commit.
+- `git diff --check` — passed after the handoff update.
 - Browser review on the development server covered the start overlay, starting a round, drag-to-inspect tutorial progression, press/release, pause and explicit resume. The visible 3D scene is still the scaffold placeholder; this is not final game art or complete gameplay because the core still reports `implementation: scaffold`.
 
 ## Remaining work and limits
 
-- Create the GitHub `role/c-app` contribution commit with official parent `c739b527449b2527e46b567bfffbd4a7122f571c`, then open a PR against `integration/v1`.
+- Open a PR from the GitHub `role/c-app` branch against `integration/v1`; its implementation commit uses official parent `c739b527449b2527e46b567bfffbd4a7122f571c`.
 - The local environment is Node `v22.22.3` / npm `10.9.8`, while the repository pins Node `26.8.2` / npm `11.19.1`; `npm ci` and `npm run check` passed with an engine mismatch warning. Re-run on the pinned runtime if available.
 - Verify the 320 CSS px layout and safe-area behavior at an actual mobile viewport; no viewport emulation was available in this review.
 - Test the full connected core/render loop and a real iPhone Safari session after A/B integrations. Those checks remain unverified.
