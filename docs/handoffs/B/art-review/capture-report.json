@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-24T14:34:31.645Z",
-  "head": "1fa803075f37b8a5b0bcf23da41e616771811a18",
+  "checkedAt": "2026-09-24T15:43:02.337Z",
+  "head": "e06c0a9239930ed5de8fa746119e6f17041e4275",
   "kind": "Actual desktop Chromium WebGL art evidence. Scene fixture and independent asset inspector are distinct. Not iPhone or gameplay proof.",
   "captures": [
     {
@@ -8,13 +8,13 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
       "screenshot": "captures/01-canonical.png",
-      "screenshotSha256": "dbc98cec5068f695b985687b19163ab1ab76ddf0bedbd3111f28e5ba0bbbc6ca",
+      "screenshotSha256": "655b7dd2aa0efb67d9ffab1910724f24953450d4aabc15eb09c35b4e2b6e9335",
       "dimensions": {
         "width": 1024,
         "height": 1536
       },
       "errors": [],
-      "frames": 158,
+      "frames": 204,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -84,13 +84,13 @@
       "variant": "390",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
       "screenshot": "captures/01-390.png",
-      "screenshotSha256": "6d836c9071651754b6673412ed82ee16b707babf70b8cbbfd9801fcb8fcaa9e1",
+      "screenshotSha256": "623f49463e63449c459331156490b4752cbbf2d6e30b8e43085d3936008fff56",
       "dimensions": {
         "width": 390,
         "height": 844
       },
       "errors": [],
-      "frames": 137,
+      "frames": 139,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -160,13 +160,13 @@
       "variant": "320",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=01",
       "screenshot": "captures/01-320.png",
-      "screenshotSha256": "56955812417730322fc5d7e0ef3d8138f3090d8be6c8242e52cb1749cc3d6ff6",
+      "screenshotSha256": "f643900ae1383f2bd98fc8fe91d58a30f21c3dca5760a3055cd2d6a0f8550fa7",
       "dimensions": {
         "width": 320,
         "height": 568
       },
       "errors": [],
-      "frames": 137,
+      "frames": 139,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -236,13 +236,13 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
       "screenshot": "captures/02-canonical.png",
-      "screenshotSha256": "f04be6fda04c1be19ddbd0820e54bbeb2e6c5b3d7a306504cbee17eb4acc2685",
+      "screenshotSha256": "44d6eb14bc69343bf55d9935b4bcd1b13c7f452c4ffde274a8e04d2efec347ea",
       "dimensions": {
         "width": 1024,
         "height": 1536
       },
       "errors": [],
-      "frames": 155,
+      "frames": 144,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -312,13 +312,13 @@
       "variant": "390",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
       "screenshot": "captures/02-390.png",
-      "screenshotSha256": "0db189944811a405c49593222a60c442fd0f43cd9ca471a079dbae0415aa8202",
+      "screenshotSha256": "5f9c471f17b3daa4a636c907c2f7c43c7d356158db4078bc7b299f80fab37ee0",
       "dimensions": {
         "width": 390,
         "height": 844
       },
       "errors": [],
-      "frames": 137,
+      "frames": 138,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -388,13 +388,13 @@
       "variant": "320",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=02",
       "screenshot": "captures/02-320.png",
-      "screenshotSha256": "8eab1f22257beb887718075f5775857f2c85a6bf1ca0ed17b3213d6c6f03833b",
+      "screenshotSha256": "9d4abb35a161251dedf774c11cfde8ff165318c42e4ae6ea8d916363128c131d",
       "dimensions": {
         "width": 320,
         "height": 568
       },
       "errors": [],
-      "frames": 134,
+      "frames": 142,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -470,7 +470,7 @@
         "height": 1254
       },
       "errors": [],
-      "frames": 145,
+      "frames": 147,
       "ready": true,
       "snapshot": null,
       "status": {
@@ -501,7 +501,7 @@
         "height": 1254
       },
       "errors": [],
-      "frames": 144,
+      "frames": 147,
       "ready": true,
       "snapshot": null,
       "status": {
@@ -527,13 +527,13 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-canonical.png",
-      "screenshotSha256": "d026936f8ed72f8c264abc6db2838b69f43dcdafaa5cb277b9f91ca4feb5060f",
+      "screenshotSha256": "17c745f00aa243548fa49e32768b8c4bf596bed03cc9a7c7c3a77f1a5de7611c",
       "dimensions": {
         "width": 1024,
         "height": 1536
       },
       "errors": [],
-      "frames": 161,
+      "frames": 139,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -596,13 +596,13 @@
       "variant": "390",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-390.png",
-      "screenshotSha256": "ec21b75546a2478b1ce7f0d0945ea8c14ec78cfb194d523c40dd46046d344891",
+      "screenshotSha256": "71ecb2b9421d7d71e1539dc0370c4f7ff4d650d7a1475efef046caae617d0ec7",
       "dimensions": {
         "width": 390,
         "height": 844
       },
       "errors": [],
-      "frames": 135,
+      "frames": 137,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -665,13 +665,13 @@
       "variant": "320",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-320.png",
-      "screenshotSha256": "60bf9c5f4140e218d7813d04ec785306761dd3ab5e326945db51e4b4186d5fd9",
+      "screenshotSha256": "0e291da02ae83d005d0ef7cf95da0cee1917ce821024bfec7e69376e21dd0f58",
       "dimensions": {
         "width": 320,
         "height": 568
       },
       "errors": [],
-      "frames": 137,
+      "frames": 138,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -746,11 +746,12 @@
     "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
     "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
     "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
     "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/index.ts": "123cc9d64caa951ed8dd3b4a649357ebbb2f5c8533d3aa26239ff924ae3651e1",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"
@@ -770,11 +771,12 @@
     "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
     "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
     "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
     "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/index.ts": "123cc9d64caa951ed8dd3b4a649357ebbb2f5c8533d3aa26239ff924ae3651e1",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"

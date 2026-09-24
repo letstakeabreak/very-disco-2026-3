@@ -43,7 +43,7 @@ import { createRenderer } from '../../src/render';
 
 const flush = async (): Promise<void> => { for (let i = 0; i < 8; i += 1) await Promise.resolve(); };
 function dialLoad(): { url: string; pending: { resolve: (value: unknown) => void; reject: (error: Error) => void } } {
-  const candidates = [...boundary.loads].filter(([url]) => !url.endsWith('.glb') && !url.endsWith('workshop.webp'));
+  const candidates = [...boundary.loads].filter(([url]) => !url.endsWith('.glb') && !url.endsWith('workshop-v4.webp'));
   expect(candidates).toHaveLength(1);
   const [url, pending] = candidates[0]!;
   return { url, pending };
@@ -396,7 +396,7 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
     // Use zero committed deformation so the actual fixture mesh bounds are the visible bounds.
     renderer.render({ ...SNAPSHOT_FIXTURES.paused, tick: 10 }, 0);
-    const measured = JSON.parse(readFileSync('docs/handoffs/B/layout-study/measurements.json', 'utf8')) as {
+    const measured = JSON.parse(readFileSync('docs/handoffs/B/layout-study/foreground-case-measurements.json', 'utf8')) as {
       measurements: { normalizedQuadrilaterals: [number, number][][] };
     };
     const checkAperture = (slot: number): void => {
@@ -406,6 +406,7 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
       center.applyMatrix4(core.mesh.matrixWorld).project(camera);
       const point = [(center.x + 1) / 2, (1 - center.y) / 2];
       const polygon = measured.measurements.normalizedQuadrilaterals[slot]!;
+      for (const coordinate of polygon.flat()) { expect(coordinate).toBeGreaterThan(0); expect(coordinate).toBeLessThan(1); }
       const crosses = polygon.map((a, i) => { const b = polygon[(i + 1) % polygon.length]!;
         return (b[0] - a[0]) * (point[1]! - a[1]) - (b[1] - a[1]) * (point[0]! - a[0]); });
       expect(crosses.every(value => value > 0) || crosses.every(value => value < 0)).toBe(true);
@@ -414,6 +415,8 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     renderer.render({ ...SNAPSHOT_FIXTURES.stored, tick: 11 }, 0); checkAperture(0);
     const stored: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.complete, tick: 12, storedSpecimenIds: ['salvage-lens','salvage-core'] });
     renderer.render(stored, 0); checkAperture(1);
+    renderer.render({ ...stored, storedSpecimenIds: ['salvage-lens','salvage-cassette','salvage-core'] }, 0); checkAperture(2);
+    renderer.render(stored, 0);
     const position = core.scene.position.clone(); const rotation = core.scene.quaternion.clone(); const scale = core.scene.scale.clone();
     const override = { id: 'placed-core', assetId: 'salvage-core' as const, position: { x: -0.3, y: 0.8, z: 0.6 },
       rotationRad: { x: 0.2, y: -0.4, z: 0.6 }, scale: { x: 1.2, y: 0.8, z: 0.9 } };

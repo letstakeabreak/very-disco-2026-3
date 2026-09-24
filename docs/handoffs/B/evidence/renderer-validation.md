@@ -1,5 +1,21 @@
 # B renderer 검증 기록
 
+## 2026-09-25 전경 보관함과 화면 잘림 보완
+
+ImageGen으로 작업실 케이스를 전경으로 옮겼다. v2/v3는 프레스와 겹쳐 기각하고 v4를 runtime WebP로 인코딩했다. 원본·각 프롬프트·연쇄 입력과 출력 SHA는 `assets/source/environment/case-layout-provenance.json`에 있다. 현재 배경223,350bytes/1024×1536. 기존 workshop.webp는 이전 연구 뷰어를 위해 보존하므로 dist 총량은10,225,516bytes이며 실제 renderer는 v4 하나만 로드한다. 네 GLB/PBR 및 shared23파일은 변하지 않았다.
+
+공개 renderer의 6개 보관 순서×압축0/.55/1×두 화면=36조합을 검사했다. 실제 GLB 정점의 authored deformation을 CPU에서도 투영해 물건 수평 겹침0·화면 밖 잘림0을 확인했다. 최종 scale .7에서 최소 수평 간격13.87px, B의130px 패널까지10.88px. .9 후보는 자동 경계 검사는 통과했지만 실제 canonical 캡처에서 앞 테두리 돌출이 과해 채택하지 않았다. [기각 기록](../layout-study/foreground-report-scale09.json)과 [최종 기록](../layout-study/foreground-report.json)을 구분한다. 케이스 벽의 실제 깊이·가림은 구현하지 않았으며 완전한 3D 안착을 검증한 것은 아니다.
+
+최종 `npm run check`: frozen23·TS·모듈 경계·56개 테스트·build 통과. 새 홈 측정으로 기존 중심 정렬 회귀를 갱신하고 세 번째 홈의 전체 좌표도 이미지 내부인지 확인했다. 새 case viewer strict typecheck, preview/art typecheck도 통과했다. 5개 목표 대응11장 및 정적 갤러리5목표/35판정/16이미지/3보기 검사 통과. 직접 관찰한 결과와 미달 이유는 `art-review.md`에 기록한다.
+
+새 배경/scale의 일반 브라우저 검사는320×568,390×844,1440×900과8상태·9물건/상태 조합이다. 오류0, 검사 전후 source SHA 동일. C의 HUD/safe-area나 실제 장치 검증은 아니다. 등록된 실제 iPhone3종은 이번 턴 재조회에서도 모두 unavailable이어서 실기기 검사를 실행하지 못했다. 기기 사용자 이름과 식별자는 저장하지 않는다.
+
+최종 3분 측정 시작 `2026-09-24T15:44:38.106Z`: **PASS**. 180.013초,10,799 rAF 표본,평균59.9901FPS/P95 16.8ms/max33.5ms/오류0. 390×844 CSS,DPR2,buffer780×1688,Apple M5/Chromium153. 다른 QA 브라우저를 닫은 뒤 HMR 없는 정적 하네스로 실행했다. 일반 시스템 부하까지 통제한 시험은 아니며 실제 iPhone 증거가 아니다. [전체 측정](desktop-soak.json)의 시작/끝 production 소스·자산 SHA를 현재 파일과 대조했다. 이전 램 진입 측정은 별도 JSON으로 보존했다.
+
+## 이전 구현의 검증 이력
+
+아래 날짜별 기록은 당시 revision의 증거이며 최신 결과로 합쳐 해석하지 않는다.
+
 2026-09-24, 계약 1.0.0, `role/b-render`. 출발 `bootstrap-v2`의 annotated tag object는 `ba2f00e700c04402cfa6574c4db9cf5ab0d7c2a0`, 실제 공통 출발 commit (`bootstrap-v2^{commit}`)은 `c739b527449b2527e46b567bfffbd4a7122f571c`다. B 소유 범위에서 구현·테스트·하네스를 작성했고 A core, C app, 공유 고정 파일은 수정하지 않았다. 기여 대상은 integration/v1의 Draft PR #1이다.
 
 ## 테스트가 확인하는 범위
@@ -60,7 +76,7 @@ GPU 품질은 CPU 테스트로 승인하지 않는다. 부피·점수·손상 �
 
 이전 구도/접촉 그림자 보완 revision에서 개발 서버로 시도한 두 측정은 [61초 뒤 제어 명령 실패](desktop-soak-interrupted-20260924T140256.json), [122초 뒤 측정 상태 소실](desktop-soak-interrupted-20260924T140634.json)로 실패했다. 두 번째 오류는 `window.__soak`가 undefined라는 실제 응답까지 보존했다. 두 실행의 마지막 표본에는 렌더러 오류가 없었지만 3분 완료가 아니므로 통과로 사용하지 않는다. 문서 뷰어 수정 때 개발 서버의 full reload가 전파된 것으로 추정하며 해당 원인을 직접 계측해 확정한 것은 아니다.
 
-재측정은 HMR 없는 별도 production 하네스 빌드와 로컬 정적 서버에서 실행한다. [정적 빌드 manifest](static-preview-build.json)에 입력 15개 파일과 출력 9개 파일의 SHA를 남겼다. 이는 공개 B renderer를 사용하는 fixture 하네스이며 최종 A/C 앱이 아니다. `base: '/'`는 이 로컬 QA 주소 전용이므로 itch.io의 상대 경로 배포 검증으로 해석하지 않는다. 명령은 `node docs/handoffs/B/soak-check.mjs http://127.0.0.1:4174`다.
+재측정은 HMR 없는 별도 production 하네스 빌드와 로컬 정적 서버에서 실행한다. [정적 빌드 manifest](static-preview-build.json)에 각 입력·출력 파일의 SHA를 남겼다. 이는 공개 B renderer를 사용하는 fixture 하네스이며 최종 A/C 앱이 아니다. `base: '/'`는 이 로컬 QA 주소 전용이므로 itch.io의 상대 경로 배포 검증으로 해석하지 않는다. 명령은 `node docs/handoffs/B/soak-check.mjs http://127.0.0.1:4174`다.
 
 재현 시 먼저 `node docs/handoffs/B/build-static-preview.mjs`로 빌드하고 `npx vite preview --outDir /tmp/deep-press-b-static-preview --host 127.0.0.1 --port 4174 --strictPort`로 정적 서버를 연다. 이번 측정 전 빌드는 해당 파일을 실제 실행해 생성했다. 3분 측정 중에는 해당 출력 디렉터리를 재빌드하지 않는다. 기본 측정 주소도 개발 서버 대신 4174로 고정했다.
 
@@ -82,4 +98,4 @@ root의 전체 `npm run check`: 10개 파일 **54 tests** 통과, frozen23파일
 
 최신 `runtime-browser-check.json`은 새 production 소스를 정적으로 빌드한 뒤 재실행했다. 두 화면 크기·8상태·9물건/상태 조합·select/range 이벤트·4개 GLB 로드·immutable snapshot·오류0 확인, 검사 시작/끝 소스 SHA 일치. 5개 아트 목표의 이전 정적 비교와 다른 study report는 당시 revision의 기록으로 유지한다. 그 파일들의 renderer SHA가 최신이라는 주장은 하지 않는다.
 
-최신 3분 정적 측정(`2026-09-24T15:10:20.791Z`, 09-25 KST)은 **PASS**: 180.016초 / 10,800 rAF 표본 / 평균59.9947FPS / P95 16.7ms / max50ms / 오류0. 390×844 CSS/DPR2/780×1688 buffer, Apple M5의 Chromium153이다. 앞선 브라우저 검사 세션을 닫은 뒤 실행했고 다른 QA 브라우저 검사를 병행하지 않았다. 일반 데스크톱의 백그라운드 부하까지 통제한 시험은 아니다. 시작/끝 13개 production 소스·자산 해시가 같고 현재 파일과도 대조했다. [최신 전체 기록](desktop-soak.json)은 데스크톱 fixture 성능이며 실기기 합격으로 확대하지 않는다. 이전 결과는 별도 JSON으로 보존했다. 최신 complete/렌즈 압착 캡처도 육안 확인했으며 오른쪽 보관함 일부 잘림 등 기존 아트 한계는 남는다.
+램 진입 보완의 3분 정적 측정(`2026-09-24T15:10:20.791Z`, 09-25 KST)은 **PASS**: 180.016초 / 10,800 rAF 표본 / 평균59.9947FPS / P95 16.7ms / max50ms / 오류0. 390×844 CSS/DPR2/780×1688 buffer, Apple M5의 Chromium153이다. 앞선 브라우저 검사 세션을 닫은 뒤 실행했고 다른 QA 브라우저 검사를 병행하지 않았다. 일반 데스크톱의 백그라운드 부하까지 통제한 시험은 아니다. 시작/끝 13개 production 소스·자산 해시가 같고 현재 파일과도 대조했다. [해당 revision 기록](desktop-soak-20260924T151020.json)은 데스크톱 fixture 성능이며 실기기 합격으로 확대하지 않는다. 이전 결과는 별도 JSON으로 보존했다. 최신 complete/렌즈 압착 캡처도 육안 확인했으며 오른쪽 보관함 일부 잘림 등 기존 아트 한계는 남는다.

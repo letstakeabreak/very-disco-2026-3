@@ -94,9 +94,9 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   // Foam apertures measured on the generated 1024 × 1536 workshop plate.
   // Derive direction from the same camera/plane used for their centers.
   const slots = [
-    [0.8662109375, 0.5361328125, 0.88134765625, 0.511393229167, 0.85107421875, 0.560872395833],
-    [0.923095703125, 0.544921875, 0.9375, 0.519856770833, 0.90869140625, 0.569986979167],
-    [0.97998046875, 0.5537109375, 0.9931640625, 0.5283203125, 0.966796875, 0.5791015625],
+    [0.521484375, 0.740071614583, 0.53173828125, 0.700846354167, 0.51123046875, 0.779296875],
+    [0.67724609375, 0.740397135417, 0.677734375, 0.700846354167, 0.6767578125, 0.779947916667],
+    [0.8349609375, 0.741048177083, 0.826171875, 0.701497395833, 0.84375, 0.780598958333],
   ].map(([u, v, rearU, rearV, frontU, frontV]) => {
     const axis = onTable(frontU!, frontV!).sub(onTable(rearU!, rearV!));
     const rotation = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.atan2(-axis.z, axis.x))
@@ -221,7 +221,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     }
     loaded += 1; canvas.dataset['loadedAssets'] = String(loaded);
   });
-  const loadingPlate = new TextureLoader().loadAsync(assetUrl('textures/workshop.webp')).then((texture) => {
+  const loadingPlate = new TextureLoader().loadAsync(assetUrl('textures/workshop-v4.webp')).then((texture) => {
     if (disposed || failed) { texture.dispose(); return; }
     plate = texture; texture.colorSpace = SRGBColorSpace;
     plateMaterial.uniforms['plate']!.value = texture;
@@ -281,7 +281,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         prop.root.scale.setScalar(Math.min(1, 0.19 / (prop.bounds.max.x - prop.bounds.min.x)));
       } else if (visual.location === 'case') {
         const slot = slots[visual.index]!;
-        prop.root.quaternion.copy(slot.rotation); prop.root.scale.setScalar(0.52);
+        prop.root.quaternion.copy(slot.rotation); prop.root.scale.setScalar(0.7);
         prop.root.position.copy(slot.center);
       }
       const entity = snapshot.entities.find((item) => item.assetId === visual.id);
@@ -316,7 +316,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       if (visual.location === 'case' && !entity) {
         // The front (+Z) faces up; recenter after lying down and after deformation.
         const slot = slots[visual.index]!;
-        caseOffset.set(0, renderedHeight / 2, 0).applyQuaternion(slot.rotation).multiplyScalar(0.52);
+        caseOffset.set(0, renderedHeight / 2, 0).applyQuaternion(slot.rotation).multiplyScalar(0.7);
         prop.root.position.sub(caseOffset);
       }
     }

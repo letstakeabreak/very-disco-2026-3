@@ -1,5 +1,23 @@
 # 케이스 홈 배치 측정과 독립 실험
 
+## 최신 production 배치 — 전경 케이스
+
+2026-09-25의 production은 ImageGen 편집본 `workshop-v4.webp`를 사용한다. [source·세 편집 프롬프트·판정·해시](../../../../assets/source/environment/case-layout-provenance.json)에 원본과 채택하지 않은 v2/v3도 보존했다. v2는 중앙 프레스와 겹쳤고 v3도 홈이 너무 높았다. v4는 케이스를 전경으로 옮기고 왼쪽 트레이·작업등·창문을 유지했다. 카메라나 GLB/PBR은 변경하지 않았다. 케이스 자체는 여전히 2D 배경이다.
+
+[전경 홈 측정](foreground-case-measurements.json)은 실제 1024×1536 이미지에서 세 홈의 네 모서리를 읽은 값이다. 모두 이미지 안에 있으며 잘린 모서리를 외삽하지 않았다. 기존과 같은 camera/작업대 평면으로 중심·앞뒤 방향을 구하고, 저장 물건 scale을 .52에서 .7로 키웠다. 의미 있는 차이를 보여 주는 실제 3D 모델은 그대로다.
+
+[foreground-report.json](foreground-report.json)은 공개 production renderer로 **6가지 순서 × 3가지 압축(0/.55/1) × 2화면(320×568,390×844) = 36개 배치**를 검사했다. 이 값들은 순수 시각 fixture이며 코어가 실제 보관 가능한 게임 결과라고 주장하지 않는다. actual GLB 정점에 production shader의 위치 변형을 CPU로 적용해 화면 범위를 측정하고, GPU 캡처 6장을 남겼다. 물건끼리 수평 간격 최소13.87px, B 연구용 130px 하단 패널까지 최소10.88px, 화면 밖 잘림0·오류0였다. 이는 2D 투영 검사이며 실물 케이스 깊이·벽·가림을 인증하지 않는다.
+
+확대 scale .9 후보는 자동 화면 경계 검사는 통과했지만 큰 GPU 이미지에서 앞 테두리 위 돌출이 과해 채택하지 않았다. [후보 캡처](foreground-scale09-rejected.png)와 [자동 측정·육안 기각 사유](foreground-report-scale09.json), 해당 renderer 소스 사본을 보존했다. 최종 .7은 다시 36개 조합을 검사했다. 자동 PASS를 아트 승인으로 사용하지 않은 사례다.
+
+320px / 압축.55 / 카세트→렌즈→코어 순서에서 각각 약25×53px,33×40px,28×52px로 보인다. [320px 무압축](foreground-captures/320-compression-0.png), [390px .55](foreground-captures/390-compression-0.55.png), [320px 최대 변형](foreground-captures/320-compression-1.png)을 직접 대조해 세 종류와 전체 외형이 화면 안에 있음을 확인했다. 미세 손상 식별·상용 수준 아트 완성은 별도 미완료다.
+
+**C 통합 주의:** 320×568에서 130px overlay 여유가 10.88px로 좁다. 이 수치에는 실제 safe-area가 없다. 더 높은 HUD를 같은 전체 화면 canvas 위에 덮으면 보관물이 가려질 수 있다. C는 실제 HUD/safe-area로 확인하고, 필요하면 기존 `resize({width,height,dpr})`에 전달하는 canvas의 표시 영역을 조작부 위로 확보한다. 새 API나 공유 계약은 요구하지 않는다. 이 연구 화면을 C 앱 또는 실제 iPhone 합격으로 사용하지 않는다.
+
+재현: 개발 서버에서 [foreground.html](foreground.html), 자동 검사 `node docs/handoffs/B/layout-study/foreground-check.mjs`. `foreground.ts`는 루트 strict TypeScript 옵션으로 별도 검사했다. 아래는 이전 케이스 배치의 이력이며 현재 production 위치로 읽지 않는다.
+
+## 이전 배치의 측정 이력
+
 실제 `workshop.webp`의 세 홈을 측정하고 동일한 런타임 GLB를 별도 Three.js 뷰어에 올렸다. **홈 방향과 중심 정렬은 기존 배치보다 개선됐다. 이 자료는 적용 권고이며 production 렌더러나 게임플레이 완료 증거가 아니다.**
 
 기존 코드는 세 물건을 `(.862,.551)`, `(.912,.563)`, `(.962,.575)`에 두고 모두 yaw `-.32`, scale `.43`을 사용한다. 기준점은 홈 앞부분에 있고, 물건의 긴 +X축이 홈의 앞뒤 방향과 거의 직각이다. 높이를 가진 모델의 바닥만 그 점에 맞춰 물건이 홈 앞에 가로로 놓이고 빈 홈이 뒤에 남았다.

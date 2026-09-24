@@ -1,0 +1,72 @@
+{
+  "generator": "OpenAI ImageGen built-in tool",
+  "recordedAt": "2026-09-24T15:34:18.556Z",
+  "role": "Fixed-camera environment plate; the case remains a 2D image, not Meshy geometry. Press and specimens are actual Meshy-derived 3D.",
+  "semanticEditing": "ImageGen only. Original source and rejected candidates retained. Runtime uses WebP delivery encoding only.",
+  "original": {
+    "path": "assets/source/environment/workshop.png",
+    "sha256": "e5815af7e246f76511a0bd681b826d375d2127f5685baefa55ee51c055497716"
+  },
+  "edits": [
+    {
+      "version": 2,
+      "parent": "workshop.png",
+      "generatedFile": "/Users/miro/.codex/generated_images/01a0d2ee-31f3-74b3-ae23-f74f09a97d88/exec-3a9b23c9-df2c-40b8-af11-b8b58f1b79b6.png",
+      "decision": "rejected-layout",
+      "reason": "Case remained in the middle of the tabletop and overlapped the projected production press area.",
+      "generatedFileCreatedAt": "2026-09-24T15:18:24.787Z",
+      "source": "assets/source/environment/workshop-v2.png",
+      "sourceSha256": "809aef30f8ea86275513caf2388b5606f55784a4feb0eb37c7b8a3e4d4bc36ca",
+      "parentSha256": "e5815af7e246f76511a0bd681b826d375d2127f5685baefa55ee51c055497716",
+      "prompt": "assets/source/environment/workshop-v2-prompt.md",
+      "promptSha256": "b9b9823625a0feb470832a14d82542ffe770bc474bb3325e8ba2433937e8a8a6"
+    },
+    {
+      "version": 3,
+      "parent": "workshop-v2.png",
+      "generatedFile": "/Users/miro/.codex/generated_images/01a0d2ee-31f3-74b3-ae23-f74f09a97d88/exec-7820b63f-6ee1-47b0-9774-5d0f5ac69850.png",
+      "decision": "rejected-layout",
+      "reason": "Cavities still began above the lower edge of the projected production press; requested additional foreground relocation.",
+      "generatedFileCreatedAt": "2026-09-24T15:20:33.323Z",
+      "source": "assets/source/environment/workshop-v3.png",
+      "sourceSha256": "1a64d4c8e38de4f6b2bef82fea6951345b9f8ad2bf84dbe54d11fe3a8a61cd4f",
+      "parentSha256": "809aef30f8ea86275513caf2388b5606f55784a4feb0eb37c7b8a3e4d4bc36ca",
+      "prompt": "assets/source/environment/workshop-v3-prompt.md",
+      "promptSha256": "9ad6fcd906e1f0ddfc5cecb56e2880f39a61a4b9e2550c590f8744109a1404b7"
+    },
+    {
+      "version": 4,
+      "parent": "workshop-v3.png",
+      "generatedFile": "/Users/miro/.codex/generated_images/01a0d2ee-31f3-74b3-ae23-f74f09a97d88/exec-3b7fbe5e-00bb-45e6-9493-1c9b20b9e48e.png",
+      "decision": "adopted-render-layout-device-unverified",
+      "reason": "Full case and three cavities fit the foreground. Actual renderer checked at 320 and 390 CSS px, six orders and compression fixtures 0/.55/1.",
+      "generatedFileCreatedAt": "2026-09-24T15:22:24.588Z",
+      "source": "assets/source/environment/workshop-v4.png",
+      "sourceSha256": "241c7b623aeff318c5e0c26c95dc77d46fb1db4a879fe7f7595a431315acc33f",
+      "parentSha256": "1a64d4c8e38de4f6b2bef82fea6951345b9f8ad2bf84dbe54d11fe3a8a61cd4f",
+      "prompt": "assets/source/environment/workshop-v4-prompt.md",
+      "promptSha256": "4382b9a1fa1a7f6ddbfe1489c2853c538a5a3edf63d8bdde54fed71a8da57cff"
+    }
+  ],
+  "selectedRuntime": {
+    "path": "public/assets/textures/workshop-v4.webp",
+    "sha256": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "bytes": 223350,
+    "resolution": [
+      1024,
+      1536
+    ],
+    "encoding": "cwebp -q 88 assets/source/environment/workshop-v4.png -o public/assets/textures/workshop-v4.webp",
+    "measurement": "docs/handoffs/B/layout-study/foreground-case-measurements.json",
+    "report": "docs/handoffs/B/layout-study/foreground-report.json"
+  },
+  "legacyRuntime": {
+    "path": "public/assets/textures/workshop.webp",
+    "purpose": "Retained for older independent studies; production now loads workshop-v4.webp"
+  },
+  "limitations": [
+    "No physical iPhone validation.",
+    "No 3D case walls, depth occlusion or physical enclosure proof.",
+    "B study dock is 130px without safe area; C must validate its actual HUD and device safe-area layout."
+  ]
+}

@@ -22,7 +22,7 @@ const evaluate = (source) => run('eval', source).result;
 const fingerprint = () => Object.fromEntries([
   ...['index.ts','deformation.ts','ram.ts','gauge.ts','resources.ts','visual-state.ts','assets.ts'].map(name=>`src/render/${name}`),
   ...['press-chamber','salvage-core','salvage-lens','salvage-cassette'].map(id=>`public/assets/models/${id}.glb`),
-  'public/assets/textures/workshop.webp',
+  'public/assets/textures/workshop-v4.webp',
   'public/assets/textures/pressure-dial.webp',
 ].map(path=>[path,createHash('sha256').update(readFileSync(`${root}${path}`)).digest('hex')]));
 mkdirSync(evidenceDir, { recursive: true });
@@ -51,7 +51,7 @@ try {
   }
   report.controls = evaluate('window.__renderProbe.controls');
   if (report.controls.phase!=='compressing' || report.controls.specimenId!=='salvage-lens' || Math.abs(report.controls.pressure01-0.01)>1e-9 || Math.abs(report.controls.integrity01-0.01)>1e-9 || report.controls.yawDeg!==-179 || report.controls.storedCount!==1) throw new Error(`Native control events failed: ${JSON.stringify(report.controls)}`);
-  for (const [width, height] of [[390, 844], [1440, 900]]) {
+  for (const [width, height] of [[320, 568], [390, 844], [1440, 900]]) {
     run('set', 'viewport', String(width), String(height));
     evaluate('window.__renderProbe.setState({phase:"inspecting",specimenId:"salvage-core",pressure01:0,integrity01:1,yawDeg:0,storedCount:0})');
     const viewport = evaluate(`(async () => {
@@ -91,7 +91,7 @@ try {
   report.fileHashesAfter = fingerprint();
   if (JSON.stringify(report.fileHashesBefore)!==JSON.stringify(report.fileHashesAfter)) throw new Error('Renderer or assets changed during browser run; repeat against stable files');
   report.passed = true;
-  console.log('Actual WebGL: 4 GLBs ready, both layouts, 8 phases and 9 specimen states passed. Screenshots require visual review; this is not iPhone performance evidence.');
+  console.log('Actual WebGL: 4 GLBs ready, three layouts, 8 phases and 9 specimen states passed. Screenshots require visual review; this is not iPhone performance evidence.');
 } catch (error) {
   report.passed = false;
   report.failure = String(error);
