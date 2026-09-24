@@ -39,21 +39,12 @@
         }
       ],
       "calibration": {
-        "sourceBedSampleBoxBlender": [
-          [
-            -0.2,
-            -0.1,
-            -0.41
-          ],
-          [
-            0.26,
-            0.2,
-            -0.31
-          ]
-        ],
+        "workbedMethod": "downward-ray-at-ram-center",
+        "expectedWorkbedYRangeMeters": [0.36, 0.39],
+        "specimenBaseYMeters": 0.3782,
+        "maxFloorClearanceMeters": 0.003,
         "ramTopConnectionSourceZ": 0.475,
-        "ramLowerFlangeSourceZ": 0.15,
-        "floorClearanceMeters": 0.003
+        "ramLowerFlangeSourceZ": 0.15
       }
     },
     {

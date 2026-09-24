@@ -1,6 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { BoxGeometry, Group, Mesh, MeshStandardMaterial, Texture, Vector3 } from 'three';
-import type { Object3D, WebGLProgramParametersWithUniforms, WebGLRenderer } from 'three';
+import { readFileSync } from 'node:fs';
+import { BoxGeometry, DirectionalLight, Euler, Group, Mesh, MeshStandardMaterial, Quaternion, ShadowMaterial, Texture, Vector3 } from 'three';
+import type { Camera, Material, Object3D, Scene, WebGLProgramParametersWithUniforms, WebGLRenderer } from 'three';
+import { WebGLShadowMap } from 'three/src/renderers/webgl/WebGLShadowMap.js';
+import type { WebGLObjects } from 'three/src/renderers/webgl/WebGLObjects.js';
+import type { WebGLCapabilities } from 'three/src/renderers/webgl/WebGLCapabilities.js';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
 import { deepFreeze } from '../../src/contracts/validate';
 import type { GameSnapshot } from '../../src/contracts';
@@ -9,7 +13,7 @@ import { PRESS_ANCHORS } from '../../src/render/ram';
 // Only device/IO boundaries are replaced. Scene graph, materials, deformation,
 // snapshot interpretation and disposal use the real Three.js implementation.
 const boundary = vi.hoisted(() => ({
-  unavailable: false, drawError: false,
+  unavailable: false, drawError: false, gpu: null as unknown,
   loads: new Map<string, { resolve: (value: unknown) => void; reject: (error: Error) => void }>(),
   draw: vi.fn(), dispose: vi.fn(), pixelRatio: vi.fn(), size: vi.fn(),
 }));
@@ -17,7 +21,7 @@ vi.mock('three', async (importOriginal) => {
   const actual = await importOriginal<typeof import('three')>();
   return { ...actual,
     WebGLRenderer: class {
-      constructor() { if (boundary.unavailable) throw new Error('No GPU'); }
+      constructor() { if (boundary.unavailable) throw new Error('No GPU'); boundary.gpu = this; }
       shadowMap = {}; info = { autoReset: false, reset() {}, render: { triangles: 0, calls: 0 } };
       setClearColor() {} setViewport() {} clear() {} clearDepth() {}
       setPixelRatio = boundary.pixelRatio; setSize = boundary.size; dispose = boundary.dispose;
@@ -51,6 +55,8 @@ function model(isPress = false): { scene: Group; mesh: Mesh<BoxGeometry, MeshSta
   const scene = new Group(); const mesh = new Mesh(new BoxGeometry(0.1, 0.12, 0.1), new MeshStandardMaterial());
   mesh.geometry.translate(0, 0.06, 0);
   mesh.name = isPress ? 'press-ram-test' : 'specimen-test'; scene.add(mesh);
+  // Like the shipping press, the frame keeps the source material after the ram clones it.
+  if (isPress) { const frame = new Mesh(mesh.geometry, mesh.material); frame.name = 'press-frame-test'; scene.add(frame); }
   return { scene, mesh };
 }
 async function finishLoading(): Promise<Map<string, ReturnType<typeof model>>> {
@@ -85,8 +91,11 @@ function uniform(mesh: Mesh<BoxGeometry, MeshStandardMaterial>, name: string): {
   mesh.material.onBeforeCompile(shader, {} as WebGLRenderer);
   return shader.uniforms[name] as { value: number };
 }
+function lastStageDraw(): [Scene, Camera] {
+  return boundary.draw.mock.calls.filter(([scene]) => (scene as Object3D).getObjectByName('press-ram-test')).at(-1) as [Scene, Camera];
+}
 beforeEach(() => {
-  boundary.loads.clear(); boundary.unavailable = false; boundary.drawError = false;
+  boundary.loads.clear(); boundary.unavailable = false; boundary.drawError = false; boundary.gpu = null;
   vi.clearAllMocks();
 });
 
@@ -273,11 +282,111 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
       { id: 'press', assetId: 'press-chamber', position: { x: 0, y: 0.2, z: 0 }, rotationRad: { x: 0, y: 0, z: 0 }, scale: { x: 2, y: 2, z: 2 } },
       { id: 'raised-core', assetId: 'salvage-core', position: { x: PRESS_ANCHORS.x * 2,
         y: 0.2 + (PRESS_ANCHORS.workbedY + PRESS_ANCHORS.clearance + 0.03) * 2, z: PRESS_ANCHORS.z * 2 },
-      rotationRad: { x: 0, y: 0, z: 0 }, scale: { x: 2, y: 2, z: 2 } },
+      rotationRad: { x: 0, y: 0, z: 0 }, scale: { x: 2.2, y: 2.2, z: 2.2 } },
     ] }, 0);
     // Raising the specimen 3 cm in press space reduces the downward ram travel by 3 cm.
     expect(travel.value).toBeCloseTo(untransformedContact - 0.03, 7);
     renderer.dispose();
+  });
+
+  it('keeps a stored specimen committed shape and damage while another specimen is inspected', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
+    const compression = uniform(core.mesh, 'pressCompression'); const damage = uniform(core.mesh, 'pressDamage');
+    const committed: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.paused, tick: 50,
+      pressure01: 0.95, currentSpecimen: { ...SNAPSHOT_FIXTURES.inspecting.currentSpecimen!, compression01: 0.7, integrity01: 0.65 } });
+    renderer.render(committed, 0);
+    const stored: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.stored, tick: 51 });
+    renderer.render(stored, 0);
+    const storedRotation = core.scene.quaternion.clone();
+    expect(compression.value).toBeCloseTo(0.7); expect(damage.value).toBeCloseTo(0.35);
+    for (const pressure01 of [0, 0.2, 0.9]) {
+      renderer.render(deepFreeze({ ...stored, tick: 52, phase: 'paused', resumePhase: 'inspecting', pressure01,
+        currentSpecimen: { id: 'salvage-lens', material: 'glass', currentVolume: 0.5, integrity01: 0.9, value: 100, compression01: 0.2 } }), 100);
+      expect(compression.value).toBeCloseTo(0.7); expect(damage.value).toBeCloseTo(0.35);
+      expect(core.scene.quaternion.angleTo(storedRotation)).toBeLessThan(1e-7);
+    }
+    renderer.dispose();
+  });
+
+  it('centers stored models inside the measured image apertures and restores their pose after entity overrides', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
+    // Use zero committed deformation so the actual fixture mesh bounds are the visible bounds.
+    renderer.render({ ...SNAPSHOT_FIXTURES.paused, tick: 10 }, 0);
+    const measured = JSON.parse(readFileSync('docs/handoffs/B/layout-study/measurements.json', 'utf8')) as {
+      measurements: { normalizedQuadrilaterals: [number, number][][] };
+    };
+    const checkAperture = (slot: number): void => {
+      const [, camera] = lastStageDraw(); core.scene.updateMatrixWorld(true);
+      core.mesh.geometry.computeBoundingBox();
+      const center = core.mesh.geometry.boundingBox!.getCenter(new Vector3());
+      center.applyMatrix4(core.mesh.matrixWorld).project(camera);
+      const point = [(center.x + 1) / 2, (1 - center.y) / 2];
+      const polygon = measured.measurements.normalizedQuadrilaterals[slot]!;
+      const crosses = polygon.map((a, i) => { const b = polygon[(i + 1) % polygon.length]!;
+        return (b[0] - a[0]) * (point[1]! - a[1]) - (b[1] - a[1]) * (point[0]! - a[0]); });
+      expect(crosses.every(value => value > 0) || crosses.every(value => value < 0)).toBe(true);
+      expect(new Vector3(0, 0, 1).applyQuaternion(core.scene.quaternion).y).toBeGreaterThan(0.99);
+    };
+    renderer.render({ ...SNAPSHOT_FIXTURES.stored, tick: 11 }, 0); checkAperture(0);
+    const stored: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.complete, tick: 12, storedSpecimenIds: ['salvage-lens','salvage-core'] });
+    renderer.render(stored, 0); checkAperture(1);
+    const position = core.scene.position.clone(); const rotation = core.scene.quaternion.clone(); const scale = core.scene.scale.clone();
+    const override = { id: 'placed-core', assetId: 'salvage-core' as const, position: { x: -0.3, y: 0.8, z: 0.6 },
+      rotationRad: { x: 0.2, y: -0.4, z: 0.6 }, scale: { x: 1.2, y: 0.8, z: 0.9 } };
+    renderer.render(deepFreeze({ ...stored, entities: [override] }), 0);
+    expect(core.scene.position.toArray()).toEqual([-0.3, 0.8, 0.6]); expect(core.scene.scale.toArray()).toEqual([1.2, 0.8, 0.9]);
+    const explicitRotation = new Quaternion().setFromEuler(new Euler(0.2, -0.4, 0.6, 'XYZ'));
+    expect(core.scene.quaternion.angleTo(explicitRotation)).toBeLessThan(1e-7);
+    renderer.render(stored, 0);
+    expect(core.scene.position.distanceTo(position)).toBeLessThan(1e-9); expect(core.scene.scale.distanceTo(scale)).toBeLessThan(1e-9);
+    expect(core.scene.quaternion.angleTo(rotation)).toBeLessThan(1e-7); checkAperture(1);
+    renderer.dispose();
+  });
+
+  it('passes worktop clipping into real Three shadow materials and releases ram and cached frame depth materials', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    renderer.render(SNAPSHOT_FIXTURES.settling, 0);
+    const [scene, camera] = lastStageDraw(); scene.updateMatrixWorld(true);
+    const receivers: Mesh[] = [];
+    scene.traverse(object => { if (object instanceof Mesh && object.material instanceof ShadowMaterial) receivers.push(object); });
+    expect(receivers).toHaveLength(2);
+    for (const receiver of receivers) expect(receiver.receiveShadow).toBe(true);
+    const press = [...models.entries()].find(([url]) => url.includes('press-chamber'))![1];
+    const ram = press.mesh; const frame = press.scene.getObjectByName('press-frame-test') as Mesh<BoxGeometry, MeshStandardMaterial>;
+    frame.frustumCulled = false;
+    expect(ram.material).not.toBe(frame.material);
+    expect(ram.material.clippingPlanes).toHaveLength(1);
+    const plane = ram.material.clippingPlanes![0]!;
+    expect(plane.distanceToPoint(new Vector3(0, 0, 0))).toBeLessThan(0);
+    expect(plane.distanceToPoint(new Vector3(0, 2, 0))).toBeGreaterThan(0);
+    const shadowDraw = vi.fn();
+    // Execute Three's real material-selection/cache path, replacing only GPU calls.
+    const device = {
+      localClippingEnabled: (boundary.gpu as WebGLRenderer).localClippingEnabled,
+      getRenderTarget: () => null, getActiveCubeFace: () => 0, getActiveMipmapLevel: () => 0,
+      setRenderTarget() {}, clear() {}, renderBufferDirect: shadowDraw,
+      state: { setBlending() {}, setScissorTest() {}, viewport() {},
+        buffers: { color: { setClear() {} }, depth: { getReversed: () => false, setTest() {} } } },
+    };
+    expect(device.localClippingEnabled).toBe(true);
+    const shadowMap = new WebGLShadowMap(device as unknown as WebGLRenderer,
+      { update: (object: Mesh) => object.geometry } as WebGLObjects, { maxTextureSize: 2048 } as WebGLCapabilities);
+    shadowMap.enabled = true;
+    const lights: DirectionalLight[] = []; scene.traverse(object => { if (object instanceof DirectionalLight && object.castShadow) lights.push(object); });
+    shadowMap.render(lights, scene, camera);
+    const ramDepth = shadowDraw.mock.calls.find(([, , , , object]) => object === ram)![3] as Material;
+    const frameDepth = shadowDraw.mock.calls.find(([, , , , object]) => object === frame)![3] as Material;
+    expect(ramDepth).toBe(ram.customDepthMaterial);
+    for (const depth of [ramDepth, frameDepth]) { expect(depth.clippingPlanes).toHaveLength(1); expect(depth.clippingPlanes![0]).toBe(plane); expect(depth.clipShadows).toBe(true); }
+    const depthShader = { uniforms: {}, vertexShader: '#include <begin_vertex>', fragmentShader: '' } as WebGLProgramParametersWithUniforms;
+    ramDepth.onBeforeCompile(depthShader, device as unknown as WebGLRenderer);
+    expect(depthShader.uniforms['ramTravel']).toBe(uniform(ram, 'ramTravel'));
+    const disposeRamDepth = vi.spyOn(ramDepth, 'dispose'); const disposeFrameDepth = vi.spyOn(frameDepth, 'dispose');
+    const disposeRam = vi.spyOn(ram.material, 'dispose'); const disposeFrame = vi.spyOn(frame.material, 'dispose');
+    renderer.dispose(); renderer.dispose();
+    for (const dispose of [disposeRamDepth, disposeFrameDepth, disposeRam, disposeFrame]) expect(dispose).toHaveBeenCalledTimes(1);
   });
 
   it('reports context loss once and detaches its listener on disposal', async () => {

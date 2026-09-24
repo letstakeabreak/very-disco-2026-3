@@ -1,13 +1,13 @@
 기존 wireframe probe를 DEEP PRESS의 실제 3D 프레스·회수품 렌더러로 교체합니다. 고정 작업실은 ImageGen 배경을 사용하는 2.5D 구도이며, 네 모델은 ImageGen → Meshy 7 → 부품 분리·모바일 최적화·원본 PBR 재베이크 과정을 거쳤습니다. `createRenderer` 공개 API와 공유 계약은 그대로입니다.
 
-현재 물건의 검사 회전, 보호 프레임 압착, 접촉하는 램, 렌즈 유리·파손, 압력계 바늘, 트레이/케이스 배치를 immutable snapshot으로 구동합니다. 계기판은 ImageGen의 바늘 없는 면을 기존 베젤 뒤에 장착하고 실제 압력값을 읽습니다. 렌즈는 심한 손상에서 일부 조각이 빠진 표면으로 구별합니다. 부피·점수·손상 판정은 구현하지 않습니다. 비동기 로딩 실패·일시정지/재시작·context loss·자원 해제를 처리합니다.
+현재 물건의 검사 회전, 보호 프레임 압착, 접촉하는 램, 렌즈 유리·파손, 압력계 바늘, 트레이/케이스 배치를 immutable snapshot으로 구동합니다. 계기판은 ImageGen의 바늘 없는 면을 기존 베젤 뒤에 장착하고 실제 압력값을 읽습니다. 렌즈는 심한 손상에서 일부 조각이 빠진 표면으로 구별합니다. 작업 영역을 가까이 보여 주고, 보관물은 배경 홈의 방향·중심에 맞춥니다. 실제 받침 상면을 raycast해 기준 높이를 보정하고, 빠져 있던 접촉 그림자 수신을 수정했습니다. 부피·점수·손상 판정은 구현하지 않습니다. 비동기 로딩 실패·일시정지/재시작·context loss·자원 해제를 처리합니다.
 
-- 4 GLB: 8,956,848 bytes / 80,998 triangles. 배경·계기판·앱을 포함한 현재 `dist`는 10,000,694 bytes. source 4K color/normal은 보존하고 runtime은 최대2K입니다. 대표 프레임은 visible triangles 81,024 / draw calls 27입니다.
-- 고정23파일 hash, TypeScript, 모듈 경계, 47개 테스트, build, B 소유권, diff 검사 통과. JS666kB에 대한 Vite chunk 경고는 남습니다.
+- 4 GLB: 8,956,848 bytes / 80,998 triangles. 배경·계기판·앱을 포함한 현재 `dist`는 10,001,715 bytes. source 4K color/normal은 보존하고 runtime은 최대2K입니다. 대표 프레임은 visible triangles 81,024 / draw calls 27입니다.
+- 고정23파일 hash, TypeScript, 모듈 경계, 50개 테스트, build, B 소유권, diff 검사 통과. JS667kB에 대한 Vite chunk 경고는 남습니다.
 - 실제 Chromium WebGL: 2화면 크기, 8상태, 9물건/상태 조합, select/range 입력, 오류0, 검사 전후 파일hash 동일. 5개 콘셉트의 대응 캡처 11장과 7항목별 판정도 추가했습니다. 이 판정에는 미달 항목이 있으며 자동검사 PASS가 아트 합격을 뜻하지 않습니다.
-- 데스크톱 Apple M5 / Chromium / DPR2: 180.015초, 10,802 rAF 표본, 평균60.006 FPS / P95 16.7ms / 오류0. 실제 iPhone 측정은 아닙니다.
+- 데스크톱 Apple M5 / Chromium / DPR2: HMR 없는 정적 하네스에서 180.009초, 10,802 rAF 표본, 평균60.008 FPS / P95 16.7ms / 오류0. 실제 iPhone 측정은 아닙니다. 개발 서버에서 측정 상태가 사라진 두 중단 기록도 실패로 보존했습니다.
 - [B 연결/제약](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/README.md), [검증 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/renderer-validation.md), [모델 파이프라인](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/asset-pipeline.md), [3분 데스크톱 측정](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/desktop-soak.json).
 
-실제 iPhone Safari의 3분 플레이·터치 취소/복귀, A/C와 통합된 게임 루프는 미검증입니다. 네 asset은 `generated-unverified`로 유지합니다. [시각 판정](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/art-review.md)에 구도·작은 물건·케이스 슬롯 배치·모바일 식별의 미달을 기록했습니다. snapshot에 저장 물건의 압축/손상 수치가 없는 제약도 남습니다.
+실제 iPhone Safari의 3분 플레이·터치 취소/복귀, A/C와 통합된 게임 루프는 미검증입니다. 네 asset은 `generated-unverified`로 유지합니다. [시각 판정](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/art-review.md)에 목표와의 구도 차이·오른쪽 보관 홈 일부 잘림·작은 화면 손상 식별·재질 세부의 미달을 기록했습니다. snapshot에 저장 물건의 압축/손상 수치가 없는 제약도 남습니다.
 
-Mac Safari의 임시 Private Browsing 창에서 정적 빌드·압력 직접 조작·파손을 확인했고 최종 콘솔은 비어 있었습니다. 일반 프로필에서는 원인 미확정 Script error가 관찰되어 [Safari 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/safari-desktop.md)에 따로 남겼습니다. Safari 전체 환경의 오류 없음으로 확대하지 않습니다. 이 PR은 integration/v1 대상 draft이며 main 머지·배포·대회 제출은 하지 않습니다.
+이전 게이지 보완 revision의 Mac Safari 임시 Private Browsing 창에서 정적 빌드·압력 직접 조작·파손을 확인했고 당시 최종 콘솔은 비어 있었습니다. 이번 구도·그림자 변경 뒤에는 Safari를 다시 검사하지 않았습니다. 일반 프로필에서는 원인 미확정 Script error가 관찰되어 [Safari 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/safari-desktop.md)에 따로 남겼습니다. Safari 전체 환경의 오류 없음으로 확대하지 않습니다. 이 PR은 integration/v1 대상 draft이며 main 머지·배포·대회 제출은 하지 않습니다.

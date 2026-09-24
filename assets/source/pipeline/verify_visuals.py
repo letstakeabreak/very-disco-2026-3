@@ -12,9 +12,11 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(HERE))
 from source_io import resolved_source
+from press_anchors import calibrate_press
 OUT = HERE / "inspection"
 OUT.mkdir(exist_ok=True)
 REPORT = json.loads((HERE / "mobile-model-report.json").read_text())
+PRESS_CALIBRATION = next(asset["calibration"] for asset in json.loads((HERE / "mobile-models.json").read_text())["assets"] if asset["id"] == "press-chamber")
 
 
 def studio(asset_id):
@@ -84,6 +86,8 @@ for asset in REPORT["assets"]:
         if asset["assetId"] == "press-chamber" and mode == "runtime":
             ram = bpy.data.objects["press-ram"]
             frame = bpy.data.objects["press-frame"]
+            # Recompute from this runtime mesh; old bake reports retain historical anchors.
+            anchors = calibrate_press(meshes, PRESS_CALIBRATION, asset["sourceBaseCenterBlender"], asset["sourceToMetersScale"])
             for obj, color in [(ram, (0.9, 0.19, 0.04, 1)), (frame, (0.20, 0.27, 0.34, 1))]:
                 material = bpy.data.materials.new(f"debug-{obj.name}")
                 material.diffuse_color = color
@@ -94,12 +98,12 @@ for asset in REPORT["assets"]:
                 obj.data.materials.clear()
                 obj.data.materials.append(material)
             render(scene, "press-parts-debug-rest")
-            ram.location.z = -asset["anchors"]["maxDownwardTravel"]
+            ram.location.z = -anchors["maxDownwardTravel"]
             render(scene, "press-parts-debug-translation-limit")
             ram.location.z = 0
-            top = asset["anchors"]["ramTopConnectionY"]
-            flange = asset["anchors"]["ramLowerFlangeTopY"]
-            distance = asset["anchors"]["maxDownwardTravel"]
+            top = anchors["ramTopConnectionY"]
+            flange = anchors["ramLowerFlangeTopY"]
+            distance = anchors["maxDownwardTravel"]
             for vertex in ram.data.vertices:
                 weight = max(0, min(1, (top - vertex.co.z) / (top - flange)))
                 vertex.co.z -= distance * weight

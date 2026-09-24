@@ -22,19 +22,22 @@
 
 `press-frame` 36,499 triangles, `press-ram` 6,499 triangles. 두 node는 **같은 PBR material을 공유**하며 origin=(0,0,0)이다. 독립적인 재질 변경/폐기가 필요하면 renderer에서 clone·reference count를 관리해야 한다.
 
-좌표는 프레스 asset root 기준이다. 정확한 값과 source 선택 영역은 [runtime-anchors.json](../../../assets/source/pipeline/runtime-anchors.json), [mobile-model-report.json](../../../assets/source/pipeline/mobile-model-report.json)에 있다.
+좌표는 프레스 asset root 기준이다. 현재 접촉 좌표는 [runtime-anchors.json](../../../assets/source/pipeline/runtime-anchors.json), 최종 GLB의 상면 raycast 증거는 [anchor-recalculation.json](../../../assets/source/pipeline/anchor-recalculation.json)에 있다. [mobile-model-report.json](../../../assets/source/pipeline/mobile-model-report.json)은 베이크 당시의 과거 기록이며 그 안의 옛 상면 값은 현재 렌더러 기준으로 쓰지 않는다.
 
 | anchor | 값 m |
 |---|---:|
-| 작업판 중앙의 실제 최고 표면 `workbedTopY` | 0.3687374294 |
+| 램 중심 아래 ray가 만난 상면 `workbedTopY` | 0.3763680458 |
 | 누름판 밑면 초기 `platenRestBottomY` | 0.5510312915 |
 | 램 중심 X / Z | 0.0214740932 / -0.0936739240 |
 | 상단 고정 연결 높이 | 0.8248949380 |
 | 하단 플랜지 위쪽 높이 | 0.6369931734 |
-| 바닥 여유 | 0.003 |
-| 최대 하향 이동 | 0.1792938621 |
+| 바닥 여유 | 0.0018319542 |
+| 선택 물건 base Y | 0.3782 |
+| 최대 하향 이동 | 0.1728312915 |
 
-작업물 base는 `(0.0214740932, 0.3687374294, -0.0936739240)`에 맞춘다. 원래 개구부는 약 0.182294m라 core/lens 높이를 0.15m로 조정했다. 시작 제안의 0.20–0.22m는 개구부를 넘어선다. 실제 눌림 접촉은 `workbedTopY + 현재 렌더 높이 + 0.003`과 누름판 밑면이 만나도록 계산한다. 게임의 L 용량 판정과는 무관한 시각 배치 값이다.
+선택 물건 base는 `(0.0214740932, 0.3782, -0.0936739240)`다. base에서 쉬는 램 밑면까지는 약 0.172831m이며 core/lens의 원래 높이 0.15m에 기본 장면 scale 1.1을 적용한 0.165m가 들어간다. 실제 눌림 접촉은 base와 변형된 bounds를 프레스 로컬 공간으로 옮겨 램 밑면에 맞춘다. 게임의 L 용량 판정과는 무관한 시각 배치 값이다.
+
+기존 vertex 선택 box가 실제 상면의 대부분을 제외해 낮은 높이를 반환한 문제를 수정했다. 준비 단계와 최종 검사 모두 실제 면에 수직 ray를 쏜다. 이번 재계산은 모델을 베이크·내보내기 하지 않았고 GLB 네 개의 해시를 보존했다. [접촉 조사](contact-study/README.md)는 카세트의 yaw 표본을 검토한 결과이며 모든 회수물·연속 변형의 물리 접촉을 인증하지 않는다.
 
 램을 통째로 translate하면 상단 실린더가 프레임에서 떨어져 보인다. `press-parts-debug-translation-limit.png`에서 이 한계를 확인했다. 상단 연결은 고정하고, 하단 플랜지는 같은 거리만큼 이동시키며, 두 높이 사이의 실린더만 연장하는 방식은 `press-parts-debug-upper-fixed-limit.png`에서 오프라인 확인했다. 실제 shader·물건별 접촉은 renderer 담당의 실행 검증 대상이다.
 

@@ -1,16 +1,20 @@
 import { Mesh, MeshDepthMaterial, RGBADepthPacking } from 'three';
 import type { Object3D, MeshStandardMaterial, WebGLProgramParametersWithUniforms } from 'three';
 
-/** Measured from the optimized, baked press mesh; see mobile-model-report.json. */
+const WORKBED_Y = 0.37636804580688477;
+const PLATEN_Y = 0.5510312914848328;
+const SPECIMEN_BASE_Y = 0.3782;
+
+/** Actual surface raycast; see assets/source/pipeline/anchor-recalculation.json. */
 export const PRESS_ANCHORS = Object.freeze({
-  workbedY: 0.36873742938041687,
-  platenY: 0.5510312914848328,
+  workbedY: WORKBED_Y,
+  platenY: PLATEN_Y,
   topY: 0.824894937955354,
   flangeY: 0.636993173426317,
   x: 0.021474093198776245,
   z: -0.09367392398416996,
-  clearance: 0.003,
-  travel: 0.1792938621044159,
+  clearance: SPECIMEN_BASE_Y - WORKBED_Y,
+  travel: PLATEN_Y - SPECIMEN_BASE_Y,
 });
 
 /** Lower flange translates rigidly; cylinder extends while its upper mount stays fixed. */

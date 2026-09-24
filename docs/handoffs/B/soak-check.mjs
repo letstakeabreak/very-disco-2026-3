@@ -4,18 +4,23 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const session = 'deep-press-soak';
+const base = process.argv[2] ?? 'http://127.0.0.1:4174';
 const output = fileURLToPath(new URL('./evidence/desktop-soak.json', import.meta.url));
 const run = (...args) => {
-  const response = JSON.parse(execFileSync('npx', ['--yes', 'agent-browser@0.38.1', '--session', session, '--json', ...args], { cwd: root, encoding: 'utf8', timeout: 45000 }));
+  let raw;
+  try { raw = execFileSync('npx', ['--yes', 'agent-browser@0.38.1', '--session', session, '--json', ...args], { cwd: root, encoding: 'utf8', timeout: 45000 }); }
+  catch (error) { throw new Error(JSON.stringify({ command: args[0], status: error.status, signal: error.signal, code: error.code,
+    stdout: String(error.stdout ?? '').slice(-4000), stderr: String(error.stderr ?? '').slice(-4000) })); }
+  const response = JSON.parse(raw);
   if (!response.success) throw new Error(JSON.stringify(response.error));
   return response.data;
 };
 const evaluate = (source) => run('eval', source).result;
 const paths = ['src/render/index.ts','src/render/deformation.ts','src/render/ram.ts','src/render/gauge.ts','src/render/resources.ts','src/render/visual-state.ts','src/render/assets.ts','public/assets/models/press-chamber.glb','public/assets/models/salvage-core.glb','public/assets/models/salvage-lens.glb','public/assets/models/salvage-cassette.glb','public/assets/textures/workshop.webp','public/assets/textures/pressure-dial.webp'];
 const hashes = () => Object.fromEntries(paths.map(path => [path, createHash('sha256').update(readFileSync(`${root}${path}`)).digest('hex')]));
-const report = { kind: 'Desktop Chromium WebGL fixture workload, 390x844 with DPR 2; NOT a physical iPhone or gameplay test', checkedAt: new Date().toISOString(), startHashes: hashes(), samples: [] };
+const report = { kind: 'Desktop Chromium WebGL fixture workload, 390x844 with DPR 2; NOT a physical iPhone or gameplay test', url: `${base}/docs/handoffs/B/preview.html`, checkedAt: new Date().toISOString(), startHashes: hashes(), samples: [] };
 try {
-  run('open', 'http://127.0.0.1:5173/docs/handoffs/B/preview.html');
+  run('open', report.url);
   run('set', 'viewport', '390', '844', '2');
   run('wait', '--load', 'networkidle');
   evaluate(`(async()=>{for(let n=0;n<120;n++)await new Promise(requestAnimationFrame);if(window.__renderProbe.metrics.rendererStatus.renderState!=='ready')throw Error('Models not ready')})()`);

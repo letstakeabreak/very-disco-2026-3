@@ -1,7 +1,7 @@
 import {
   ACESFilmicToneMapping, AmbientLight, Box3, DirectionalLight, Group, Matrix4, Mesh,
   MeshLambertMaterial, MeshPhysicalMaterial, MeshStandardMaterial, OrthographicCamera, PCFShadowMap, PerspectiveCamera,
-  Plane, PlaneGeometry, PMREMGenerator, Raycaster, Scene, ShaderMaterial,
+  Plane, PlaneGeometry, PMREMGenerator, Quaternion, Raycaster, Scene, ShaderMaterial,
   ShadowMaterial, SRGBColorSpace, TextureLoader, Vector2, Vector3, WebGLRenderer,
 } from 'three';
 import type { Object3D, Texture, WebGLRenderTarget } from 'three';
@@ -16,6 +16,7 @@ import { animateRam, PRESS_ANCHORS } from './ram';
 import { ASSET_REGISTRY } from './assets';
 
 const STAGE_ASPECT = 2 / 3;
+const WORKTOP_Y = 0.22;
 const ASSET_IDS: readonly AssetId[] = ['press-chamber', ...SPECIMEN_IDS];
 const assetUrl = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
 type Prop = { root: Object3D; bounds: Box3; deformation: Deformation; compression: number; damage: number; initialized: boolean };
@@ -64,25 +65,38 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   gpu.toneMappingExposure = 0.95;
   gpu.shadowMap.enabled = true;
   gpu.shadowMap.type = PCFShadowMap;
+  gpu.localClippingEnabled = true;
   gpu.info.autoReset = false;
 
   const scene = new Scene();
   const stage = new Group();
   scene.add(stage);
   const camera = new PerspectiveCamera(34, STAGE_ASPECT, 0.05, 20);
-  camera.position.set(0, 1.55, 3.4);
-  camera.lookAt(0, 0.34, 0);
+  camera.position.set(0, 1.37, 2.7);
+  camera.lookAt(0, 0.40, 0);
   camera.updateMatrixWorld();
   const ray = new Raycaster();
-  const floor = new Plane(new Vector3(0, 1, 0), 0);
+  const floor = new Plane(new Vector3(0, 1, 0), -WORKTOP_Y);
   function onTable(u: number, v: number): Vector3 {
     ray.setFromCamera(new Vector2(u * 2 - 1, 1 - v * 2), camera);
     return ray.ray.intersectPlane(floor, new Vector3())!;
   }
   const trays = [onTable(0.105, 0.49), onTable(0.09, 0.595), onTable(0.10, 0.655)];
-  const slots = [onTable(0.862, 0.551), onTable(0.912, 0.563), onTable(0.962, 0.575)];
-  scene.add(new AmbientLight('#7bb6bf', 0.35));
-  const key = new DirectionalLight('#ffe1ac', 3.2);
+  // Foam apertures measured on the generated 1024 × 1536 workshop plate.
+  // Derive direction from the same camera/plane used for their centers.
+  const slots = [
+    [0.8662109375, 0.5361328125, 0.88134765625, 0.511393229167, 0.85107421875, 0.560872395833],
+    [0.923095703125, 0.544921875, 0.9375, 0.519856770833, 0.90869140625, 0.569986979167],
+    [0.97998046875, 0.5537109375, 0.9931640625, 0.5283203125, 0.966796875, 0.5791015625],
+  ].map(([u, v, rearU, rearV, frontU, frontV]) => {
+    const axis = onTable(frontU!, frontV!).sub(onTable(rearU!, rearV!));
+    const rotation = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.atan2(-axis.z, axis.x))
+      .multiply(new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2));
+    return { center: onTable(u!, v!), rotation };
+  });
+  const caseOffset = new Vector3();
+  scene.add(new AmbientLight('#d2d4d3', 0.12));
+  const key = new DirectionalLight('#ffe1ac', 2.6);
   key.position.set(-1.8, 2.8, 2.0);
   key.target.position.set(0, 0.45, 0);
   key.castShadow = true;
@@ -90,19 +104,21 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   key.shadow.camera.left = -1.3; key.shadow.camera.right = 1.3;
   key.shadow.camera.top = 1.8; key.shadow.camera.bottom = -1.0;
   key.shadow.camera.near = 0.2; key.shadow.camera.far = 7;
-  key.shadow.normalBias = 0.008;
-  key.shadow.bias = -0.0002;
+  key.shadow.normalBias = 0.0015;
+  key.shadow.bias = -0.00005;
   scene.add(key, key.target);
-  const rim = new DirectionalLight('#67b4c6', 2.3);
+  const rim = new DirectionalLight('#b4cbda', 1.2);
   rim.position.set(1.2, 1.7, -1.2); scene.add(rim);
-  const fill = new DirectionalLight('#abc5ca', 0.8);
+  const fill = new DirectionalLight('#abc5ca', 0.3);
   fill.position.set(0.2, 1.8, 3.5); scene.add(fill);
   const shadow = new Mesh(new PlaneGeometry(5, 5), new ShadowMaterial({ opacity: 0.52, depthWrite: false }));
-  shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.001; shadow.receiveShadow = true;
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = WORKTOP_Y + 0.001; shadow.receiveShadow = true;
   scene.add(shadow); roots.push(shadow);
   const bedShadow = new Mesh(new PlaneGeometry(0.30, 0.27), new ShadowMaterial({ opacity: 0.4, depthWrite: false }));
   bedShadow.rotation.x = -Math.PI / 2;
-  bedShadow.position.set(PRESS_ANCHORS.x, PRESS_ANCHORS.workbedY + 0.001, PRESS_ANCHORS.z);
+  bedShadow.receiveShadow = true;
+  // Sit above the mildly uneven bed top so its contact shadow is not buried in the GLB.
+  bedShadow.position.set(PRESS_ANCHORS.x, PRESS_ANCHORS.workbedY + 0.0035, PRESS_ANCHORS.z);
   stage.add(bedShadow); roots.push(bedShadow);
 
   const background = new Scene();
@@ -128,19 +144,24 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   try {
     const generator = new PMREMGenerator(gpu);
     const room = new RoomEnvironment();
-    // Reflection cards follow the same warm-left / cool-right lighting as the generated plate.
+    // Narrow reflection cards separate worn metal from the dark room without a teal wash.
     room.traverse((object) => {
       if (object instanceof Mesh && object.material instanceof MeshLambertMaterial) {
-        object.material.emissive.set(object.position.x < -8 ? '#ffd095' : object.position.x > 8 ? '#70bdce' : '#c1d5d6');
+        if (object.material.emissiveIntensity > 2) {
+          object.material.emissive.set(object.position.x < -8 ? '#ffe2ba' : '#edf3ff');
+          if (Math.abs(object.position.x) > 8) object.scale.z *= 0.45;
+          else if (Math.abs(object.position.z) > 8) object.scale.x *= 0.45;
+        } else object.material.color.multiplyScalar(0.35);
       }
     });
-    environment = generator.fromScene(room, 0.06);
+    environment = generator.fromScene(room, 0.02);
     scene.environment = environment.texture;
-    scene.environmentIntensity = 0.75;
+    scene.environmentIntensity = 1;
     room.dispose(); generator.dispose();
   } catch (error) { fail(error); }
 
-  function prepareMesh(root: Object3D): void {
+  function prepareMesh(root: Object3D, id: AssetId): void {
+    const prepared = new Set<MeshStandardMaterial>();
     root.traverse((object) => {
       if (!(object instanceof Mesh)) return;
       object.castShadow = true; object.receiveShadow = true;
@@ -152,8 +173,10 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         object.castShadow = false;
       }
       for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
-        if (!(material instanceof MeshStandardMaterial)) continue;
-        material.envMapIntensity = 0.75;
+        if (!(material instanceof MeshStandardMaterial) || prepared.has(material)) continue;
+        prepared.add(material);
+        material.envMapIntensity = 1.35;
+        if (id === 'press-chamber') material.roughness *= 0.72;
         if (material.normalMap) material.normalScale.set(0.55, 0.55);
       }
     });
@@ -167,10 +190,17 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     });
     if (disposed || failed) { disposeObjects([gltf.scene]); return; }
     const root = gltf.scene;
-    prepareMesh(root);
+    prepareMesh(root, id);
     roots.push(root); stage.add(root);
     if (id === 'press-chamber') {
       press = root; ram = animateRam(root); depths.push(...ram.depthMaterials);
+      // The original lower plinth sits inside the workbench, below its visible surface.
+      root.traverse((object) => {
+        if (!(object instanceof Mesh)) return;
+        for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+          material.clippingPlanes = [floor]; material.clipShadows = true;
+        }
+      });
       press.add(bedShadow);
     } else {
       const deformation = deformSpecimen(root, id);
@@ -229,6 +259,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       prop.initialized = true;
       prop.deformation.compression.value = prop.compression;
       prop.deformation.damage.value = prop.damage;
+      const renderedHeight = prop.deformation.height * (1 - prop.compression * (visual.id === 'salvage-lens' ? 0.12 : 0.52));
       for (const material of prop.deformation.materials) if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
       prop.root.scale.setScalar(1);
       prop.root.rotation.set(0, visual.yaw, 0);
@@ -237,12 +268,17 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         if (press) {
           prop.root.position.applyMatrix4(press.matrixWorld);
           prop.root.rotation.set(press.rotation.x, press.rotation.y + visual.yaw, press.rotation.z);
-          prop.root.scale.copy(press.scale);
+          prop.root.scale.copy(press.scale).multiplyScalar(1.1);
         }
       } else if (visual.location === 'tray') {
         prop.root.position.copy(trays[visual.index]!); prop.root.rotation.y = -0.15;
+        prop.root.scale.setScalar(Math.min(1, 0.19 / (prop.bounds.max.x - prop.bounds.min.x)));
       } else if (visual.location === 'case') {
-        prop.root.position.copy(slots[visual.index]!); prop.root.rotation.y = -0.32; prop.root.scale.setScalar(0.43);
+        const slot = slots[visual.index]!;
+        prop.root.quaternion.copy(slot.rotation); prop.root.scale.setScalar(0.52);
+        // The front (+Z) faces up; recenter after lying down and after deformation.
+        caseOffset.set(0, renderedHeight / 2, 0).applyQuaternion(slot.rotation).multiplyScalar(0.52);
+        prop.root.position.copy(slot.center).sub(caseOffset);
       }
       const entity = snapshot.entities.find((item) => item.assetId === visual.id);
       if (entity) {
@@ -254,7 +290,6 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         // Contact uses rendered bounds in press-local meters, including caller transforms.
         prop.root.updateMatrixWorld(true);
         const toPress = new Matrix4().copy(press.matrixWorld).invert().multiply(prop.root.matrixWorld);
-        const renderedHeight = prop.deformation.height * (1 - prop.compression * (visual.id === 'salvage-lens' ? 0.12 : 0.52));
         currentTop = -Infinity;
         for (const x of [prop.bounds.min.x, prop.bounds.max.x]) for (const y of [0, renderedHeight]) for (const z of [prop.bounds.min.z, prop.bounds.max.z]) {
           currentTop = Math.max(currentTop, new Vector3(x, y, z).applyMatrix4(toPress).y);

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "coordinateSpace": "asset root; meters; glTF +Y up +Z front; identity transforms and baked vertices",
   "press": {
     "parts": [
@@ -8,10 +8,16 @@
     ],
     "sharedMaterial": true,
     "coordinateSpace": "asset root, meters, glTF +Y up +Z front",
-    "workbedTopY": 0.36873742938041687,
+    "workbedMethod": "downward-ray-at-ram-center",
+    "workbedTopY": 0.37636804580688477,
+    "workbedPoint": [
+      0.021474093198776245,
+      0.37636804580688477,
+      -0.09367392212152481
+    ],
     "specimenBase": [
       0.021474093198776245,
-      0.36873742938041687,
+      0.3782,
       -0.09367392398416996
     ],
     "platenRestBottomY": 0.5510312914848328,
@@ -21,14 +27,36 @@
       0.021474093198776245,
       -0.09367392398416996
     ],
-    "floorClearance": 0.003,
-    "maxDownwardTravel": 0.1792938621044159,
+    "floorClearance": 0.001831954193115215,
+    "maxDownwardTravel": 0.17283129148483278,
     "translationRangeY": [
-      -0.1792938621044159,
+      -0.17283129148483278,
       0
     ],
-    "contactFormula": "ram.position.y = min(0, max(-maxDownwardTravel, workbedTopY + specimenRenderedHeight + floorClearance - platenRestBottomY))",
-    "connectionNote": "A pure downward translation opens an upper connection gap. Keep upper attachment fixed and extend the cylinder body, or add a derived telescoping connection. Do not stretch the lower flange."
+    "contactFormula": "ramTravel = clamp(platenRestBottomY - (specimenBase[1] + specimenRenderedHeight), 0, maxDownwardTravel)",
+    "connectionNote": "Keep upper attachment fixed and extend the cylinder body; do not stretch the lower flange.",
+    "workbedRay": {
+      "origin": [
+        0.021474093198776245,
+        0.5410313010215759,
+        -0.09367392212152481
+      ],
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "normal": [
+        -0.0002864664129447192,
+        0.9997966289520264,
+        0.020163752138614655
+      ],
+      "faceIndex": 19497,
+      "distance": 0.16466324031352997,
+      "method": "Blender BVHTree over actual frame polygons in world coordinates; no height-clipped vertex sample"
+    },
+    "runtimeSha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "measuredFrom": "anchor-recalculation.json"
   },
   "lens": {
     "parts": [
@@ -72,5 +100,8 @@
     "glassRigid": true,
     "sourceMaterial": "OPAQUE, no transmission; replace only glass material in renderer"
   },
-  "measuredFrom": "glb-validation.json"
+  "measuredFrom": {
+    "press": "anchor-recalculation.json",
+    "lens": "glb-validation.json"
+  }
 }

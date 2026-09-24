@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-09-24T13:57:35.993Z",
+  "validation": "passed",
+  "scope": "Anchor consistency and unchanged asset hashes only; not browser, gameplay, continuous contact or device QA",
+  "rendererSha256": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+  "recalculationSha256": "9c1c213d1f0603293098bc8d5246ff8e681e4694aa1fdcfb0af2d69474ace7f8",
+  "specimenBaseY": 0.3782,
+  "workbedY": 0.37636804580688477,
+  "clearance": 0.001831954193115215,
+  "travel": 0.17283129148483278,
+  "checkedFields": [
+    "workbedY",
+    "platenY",
+    "topY",
+    "flangeY",
+    "x",
+    "z",
+    "clearance",
+    "travel"
+  ],
+  "runtimeFilesUnchanged": 4
+}

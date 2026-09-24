@@ -19,6 +19,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(HERE))
 from source_io import resolved_source
+from press_anchors import calibrate_press
 CONFIG = json.loads((HERE / "mobile-models.json").read_text())
 
 
@@ -193,33 +194,7 @@ def prepare(spec, source):
         "status": "offline-prepared-device-unverified",
     }
     if spec.get("calibration"):
-        calibration = spec["calibration"]
-        ram = next(obj for obj in parts if obj.name == "press-ram")
-        frame = next(obj for obj in parts if obj.name == "press-frame")
-        sample_box = calibration["sourceBedSampleBoxBlender"]
-        sample_z = [v.co.z for v in frame.data.vertices if in_box(v.co / factor + origin, sample_box)]
-        if not sample_z:
-            raise ValueError("No bed vertices in calibration region")
-        # Highest actual workbed vertex within the central specimen support patch.
-        bed_y = max(sample_z)
-        ram_box = gltf_bounds(bounds(ram))
-        ram_center = [(ram_box[0][i] + ram_box[1][i]) / 2 for i in range(3)]
-        platen_y = ram_box[0][1]
-        clearance = calibration["floorClearanceMeters"]
-        result["anchors"] = {
-            "coordinateSpace": "asset root, meters, glTF +Y up +Z front",
-            "workbedTopY": bed_y,
-            "specimenBase": [ram_center[0], bed_y, ram_center[2]],
-            "platenRestBottomY": platen_y,
-            "ramTopConnectionY": (calibration["ramTopConnectionSourceZ"] - origin.z) * factor,
-            "ramLowerFlangeTopY": (calibration["ramLowerFlangeSourceZ"] - origin.z) * factor,
-            "ramCenterXZ": [ram_center[0], ram_center[2]],
-            "floorClearance": clearance,
-            "maxDownwardTravel": platen_y - bed_y - clearance,
-            "translationRangeY": [-(platen_y - bed_y - clearance), 0],
-            "contactFormula": "ram.position.y = min(0, max(-maxDownwardTravel, workbedTopY + specimenRenderedHeight + floorClearance - platenRestBottomY))",
-            "connectionNote": "A pure downward translation opens an upper connection gap. Keep upper attachment fixed and extend the cylinder body, or add a derived telescoping connection. Do not stretch the lower flange.",
-        }
+        result["anchors"] = calibrate_press(parts, spec["calibration"], origin, factor)
     assert result["triangles"] <= spec["maxTriangles"], result
     assert sha256(source) == original_hash, "Master changed unexpectedly"
     return result

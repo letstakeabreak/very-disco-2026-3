@@ -25,17 +25,23 @@ export function createInspector(canvas: HTMLCanvasElement, id: 'salvage-cassette
   const fail = (message: string): void => { if (!disposed) { canvas.dataset['renderState'] = 'error'; onError(message); } };
   const lost = (event: Event): void => { event.preventDefault(); fail('Asset inspector WebGL context lost'); };
   canvas.addEventListener('webglcontextlost', lost);
-  scene.add(new AmbientLight('#7bb6bf', 0.35));
-  const key = new DirectionalLight('#ffe1ac', 3.2); key.position.set(-1.8, 2.8, 2); key.castShadow = true;
+  scene.add(new AmbientLight('#d2d4d3', 0.12));
+  const key = new DirectionalLight('#ffe1ac', 2.6); key.position.set(-1.8, 2.8, 2); key.castShadow = true;
   key.shadow.mapSize.set(1024,1024); key.shadow.normalBias = 0.003; scene.add(key, key.target);
-  const rim = new DirectionalLight('#67b4c6',2.3); rim.position.set(1.2,1.7,-1.2); scene.add(rim);
-  const fill = new DirectionalLight('#abc5ca',0.8); fill.position.set(0.2,1.8,3.5); scene.add(fill);
+  const rim = new DirectionalLight('#b4cbda',1.2); rim.position.set(1.2,1.7,-1.2); scene.add(rim);
+  const fill = new DirectionalLight('#abc5ca',0.3); fill.position.set(0.2,1.8,3.5); scene.add(fill);
   const floor = new Mesh(new PlaneGeometry(20,20),new ShadowMaterial({ opacity: 0.23 }));
   floor.rotation.x = -Math.PI/2; floor.position.y = -0.001; floor.receiveShadow = true; scene.add(floor); resources.push(floor);
   const generator = new PMREMGenerator(gpu); const room = new RoomEnvironment();
-  room.traverse((part) => { if (part instanceof Mesh && part.material instanceof MeshLambertMaterial)
-    part.material.emissive.set(part.position.x < -8 ? '#ffd095' : part.position.x > 8 ? '#70bdce' : '#c1d5d6'); });
-  environment = generator.fromScene(room,0.06); scene.environment = environment.texture; scene.environmentIntensity = 0.75;
+  room.traverse((part) => {
+    if (!(part instanceof Mesh) || !(part.material instanceof MeshLambertMaterial)) return;
+    if (part.material.emissiveIntensity > 2) {
+      part.material.emissive.set(part.position.x < -8 ? '#ffe2ba' : '#edf3ff');
+      if (Math.abs(part.position.x) > 8) part.scale.z *= 0.45;
+      else if (Math.abs(part.position.z) > 8) part.scale.x *= 0.45;
+    } else part.material.color.multiplyScalar(0.35);
+  });
+  environment = generator.fromScene(room,0.02); scene.environment = environment.texture; scene.environmentIntensity = 1;
   room.dispose(); generator.dispose();
   function fit(): void {
     const half = Math.min(camera.fov * Math.PI / 360, Math.atan(Math.tan(camera.fov * Math.PI / 360) * camera.aspect));
@@ -70,12 +76,15 @@ export function createInspector(canvas: HTMLCanvasElement, id: 'salvage-cassette
     if (disposed) { release([root]); return; }
     object = root; resources.push(root); scene.add(root);
     let triangles = 0; let materialCount = 0;
+    const prepared = new Set<MeshStandardMaterial>();
     root.traverse((part) => { if (!(part instanceof Mesh)) return;
       part.castShadow = true; part.receiveShadow = true;
       triangles += (part.geometry.index?.count ?? part.geometry.getAttribute('position').count) / 3;
       for (const material of Array.isArray(part.material) ? part.material : [part.material]) {
-        materialCount += 1; if (!(material instanceof MeshStandardMaterial)) continue;
-        material.envMapIntensity = 0.75; if (material.normalMap) material.normalScale.set(0.55,0.55);
+        materialCount += 1; if (!(material instanceof MeshStandardMaterial) || prepared.has(material)) continue;
+        prepared.add(material);
+        material.envMapIntensity = 1.35; if (id === 'press-chamber') material.roughness *= 0.72;
+        if (material.normalMap) material.normalScale.set(0.55,0.55);
       }
     });
     if (dial) { const gauge=createGauge(dial); gauge.setPressure(0); root.add(gauge.root); canvas.dataset['gauge']='production createGauge / pressure 0'; }
