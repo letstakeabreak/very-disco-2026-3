@@ -6,8 +6,9 @@ Contract: 1.0.0
 PRD: 1.0.1 (`executionReady: true`)  
 Target branch: `role/c-app`  
 Implementation commit: `06e8d24d1c02b9c04df39ecb8e2ce2b251a69172` (official `bootstrap-v2` parent)
-Original C PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), merged into `integration/v1` at `554e2a1182bba9027c28bfac8d1702bbefaff407`  
+Original C PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), merged into `integration/v1` at `554e2a1182bba9027c28bfac8d1702bbefaff407`
 Short-viewport follow-up: `role/c-app-followup` (based on the merged integration commit)
+Follow-up PR: [#5](https://github.com/letstakeabreak/very-disco-2026-3/pull/5), open against `integration/v1`
 
 ## Starting point and provenance
 
