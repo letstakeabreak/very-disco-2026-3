@@ -1,14 +1,15 @@
 # C role handoff — DEEP PRESS
 
-Date: 2026-09-25 (Asia/Seoul)  
-Role: C — app, input, HUD (`magic3ightball`, verified through connected GitHub identity)  
-Contract: 1.0.0 · PRD: 1.0.1 (`executionReady: true`)  
+Date: 2026-09-25 (Asia/Seoul)
+Role: C — app, input, HUD (`magic3ightball`, verified through connected GitHub identity)
+Contract: 1.0.0 · PRD: 1.0.1 (`executionReady: true`)
 Current integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 
 ## Contribution history
 
 - C PR [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3) is merged into `integration/v1` at `554e2a1182bba9027c28bfac8d1702bbefaff407`.
 - C short-viewport PR [#5](https://github.com/letstakeabreak/very-disco-2026-3/pull/5) is merged at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`.
+- Renderer recovery follow-up is under review in [PR #6](https://github.com/letstakeabreak/very-disco-2026-3/pull/6), branch `role/c-app-renderer-retry`, based on that integration commit. It remains unmerged for A's integration.
 - The current local archive's source tree matches official `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`); its synthetic Git history is not used for the next GitHub branch.
 
 ## C implementation
