@@ -15,3 +15,5 @@
 이전 게이지 보완 revision의 Mac Safari 임시 Private Browsing 창에서 정적 빌드·압력 직접 조작·파손을 확인했고 당시 최종 콘솔은 비어 있었습니다. 현재 램/반사 변경 뒤에는 Safari를 다시 검사하지 않았습니다. 일반 프로필에서는 원인 미확정 Script error가 관찰되어 [Safari 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/safari-desktop.md)에 따로 남겼습니다. Safari 전체 환경의 오류 없음으로 확대하지 않습니다. 이 PR은 integration/v1 대상 draft이며 main 머지·배포·대회 제출은 하지 않습니다.
 
 외부 404 제보에 대해 인증 없는 HTTP·fresh filtered clone·B 브랜치 fetch/문서 읽기 검사를 추가했습니다. 공개 상태와 정확한 브랜치 주소, 팀원 초대 수락 상태의 경계를 [접근 안내](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/repository-access.md)에 기록합니다. 사용자의 후속 문서 접근 수정 요청에 따라 별도 문서 PR #2를 main에 반영했습니다. main README → 공용 작업 문서 목록 → 실제 역할 브랜치 링크로 연결되며, 반영 후 41개 공개 주소의 200과 익명 브라우저 클릭 경로를 확인했습니다. 상대 환경의 과거 404 원인은 실패 URL이 없어 미확정입니다.
+
+2026-09-25 문서 PR #4로 새로 게시된 C 인계와 공통 문서 원문 링크를 목록에 추가했습니다. 접근 검사도 실제 공용 목록의 전체 공개 링크를 읽도록 바꿨으며, 반영 뒤 48개 주소의 익명 HTTP 200과 fresh clone/지침 읽기를 확인했습니다. 문서 PR들은 게임 통합 PR과 별개입니다.

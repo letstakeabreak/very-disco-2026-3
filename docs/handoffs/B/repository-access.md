@@ -29,7 +29,7 @@ clone 주소는 `https://github.com/letstakeabreak/very-disco-2026-3.git`이다.
 3. Git 작업은 위 clone URL로 조회한다. 기존 원격이 다르거나 인증 계정이 다른지 읽어서 확인하고 사용자의 인증을 무단 변경하지 않는다. [GitHub clone 오류 안내](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors)
 4. Codex 연결만 실패하면 해당 계정/연결의 실제 오류와 저장소 접근 대상을 확인한다. 이번 성공 결과로 상대 Codex까지 복구됐다고 판단하지 않는다.
 
-재검사: `node docs/handoffs/B/check-public-access.mjs`. 익명 API/문서 요청, 임시 filtered clone, 공통 지침 읽기, B fetch/문서 읽기를 실행하고 임시 폴더를 정리한다. 전체 에셋 checkout·push·상대 계정 세션은 검사하지 않는다. 새 공용 목록의 HTML/raw 200도 검사한다. 문서 목록은 role/b-render의 정확한 주소를 제공해 없는 main 파일을 추측해 여는 일을 예방한다.
+재검사: `node docs/handoffs/B/check-public-access.mjs`. 공개된 공용 목록을 읽고 모든 저장소 웹/원문 링크를 동적으로 검사한다. 로그인 전용 초대 링크는 제외한다. 익명 API/문서 요청, 임시 filtered clone, 공통 지침 읽기, B fetch/문서 읽기를 실행하고 임시 폴더를 정리한다. 전체 에셋 checkout·push·상대 계정 세션은 검사하지 않는다. 문서 목록은 실제 역할 브랜치의 정확한 주소를 제공해 없는 main 파일을 추측해 여는 일을 예방한다.
 
 현재 magic3ightball의 Codex/브라우저에서 404가 발생했다는 사용자 보고는 있으나 **실패 URL을 아직 받지 못해 해당 현상의 원인은 미확정**이다. 새로운 공개 설정 변경이나 초대 재발송을 성공으로 보고하지 않는다.
 
@@ -38,3 +38,9 @@ clone 주소는 `https://github.com/letstakeabreak/very-disco-2026-3.git`이다.
 [공개 링크 결과](evidence/work-document-links-live.json): main에 반영된 실제 목록에서 주소를 다시 추출해 저장소 첫 화면·목록 HTML/raw·연결 대상 총 41개를 익명 GET으로 확인했고 모두 200이었다. 17개 B Markdown의 상대 파일 링크 74개도 로컬 실제 파일과 대조해 누락이 없었다. 로그인하지 않은 Chromium에서 README의 목록 링크를 누르고 B 인계 문서를 다시 눌러 정상 도착했으며 [화면](evidence/public-document-navigation.png)을 보존했다.
 
 반영 직후 한 독립 재검사에서 AGENTS.md가 503을 응답한 기록은 `public-access-transient-503.json`에 보존했다. 이후 같은 검사 전체가 성공해 `public-access-check.json`에 기록됐다. 이 일시 응답을 404 수정이나 권한 문제로 해석하지 않는다.
+
+## 2026-09-25 후속 확인
+
+새로 공개된 C 인계 `role/c-app/docs/handoffs/C/handoff.md`와 공통 지침·Goal·PRD의 AI용 원문 링크를 [문서 PR #4](https://github.com/letstakeabreak/very-disco-2026-3/pull/4)로 목록에 추가했다. main 문서 commit은 `03d7b584f92763b43556cd81c30dbe7b1f4ab201`이며 목록 한 파일만 변경했다. A 문서는 원격에 아직 없어 미게시로 표시했다.
+
+반영 뒤 [최신 자동 기록](evidence/public-access-check.json)에서 공용 목록의 모든 공개 링크를 포함한 **48개 주소가 전부 HTTP 200**이었다. 로그인·쿠키·토큰 없는 요청이며, 인증 설정을 비운 새 filtered clone에서 main 지침과 B 문서 읽기도 성공했다. 이 검사는 상대 Codex 세션이나 쓰기 권한의 검증을 뜻하지 않는다. 기존 41개 결과는 이전 확인 이력으로 보존한다.
