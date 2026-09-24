@@ -34,12 +34,12 @@ export function createInspector(canvas: HTMLCanvasElement, id: 'salvage-cassette
   floor.rotation.x = -Math.PI/2; floor.position.y = -0.001; floor.receiveShadow = true; scene.add(floor); resources.push(floor);
   const generator = new PMREMGenerator(gpu); const room = new RoomEnvironment();
   room.traverse((part) => {
-    if (!(part instanceof Mesh) || !(part.material instanceof MeshLambertMaterial)) return;
-    if (part.material.emissiveIntensity > 2) {
-      part.material.emissive.set(part.position.x < -8 ? '#ffe2ba' : '#edf3ff');
+    if (!(part instanceof Mesh)) return;
+    if (part.material instanceof MeshLambertMaterial && part.material.emissiveIntensity > 2) {
+      part.material.emissive.set(part.position.x < -8 || part.position.z > 8 ? '#ffe2ba' : '#edf3ff');
       if (Math.abs(part.position.x) > 8) part.scale.z *= 0.45;
       else if (Math.abs(part.position.z) > 8) part.scale.x *= 0.45;
-    } else part.material.color.multiplyScalar(0.35);
+    } else if (part.material instanceof MeshStandardMaterial) part.material.color.multiplyScalar(0.35);
   });
   environment = generator.fromScene(room,0.02); scene.environment = environment.texture; scene.environmentIntensity = 1;
   room.dispose(); generator.dispose();

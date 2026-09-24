@@ -14,6 +14,7 @@ node docs/handoffs/B/browser-check.mjs
 
 - `fixtures.test.ts`: 공유 frozen fixture 8개 소비, 압력/확정 압축/무결성 구분, paused resume 상태, 보관 순서, 폐기 숨김, 선택 후 트레이 빈칸 제거, frame delta 유효성.
 - `resources.test.ts`: 실제 Three.js geometry/material/texture의 공유 참조를 한 번씩 해제하고 공유 ImageBitmap을 한 번만 닫는다.
+- `ram.test.ts`: 실제 GLB 정점 높이 순서와 고정 상단/강체 하부, 후퇴량의 양의 미분 한계, 색상·그림자 uniform 공유를 검사한다. 프레임과의 무충돌 증거는 아니다.
 - `lifecycle.test.ts`: WebGL/파일 IO만 대체한다. 실제 scene graph·재질·변형 코드로 GPU 초기화 실패, GLB 실패, dispose 뒤 늦게 도착한 GLB/texture 해제, 반복 dispose, 8개 fixture 불변성, DPR 제한, pause 취소 시 확정 형태 즉시 복원, 첫 paused settling 프레임, 재시작 시 이전 보관 형태 제거, context loss와 draw 실패를 검사한다. 프레스 위치·회전·scale을 바꿔도 접촉 거리가 프레스 공간에서 유지되고, specimen entity를 3cm 올리면 ram travel이 3cm 줄어드는 회귀를 포함한다.
 - `assets.test.ts`: registry의 generated-unverified 상태와 미완료 verification을 유지한다. 원본/프롬프트 경로, Meshy 7 task ID, 실제 GLB 2 헤더·길이·SHA·self-contained 리소스, 준비 보고서의 triangle/파일 크기, 런타임 texture 최대 2K를 대조한다. 이 검사는 생성 서비스 사실·시각 완성도·기기 적합성을 새로 인증하지 않는다.
 
@@ -31,12 +32,12 @@ GPU 품질은 CPU 테스트로 승인하지 않는다. 부피·점수·손상 �
 
 ## 최종 자동·시각 결과
 
-최종 실행 시작 **2026-09-24 23:01:41 KST** (`2026-09-24T14:01:41.277Z`). 가까운 카메라·작업대 매립 clipping·케이스 홈 정렬·실제 상면 anchor·받침 그림자 수신·재질 조명 보정을 포함했다. `passed: true`, GLB 4개 ready, 실제 select와 네 range의 키보드 이벤트 통과, 두 viewport 배치 통과, 8개 phase와 9개 specimen 조합 통과, probe/browser 오류 0. 렌더러·GLB·배경·계기판 파일의 검사 시작/끝 SHA가 동일하다. 검사 전용 Chromium 세션은 종료했다.
+최종 실행 시작 **2026-09-24 23:35:15 KST** (`2026-09-24T14:35:15.453Z`). 가까운 카메라·작업대 매립 clipping·케이스 홈 정렬·실제 상면 anchor·받침 그림자 수신·검사 램 90mm 후퇴·balanced 환경 반사 보정을 포함했다. `passed: true`, GLB 4개 ready, 실제 select와 네 range의 키보드 이벤트 통과, 두 viewport 배치 통과, 8개 phase와 9개 specimen 조합 통과, probe/browser 오류 0. 렌더러·GLB·배경·계기판 파일의 검사 시작/끝 SHA가 동일하다. 검사 전용 Chromium 세션은 종료했다.
 
 | viewport | DPR | 표본 | FPS | P95 | visibleTriangles | triangles 전체 패스 | draw calls |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| 390×844 | 1 | 120 frames / 119 intervals | 60.001 | 16.8ms | 81,024 | 239,048 | 27 |
-| 1440×900 | 1 | 120 frames / 119 intervals | 60.001 | 16.7ms | 81,024 | 239,048 | 27 |
+| 390×844 | 1 | 120 frames / 119 intervals | 60.001 | 16.7ms | 81,024 | 239,048 | 27 |
+| 1440×900 | 1 | 120 frames / 119 intervals | 60.004 | 16.7ms | 81,024 | 239,048 | 27 |
 
 위 수치는 약 2초의 **desktop Chromium, DPR 1** 표본이다. 모든 패스 239,048과 고유 visible triangles 81,024를 구분한다. 이 기록은 실기기 3분 성능 조건을 대체하지 않는다.
 
@@ -57,12 +58,16 @@ GPU 품질은 CPU 테스트로 승인하지 않는다. 부피·점수·손상 �
 
 ## 데스크톱 3분 연속 측정
 
-이번 변경 뒤 개발 서버에서 시도한 두 측정은 [61초 뒤 제어 명령 실패](desktop-soak-interrupted-20260924T140256.json), [122초 뒤 측정 상태 소실](desktop-soak-interrupted-20260924T140634.json)로 실패했다. 두 번째 오류는 `window.__soak`가 undefined라는 실제 응답까지 보존했다. 두 실행의 마지막 표본에는 렌더러 오류가 없었지만 3분 완료가 아니므로 통과로 사용하지 않는다. 문서 뷰어 수정 때 개발 서버의 full reload가 전파된 것으로 추정하며 해당 원인을 직접 계측해 확정한 것은 아니다.
+이전 구도/접촉 그림자 보완 revision에서 개발 서버로 시도한 두 측정은 [61초 뒤 제어 명령 실패](desktop-soak-interrupted-20260924T140256.json), [122초 뒤 측정 상태 소실](desktop-soak-interrupted-20260924T140634.json)로 실패했다. 두 번째 오류는 `window.__soak`가 undefined라는 실제 응답까지 보존했다. 두 실행의 마지막 표본에는 렌더러 오류가 없었지만 3분 완료가 아니므로 통과로 사용하지 않는다. 문서 뷰어 수정 때 개발 서버의 full reload가 전파된 것으로 추정하며 해당 원인을 직접 계측해 확정한 것은 아니다.
 
 재측정은 HMR 없는 별도 production 하네스 빌드와 로컬 정적 서버에서 실행한다. [정적 빌드 manifest](static-preview-build.json)에 입력 15개 파일과 출력 9개 파일의 SHA를 남겼다. 이는 공개 B renderer를 사용하는 fixture 하네스이며 최종 A/C 앱이 아니다. `base: '/'`는 이 로컬 QA 주소 전용이므로 itch.io의 상대 경로 배포 검증으로 해석하지 않는다. 명령은 `node docs/handoffs/B/soak-check.mjs http://127.0.0.1:4174`다.
 
-재현 시 먼저 `node docs/handoffs/B/build-static-preview.mjs`로 빌드하고 `npx vite preview --outDir /tmp/deep-press-b-static-preview --host 127.0.0.1 --port 4174 --strictPort`로 정적 서버를 연다. 이번 측정 전 빌드는 같은 설정의 Node/Vite 호출로 실행했고, 이 파일은 그 재현 절차를 보존한다. 3분 측정 중에는 해당 출력 디렉터리를 재빌드하지 않는다. 기본 측정 주소도 개발 서버 대신 4174로 고정했다.
+재현 시 먼저 `node docs/handoffs/B/build-static-preview.mjs`로 빌드하고 `npx vite preview --outDir /tmp/deep-press-b-static-preview --host 127.0.0.1 --port 4174 --strictPort`로 정적 서버를 연다. 이번 측정 전 빌드는 해당 파일을 실제 실행해 생성했다. 3분 측정 중에는 해당 출력 디렉터리를 재빌드하지 않는다. 기본 측정 주소도 개발 서버 대신 4174로 고정했다.
 
-`soak-check.mjs` 최종 실행 시작 `2026-09-24T14:11:12.522Z`: **PASS**, 정적 production 하네스에서 180.009초, 10,802 rAF 표본, 평균 60.008 FPS, P95 16.7ms, max 16.8ms, 오류 0. 390×844 CSS pixels / DPR2 / framebuffer780×1688. HeadlessChrome153 / ANGLE Metal Apple M5. 검사·압착·파손·보관·완료·정지 fixture를 30초 간격으로 바꿨다. 시작/끝 renderer·GLB·배경·계기판 SHA 동일. 이 값은 **데스크톱 rAF 간격**이며 실제 iPhone13 Safari 또는 GPU 실행시간/터치지연 보증이 아니다. [전체 기록](desktop-soak.json).
+`soak-check.mjs` 최종 실행 시작 `2026-09-24T14:35:14.297Z`: **PASS**, 정적 production 하네스에서 180.007초, 10,801 rAF 표본, 평균 60.003 FPS, P95 16.7ms, max 16.8ms, 오류 0. 390×844 CSS pixels / DPR2 / framebuffer780×1688. HeadlessChrome153 / ANGLE Metal Apple M5. 검사·압착·파손·보관·완료·정지 fixture를 30초 간격으로 바꿨다. 시작/끝 renderer·GLB·배경·계기판 SHA 동일. 이 값은 **데스크톱 rAF 간격**이며 실제 iPhone13 Safari 또는 GPU 실행시간/터치지연 보증이 아니다. [전체 기록](desktop-soak.json).
 
-root의 전체 `npm run check`: 9개 파일 **50 tests** 통과, frozen23파일일치, TS/모듈경계/build통과. B ownership과diff검사통과. [Mac Safari 별도 UI 관찰](safari-desktop.md)은 이전 게이지 revision에서 일반 프로필의 원인 미확정 Script error, 별도 임시 창의 정상 조작·빈 콘솔을 모두 기록했다. 이번 구도·그림자 보완 뒤 Safari를 재검사한 결과는 아니다.
+root의 전체 `npm run check`: 10개 파일 **54 tests** 통과, frozen23파일일치, TS/모듈경계/build통과. B ownership과diff검사통과. [Mac Safari 별도 UI 관찰](safari-desktop.md)은 이전 게이지 revision에서 일반 프로필의 원인 미확정 Script error, 별도 임시 창의 정상 조작·빈 콘솔을 모두 기록했다. 현재 램/반사 보완 뒤 Safari를 재검사한 결과는 아니다. 23:35 KST의 Xcode 실제 기기 목록에는 모든 iPhone이 offline으로 표시되어 실기기 검증을 실행하지 못했다.
+
+이전 성공한 3분 측정은 `desktop-soak-20260924T141112.json`에 보존했다. 이번 3분 측정 초반에는 별도 데스크톱 브라우저 검사가 병행되어 완전히 격리된 부하 측정이 아니다. 그래도 전체 관측 10,801프레임의 최대 간격은 16.8ms였으며 이 수치를 실제 iPhone 성능으로 확대하지 않는다.
+
+램 검사 위치와 취소/재시작 동기화 회귀 테스트는 기존 target=0 구현에서 실패하고 수정 후 통과했다. [램 geometry 조사](../retraction-study/README.md)는 90mm 후퇴에서 상단 고정과 교차 한계를, [환경 반사 비교](../reflection-study/README.md)는 선택한 조명을 기록한다. 압착 진입은 여전히 즉시 접촉 위치로 이동하므로 긴 거리의 진입 애니메이션은 미완료다.

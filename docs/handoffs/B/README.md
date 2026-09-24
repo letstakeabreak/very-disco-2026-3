@@ -2,9 +2,11 @@
 
 담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
-현재 구현·시각 증거 commit: `9e5917895feba743d53c5b0c75b5c4489590ea86`. 이후 문서만 갱신한 commit은 이 렌더러·에셋 상태를 바꾸지 않는다. 캡처/브라우저/3분 측정 JSON의 파일 SHA를 현재 소스와 대조해 모두 일치함을 확인했다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
+현재 구현·시각 증거는 이 브랜치의 램 후퇴/환경 반사 보완 revision이다. 고정 commit은 후속 문서 commit에서 기록한다. 캡처/브라우저/3분 측정 JSON의 파일 SHA를 현재 소스와 대조해 모두 일치함을 확인했다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
 
 ## 연결 방법
+
+외부에서 404가 보이면 [공개 접근 확인과 정확한 브랜치 주소](repository-access.md)를 먼저 확인한다. B 문서는 아직 `main`이 아니라 `role/b-render`에 있다.
 
 공개 API는 그대로다. C는 자신이 만든 canvas로 `createRenderer({canvas,onFatal})`를 호출하고, 크기 변경 시 `resize`, 매 프레임 immutable `GameSnapshot`과 ms 단위 delta를 `render`에 전달한다. 종료 시 `dispose`한다. B는 DOM·입력·이벤트 큐·점수·부피 규칙을 소유하지 않는다.
 
@@ -29,10 +31,10 @@ v1의 네 asset ID에 각 한 개의 장면 물체를 대응시킨다. `assetId:
 
 - ImageGen으로 만든 고정 작업실 배경 + Meshy 7에서 생성한 실제 3D 프레스/회수품 4종의 **2.5D 장면**이다. 방 전체를 이동 가능한 3D 환경으로 구현한 것이 아니다.
 - 배경의 2:3 구도를 유지하며 화면 주변은 배경의 조명색을 따른 어두운 여백으로 채운다. 모바일/가로 화면에서 물체 비율을 늘려 맞추지 않는다.
-- PBR 재질, 따뜻한 작업등/약한 청백색 보조광, 좁은 환경 반사, 접촉 그림자를 사용한다. [재질 실험](material-study/README.md)의 조명/반사 대비 보정만 채택했다. 카세트 앰버 투명화 실험은 내부 형상을 복원하지 못해 채택하지 않았다.
+- PBR 재질, 따뜻한 작업등/약한 청백색 보조광, 좁은 환경 반사, 접촉 그림자를 사용한다. [재질 실험](material-study/README.md) 이후 [환경 반사 비교](reflection-study/README.md)의 balanced 설정(실제 Standard 벽 반사색 ×.35, 왼쪽/전방의 따뜻한 카드)을 채택했다. 카세트 앰버 투명화 실험은 내부 형상을 복원하지 못해 채택하지 않았다. [실제 원본 단면 조사](cassette-structure-study/README.md)에서도 중앙 코어 형상이 없음을 확인했다.
 - 카메라를 작업 영역에 가깝게 옮기고 장비 하부를 `Y=.22m` 작업대 아래로 매립한 구도로 표시한다. 이는 GLB를 바꾸지 않는 clipping이며 그림자 패스에도 같은 평면을 적용한다. 기본 선택 물건은 모델 scale 1.1, 트레이 물건은 원래 X폭 최대 .19m로 맞춘다. snapshot entity transform이 있으면 이 기본 배치를 덮어쓴다.
 - 케이스는 배경의 실제 홈을 측정한 중심·앞뒤 방향으로 물건을 눕히고 변형된 중심을 맞춘다. [배치 측정](layout-study/README.md)은 근거이며 실제 케이스 벽·깊이 geometry를 구현한 것은 아니다. 오른쪽 홈은 배경 이미지 바깥으로 일부 잘려 있다.
-- 프레스는 `press-frame`/`press-ram`으로 분리했다. 플랜지는 움직이고 실린더 상단은 붙어 있는 상태를 유지한다. [접촉 조사](contact-study/README.md)에서 과거 높이 측정 오류를 확인해 실제 상면 raycast로 수정했다. 선택 물건 base Y는 .3782m이며 `ram.ts`와 재생성 파이프라인의 값을 교차 검사한다. 받침의 ShadowMaterial에 그림자 수신이 꺼져 있던 누락도 수정했다. [GPU 원인 분리](shadow-study/README.md)는 한 설정만 바꾼 실제 전후 비교다.
+- 프레스는 `press-frame`/`press-ram`으로 분리했다. 플랜지는 움직이고 실린더 상단은 붙어 있는 상태를 유지한다. 검사/대기에서는 90mm 후퇴해 공간을 열고 압착·정착은 접촉 상면을 따른다. [후퇴 조사](retraction-study/README.md)는 404개 상단 정점의 고정 및 생성 자산의 하우징 교차 한계를 기록한다. 압착 진입의 즉각 이동은 추가 개선 대상이다. [접촉 조사](contact-study/README.md)에서 과거 높이 측정 오류를 확인해 실제 상면 raycast로 수정했다. 선택 물건 base Y는 .3782m이며 `ram.ts`와 재생성 파이프라인의 값을 교차 검사한다. 받침의 ShadowMaterial에 그림자 수신이 꺼져 있던 누락도 수정했다. [GPU 원인 분리](shadow-study/README.md)는 한 설정만 바꾼 실제 전후 비교다.
 - 금속/복합재는 보호 부분이 접히는 authored shader 변형, 렌즈는 분리된 유리 면의 강체 이동과 보호 프레임 변형이다. 유리 손상은 균열·거칠기·투과 감소와 심한 손상에서 빠진 조각으로 읽는다. 손상은 오직 snapshot의 확정 무결성을 따른다. 이 표현은 물성/파괴 시뮬레이션이 아니다.
 - 계기판은 ImageGen으로 별도 생성한 바늘 없는 눈금판을 기존 금속 테두리 뒤에 장착했다. 원본의 고정 바늘은 가려지며 기능 바늘은 `snapshot.pressure01`에 따라 왼쪽(0) → 위(0.5) → 오른쪽(1)으로 움직인다. 일시정지·첫 프레임도 즉시 동기화한다. 숫자 HUD는 여전히 C의 책임이다. [원본/프롬프트/변환 기록](../../../assets/source/gauge/provenance.json), [실측 좌표](gauge-calibration.json).
 - 오디오 없음. Meshy 인증·키 공유 없음. 외부 모델/음원/재질 팩 없음.
@@ -47,9 +49,9 @@ A는 `integration/v1` 후보에 이 브랜치의 고정 commit을 다른 역할�
 
 ## 현재 배포 산출물 크기
 
-B 반영 후 `npm run build` 산출물은 **10,001,715 bytes**(압축 전 파일 합계)다. 이 중 모델 8,956,848 bytes, 배경 WebP 285,686 bytes, 계기판 WebP 90,242 bytes이며 JS는 667,502 bytes(gzip 약171.54kB)다. 20MB 초기 예산 이내다. Vite는 JS 단일 chunk 500kB 초과 경고를 남기지만 빌드는 성공했다. 공유 설정/의존성 변경은 하지 않았다. A/C 최종 통합 후 다시 측정해야 한다.
+B 반영 후 `npm run build` 산출물은 **10,001,781 bytes**(압축 전 파일 합계)다. 이 중 모델 8,956,848 bytes, 배경 WebP 285,686 bytes, 계기판 WebP 90,242 bytes이며 JS는 667,568 bytes(gzip 약171.56kB)다. 20MB 초기 예산 이내다. Vite는 JS 단일 chunk 500kB 초과 경고를 남기지만 빌드는 성공했다. 공유 설정/의존성 변경은 하지 않았다. A/C 최종 통합 후 다시 측정해야 한다.
 
-[macOS Safari 관찰](evidence/safari-desktop.md)은 이전 게이지 보완 revision의 기록이며 이번 구도·그림자 변경 뒤 Safari를 재검사한 결과가 아니다. [데스크톱 3분 측정](evidence/desktop-soak.json)도 실제 iPhone 검증과 구분한다.
+[macOS Safari 관찰](evidence/safari-desktop.md)은 이전 게이지 보완 revision의 기록이며 현재 램/반사 변경 뒤 Safari를 재검사한 결과가 아니다. [데스크톱 3분 측정](evidence/desktop-soak.json)도 실제 iPhone 검증과 구분한다.
 
 남은 [실제 iPhone 검증 절차](device-acceptance.md)는 준비 문서이며 측정 결과가 아니다.
 

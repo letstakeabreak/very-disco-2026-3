@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-09-24T14:10:46.640Z",
+  "builtAt": "2026-09-24T14:34:53.157Z",
   "purpose": "Static production build of B fixture harness without Vite HMR; not the integrated game or itch deployment validation",
-  "root": "/Users/miro/Developer/very-disco-2026-3",
+  "root": "/Users/miro/Developer/very-disco-2026-3/",
   "outDir": "/tmp/deep-press-b-static-preview",
   "base": "/",
   "sourceHashesBefore": {
@@ -11,8 +11,8 @@
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "08bcd3d408a245d3c6619924981303f9433d45e852c8a980799257fe76e523f2",
-    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
     "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
@@ -28,8 +28,8 @@
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "08bcd3d408a245d3c6619924981303f9433d45e852c8a980799257fe76e523f2",
-    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
     "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
@@ -59,9 +59,9 @@
       "bytes": 4119,
       "sha256": "d770d61ef68980bf1c20f2d7db81f8fc4033e8d4c2c925d7108a175bbfdeae08"
     },
-    "assets/preview-_piYR8SW.js": {
-      "bytes": 668565,
-      "sha256": "4c16a23be54231a0bcfc38ebe6939beb5a416178ccda728542ec960f907900f0"
+    "assets/preview-CfLPIMoJ.js": {
+      "bytes": 668631,
+      "sha256": "1189aa994b05890f720ac84f814bebabadba2dae9291abff89ac6a601aeaef0e"
     },
     "assets/textures/pressure-dial.webp": {
       "bytes": 90242,
@@ -73,7 +73,7 @@
     },
     "docs/handoffs/B/preview.html": {
       "bytes": 3136,
-      "sha256": "19b3fb9cd88e4aec8608704c8c8b8974a4aa84914d1fe183e42074120c43dcc2"
+      "sha256": "f20b4746ad2455c8c7328f3430c129addeb571eef4b247bf7121e5413f5e40f8"
     }
   }
 }

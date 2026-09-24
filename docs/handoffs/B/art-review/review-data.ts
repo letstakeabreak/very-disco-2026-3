@@ -3,10 +3,10 @@ export type Verdict = '통과' | '미달' | '미검증';
 export type TargetReview = { id: string; title: string; concept: string; size: string; mode: string; summary: string;
   verdicts: readonly [Verdict,Verdict,Verdict,Verdict,Verdict,Verdict,Verdict]; notes: readonly string[]; mobile: boolean };
 export const reviews: readonly TargetReview[] = [
-  {id:'01',title:'작업대 / 검사 전',concept:'01-workbench.png',size:'1024 × 1536',mode:'공개 createRenderer + 카세트 inspecting fixture',summary:'부분 대응. 하단 박스 매립과 가까워진 카메라로 카세트가 커졌고 접촉 음영도 보인다. 상단 구도와 열린 작업 공간의 비율은 목표와 다르다.',mobile:true,
+  {id:'01',title:'작업대 / 검사 전',concept:'01-workbench.png',size:'1024 × 1536',mode:'공개 createRenderer + 카세트 inspecting fixture',summary:'부분 대응. 검사 램을 90mm 후퇴시켜 물건 위 공간이 열렸고 금속 가장자리에 작업등 색이 보인다. 상단 구도·물건 크기·표면 디테일은 목표와 다르다.',mobile:true,
     verdicts:['미달','미달','통과','통과','통과','미검증','미달'],notes:[
-      '큰 하단 박스 대부분이 작업대 아래로 숨고 선택 카세트가 커졌다. 다만 목표는 상단 장비를 자르고 검사 전 램 아래 여유를 크게 둔다. 실제는 상단 볼트까지 보이며 램과 물건 간격이 훨씬 좁다.',
-      '밝은 외피·어두운 금속·호박색 중심부는 구별된다. 카세트 중심부는 여전히 불투명한 금색이고 프레스는 회색 위주다. 재질 구별 통과가 목표의 투명 깊이나 금속 표면 재현을 뜻하지 않는다.',
+      '큰 하단 박스 대부분이 작업대 아래로 숨고 선택 카세트가 커졌다. 다만 목표는 상단 장비를 자르고 검사 전 램 아래 여유를 크게 둔다. 실제는 상단 볼트까지 보인다. 90mm 후퇴로 검사 여유는 넓어졌지만 목표의 장비 비율과 같은 구도는 아니다.',
+      '밝은 외피·어두운 금속·호박색 중심부는 구별된다. 카세트 중심부는 여전히 불투명한 금색이고 프레스는 어두운 금속과 따뜻한 가장자리 반사로 바뀌었다. 재질 구별 통과가 목표의 투명 깊이나 금속 표면 재현을 뜻하지 않는다.',
       '받침에 물건과 램의 음영이 생기고 물건 밑의 접촉부가 이전보다 분명해졌다. 접촉·그림자 통과는 이 캡처의 시각적 연결에 한정하며 물리 충돌·정확한 접촉면을 보증하지 않는다.',
       '390/320px에서 카세트의 흰 외피와 금색 중심부는 이전보다 잘 보인다. 작은 체결부·외피 접힘의 상태는 여전히 읽기 어렵다. 손상 없는 검사 전 정지 화면으로 파손 가독성이나 변형을 검증하지 않는다.'
     ]},
@@ -24,11 +24,11 @@ export const reviews: readonly TargetReview[] = [
       '임베디드 geometry/color/MR/normal은 교체하지 않았다. 생산용과 같은 반사 카드·환경광 보정값을 다른 카메라·중성 배경에서 본 결과이며 게임 장면 자체의 조명 합격 증거는 아니다.',
       '정적 근접 캡처다. 변형·회전 조작·모바일 플레이 가독성을 검사하지 않았다.'
     ]},
-  {id:'04',title:'프레스 / 독립 에셋',concept:'04-press-chamber-reference.png',size:'1254 × 1254',mode:'별도 Three.js 에셋 뷰어 · 동일 runtime GLB/PBR',summary:'부분 대응. 검사 조명과 거칠기 조정으로 램의 세로 반사가 드러났다. 전체 구조는 대응하지만 목표의 따뜻한 금속 반사와 마모 깊이는 부족하다.',mobile:false,
+  {id:'04',title:'프레스 / 독립 에셋',concept:'04-press-chamber-reference.png',size:'1254 × 1254',mode:'별도 Three.js 에셋 뷰어 · 동일 runtime GLB/PBR',summary:'부분 대응. 환경 벽 반사를 줄이고 앞쪽 반사를 따뜻하게 조정했다. 전체 구조와 가장자리 반사는 대응하지만 목표의 표면 마모·깊이는 부족하다.',mobile:false,
     verdicts:['통과','통과','통과','미달','통과','미검증','미검증'],notes:[
       '전면 왼쪽 ¾에서 전체 실루엣·두 기둥·게이지·램·작업 받침을 확인했다. 별도 카메라의 한정된 에셋 검토이며 게임 구도가 개선됐다는 뜻은 아니다.',
-      '램에 좁은 세로 반사와 바닥의 투영 그림자가 보인다. 금속과 어두운 패널은 구별되지만 원본의 따뜻한 반사·마모 깊이보다 회색 위주이고 표면이 단순하다.',
-      'GLB 원위치에 production createGauge와 pressure-dial.webp를 적용하고 압력 0으로 고정했다. 생산용과 같은 조명 A와 프레스 재질 roughness ×0.72를 별도 검사 카메라에서도 사용하며 공유 재질에 중복 곱하지 않았다.',
+      '램에 좁은 세로 반사와 바닥의 투영 그림자가 보인다. 금속과 어두운 패널은 구별되지만 따뜻한 가장자리 반사가 추가됐어도 원본의 미세 마모·깊이에 비해 표면이 단순하고 어두운 면의 디테일이 부족하다.',
+      'GLB 원위치에 production createGauge와 pressure-dial.webp를 적용하고 압력 0으로 고정했다. 생산용과 같은 balanced 환경 반사와 프레스 재질 roughness ×0.72를 별도 검사 카메라에서도 사용하며 공유 재질에 중복 곱하지 않았다.',
       '04 단독으로 램 애니메이션·게이지 범위·작은 화면 가독성을 검증하지 않는다. 01/02의 공개 렌더러 비교에서 압력 변화는 별도로 확인한다.'
     ]},
   {id:'05',title:'회수 성공 / 3개 보관',concept:'05-success-state.png',size:'1024 × 1536',mode:'공개 createRenderer + complete fixture',summary:'부분 대응. 세 물건이 홈의 긴 방향에 맞춰 배치되어 앞쪽 가로줄 문제가 개선됐다. 작은 케이스·오른쪽 잘림·모바일 상태 식별에는 차이가 남는다.',mobile:true,

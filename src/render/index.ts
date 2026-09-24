@@ -12,7 +12,7 @@ import { deformSpecimen, type Deformation } from './deformation';
 import { createGauge } from './gauge';
 import { disposeObjects } from './resources';
 import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state';
-import { animateRam, PRESS_ANCHORS } from './ram';
+import { animateRam, PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from './ram';
 import { ASSET_REGISTRY } from './assets';
 
 const STAGE_ASPECT = 2 / 3;
@@ -148,10 +148,12 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     room.traverse((object) => {
       if (object instanceof Mesh && object.material instanceof MeshLambertMaterial) {
         if (object.material.emissiveIntensity > 2) {
-          object.material.emissive.set(object.position.x < -8 ? '#ffe2ba' : '#edf3ff');
+          object.material.emissive.set(object.position.x < -8 || object.position.z > 8 ? '#ffe2ba' : '#edf3ff');
           if (Math.abs(object.position.x) > 8) object.scale.z *= 0.45;
           else if (Math.abs(object.position.z) > 8) object.scale.x *= 0.45;
-        } else object.material.color.multiplyScalar(0.35);
+        }
+      } else if (object instanceof Mesh && object.material instanceof MeshStandardMaterial) {
+        object.material.color.multiplyScalar(0.35);
       }
     });
     environment = generator.fromScene(room, 0.02);
@@ -298,7 +300,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     }
     if (ram) {
       const inContact = snapshot.currentSpecimen !== null && (phase === 'compressing' || phase === 'settling' || phase === 'failed');
-      const target = inContact ? Math.min(PRESS_ANCHORS.travel, Math.max(0, PRESS_ANCHORS.platenY - currentTop)) : 0;
+      const target = inContact ? Math.min(PRESS_ANCHORS.travel, Math.max(0, PRESS_ANCHORS.platenY - currentTop)) : RAM_RETRACTED_TRAVEL;
       // During contact the platen follows the deformed surface without a second easing lag.
       ram.travel.value = inContact ? target : ram.travel.value + (target - ram.travel.value) * blend;
     }

@@ -1,11 +1,11 @@
 {
   "kind": "Desktop Chromium WebGL fixture workload, 390x844 with DPR 2; NOT a physical iPhone or gameplay test",
   "url": "http://127.0.0.1:4174/docs/handoffs/B/preview.html",
-  "checkedAt": "2026-09-24T14:11:12.522Z",
+  "checkedAt": "2026-09-24T14:35:14.297Z",
   "startHashes": {
-    "src/render/index.ts": "08bcd3d408a245d3c6619924981303f9433d45e852c8a980799257fe76e523f2",
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
-    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
@@ -22,7 +22,32 @@
       "done": false,
       "errors": [],
       "metrics": {
-        "elapsedMs": 30438.29999999702,
+        "elapsedMs": 30308.5,
+        "fps": 60.002400096003825,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1819,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 60609.20000000298,
         "fps": 60.002400096003846,
         "maxFrameMs": 16.80000000000291,
         "p95FrameMs": 16.700000000004366,
@@ -35,7 +60,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 1827,
+        "totalFrames": 3637,
         "viewport": {
           "dpr": 2,
           "height": 844,
@@ -47,58 +72,8 @@
       "done": false,
       "errors": [],
       "metrics": {
-        "elapsedMs": 60861.20000000298,
-        "fps": 60.002400096003846,
-        "maxFrameMs": 16.80000000000291,
-        "p95FrameMs": 16.700000000004366,
-        "rendererStatus": {
-          "drawCalls": "27",
-          "engine": "three.js r186",
-          "loadedAssets": "4",
-          "renderState": "ready",
-          "triangles": "239048",
-          "visibleTriangles": "81024"
-        },
-        "sampleFrames": 600,
-        "totalFrames": 3652,
-        "viewport": {
-          "dpr": 2,
-          "height": 844,
-          "width": 390
-        }
-      }
-    },
-    {
-      "done": false,
-      "errors": [],
-      "metrics": {
-        "elapsedMs": 91186.79999999702,
-        "fps": 60.0030001500075,
-        "maxFrameMs": 16.80000000000291,
-        "p95FrameMs": 16.79999999998836,
-        "rendererStatus": {
-          "drawCalls": "27",
-          "engine": "three.js r186",
-          "loadedAssets": "4",
-          "renderState": "ready",
-          "triangles": "239048",
-          "visibleTriangles": "81024"
-        },
-        "sampleFrames": 600,
-        "totalFrames": 5472,
-        "viewport": {
-          "dpr": 2,
-          "height": 844,
-          "width": 390
-        }
-      }
-    },
-    {
-      "done": false,
-      "errors": [],
-      "metrics": {
-        "elapsedMs": 121506.90000000596,
-        "fps": 60.0030001500075,
+        "elapsedMs": 90940.59999999404,
+        "fps": 60.00240009600389,
         "maxFrameMs": 16.80000000000291,
         "p95FrameMs": 16.70000000001164,
         "rendererStatus": {
@@ -110,7 +85,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 7291,
+        "totalFrames": 5457,
         "viewport": {
           "dpr": 2,
           "height": 844,
@@ -122,7 +97,32 @@
       "done": false,
       "errors": [],
       "metrics": {
-        "elapsedMs": 151833.20000000298,
+        "elapsedMs": 121377.29999999702,
+        "fps": 60.00240009600381,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.70000000001164,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 7283,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 151693.59999999404,
         "fps": 60.00240009600398,
         "maxFrameMs": 16.800000000017462,
         "p95FrameMs": 16.70000000001164,
@@ -135,7 +135,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 9111,
+        "totalFrames": 9102,
         "viewport": {
           "dpr": 2,
           "height": 844,
@@ -147,8 +147,8 @@
       "done": true,
       "errors": [],
       "metrics": {
-        "elapsedMs": 182258.79999999705,
-        "fps": 60.00240009600398,
+        "elapsedMs": 182101.5,
+        "fps": 60.0030001500075,
         "maxFrameMs": 16.800000000017462,
         "p95FrameMs": 16.79999999998836,
         "rendererStatus": {
@@ -160,7 +160,7 @@
           "visibleTriangles": "81024"
         },
         "sampleFrames": 600,
-        "totalFrames": 10936,
+        "totalFrames": 10927,
         "viewport": {
           "dpr": 2,
           "height": 844,
@@ -171,7 +171,7 @@
   ],
   "measurement": {
     "done": true,
-    "durationMs": 180008.800000003,
+    "durationMs": 180006.79999999105,
     "environment": {
       "buffer": [
         780,
@@ -182,13 +182,13 @@
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
     },
     "errors": [],
-    "fps": 60.00817737799386,
-    "frames": 10802,
+    "fps": 60.00328876464965,
+    "frames": 10801,
     "maxFrameMs": 16.800000000017462,
     "p95FrameMs": 16.70000000001164,
     "phaseSamples": [
       {
-        "elapsed": 515.90000000298,
+        "elapsed": 513.8999999910593,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -200,7 +200,7 @@
         }
       },
       {
-        "elapsed": 1032.60000000298,
+        "elapsed": 1030.4999999910597,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -212,7 +212,7 @@
         }
       },
       {
-        "elapsed": 1549.3000000029806,
+        "elapsed": 1547.1999999910597,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -224,7 +224,7 @@
         }
       },
       {
-        "elapsed": 2065.8000000029806,
+        "elapsed": 2063.799999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -236,7 +236,7 @@
         }
       },
       {
-        "elapsed": 2565.90000000298,
+        "elapsed": 2580.4999999910597,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -248,7 +248,7 @@
         }
       },
       {
-        "elapsed": 3065.900000002981,
+        "elapsed": 3097.099999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -260,7 +260,7 @@
         }
       },
       {
-        "elapsed": 3582.5000000029795,
+        "elapsed": 3597.09999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -272,7 +272,7 @@
         }
       },
       {
-        "elapsed": 4099.10000000298,
+        "elapsed": 4113.699999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -284,7 +284,7 @@
         }
       },
       {
-        "elapsed": 4615.70000000298,
+        "elapsed": 4630.399999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -296,7 +296,7 @@
         }
       },
       {
-        "elapsed": 5132.400000002981,
+        "elapsed": 5146.99999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -308,7 +308,7 @@
         }
       },
       {
-        "elapsed": 5649.0000000029795,
+        "elapsed": 5663.699999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -320,7 +320,7 @@
         }
       },
       {
-        "elapsed": 6165.70000000298,
+        "elapsed": 6180.399999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -332,7 +332,7 @@
         }
       },
       {
-        "elapsed": 6682.400000002981,
+        "elapsed": 6696.99999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -344,7 +344,7 @@
         }
       },
       {
-        "elapsed": 7199.0000000029795,
+        "elapsed": 7213.59999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -356,7 +356,7 @@
         }
       },
       {
-        "elapsed": 7715.60000000298,
+        "elapsed": 7730.299999991059,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -368,7 +368,7 @@
         }
       },
       {
-        "elapsed": 8215.70000000298,
+        "elapsed": 8246.99999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -380,7 +380,7 @@
         }
       },
       {
-        "elapsed": 8732.20000000298,
+        "elapsed": 8763.59999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -392,7 +392,7 @@
         }
       },
       {
-        "elapsed": 9232.30000000298,
+        "elapsed": 9280.19999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -404,7 +404,7 @@
         }
       },
       {
-        "elapsed": 9748.90000000298,
+        "elapsed": 9796.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -416,7 +416,7 @@
         }
       },
       {
-        "elapsed": 10265.60000000298,
+        "elapsed": 10313.49999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -428,7 +428,7 @@
         }
       },
       {
-        "elapsed": 10782.20000000298,
+        "elapsed": 10830.09999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -440,7 +440,7 @@
         }
       },
       {
-        "elapsed": 11298.90000000298,
+        "elapsed": 11346.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -452,7 +452,7 @@
         }
       },
       {
-        "elapsed": 11815.40000000298,
+        "elapsed": 11846.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -464,7 +464,7 @@
         }
       },
       {
-        "elapsed": 12332.100000002982,
+        "elapsed": 12363.39999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -476,7 +476,7 @@
         }
       },
       {
-        "elapsed": 12848.70000000298,
+        "elapsed": 12880.09999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -488,7 +488,7 @@
         }
       },
       {
-        "elapsed": 13365.50000000298,
+        "elapsed": 13396.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -500,7 +500,7 @@
         }
       },
       {
-        "elapsed": 13882.00000000298,
+        "elapsed": 13913.39999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -512,7 +512,7 @@
         }
       },
       {
-        "elapsed": 14398.70000000298,
+        "elapsed": 14429.999999991058,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -524,7 +524,7 @@
         }
       },
       {
-        "elapsed": 14915.30000000298,
+        "elapsed": 14946.59999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -536,7 +536,7 @@
         }
       },
       {
-        "elapsed": 15415.40000000298,
+        "elapsed": 15446.69999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -548,7 +548,7 @@
         }
       },
       {
-        "elapsed": 15932.00000000298,
+        "elapsed": 15963.29999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -560,7 +560,7 @@
         }
       },
       {
-        "elapsed": 16448.70000000298,
+        "elapsed": 16479.999999991058,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -572,7 +572,7 @@
         }
       },
       {
-        "elapsed": 16965.30000000298,
+        "elapsed": 16996.499999991058,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -584,7 +584,7 @@
         }
       },
       {
-        "elapsed": 17481.90000000298,
+        "elapsed": 17513.19999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -596,7 +596,7 @@
         }
       },
       {
-        "elapsed": 17998.60000000298,
+        "elapsed": 18029.89999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -608,7 +608,7 @@
         }
       },
       {
-        "elapsed": 18515.20000000298,
+        "elapsed": 18546.499999991054,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -620,7 +620,7 @@
         }
       },
       {
-        "elapsed": 19031.80000000298,
+        "elapsed": 19063.09999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -632,7 +632,7 @@
         }
       },
       {
-        "elapsed": 19548.50000000298,
+        "elapsed": 19579.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -644,7 +644,7 @@
         }
       },
       {
-        "elapsed": 20065.10000000298,
+        "elapsed": 20096.499999991054,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -656,7 +656,7 @@
         }
       },
       {
-        "elapsed": 20581.80000000298,
+        "elapsed": 20613.09999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -668,7 +668,7 @@
         }
       },
       {
-        "elapsed": 21098.50000000298,
+        "elapsed": 21129.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -680,7 +680,7 @@
         }
       },
       {
-        "elapsed": 21615.00000000298,
+        "elapsed": 21646.39999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -692,7 +692,7 @@
         }
       },
       {
-        "elapsed": 22115.10000000298,
+        "elapsed": 22162.999999991054,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -704,7 +704,7 @@
         }
       },
       {
-        "elapsed": 22631.70000000298,
+        "elapsed": 22679.69999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -716,7 +716,7 @@
         }
       },
       {
-        "elapsed": 23148.40000000298,
+        "elapsed": 23196.29999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -728,7 +728,7 @@
         }
       },
       {
-        "elapsed": 23665.00000000298,
+        "elapsed": 23712.999999991054,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -740,7 +740,7 @@
         }
       },
       {
-        "elapsed": 24181.70000000298,
+        "elapsed": 24229.59999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -752,7 +752,7 @@
         }
       },
       {
-        "elapsed": 24698.30000000298,
+        "elapsed": 24746.29999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -764,7 +764,7 @@
         }
       },
       {
-        "elapsed": 25214.90000000298,
+        "elapsed": 25262.89999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -776,7 +776,7 @@
         }
       },
       {
-        "elapsed": 25731.60000000298,
+        "elapsed": 25779.499999991054,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -788,7 +788,7 @@
         }
       },
       {
-        "elapsed": 26248.30000000298,
+        "elapsed": 26296.19999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -800,7 +800,7 @@
         }
       },
       {
-        "elapsed": 26764.90000000298,
+        "elapsed": 26812.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -812,7 +812,7 @@
         }
       },
       {
-        "elapsed": 27281.50000000298,
+        "elapsed": 27329.39999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -824,7 +824,7 @@
         }
       },
       {
-        "elapsed": 27781.500000002983,
+        "elapsed": 27846.19999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -836,7 +836,7 @@
         }
       },
       {
-        "elapsed": 28298.20000000298,
+        "elapsed": 28362.79999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -848,7 +848,7 @@
         }
       },
       {
-        "elapsed": 28814.70000000298,
+        "elapsed": 28879.39999999106,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -860,7 +860,7 @@
         }
       },
       {
-        "elapsed": 29314.80000000298,
+        "elapsed": 29396.099999991056,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -872,7 +872,7 @@
         }
       },
       {
-        "elapsed": 29831.400000002977,
+        "elapsed": 29912.699999991062,
         "phase": "inspecting",
         "renderer": {
           "drawCalls": "27",
@@ -884,7 +884,7 @@
         }
       },
       {
-        "elapsed": 30348.10000000298,
+        "elapsed": 30429.39999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -896,7 +896,7 @@
         }
       },
       {
-        "elapsed": 30864.70000000298,
+        "elapsed": 30946.099999991056,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -908,7 +908,7 @@
         }
       },
       {
-        "elapsed": 31381.400000002977,
+        "elapsed": 31462.699999991062,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -920,7 +920,7 @@
         }
       },
       {
-        "elapsed": 31898.000000002983,
+        "elapsed": 31979.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -932,7 +932,7 @@
         }
       },
       {
-        "elapsed": 32414.60000000298,
+        "elapsed": 32495.89999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -944,7 +944,7 @@
         }
       },
       {
-        "elapsed": 32931.30000000298,
+        "elapsed": 32995.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -956,7 +956,7 @@
         }
       },
       {
-        "elapsed": 33448.00000000298,
+        "elapsed": 33512.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -968,7 +968,7 @@
         }
       },
       {
-        "elapsed": 33964.60000000298,
+        "elapsed": 34029.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -980,7 +980,7 @@
         }
       },
       {
-        "elapsed": 34481.20000000298,
+        "elapsed": 34545.89999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -992,7 +992,7 @@
         }
       },
       {
-        "elapsed": 34997.90000000298,
+        "elapsed": 35062.49999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1004,7 +1004,7 @@
         }
       },
       {
-        "elapsed": 35514.50000000298,
+        "elapsed": 35579.19999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1016,7 +1016,7 @@
         }
       },
       {
-        "elapsed": 36031.10000000298,
+        "elapsed": 36095.79999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1028,7 +1028,7 @@
         }
       },
       {
-        "elapsed": 36547.80000000298,
+        "elapsed": 36612.49999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1040,7 +1040,7 @@
         }
       },
       {
-        "elapsed": 37064.50000000298,
+        "elapsed": 37129.09999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1052,7 +1052,7 @@
         }
       },
       {
-        "elapsed": 37581.10000000298,
+        "elapsed": 37645.79999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1064,7 +1064,7 @@
         }
       },
       {
-        "elapsed": 38097.70000000298,
+        "elapsed": 38162.39999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1076,7 +1076,7 @@
         }
       },
       {
-        "elapsed": 38614.30000000298,
+        "elapsed": 38678.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1088,7 +1088,7 @@
         }
       },
       {
-        "elapsed": 39114.40000000298,
+        "elapsed": 39195.69999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1100,7 +1100,7 @@
         }
       },
       {
-        "elapsed": 39631.10000000298,
+        "elapsed": 39712.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1112,7 +1112,7 @@
         }
       },
       {
-        "elapsed": 40147.70000000298,
+        "elapsed": 40228.89999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1124,7 +1124,7 @@
         }
       },
       {
-        "elapsed": 40664.30000000298,
+        "elapsed": 40728.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1136,7 +1136,7 @@
         }
       },
       {
-        "elapsed": 41181.00000000298,
+        "elapsed": 41245.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1148,7 +1148,7 @@
         }
       },
       {
-        "elapsed": 41697.60000000298,
+        "elapsed": 41762.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1160,7 +1160,7 @@
         }
       },
       {
-        "elapsed": 42214.20000000298,
+        "elapsed": 42278.89999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1172,7 +1172,7 @@
         }
       },
       {
-        "elapsed": 42714.30000000298,
+        "elapsed": 42795.49999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1184,7 +1184,7 @@
         }
       },
       {
-        "elapsed": 43230.90000000298,
+        "elapsed": 43295.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1196,7 +1196,7 @@
         }
       },
       {
-        "elapsed": 43747.50000000298,
+        "elapsed": 43812.19999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1208,7 +1208,7 @@
         }
       },
       {
-        "elapsed": 44247.60000000298,
+        "elapsed": 44328.79999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1220,7 +1220,7 @@
         }
       },
       {
-        "elapsed": 44764.10000000298,
+        "elapsed": 44845.49999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1232,7 +1232,7 @@
         }
       },
       {
-        "elapsed": 45280.80000000298,
+        "elapsed": 45362.09999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1244,7 +1244,7 @@
         }
       },
       {
-        "elapsed": 45797.50000000298,
+        "elapsed": 45878.69999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1256,7 +1256,7 @@
         }
       },
       {
-        "elapsed": 46314.10000000298,
+        "elapsed": 46395.39999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1268,7 +1268,7 @@
         }
       },
       {
-        "elapsed": 46830.80000000298,
+        "elapsed": 46912.09999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1280,7 +1280,7 @@
         }
       },
       {
-        "elapsed": 47347.40000000298,
+        "elapsed": 47428.69999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1292,7 +1292,7 @@
         }
       },
       {
-        "elapsed": 47864.00000000298,
+        "elapsed": 47945.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1304,7 +1304,7 @@
         }
       },
       {
-        "elapsed": 48380.60000000298,
+        "elapsed": 48461.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1316,7 +1316,7 @@
         }
       },
       {
-        "elapsed": 48880.70000000298,
+        "elapsed": 48978.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1328,7 +1328,7 @@
         }
       },
       {
-        "elapsed": 49397.30000000298,
+        "elapsed": 49495.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1340,7 +1340,7 @@
         }
       },
       {
-        "elapsed": 49913.90000000298,
+        "elapsed": 50011.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1352,7 +1352,7 @@
         }
       },
       {
-        "elapsed": 50430.60000000298,
+        "elapsed": 50528.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1364,7 +1364,7 @@
         }
       },
       {
-        "elapsed": 50947.20000000298,
+        "elapsed": 51045.19999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1376,7 +1376,7 @@
         }
       },
       {
-        "elapsed": 51463.90000000298,
+        "elapsed": 51561.79999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1388,7 +1388,7 @@
         }
       },
       {
-        "elapsed": 51980.50000000298,
+        "elapsed": 52078.49999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1400,7 +1400,7 @@
         }
       },
       {
-        "elapsed": 52497.20000000298,
+        "elapsed": 52595.19999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1412,7 +1412,7 @@
         }
       },
       {
-        "elapsed": 53013.80000000298,
+        "elapsed": 53111.79999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1424,7 +1424,7 @@
         }
       },
       {
-        "elapsed": 53530.40000000298,
+        "elapsed": 53628.49999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1436,7 +1436,7 @@
         }
       },
       {
-        "elapsed": 54030.50000000298,
+        "elapsed": 54145.09999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1448,7 +1448,7 @@
         }
       },
       {
-        "elapsed": 54547.00000000298,
+        "elapsed": 54661.69999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1460,7 +1460,7 @@
         }
       },
       {
-        "elapsed": 55047.10000000298,
+        "elapsed": 55178.39999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1472,7 +1472,7 @@
         }
       },
       {
-        "elapsed": 55563.70000000298,
+        "elapsed": 55694.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1484,7 +1484,7 @@
         }
       },
       {
-        "elapsed": 56080.40000000298,
+        "elapsed": 56211.69999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1496,7 +1496,7 @@
         }
       },
       {
-        "elapsed": 56597.00000000298,
+        "elapsed": 56728.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1508,7 +1508,7 @@
         }
       },
       {
-        "elapsed": 57113.60000000298,
+        "elapsed": 57244.99999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1520,7 +1520,7 @@
         }
       },
       {
-        "elapsed": 57630.30000000298,
+        "elapsed": 57761.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1532,7 +1532,7 @@
         }
       },
       {
-        "elapsed": 58147.00000000298,
+        "elapsed": 58278.29999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1544,7 +1544,7 @@
         }
       },
       {
-        "elapsed": 58663.60000000298,
+        "elapsed": 58794.89999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1556,7 +1556,7 @@
         }
       },
       {
-        "elapsed": 59180.20000000298,
+        "elapsed": 59311.59999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1568,7 +1568,7 @@
         }
       },
       {
-        "elapsed": 59696.90000000298,
+        "elapsed": 59828.19999999106,
         "phase": "compressing",
         "renderer": {
           "drawCalls": "27",
@@ -1580,7 +1580,7 @@
         }
       },
       {
-        "elapsed": 60213.600000002974,
+        "elapsed": 60344.89999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1592,7 +1592,7 @@
         }
       },
       {
-        "elapsed": 60730.100000002974,
+        "elapsed": 60861.499999991065,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1604,7 +1604,7 @@
         }
       },
       {
-        "elapsed": 61230.20000000298,
+        "elapsed": 61378.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1616,7 +1616,7 @@
         }
       },
       {
-        "elapsed": 61746.800000002986,
+        "elapsed": 61894.79999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1628,7 +1628,7 @@
         }
       },
       {
-        "elapsed": 62263.50000000298,
+        "elapsed": 62411.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1640,7 +1640,7 @@
         }
       },
       {
-        "elapsed": 62780.100000002974,
+        "elapsed": 62928.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1652,7 +1652,7 @@
         }
       },
       {
-        "elapsed": 63296.800000002986,
+        "elapsed": 63444.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1664,7 +1664,7 @@
         }
       },
       {
-        "elapsed": 63813.40000000298,
+        "elapsed": 63961.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1676,7 +1676,7 @@
         }
       },
       {
-        "elapsed": 64330.00000000298,
+        "elapsed": 64477.999999991065,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1688,7 +1688,7 @@
         }
       },
       {
-        "elapsed": 64830.100000002974,
+        "elapsed": 64994.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1700,7 +1700,7 @@
         }
       },
       {
-        "elapsed": 65346.600000002974,
+        "elapsed": 65511.29999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1712,7 +1712,7 @@
         }
       },
       {
-        "elapsed": 65863.40000000298,
+        "elapsed": 66027.89999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1724,7 +1724,7 @@
         }
       },
       {
-        "elapsed": 66379.90000000298,
+        "elapsed": 66544.49999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1736,7 +1736,7 @@
         }
       },
       {
-        "elapsed": 66896.60000000297,
+        "elapsed": 67044.59999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1748,7 +1748,7 @@
         }
       },
       {
-        "elapsed": 67413.30000000299,
+        "elapsed": 67561.19999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1760,7 +1760,7 @@
         }
       },
       {
-        "elapsed": 67929.90000000298,
+        "elapsed": 68077.79999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1772,7 +1772,7 @@
         }
       },
       {
-        "elapsed": 68446.50000000298,
+        "elapsed": 68594.49999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1784,7 +1784,7 @@
         }
       },
       {
-        "elapsed": 68963.20000000298,
+        "elapsed": 69111.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1796,7 +1796,7 @@
         }
       },
       {
-        "elapsed": 69479.80000000299,
+        "elapsed": 69627.79999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1808,7 +1808,7 @@
         }
       },
       {
-        "elapsed": 69996.50000000298,
+        "elapsed": 70144.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1820,7 +1820,7 @@
         }
       },
       {
-        "elapsed": 70513.10000000297,
+        "elapsed": 70661.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1832,7 +1832,7 @@
         }
       },
       {
-        "elapsed": 71029.80000000299,
+        "elapsed": 71177.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1844,7 +1844,7 @@
         }
       },
       {
-        "elapsed": 71546.40000000298,
+        "elapsed": 71694.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1856,7 +1856,7 @@
         }
       },
       {
-        "elapsed": 72063.10000000297,
+        "elapsed": 72210.99999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1868,7 +1868,7 @@
         }
       },
       {
-        "elapsed": 72579.70000000298,
+        "elapsed": 72727.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1880,7 +1880,7 @@
         }
       },
       {
-        "elapsed": 73096.40000000298,
+        "elapsed": 73244.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1892,7 +1892,7 @@
         }
       },
       {
-        "elapsed": 73613.00000000298,
+        "elapsed": 73760.99999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1904,7 +1904,7 @@
         }
       },
       {
-        "elapsed": 74129.70000000298,
+        "elapsed": 74277.59999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1916,7 +1916,7 @@
         }
       },
       {
-        "elapsed": 74646.30000000299,
+        "elapsed": 74794.29999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1928,7 +1928,7 @@
         }
       },
       {
-        "elapsed": 75163.00000000298,
+        "elapsed": 75310.89999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1940,7 +1940,7 @@
         }
       },
       {
-        "elapsed": 75679.60000000297,
+        "elapsed": 75827.59999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1952,7 +1952,7 @@
         }
       },
       {
-        "elapsed": 76196.30000000299,
+        "elapsed": 76344.19999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1964,7 +1964,7 @@
         }
       },
       {
-        "elapsed": 76712.90000000298,
+        "elapsed": 76860.89999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1976,7 +1976,7 @@
         }
       },
       {
-        "elapsed": 77229.50000000298,
+        "elapsed": 77377.49999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -1988,7 +1988,7 @@
         }
       },
       {
-        "elapsed": 77746.20000000298,
+        "elapsed": 77894.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2000,7 +2000,7 @@
         }
       },
       {
-        "elapsed": 78262.80000000299,
+        "elapsed": 78410.79999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2012,7 +2012,7 @@
         }
       },
       {
-        "elapsed": 78779.50000000298,
+        "elapsed": 78927.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2024,7 +2024,7 @@
         }
       },
       {
-        "elapsed": 79296.10000000297,
+        "elapsed": 79444.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2036,7 +2036,7 @@
         }
       },
       {
-        "elapsed": 79812.70000000298,
+        "elapsed": 79960.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2048,7 +2048,7 @@
         }
       },
       {
-        "elapsed": 80329.40000000298,
+        "elapsed": 80477.29999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2060,7 +2060,7 @@
         }
       },
       {
-        "elapsed": 80846.10000000297,
+        "elapsed": 80993.99999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2072,7 +2072,7 @@
         }
       },
       {
-        "elapsed": 81362.70000000298,
+        "elapsed": 81510.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2084,7 +2084,7 @@
         }
       },
       {
-        "elapsed": 81879.30000000299,
+        "elapsed": 82027.29999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2096,7 +2096,7 @@
         }
       },
       {
-        "elapsed": 82396.00000000298,
+        "elapsed": 82543.99999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2108,7 +2108,7 @@
         }
       },
       {
-        "elapsed": 82912.60000000297,
+        "elapsed": 83060.59999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2120,7 +2120,7 @@
         }
       },
       {
-        "elapsed": 83429.30000000299,
+        "elapsed": 83577.19999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2132,7 +2132,7 @@
         }
       },
       {
-        "elapsed": 83945.90000000298,
+        "elapsed": 84093.89999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2144,7 +2144,7 @@
         }
       },
       {
-        "elapsed": 84462.60000000297,
+        "elapsed": 84610.59999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2156,7 +2156,7 @@
         }
       },
       {
-        "elapsed": 84979.20000000298,
+        "elapsed": 85127.19999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2168,7 +2168,7 @@
         }
       },
       {
-        "elapsed": 85495.90000000298,
+        "elapsed": 85643.79999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2180,7 +2180,7 @@
         }
       },
       {
-        "elapsed": 86012.50000000298,
+        "elapsed": 86160.49999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2192,7 +2192,7 @@
         }
       },
       {
-        "elapsed": 86529.10000000297,
+        "elapsed": 86677.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2204,7 +2204,7 @@
         }
       },
       {
-        "elapsed": 87029.20000000298,
+        "elapsed": 87193.79999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2216,7 +2216,7 @@
         }
       },
       {
-        "elapsed": 87545.80000000299,
+        "elapsed": 87710.39999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2228,7 +2228,7 @@
         }
       },
       {
-        "elapsed": 88062.40000000298,
+        "elapsed": 88226.99999999107,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2240,7 +2240,7 @@
         }
       },
       {
-        "elapsed": 88579.00000000298,
+        "elapsed": 88727.09999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2252,7 +2252,7 @@
         }
       },
       {
-        "elapsed": 89079.10000000297,
+        "elapsed": 89243.69999999106,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2264,7 +2264,7 @@
         }
       },
       {
-        "elapsed": 89595.70000000298,
+        "elapsed": 89760.29999999105,
         "phase": "failed",
         "renderer": {
           "drawCalls": "27",
@@ -2276,7 +2276,7 @@
         }
       },
       {
-        "elapsed": 90112.40000000298,
+        "elapsed": 90276.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2288,7 +2288,7 @@
         }
       },
       {
-        "elapsed": 90629.00000000298,
+        "elapsed": 90776.99999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2300,7 +2300,7 @@
         }
       },
       {
-        "elapsed": 91145.70000000298,
+        "elapsed": 91293.59999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2312,7 +2312,7 @@
         }
       },
       {
-        "elapsed": 91662.300000003,
+        "elapsed": 91810.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2324,7 +2324,7 @@
         }
       },
       {
-        "elapsed": 92178.90000000298,
+        "elapsed": 92326.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2336,7 +2336,7 @@
         }
       },
       {
-        "elapsed": 92695.60000000296,
+        "elapsed": 92843.49999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2348,7 +2348,7 @@
         }
       },
       {
-        "elapsed": 93212.20000000298,
+        "elapsed": 93360.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2360,7 +2360,7 @@
         }
       },
       {
-        "elapsed": 93728.800000003,
+        "elapsed": 93876.79999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2372,7 +2372,7 @@
         }
       },
       {
-        "elapsed": 94228.90000000298,
+        "elapsed": 94393.49999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2384,7 +2384,7 @@
         }
       },
       {
-        "elapsed": 94745.50000000298,
+        "elapsed": 94910.09999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2396,7 +2396,7 @@
         }
       },
       {
-        "elapsed": 95262.10000000296,
+        "elapsed": 95426.79999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2408,7 +2408,7 @@
         }
       },
       {
-        "elapsed": 95778.800000003,
+        "elapsed": 95943.39999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2420,7 +2420,7 @@
         }
       },
       {
-        "elapsed": 96295.40000000298,
+        "elapsed": 96459.99999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2432,7 +2432,7 @@
         }
       },
       {
-        "elapsed": 96812.10000000296,
+        "elapsed": 96960.09999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2444,7 +2444,7 @@
         }
       },
       {
-        "elapsed": 97328.70000000298,
+        "elapsed": 97476.69999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2456,7 +2456,7 @@
         }
       },
       {
-        "elapsed": 97845.40000000298,
+        "elapsed": 97993.29999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2468,7 +2468,7 @@
         }
       },
       {
-        "elapsed": 98362.00000000298,
+        "elapsed": 98493.39999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2480,7 +2480,7 @@
         }
       },
       {
-        "elapsed": 98878.60000000296,
+        "elapsed": 99009.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2492,7 +2492,7 @@
         }
       },
       {
-        "elapsed": 99395.300000003,
+        "elapsed": 99526.59999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2504,7 +2504,7 @@
         }
       },
       {
-        "elapsed": 99911.90000000298,
+        "elapsed": 100043.29999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2516,7 +2516,7 @@
         }
       },
       {
-        "elapsed": 100428.60000000296,
+        "elapsed": 100559.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2528,7 +2528,7 @@
         }
       },
       {
-        "elapsed": 100945.20000000298,
+        "elapsed": 101076.49999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2540,7 +2540,7 @@
         }
       },
       {
-        "elapsed": 101461.90000000298,
+        "elapsed": 101593.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2552,7 +2552,7 @@
         }
       },
       {
-        "elapsed": 101978.60000000296,
+        "elapsed": 102109.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2564,7 +2564,7 @@
         }
       },
       {
-        "elapsed": 102495.20000000298,
+        "elapsed": 102626.49999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2576,7 +2576,7 @@
         }
       },
       {
-        "elapsed": 103011.90000000298,
+        "elapsed": 103143.09999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2588,7 +2588,7 @@
         }
       },
       {
-        "elapsed": 103528.50000000298,
+        "elapsed": 103659.79999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2600,7 +2600,7 @@
         }
       },
       {
-        "elapsed": 104045.10000000296,
+        "elapsed": 104176.39999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2612,7 +2612,7 @@
         }
       },
       {
-        "elapsed": 104561.70000000298,
+        "elapsed": 104693.09999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2624,7 +2624,7 @@
         }
       },
       {
-        "elapsed": 105078.40000000298,
+        "elapsed": 105209.69999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2636,7 +2636,7 @@
         }
       },
       {
-        "elapsed": 105595.10000000296,
+        "elapsed": 105726.29999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2648,7 +2648,7 @@
         }
       },
       {
-        "elapsed": 106111.70000000298,
+        "elapsed": 106242.99999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2660,7 +2660,7 @@
         }
       },
       {
-        "elapsed": 106628.300000003,
+        "elapsed": 106759.59999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2672,7 +2672,7 @@
         }
       },
       {
-        "elapsed": 107128.40000000298,
+        "elapsed": 107276.29999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2684,7 +2684,7 @@
         }
       },
       {
-        "elapsed": 107644.90000000298,
+        "elapsed": 107792.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2696,7 +2696,7 @@
         }
       },
       {
-        "elapsed": 108145.00000000298,
+        "elapsed": 108309.59999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2708,7 +2708,7 @@
         }
       },
       {
-        "elapsed": 108661.60000000296,
+        "elapsed": 108826.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2720,7 +2720,7 @@
         }
       },
       {
-        "elapsed": 109178.20000000298,
+        "elapsed": 109342.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2732,7 +2732,7 @@
         }
       },
       {
-        "elapsed": 109694.90000000298,
+        "elapsed": 109859.59999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2744,7 +2744,7 @@
         }
       },
       {
-        "elapsed": 110211.50000000298,
+        "elapsed": 110376.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2756,7 +2756,7 @@
         }
       },
       {
-        "elapsed": 110728.10000000296,
+        "elapsed": 110892.79999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2768,7 +2768,7 @@
         }
       },
       {
-        "elapsed": 111228.20000000298,
+        "elapsed": 111409.49999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2780,7 +2780,7 @@
         }
       },
       {
-        "elapsed": 111744.800000003,
+        "elapsed": 111926.09999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2792,7 +2792,7 @@
         }
       },
       {
-        "elapsed": 112261.50000000298,
+        "elapsed": 112442.79999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2804,7 +2804,7 @@
         }
       },
       {
-        "elapsed": 112778.10000000296,
+        "elapsed": 112959.39999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2816,7 +2816,7 @@
         }
       },
       {
-        "elapsed": 113294.800000003,
+        "elapsed": 113476.09999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2828,7 +2828,7 @@
         }
       },
       {
-        "elapsed": 113811.40000000298,
+        "elapsed": 113992.69999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2840,7 +2840,7 @@
         }
       },
       {
-        "elapsed": 114328.00000000298,
+        "elapsed": 114509.29999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2852,7 +2852,7 @@
         }
       },
       {
-        "elapsed": 114844.70000000298,
+        "elapsed": 115009.39999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2864,7 +2864,7 @@
         }
       },
       {
-        "elapsed": 115361.40000000298,
+        "elapsed": 115525.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2876,7 +2876,7 @@
         }
       },
       {
-        "elapsed": 115878.00000000298,
+        "elapsed": 116025.99999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2888,7 +2888,7 @@
         }
       },
       {
-        "elapsed": 116394.60000000296,
+        "elapsed": 116542.59999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2900,7 +2900,7 @@
         }
       },
       {
-        "elapsed": 116911.300000003,
+        "elapsed": 117059.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2912,7 +2912,7 @@
         }
       },
       {
-        "elapsed": 117427.90000000298,
+        "elapsed": 117575.89999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2924,7 +2924,7 @@
         }
       },
       {
-        "elapsed": 117944.50000000298,
+        "elapsed": 118092.49999999108,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2936,7 +2936,7 @@
         }
       },
       {
-        "elapsed": 118461.20000000298,
+        "elapsed": 118609.19999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2948,7 +2948,7 @@
         }
       },
       {
-        "elapsed": 118977.90000000298,
+        "elapsed": 119125.79999999104,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2960,7 +2960,7 @@
         }
       },
       {
-        "elapsed": 119494.50000000298,
+        "elapsed": 119642.39999999106,
         "phase": "stored",
         "renderer": {
           "drawCalls": "27",
@@ -2972,7 +2972,7 @@
         }
       },
       {
-        "elapsed": 120011.10000000296,
+        "elapsed": 120142.49999999108,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -2984,7 +2984,7 @@
         }
       },
       {
-        "elapsed": 120527.800000003,
+        "elapsed": 120659.09999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -2996,7 +2996,7 @@
         }
       },
       {
-        "elapsed": 121044.40000000298,
+        "elapsed": 121175.69999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3008,7 +3008,7 @@
         }
       },
       {
-        "elapsed": 121561.10000000296,
+        "elapsed": 121692.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3020,7 +3020,7 @@
         }
       },
       {
-        "elapsed": 122077.70000000298,
+        "elapsed": 122209.09999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3032,7 +3032,7 @@
         }
       },
       {
-        "elapsed": 122594.300000003,
+        "elapsed": 122725.69999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3044,7 +3044,7 @@
         }
       },
       {
-        "elapsed": 123111.00000000298,
+        "elapsed": 123242.29999999104,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3056,7 +3056,7 @@
         }
       },
       {
-        "elapsed": 123627.70000000298,
+        "elapsed": 123758.89999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3068,7 +3068,7 @@
         }
       },
       {
-        "elapsed": 124144.300000003,
+        "elapsed": 124275.59999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3080,7 +3080,7 @@
         }
       },
       {
-        "elapsed": 124661.00000000298,
+        "elapsed": 124792.29999999104,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3092,7 +3092,7 @@
         }
       },
       {
-        "elapsed": 125177.60000000296,
+        "elapsed": 125308.89999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3104,7 +3104,7 @@
         }
       },
       {
-        "elapsed": 125694.20000000298,
+        "elapsed": 125825.59999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3116,7 +3116,7 @@
         }
       },
       {
-        "elapsed": 126210.900000003,
+        "elapsed": 126342.19999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3128,7 +3128,7 @@
         }
       },
       {
-        "elapsed": 126727.60000000296,
+        "elapsed": 126858.79999999104,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3140,7 +3140,7 @@
         }
       },
       {
-        "elapsed": 127244.20000000298,
+        "elapsed": 127358.89999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3152,7 +3152,7 @@
         }
       },
       {
-        "elapsed": 127760.800000003,
+        "elapsed": 127875.49999999108,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3164,7 +3164,7 @@
         }
       },
       {
-        "elapsed": 128277.50000000295,
+        "elapsed": 128392.09999999109,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3176,7 +3176,7 @@
         }
       },
       {
-        "elapsed": 128794.10000000296,
+        "elapsed": 128908.69999999103,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3188,7 +3188,7 @@
         }
       },
       {
-        "elapsed": 129310.800000003,
+        "elapsed": 129408.79999999104,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3200,7 +3200,7 @@
         }
       },
       {
-        "elapsed": 129827.400000003,
+        "elapsed": 129925.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3212,7 +3212,7 @@
         }
       },
       {
-        "elapsed": 130344.00000000295,
+        "elapsed": 130441.99999999108,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3224,7 +3224,7 @@
         }
       },
       {
-        "elapsed": 130844.10000000296,
+        "elapsed": 130958.69999999103,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3236,7 +3236,7 @@
         }
       },
       {
-        "elapsed": 131360.70000000298,
+        "elapsed": 131475.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3248,7 +3248,7 @@
         }
       },
       {
-        "elapsed": 131877.300000003,
+        "elapsed": 131991.9999999911,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3260,7 +3260,7 @@
         }
       },
       {
-        "elapsed": 132394.00000000297,
+        "elapsed": 132508.59999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3272,7 +3272,7 @@
         }
       },
       {
-        "elapsed": 132910.70000000298,
+        "elapsed": 133025.29999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3284,7 +3284,7 @@
         }
       },
       {
-        "elapsed": 133427.300000003,
+        "elapsed": 133541.89999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3296,7 +3296,7 @@
         }
       },
       {
-        "elapsed": 133943.900000003,
+        "elapsed": 134058.4999999911,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3308,7 +3308,7 @@
         }
       },
       {
-        "elapsed": 134460.60000000297,
+        "elapsed": 134575.19999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3320,7 +3320,7 @@
         }
       },
       {
-        "elapsed": 134977.20000000298,
+        "elapsed": 135091.89999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3332,7 +3332,7 @@
         }
       },
       {
-        "elapsed": 135493.800000003,
+        "elapsed": 135608.4999999911,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3344,7 +3344,7 @@
         }
       },
       {
-        "elapsed": 136010.50000000297,
+        "elapsed": 136125.09999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3356,7 +3356,7 @@
         }
       },
       {
-        "elapsed": 136527.10000000297,
+        "elapsed": 136641.79999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3368,7 +3368,7 @@
         }
       },
       {
-        "elapsed": 137043.800000003,
+        "elapsed": 137158.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3380,7 +3380,7 @@
         }
       },
       {
-        "elapsed": 137560.400000003,
+        "elapsed": 137675.09999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3392,7 +3392,7 @@
         }
       },
       {
-        "elapsed": 138060.50000000297,
+        "elapsed": 138191.69999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3404,7 +3404,7 @@
         }
       },
       {
-        "elapsed": 138577.10000000297,
+        "elapsed": 138708.29999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3416,7 +3416,7 @@
         }
       },
       {
-        "elapsed": 139093.70000000298,
+        "elapsed": 139208.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3428,7 +3428,7 @@
         }
       },
       {
-        "elapsed": 139610.400000003,
+        "elapsed": 139724.9999999911,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3440,7 +3440,7 @@
         }
       },
       {
-        "elapsed": 140127.00000000297,
+        "elapsed": 140241.69999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3452,7 +3452,7 @@
         }
       },
       {
-        "elapsed": 140643.70000000298,
+        "elapsed": 140758.29999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3464,7 +3464,7 @@
         }
       },
       {
-        "elapsed": 141160.20000000298,
+        "elapsed": 141274.89999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3476,7 +3476,7 @@
         }
       },
       {
-        "elapsed": 141676.900000003,
+        "elapsed": 141791.59999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3488,7 +3488,7 @@
         }
       },
       {
-        "elapsed": 142193.60000000297,
+        "elapsed": 142308.29999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3500,7 +3500,7 @@
         }
       },
       {
-        "elapsed": 142710.300000003,
+        "elapsed": 142824.79999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3512,7 +3512,7 @@
         }
       },
       {
-        "elapsed": 143226.900000003,
+        "elapsed": 143341.4999999911,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3524,7 +3524,7 @@
         }
       },
       {
-        "elapsed": 143743.50000000297,
+        "elapsed": 143858.19999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3536,7 +3536,7 @@
         }
       },
       {
-        "elapsed": 144260.20000000298,
+        "elapsed": 144374.79999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3548,7 +3548,7 @@
         }
       },
       {
-        "elapsed": 144776.900000003,
+        "elapsed": 144891.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3560,7 +3560,7 @@
         }
       },
       {
-        "elapsed": 145293.50000000297,
+        "elapsed": 145408.09999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3572,7 +3572,7 @@
         }
       },
       {
-        "elapsed": 145810.10000000297,
+        "elapsed": 145924.79999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3584,7 +3584,7 @@
         }
       },
       {
-        "elapsed": 146326.800000003,
+        "elapsed": 146441.39999999106,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3596,7 +3596,7 @@
         }
       },
       {
-        "elapsed": 146843.400000003,
+        "elapsed": 146958.09999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3608,7 +3608,7 @@
         }
       },
       {
-        "elapsed": 147360.00000000297,
+        "elapsed": 147474.69999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3620,7 +3620,7 @@
         }
       },
       {
-        "elapsed": 147876.70000000298,
+        "elapsed": 147991.29999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3632,7 +3632,7 @@
         }
       },
       {
-        "elapsed": 148393.300000003,
+        "elapsed": 148507.9999999911,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3644,7 +3644,7 @@
         }
       },
       {
-        "elapsed": 148910.00000000297,
+        "elapsed": 149024.59999999107,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3656,7 +3656,7 @@
         }
       },
       {
-        "elapsed": 149426.60000000297,
+        "elapsed": 149541.19999999105,
         "phase": "complete",
         "renderer": {
           "drawCalls": "27",
@@ -3668,19 +3668,7 @@
         }
       },
       {
-        "elapsed": 149926.70000000298,
-        "phase": "complete",
-        "renderer": {
-          "drawCalls": "27",
-          "engine": "three.js r186",
-          "loadedAssets": "4",
-          "renderState": "ready",
-          "triangles": "239048",
-          "visibleTriangles": "81024"
-        }
-      },
-      {
-        "elapsed": 150443.20000000298,
+        "elapsed": 150041.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3692,7 +3680,7 @@
         }
       },
       {
-        "elapsed": 150943.300000003,
+        "elapsed": 150557.89999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3704,7 +3692,7 @@
         }
       },
       {
-        "elapsed": 151459.900000003,
+        "elapsed": 151074.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3716,7 +3704,7 @@
         }
       },
       {
-        "elapsed": 151976.50000000297,
+        "elapsed": 151591.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3728,7 +3716,7 @@
         }
       },
       {
-        "elapsed": 152493.10000000297,
+        "elapsed": 152107.89999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3740,7 +3728,7 @@
         }
       },
       {
-        "elapsed": 153009.900000003,
+        "elapsed": 152624.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3752,7 +3740,7 @@
         }
       },
       {
-        "elapsed": 153526.400000003,
+        "elapsed": 153141.09999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3764,7 +3752,7 @@
         }
       },
       {
-        "elapsed": 154043.10000000297,
+        "elapsed": 153657.79999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3776,7 +3764,7 @@
         }
       },
       {
-        "elapsed": 154559.800000003,
+        "elapsed": 154174.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3788,7 +3776,7 @@
         }
       },
       {
-        "elapsed": 155076.400000003,
+        "elapsed": 154690.9999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3800,7 +3788,7 @@
         }
       },
       {
-        "elapsed": 155593.00000000297,
+        "elapsed": 155207.79999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3812,7 +3800,7 @@
         }
       },
       {
-        "elapsed": 156109.70000000298,
+        "elapsed": 155724.39999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3824,7 +3812,7 @@
         }
       },
       {
-        "elapsed": 156626.300000003,
+        "elapsed": 156240.9999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3836,7 +3824,7 @@
         }
       },
       {
-        "elapsed": 157126.400000003,
+        "elapsed": 156757.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3848,7 +3836,7 @@
         }
       },
       {
-        "elapsed": 157642.900000003,
+        "elapsed": 157274.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3860,7 +3848,7 @@
         }
       },
       {
-        "elapsed": 158159.60000000297,
+        "elapsed": 157790.9999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3872,7 +3860,7 @@
         }
       },
       {
-        "elapsed": 158676.300000003,
+        "elapsed": 158307.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3884,7 +3872,7 @@
         }
       },
       {
-        "elapsed": 159192.900000003,
+        "elapsed": 158824.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3896,7 +3884,7 @@
         }
       },
       {
-        "elapsed": 159709.50000000297,
+        "elapsed": 159340.89999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3908,7 +3896,7 @@
         }
       },
       {
-        "elapsed": 160226.20000000298,
+        "elapsed": 159857.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3920,7 +3908,7 @@
         }
       },
       {
-        "elapsed": 160742.800000003,
+        "elapsed": 160374.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3932,7 +3920,7 @@
         }
       },
       {
-        "elapsed": 161259.50000000297,
+        "elapsed": 160890.79999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3944,7 +3932,7 @@
         }
       },
       {
-        "elapsed": 161776.10000000297,
+        "elapsed": 161407.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3956,7 +3944,7 @@
         }
       },
       {
-        "elapsed": 162276.20000000298,
+        "elapsed": 161924.09999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3968,7 +3956,7 @@
         }
       },
       {
-        "elapsed": 162792.800000003,
+        "elapsed": 162440.69999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3980,7 +3968,7 @@
         }
       },
       {
-        "elapsed": 163309.400000003,
+        "elapsed": 162957.39999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -3992,7 +3980,7 @@
         }
       },
       {
-        "elapsed": 163826.00000000297,
+        "elapsed": 163474.09999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4004,7 +3992,7 @@
         }
       },
       {
-        "elapsed": 164342.70000000298,
+        "elapsed": 163990.69999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4016,7 +4004,7 @@
         }
       },
       {
-        "elapsed": 164859.400000003,
+        "elapsed": 164507.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4028,7 +4016,7 @@
         }
       },
       {
-        "elapsed": 165376.00000000297,
+        "elapsed": 165023.9999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4040,7 +4028,7 @@
         }
       },
       {
-        "elapsed": 165892.60000000297,
+        "elapsed": 165540.69999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4052,7 +4040,7 @@
         }
       },
       {
-        "elapsed": 166392.70000000298,
+        "elapsed": 166057.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4064,7 +4052,7 @@
         }
       },
       {
-        "elapsed": 166909.20000000298,
+        "elapsed": 166573.89999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4076,7 +4064,7 @@
         }
       },
       {
-        "elapsed": 167426.00000000297,
+        "elapsed": 167090.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4088,7 +4076,7 @@
         }
       },
       {
-        "elapsed": 167942.60000000297,
+        "elapsed": 167607.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4100,7 +4088,7 @@
         }
       },
       {
-        "elapsed": 168459.20000000298,
+        "elapsed": 168123.89999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4112,7 +4100,7 @@
         }
       },
       {
-        "elapsed": 168975.900000003,
+        "elapsed": 168640.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4124,7 +4112,7 @@
         }
       },
       {
-        "elapsed": 169492.50000000297,
+        "elapsed": 169157.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4136,7 +4124,7 @@
         }
       },
       {
-        "elapsed": 170009.20000000298,
+        "elapsed": 169673.79999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4148,7 +4136,7 @@
         }
       },
       {
-        "elapsed": 170525.800000003,
+        "elapsed": 170190.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4160,7 +4148,7 @@
         }
       },
       {
-        "elapsed": 171042.400000003,
+        "elapsed": 170707.09999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4172,7 +4160,7 @@
         }
       },
       {
-        "elapsed": 171559.10000000297,
+        "elapsed": 171223.69999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4184,7 +4172,7 @@
         }
       },
       {
-        "elapsed": 172075.800000003,
+        "elapsed": 171740.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4196,7 +4184,7 @@
         }
       },
       {
-        "elapsed": 172592.300000003,
+        "elapsed": 172257.09999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4208,7 +4196,7 @@
         }
       },
       {
-        "elapsed": 173092.400000003,
+        "elapsed": 172773.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4220,7 +4208,7 @@
         }
       },
       {
-        "elapsed": 173609.00000000297,
+        "elapsed": 173273.69999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4232,7 +4220,7 @@
         }
       },
       {
-        "elapsed": 174125.60000000297,
+        "elapsed": 173790.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4244,7 +4232,7 @@
         }
       },
       {
-        "elapsed": 174642.300000003,
+        "elapsed": 174306.9999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4256,7 +4244,7 @@
         }
       },
       {
-        "elapsed": 175159.00000000297,
+        "elapsed": 174823.59999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4268,7 +4256,7 @@
         }
       },
       {
-        "elapsed": 175675.60000000297,
+        "elapsed": 175340.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4280,7 +4268,7 @@
         }
       },
       {
-        "elapsed": 176192.20000000298,
+        "elapsed": 175856.79999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4292,7 +4280,7 @@
         }
       },
       {
-        "elapsed": 176708.900000003,
+        "elapsed": 176356.89999999106,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4304,7 +4292,7 @@
         }
       },
       {
-        "elapsed": 177225.50000000297,
+        "elapsed": 176873.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4316,7 +4304,7 @@
         }
       },
       {
-        "elapsed": 177742.20000000298,
+        "elapsed": 177390.19999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4328,7 +4316,7 @@
         }
       },
       {
-        "elapsed": 178258.900000003,
+        "elapsed": 177906.79999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4340,7 +4328,7 @@
         }
       },
       {
-        "elapsed": 178775.400000003,
+        "elapsed": 178423.4999999911,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4352,7 +4340,7 @@
         }
       },
       {
-        "elapsed": 179275.50000000297,
+        "elapsed": 178940.09999999107,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4364,7 +4352,19 @@
         }
       },
       {
-        "elapsed": 179792.10000000297,
+        "elapsed": 179456.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 179973.29999999105,
         "phase": "paused",
         "renderer": {
           "drawCalls": "27",
@@ -4378,9 +4378,9 @@
     ]
   },
   "endHashes": {
-    "src/render/index.ts": "08bcd3d408a245d3c6619924981303f9433d45e852c8a980799257fe76e523f2",
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
-    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",

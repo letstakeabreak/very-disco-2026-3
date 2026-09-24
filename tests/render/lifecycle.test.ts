@@ -8,7 +8,7 @@ import type { WebGLCapabilities } from 'three/src/renderers/webgl/WebGLCapabilit
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
 import { deepFreeze } from '../../src/contracts/validate';
 import type { GameSnapshot } from '../../src/contracts';
-import { PRESS_ANCHORS } from '../../src/render/ram';
+import { PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from '../../src/render/ram';
 
 // Only device/IO boundaries are replaced. Scene graph, materials, deformation,
 // snapshot interpretation and disposal use the real Three.js implementation.
@@ -239,6 +239,31 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     for (let i = 0; i < 10; i += 1) renderer.render(paused, 100);
     expect(compression.value).toBe(0);
     renderer.render(SNAPSHOT_FIXTURES.compressing, 16); expect(compression.value).toBeGreaterThan(0);
+    renderer.dispose();
+  });
+
+  it('opens the inspection gap, follows contact, and retracts on release, cancel and restart', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    const press = [...models.entries()].find(([url]) => url.includes('press-chamber'))![1];
+    const travel = uniform(press.mesh, 'ramTravel');
+    renderer.render({ ...SNAPSHOT_FIXTURES.inspecting, tick: 10 }, 0);
+    expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
+    renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 11 }, 16);
+    expect(travel.value).toBeGreaterThan(0);
+    const contact = travel.value;
+    const inspecting: GameSnapshot = { ...SNAPSHOT_FIXTURES.inspecting, tick: 12 };
+    renderer.render(inspecting, 16);
+    expect(travel.value).toBeLessThan(contact); expect(travel.value).toBeGreaterThan(RAM_RETRACTED_TRAVEL);
+    const firstRetraction = travel.value;
+    renderer.render(inspecting, 0); expect(travel.value).toBe(firstRetraction);
+    for (let i = 0; i < 10; i += 1) renderer.render(inspecting, 100);
+    expect(travel.value).toBeCloseTo(RAM_RETRACTED_TRAVEL, 6);
+    renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 13 }, 16);
+    const paused: GameSnapshot = { ...inspecting, tick: 14, phase: 'paused', resumePhase: 'inspecting' };
+    renderer.render(paused, 0); expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
+    renderer.render(paused, 100); expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
+    renderer.render({ ...SNAPSHOT_FIXTURES.compressing, tick: 15 }, 16);
+    renderer.render(SNAPSHOT_FIXTURES.idle, 0); expect(travel.value).toBe(RAM_RETRACTED_TRAVEL);
     renderer.dispose();
   });
 

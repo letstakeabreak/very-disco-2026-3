@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-09-24T13:57:35.993Z",
+  "checkedAt": "2026-09-24T14:34:35.111Z",
   "validation": "passed",
   "scope": "Anchor consistency and unchanged asset hashes only; not browser, gameplay, continuous contact or device QA",
-  "rendererSha256": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+  "rendererSha256": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
   "recalculationSha256": "9c1c213d1f0603293098bc8d5246ff8e681e4694aa1fdcfb0af2d69474ace7f8",
   "specimenBaseY": 0.3782,
   "workbedY": 0.37636804580688477,

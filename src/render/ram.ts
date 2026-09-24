@@ -17,9 +17,15 @@ export const PRESS_ANCHORS = Object.freeze({
   travel: PLATEN_Y - SPECIMEN_BASE_Y,
 });
 
+/** Negative travel retracts upward. 90mm stays below the monotonic-map limit (~125.27mm).
+ * Actual pose evidence and the asset's pre-existing housing intersections are documented
+ * in docs/handoffs/B/retraction-study; this is not a collision-free mechanism guarantee.
+ */
+export const RAM_RETRACTED_TRAVEL = -0.09;
+
 /** Lower flange translates rigidly; cylinder extends while its upper mount stays fixed. */
 export function animateRam(root: Object3D): { travel: { value: number }; depthMaterials: MeshDepthMaterial[] } {
-  const travel = { value: 0 };
+  const travel = { value: RAM_RETRACTED_TRAVEL };
   const depthMaterials: MeshDepthMaterial[] = [];
   const patch = (shader: WebGLProgramParametersWithUniforms): void => {
     shader.uniforms['ramTravel'] = travel;

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T14:10:35.362Z",
+  "checkedAt": "2026-09-24T14:39:49.507Z",
   "kind": "Static image gallery verification; does not open a WebGL view.",
   "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/index.html",
   "checks": [
@@ -687,9 +687,9 @@
     "index.html": "d05bfdbdb763c2d0725acb75d21c1a795265867a8adfbb15f21380fab3fc2ca8",
     "gallery.ts": "2d5eed07a76798413c865c3364ad0a6037ea4d511ef98ed323a4177171e5f6aa",
     "gallery.css": "cb412ef7290257d2d81b9424700838bf81140f20fda49ec5534d5cfb446bc5f7",
-    "review-data.ts": "3665d5a9db147ea0d311d0cfd88f4b2b4acc8e27751113f159488ba007ccbe14",
+    "review-data.ts": "848e049f785553e05980629178eb218d3feae106e670d0b9b9916cda0a981988",
     "gallery-check.mjs": "788a21a2dbf003061bc64a66674581ff32973093367ca1b1c79f73642c0fdca5",
-    "capture-report.json": "6364e2517414ff8fbc447872645d2983933c32bf42cd7444c5c860720072c0b8"
+    "capture-report.json": "e925a0b8071a78bedafeeb2a9afea7057a505e6d1b875cc09b5be6cf26b975b3"
   },
   "passed": true
 }
