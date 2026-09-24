@@ -119,3 +119,7 @@ h2 { font-size: 17px; line-height: 1.25; }
   .pressure-card { padding: 9px 12px; }
   .press-button { min-height: 52px; }
 }
+
+@media (max-height: 580px) {
+  .screen { gap: 6px; }
+}
