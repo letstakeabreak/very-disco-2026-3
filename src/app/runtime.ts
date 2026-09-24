@@ -5,6 +5,13 @@ export function createRuntime(game: Game, renderer: GameRenderer, onEvents: (eve
   let accumulator = 0;
   let disposed = false;
   return {
+    replaceRenderer(nextRenderer: GameRenderer): void {
+      if (disposed) { nextRenderer.dispose(); return; }
+      const previousRenderer = renderer;
+      renderer = nextRenderer;
+      accumulator = 0;
+      previousRenderer.dispose();
+    },
     dispatch(command: GameCommand): void { if (disposed) return; game.dispatch(command); if (command.type === 'pause' || command.type === 'resume' || command.type === 'restart' || command.type === 'start') accumulator = 0; onEvents(game.drainEvents()); },
     frame(dtMs: number, fixture?: GameSnapshot): void {
       if (disposed) return;
