@@ -4,21 +4,22 @@
 
 ## 바로 열기
 
-- [공통 작업 지침](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/instruction.md)
-- [Goal 시작 요청](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/goal.md)
-- [PRD](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/prd.md)
+- [공통 작업 지침](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/instruction.md) · [AI용 원문](https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/main/instruction.md)
+- [Goal 시작 요청](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/goal.md) · [AI용 원문](https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/main/goal.md)
+- [PRD](https://github.com/letstakeabreak/very-disco-2026-3/blob/main/prd.md) · [AI용 원문](https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/main/prd.md)
 - [B 최신 인계 문서](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/README.md)
 - [B Draft PR #1](https://github.com/letstakeabreak/very-disco-2026-3/pull/1)
+- [C 최신 인계 문서](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/c-app/docs/handoffs/C/handoff.md) · [AI용 원문](https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/c-app/docs/handoffs/C/handoff.md)
 
 ## 역할별 공개 상태
 
 | 역할 | 담당 | 작업 문서 |
 |---|---|---|
-| A · 코어/콘텐츠/통합 | sy-Lee-01 | 2026-09-24 확인 시 원격 역할 브랜치와 인계 문서 미게시. 시작은 위 공통 Goal 문서를 따른다. |
+| A · 코어/콘텐츠/통합 | sy-Lee-01 | 2026-09-25 확인 시 원격 역할 브랜치와 인계 문서 미게시. 시작은 위 공통 Goal 문서를 따른다. |
 | B · 렌더/에셋/그래픽 | letstakeabreak | 아래 `role/b-render` 문서 목록. 구현·검증·미완료 조건을 함께 읽는다. |
-| C · 앱/입력/HUD | magic3ightball | 2026-09-24 확인 시 원격 역할 브랜치와 인계 문서 미게시. 시작은 위 공통 Goal 문서를 따른다. |
+| C · 앱/입력/HUD | magic3ightball | `role/c-app`의 [인계 문서](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/c-app/docs/handoffs/C/handoff.md). 구현·검증·미완료 조건을 함께 읽는다. |
 
-A/C 문서가 아직 게시되지 않은 상태에서 없는 경로로 연결하지 않는다. 각 담당자가 브랜치/문서를 push하면 실제 존재하는 주소로 이 목록을 갱신한다. 공통 개발 출발점은 `bootstrap-v2`이며 이 문서 목록이 역할별 출발 절차를 변경하지 않는다.
+아직 게시되지 않은 A 문서는 없는 경로로 연결하지 않는다. 담당자가 브랜치/문서를 push하면 실제 존재하는 주소로 이 목록을 갱신한다. B/C 인계 문서는 각 역할 브랜치에 있으므로 주소의 브랜치를 `main`으로 바꾸지 않는다. 공통 개발 출발점은 `bootstrap-v2`이며 이 문서 목록이 역할별 출발 절차를 변경하지 않는다.
 
 ## B 작업 문서 전체
 
@@ -49,3 +50,5 @@ A/C 문서가 아직 게시되지 않은 상태에서 없는 경로로 연결하
 조회는 공개 주소를 이용한다. 코드 push에는 collaborator 권한이 필요하다. 아직 초대를 수락하지 않았다면 본인 GitHub 계정으로 [저장소 초대 페이지](https://github.com/letstakeabreak/very-disco-2026-3/invitations)를 연다. 이 로그인 전용 초대 URL은 공개 문서 링크와 별개다.
 
 2026-09-24 사용자 요청에 따라 작업 문서 접근 경로를 기본 README에 추가했다. 공통 계약/API/게임 소스/패키지는 변경하지 않았다. B 기여의 게임 통합은 별도 `integration/v1` 검증 절차를 따른다.
+
+2026-09-25 후속 확인에서 새로 공개된 C 인계와 공통 문서의 AI용 원문 링크를 추가했다. 문서 추가·이동 뒤에는 이 목록의 웹/원문 주소를 로그인 없이 검사하고, 실제 문서가 있는 브랜치와 경로로 함께 갱신한다.
