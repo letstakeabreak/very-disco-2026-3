@@ -1,0 +1,42 @@
+# C role handoff — DEEP PRESS
+
+Date: 2026-09-24 (Asia/Seoul)  
+Role: C — app, input, HUD (`magic3ightball`, verified through the connected GitHub identity tool)  
+Contract: 1.0.0  
+PRD: 1.0.1 (`executionReady: true`)  
+Target branch: `role/c-app`  
+Implementation commit: `06e8d24d1c02b9c04df39ecb8e2ce2b251a69172` (official `bootstrap-v2` parent)
+PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), open against `integration/v1`
+
+## Starting point and provenance
+
+The Drive archive `DEEP-PRESS-bootstrap-v2.zip` was downloaded from the user-provided project folder and its SHA-256 matched the value in `00-START-HERE.md`: `4bbe967e112f2a89188e9e1a880e7385057d18cf2b31e993bb39ac1e9fe69d24`. Its top-level directory is named `c739b527449b2527e46b567bfffbd4a7122f571c`; `docs/bootstrap.json` records `bootstrap-v2`, PRD 1.0.1, contract 1.0.0 and 23 frozen-file hashes. `npm run bootstrap:check` passed those 23 frozen-file checks.
+
+The archive does not contain Git metadata, so the initial local work used a synthetic Git commit. After GitHub access became available, the official `bootstrap-v2` annotated tag was resolved: tag object `ba2f00e700c04402cfa6574c4db9cf5ab0d7c2a0` points to commit `c739b527449b2527e46b567bfffbd4a7122f571c`. The `integration/v1` branch currently points to the same commit. The local archive's Git tree hash (`b0e6095ebf9c51eb7fb9711cae4ddb30970cd12d`) exactly matches the official commit's tree hash, confirming the checked source tree is identical. The synthetic local commit is not used as the parent of the GitHub contribution branch.
+
+## Implemented
+
+- Replaced the development probe with a DEEP PRESS app screen: 1L capacity and score HUD, specimen selection, pressure display, hold-to-press, store/discard/cash-out controls, tutorial steps, pause/resume, failure and completion overlays, and restart.
+- Added pointer capture for horizontal specimen inspection and press hold. A single active pointer is accepted; duplicate pointers/releases are ignored. Pointer cancellation and capture loss pause the game, and visibility loss pauses without auto-resuming.
+- Added keyboard press support, safe-area-aware layout, 44px minimum touch targets, a 320px minimum width, and WebGL error messaging. Audio remains absent.
+- Kept score, capacity and specimen outcomes core-owned. Storage availability uses only the documented action prerequisites; fixture outcomes are not used as live gameplay.
+- Added C tests for pointer lifecycle, cancellation, rotation, presentation labels, storage prerequisites and paused runtime timing.
+
+Implementation paths: `src/app/index.ts`, `src/app/input.ts`, `src/app/presentation.ts`, `src/app/style.css`, `tests/app/input.test.ts`, `tests/app/presentation.test.ts`, `tests/app/runtime.test.ts`. Handoff: `docs/handoffs/C/handoff.md`.
+
+## Verification
+
+Environment: Node `v22.22.3`, npm `10.9.8`; the repository pins Node `26.8.2` and npm `11.19.1`. `npm ci` completed with an engine mismatch warning; package manifests and lockfile were not changed.
+
+- `npm run check` — passed: bootstrap check, typecheck, boundary lint, 8 test files / 21 tests, and Vite build. Vite reports the current JS bundle at about 547 kB minified, above its 500 kB advisory threshold.
+- `npm run ownership -- --role C --base archive-bootstrap-v2` — passed against the local archive base. The archive tree hash exactly matches the official bootstrap commit tree, so the checked file contents are the official base contents.
+- `git diff --check` — passed after the handoff update.
+- Browser review on the development server covered the start overlay, starting a round, drag-to-inspect tutorial progression, press/release, pause and explicit resume. The visible 3D scene is still the scaffold placeholder; this is not final game art or complete gameplay because the core still reports `implementation: scaffold`.
+
+## Remaining work and limits
+
+- Review PR [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3) on `integration/v1`; its implementation commit uses official parent `c739b527449b2527e46b567bfffbd4a7122f571c`.
+- The local environment is Node `v22.22.3` / npm `10.9.8`, while the repository pins Node `26.8.2` / npm `11.19.1`; `npm ci` and `npm run check` passed with an engine mismatch warning. Re-run on the pinned runtime if available.
+- Verify the 320 CSS px layout and safe-area behavior at an actual mobile viewport; no viewport emulation was available in this review.
+- Test the full connected core/render loop and a real iPhone Safari session after A/B integrations. Those checks remain unverified.
+- The actual mobile Safari and post-integration core/render loop remain unverified.

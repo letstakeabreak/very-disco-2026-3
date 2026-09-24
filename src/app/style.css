@@ -1,15 +1,121 @@
-:root { font-family: system-ui, sans-serif; color: #eff6ec; background: #191b20; font-synthesis: none; }
+:root {
+  color: #eaf2ec;
+  background: #08191b;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  font-weight: 450;
+  --ink: #eaf2ec;
+  --muted: #a0b3ac;
+  --line: #41605c;
+  --panel: rgb(7 24 26 / 88%);
+  --amber: #f0bc65;
+  --mint: #a8cfb5;
+}
+
 * { box-sizing: border-box; }
-body { margin: 0; }
-#app { position: relative; width: 100%; min-height: 100svh; }
-canvas { display: block; width: 100%; height: 100svh; }
-.panel { position: absolute; left: max(16px, env(safe-area-inset-left)); right: max(16px, env(safe-area-inset-right)); top: max(16px, env(safe-area-inset-top)); padding: 20px; max-width: 420px; border: 1px solid #89a18a; background: #17191eed; border-radius: 16px; }
-h1 { font-size: 24px; margin: 8px 0; }
-p { font-size: 14px; line-height: 1.5; }
-.badge { color: #ffd780; font-weight: 700; letter-spacing: 0.12em; }
-button, select { font: inherit; min-height: 44px; border: 1px solid #799784; border-radius: 8px; padding: 10px; color: #f1f6ef; background: #2d323f; }
-button { margin: 4px; cursor: pointer; }
-#hold { touch-action: none; user-select: none; -webkit-user-select: none; }
-button:active { background: #52693c; }
-button:focus-visible, select:focus-visible { outline: 3px solid #ffd780; }
-#fatal { color: #ffbba0; }
+html, body { width: 100%; min-height: 100%; margin: 0; }
+body { min-width: 320px; background: #08191b; }
+button { color: inherit; font: inherit; }
+button:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+button:disabled { cursor: not-allowed; opacity: 0.42; }
+[hidden] { display: none !important; }
+
+#app { position: relative; width: 100%; min-height: 100svh; overflow: hidden; isolation: isolate; background: #08191b; }
+.scene { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; }
+.screen {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto auto minmax(160px, 1fr) auto;
+  gap: 14px;
+  width: 100%;
+  min-height: 100svh;
+  padding: max(16px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+  pointer-events: none;
+}
+.screen > * { pointer-events: auto; }
+.topbar { display: flex; align-items: center; justify-content: space-between; min-height: 54px; }
+.brand { display: flex; flex-direction: column; gap: 2px; }
+h1, h2, p { margin: 0; }
+h1 { font-size: clamp(20px, 6vw, 26px); font-weight: 760; letter-spacing: 0.04em; line-height: 1.1; }
+h2 { font-size: 17px; line-height: 1.25; }
+.eyebrow { color: var(--amber); font-size: 10px; font-weight: 760; letter-spacing: 0.14em; }
+.icon-button { width: 46px; height: 46px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--panel); font-size: 17px; }
+.hud { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.metric, .specimen-card, .pressure-card {
+  border: 1px solid rgb(113 153 137 / 38%);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 15%);
+  backdrop-filter: blur(14px);
+}
+.metric { display: flex; min-height: 66px; flex-direction: column; justify-content: center; gap: 2px; padding: 9px 13px; }
+.metric span { color: var(--muted); font-size: 12px; }
+.metric strong { font-size: 21px; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.metric small { margin-left: 4px; color: var(--muted); font-size: 12px; }
+.work-area { display: flex; min-height: 0; flex-direction: column; justify-content: space-between; gap: 12px; padding-top: 4px; pointer-events: none; }
+.work-area > * { pointer-events: auto; }
+.workbench-input { flex: 1 1 auto; min-height: 24px; touch-action: none; }
+.specimen-card { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 66px; padding: 11px 13px; }
+.specimen-card h2 { margin-top: 4px; }
+.phase-pill { flex: none; padding: 6px 9px; border: 1px solid rgb(240 188 101 / 45%); border-radius: 99px; color: var(--amber); font-size: 11px; }
+.tutorial { align-self: center; max-width: 100%; padding: 9px 13px; border: 1px solid rgb(240 188 101 / 36%); border-radius: 99px; background: rgb(8 25 27 / 82%); color: #fff0d0; font-size: 12px; text-align: center; }
+.pressure-card { margin-top: auto; padding: 13px; }
+.pressure-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--muted); }
+.pressure-label strong { color: var(--amber); font-size: 20px; font-variant-numeric: tabular-nums; }
+.pressure-track { height: 8px; margin-top: 8px; overflow: hidden; border-radius: 99px; background: #263c3b; }
+.pressure-track span { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #83b89b, #f0bc65 62%, #e76e54); transform: scaleX(0); transform-origin: left center; transition: transform 80ms linear; }
+.pressure-card > p { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.specimen-choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.specimen-choices button, .secondary-controls button, .dialog-secondary {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgb(12 34 35 / 92%);
+  color: #dae9df;
+  font-size: 11px;
+  line-height: 1.2;
+}
+.specimen-choices button { flex: 1 1 31%; padding: 8px 7px; }
+.specimen-choices button[aria-current="true"] { border-color: var(--amber); color: #ffe4ae; }
+.controls { display: flex; flex-direction: column; gap: 8px; }
+.press-button, .dialog-primary {
+  min-height: 58px;
+  border: 1px solid #e3be7c;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #c77b3c, #8e482c);
+  box-shadow: inset 0 1px rgb(255 255 255 / 24%), 0 8px 20px rgb(0 0 0 / 22%);
+  color: #fff7e8;
+  font-size: 16px;
+  font-weight: 720;
+}
+.press-button { touch-action: none; user-select: none; -webkit-user-select: none; }
+.press-button:not(:disabled):active { background: linear-gradient(180deg, #97532f, #703923); transform: translateY(1px); }
+.secondary-controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+.secondary-controls button { padding: 7px 8px; font-size: 12px; }
+.dev-note { color: #ffc98e; font-size: 10px; line-height: 1.4; text-align: center; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+.overlay { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; padding: max(22px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(22px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left)); background: rgb(3 12 14 / 61%); backdrop-filter: blur(5px); }
+.overlay-error { background: rgb(3 12 14 / 82%); }
+.dialog-card { width: min(100%, 380px); padding: 24px; border: 1px solid #6b8a7b; border-radius: 20px; background: linear-gradient(155deg, #183134, #0c1e20 75%); box-shadow: 0 24px 80px rgb(0 0 0 / 42%); }
+.dialog-card h2 { margin-top: 8px; font-size: clamp(23px, 7vw, 30px); }
+.dialog-card > p:not(.eyebrow) { margin-top: 10px; color: #c2d1c8; font-size: 14px; line-height: 1.6; }
+.dialog-card .dialog-summary { color: #f5d49b; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dialog-primary, .dialog-secondary { width: 100%; margin-top: 16px; }
+.dialog-secondary { min-height: 48px; background: transparent; font-size: 14px; }
+
+@media (min-width: 700px) {
+  .screen { width: min(100%, 760px); min-height: 100svh; margin: 0 auto; padding-right: 28px; padding-left: 28px; }
+  .work-area { max-width: 540px; justify-self: center; width: 100%; }
+  .controls { width: min(100%, 540px); justify-self: center; }
+  .metric { min-height: 72px; padding: 11px 16px; }
+}
+
+@media (max-height: 620px) {
+  .screen { gap: 8px; padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+  .topbar { min-height: 42px; }
+  .metric { min-height: 56px; }
+  .work-area { gap: 7px; }
+  .pressure-card { padding: 9px 12px; }
+  .press-button { min-height: 52px; }
+}
