@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T14:44:17.340Z",
+  "checkedAt": "2026-09-24T14:54:26.863Z",
   "scope": "Anonymous public read and filtered clone; not another user session or collaborator write proof.",
   "requests": [
     {
@@ -51,10 +51,16 @@
       "finalUrl": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/README.md"
     },
     {
-      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/docs/handoffs/B/README.md",
-      "status": 404,
-      "expected": 404,
-      "finalUrl": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/docs/handoffs/B/README.md"
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/docs/work-documents.md",
+      "status": 200,
+      "expected": 200,
+      "finalUrl": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/docs/work-documents.md"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/main/docs/work-documents.md",
+      "status": 200,
+      "expected": 200,
+      "finalUrl": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/main/docs/work-documents.md"
     }
   ],
   "passed": true,
@@ -65,8 +71,8 @@
     "defaultBranch": "main"
   },
   "clone": {
-    "defaultHead": "c739b527449b2527e46b567bfffbd4a7122f571c",
-    "bHead": "1fa803075f37b8a5b0bcf23da41e616771811a18",
+    "defaultHead": "717e323452a095cc96c54ba17f2a83f8875988e5",
+    "bHead": "b4523410c98a6066d4e0e87d281f35b711743c13",
     "filtered": true,
     "checkout": false,
     "readAgents": true,

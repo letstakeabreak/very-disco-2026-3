@@ -19,8 +19,8 @@ try {
     [`${raw}/main/goal.md`, 200], [`${web}/pull/1`, 200],
     [`${web}/blob/role/b-render/docs/handoffs/B/README.md`, 200],
     [`${raw}/role/b-render/docs/handoffs/B/README.md`, 200],
-    // Deliberate diagnostic: B's unmerged handoff is absent from main.
-    [`${web}/blob/main/docs/handoffs/B/README.md`, 404],
+    [`${web}/blob/main/docs/work-documents.md`, 200],
+    [`${raw}/main/docs/work-documents.md`, 200],
   ];
   for (const [url, expected] of endpoints) {
     const response = await fetch(url, { headers: { 'User-Agent': 'DEEP-PRESS-public-access-check', 'Cache-Control': 'no-cache' }, signal: AbortSignal.timeout(20000) });
@@ -44,7 +44,7 @@ try {
   if (!handoff.includes('B 작업 인계')) throw new Error('Anonymous fetch cannot read B handoff');
   report.clone = { defaultHead, bHead, filtered: true, checkout: false, readAgents: true, readBHandoff: true };
   report.passed = true;
-  console.log('Anonymous HTTP, instruction reads, filtered clone and B branch fetch passed. Main/B-handoff 404 is the expected absent-file diagnostic.');
+  console.log('Anonymous HTTP, instruction reads, filtered clone and B branch fetch passed. Main work-document catalog is reachable.');
 } catch (error) {
   report.failure = String(error); process.exitCode = 1;
 } finally {
