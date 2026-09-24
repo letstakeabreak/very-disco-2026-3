@@ -3,9 +3,9 @@ import { checkPaths } from './ownership-rules.mjs';
 
 const args = process.argv.slice(2);
 const role = args[args.indexOf('--role') + 1];
-const base = args.includes('--base') ? args[args.indexOf('--base') + 1] : 'bootstrap-v1';
+const base = args.includes('--base') ? args[args.indexOf('--base') + 1] : 'bootstrap-v2';
 try {
-  if (!args.includes('--role') || !['A', 'B', 'C'].includes(role)) throw new Error('Usage: npm run ownership -- --role A|B|C [--base bootstrap-v1] [--allow-shared]');
+  if (!args.includes('--role') || !['A', 'B', 'C'].includes(role)) throw new Error('Usage: npm run ownership -- --role A|B|C [--base bootstrap-v2] [--allow-shared]');
   const git = (...values) => execFileSync('git', values, { encoding: 'utf8' });
   git('rev-parse', '--verify', `${base}^{commit}`);
   // Two-dot base-to-working-tree includes branch commits, staged and unstaged changes.

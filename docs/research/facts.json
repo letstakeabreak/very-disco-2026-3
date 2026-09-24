@@ -1,5 +1,5 @@
 {
-  "version": "VD26.3-v2.0",
+  "version": "VD26.3-v2.1",
   "created_at": "2026-09-24T10:37:22.825837+00:00",
   "timezone": "Asia/Seoul",
   "facts": [
@@ -311,12 +311,21 @@
     },
     {
       "id": "F35",
-      "claim": "DEEP PRESS: 심해 회수품의 압착·가치 보존·1L 수용량 게임; PRD 1.0.0 executionReady=true",
+      "claim": "DEEP PRESS: 심해 회수품의 압착·가치 보존·1L 수용량 게임; PRD 1.0.1 executionReady=true",
       "status": "DESIGN_DECISION",
       "source_url": null,
       "checked_at": "2026-09-24",
       "scope": "current implementation baseline",
       "caveat": "사용자가 위임한 설계. 흥행·우승·구현 완료 주장 아님"
+    },
+    {
+      "id": "F36",
+      "claim": "A=sy-Lee-01 코어·콘텐츠·통합; B=letstakeabreak 렌더링·에셋·그래픽; C=magic3ightball 앱·입력·HUD. Meshy 구독은 letstakeabreak만 보유",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team role assignment",
+      "caveat": "사용자 최신 지시. bootstrap-v2 / PRD1.0.1부터 이전 A/B 계정 매핑 대체. API 계약1.0.0 유지"
     }
   ],
   "updated_at": "2026-09-24T11:06:00Z",

@@ -12,11 +12,13 @@ Git author 이름·이메일, 디렉터리명, 원격 저장소 소유자, 브�
 
 | 역할 | GitHub 사용자 | 수정 소유 범위 |
 |---|---|---|
-| A — 코어·콘텐츠 개발 | `letstakeabreak` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` |
-| B — 렌더링·시각 에셋 개발 | `sy-Lee-01` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` |
+| A — 코어·콘텐츠 개발 | `sy-Lee-01` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` |
+| B — 렌더링·시각 에셋 개발 | `letstakeabreak` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` |
 | C — 앱·입력·HUD 개발 | `magic3ightball` | `src/app/**`, `src/main.ts`, `tests/app/**`, `docs/handoffs/C/**` |
 
 세 역할 모두 코드와 테스트를 작성하는 독립 개발자다. C의 스타일은 `src/app/**` 안에 둔다. 오디오는 이번 범위에서 제외한다. 음원·합성음·오디오 제어를 추가하지 않는다. 다른 역할 파일을 고치거나 가져온 변경을 덮어쓰지 않는다. 공통 계약에 맞는 fixture·mock을 사용해 자기 모듈을 먼저 진행한다.
+
+Meshy.ai 구독은 **B인 사용자 letstakeabreak만 보유**한다. Meshy 생성·텍스처 작업은 B가 자기 인증 환경에서 수행한다. A/C는 요구 에셋 ID·용도·규격을 handoff로 B에게 전달하고 기존 결과와 fixture로 계속 개발한다. Meshy 계정·토큰을 공유하도록 요구하지 않는다.
 
 ## 공유 경계를 고정한다
 

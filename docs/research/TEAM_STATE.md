@@ -1,9 +1,9 @@
 # 팀 상태 — 모든 AI에 같은 버전 전달
 
-> **최신 사용자 결정: 이전 COMPACT BLOOM·꽃섬·스프링 콘셉트는 REJECTED(폐기)다.** 이 파일의 해당 콘셉트와 연결된 개발 지시는 더 이상 실행하지 않는다. 현재 개발 기준은 루트 PRD 1.0.0의 **DEEP PRESS**다. 사용자는 귀엽거나 장난감 같은 표현을 거절하고 극도로 사실적인 그래픽을 요구했다. 현재 오디오는 제외한다. 시각 에셋 ImageGen·3D Meshy 7 flagship/high-quality texture 요구는 유지한다. 2027년 게임 흐름 조사는 예측이며 확정된 유행이 아니다.
+> **최신 사용자 결정: 이전 COMPACT BLOOM·꽃섬·스프링 콘셉트는 REJECTED(폐기)다.** 이 파일의 해당 콘셉트와 연결된 개발 지시는 더 이상 실행하지 않는다. 현재 개발 기준은 루트 PRD 1.0.1의 **DEEP PRESS**다. 사용자는 귀엽거나 장난감 같은 표현을 거절하고 극도로 사실적인 그래픽을 요구했다. 현재 오디오는 제외한다. 시각 에셋 ImageGen·3D Meshy 7 flagship/high-quality texture 요구는 유지한다. 2027년 게임 흐름 조사는 예측이며 확정된 유행이 아니다.
 
 
-버전: STATE-004 · 기준 컨텍스트: VD26.3-v2.0 · 갱신일: 2026-09-24 KST
+버전: STATE-005 · 기준 컨텍스트: VD26.3-v2.1 · 갱신일: 2026-09-24 KST
 
 ## 사용자 확정 사항
 
@@ -14,11 +14,13 @@
 - 협업 저장소: [very-disco-2026-3](https://github.com/letstakeabreak/very-disco-2026-3). 공유 폴더: [Google Drive](https://drive.google.com/drive/folders/1xtekUGeYoumuf2wn8YIGpkEAt1_bvjEr).
 - 승인된 문서 작업: 대회 조사·공유 컨텍스트 이관, PRD, 역할·코딩 convention을 담은 instruction, 한 번의 지시로 담당 개발을 수행할 goal, 공유 자료 정리. 게시·업로드 완료는 별도 결과로 확인한다.
 
+- 최신 역할 확정: **A=sy-Lee-01(코어·콘텐츠·통합), B=letstakeabreak(렌더링·에셋·그래픽), C=magic3ightball(앱·입력·HUD)**. Meshy.ai 구독은 사용자 letstakeabreak만 보유한다.
+
 ## 현재 개발 기준과 상태
 
 | 항목 | 상태 | 담당 / 근거 |
 |---|---|---|
-| 컨셉 | DEEP PRESS / PRD 1.0.0 executionReady=true | 총괄 AI에 위임된 새 설계. 이전 콘셉트 실행 금지 |
+| 컨셉 | DEEP PRESS / PRD 1.0.1 executionReady=true | 총괄 AI에 위임된 새 설계. 이전 콘셉트 실행 금지 |
 | 기술 | TypeScript 6.0.3 + Three.js 0.186.0 + Vite 8.3.0 | 고정 설치·기반 검사 통과, 완성 게임 성능 미검증 |
 | 역할 | 3인 모두 독립 개발 | 최종 영역·파일 소유권은 [instruction.md](../../instruction.md) |
 | 실행 목표 | 루트 goal.md 기준 | [goal.md](../../goal.md). 명세와 구현 결과 구분 |
@@ -35,7 +37,7 @@
 | 잼 참가 신청 / 제출 | 이 조사 이관 작업에서 미실시 | 사용자의 별도 작업 여부는 미확인 |
 | Drive 공유 | 사용자 지정 폴더 확인 | 파일 업로드 여부·URL은 실제 업로드 결과 확인 |
 
-기존 v1은 사용자 거절로 폐기됐다. 루트 PRD 1.0.0의 DEEP PRESS를 추가 승인 질문 없이 개발한다.
+기존 v1은 사용자 거절로 폐기됐다. 루트 PRD 1.0.1의 DEEP PRESS를 추가 승인 질문 없이 개발한다.
 
 ## 결정 기록
 
@@ -48,6 +50,7 @@
 | D-004 | 2026-09-24 | COMPACT BLOOM + TypeScript/Three.js/Vite 제안 | 이후 D-005로 폐기된 설계 v1 | 총괄 AI | 컨셉·엔진 미정 |
 | D-005 | 2026-09-24 | COMPACT BLOOM 거절·새 안 연구 | 사용자 최신 지시. 극사실 그래픽·오디오 제외·2027 흐름 별도 조사 | 사용자 | D-004 콘셉트 |
 | D-006 | 2026-09-24 | DEEP PRESS와 PRD/계약 1.0.0을 개발 기준으로 고정 | 2027 조사 + 사용자 위임; 촉각적 작업·가치 보존·실사 한 장면 | 총괄 AI | 폐기 후 새 안 조사 상태 |
+| D-007 | 2026-09-24 | 사용자 letstakeabreak=B 그래픽, sy-Lee-01=A 코어·통합, C 유지 | Meshy 구독은 사용자만 보유. bootstrap-v2부터 적용 | 사용자 | 이전 A/B 계정 배정 |
 
 ## 작업 인계 양식
 

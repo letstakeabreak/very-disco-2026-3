@@ -17,6 +17,8 @@ registry의 runtimePath는 `assets/models/...glb`처럼 public을 제외한 상�
 
 ## ImageGen → Meshy 7 lineage
 
+Meshy 구독 소유자는 **letstakeabreak(역할 B)**다. 실제 생성·텍스처·다운로드는 B의 인증 환경에서 수행하고 결과와 provenance를 저장소에 제공한다. A(sy-Lee-01)/C(magic3ightball)는 필요한 ID·용도·규격을 B에게 요청하며 그동안 fixture로 개발한다. 인증 정보는 공유하지 않는다.
+
 1. 승인된 PRD·콘셉트에 맞춘 ImageGen 이미지와 프롬프트를 `assets/source/<id>/`에 저장한다.
 2. 사용한 원본 이미지 경로, 생성 시각(ISO 8601), 생성 프롬프트 경로를 registry.imagegen에 기록한다.
 3. Meshy의 실제 사용 가능한 모델을 확인하고 **Meshy 7 flagship** 작업을 사용한다. Meshy taskId·생성 시각·modelVersion `meshy-7`을 기록한다. 미지원 또는 접근 불가를 다른 모델로 조용히 바꾸지 않는다.

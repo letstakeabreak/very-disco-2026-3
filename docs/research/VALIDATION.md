@@ -1,8 +1,8 @@
 # 연구 컨텍스트 검증
 
-2026-09-24 KST · VD26.3-v2.0 / STATE-004. 공식 규정·현재4작·이전25작·iPhone 전달·2027 전망의 근거를 보존했다. 35개 fact와92개 source record를 JSON으로 관리한다. 공개 페이지 조사이며29개 게임을 직접 플레이했다는 뜻이 아니다.
+2026-09-24 KST · VD26.3-v2.1 / STATE-005. 공식 규정·현재4작·이전25작·iPhone 전달·2027 전망의 근거를 보존했다. 36개 fact와92개 source record를 JSON으로 관리한다. 공개 페이지 조사이며29개 게임을 직접 플레이했다는 뜻이 아니다.
 
-현재 개발 기준은 DEEP PRESS PRD1.0.0 / contract1.0.0. 폐기한 정원·스프링 후보는 archive에 두고 현재 AI 실행 합본에서 제외했다. 최신 사용자 요구인 세 명 모두 개발, PRD 위임, 극사실 그래픽, ImageGen과 Meshy7, 오디오 제외를 반영했다.
+현재 개발 기준은 DEEP PRESS PRD1.0.1 / contract1.0.0. 폐기한 정원·스프링 후보는 archive에 두고 현재 AI 실행 합본에서 제외했다. 최신 사용자 요구인 세 명 모두 개발, PRD 위임, 극사실 그래픽, ImageGen과 Meshy7, 오디오 제외를 반영했다.
 
 원본 agent-findings와 evidence는 연구 스냅샷이다. 그 뒤 팀 결정은 루트 문서와 TEAM_STATE가 우선한다. 합본은 현재 루트 문서·모든 활성 연구 보고서·facts/sources를 포함한다. 상대 링크는 공유 GitHub 주소로 해석하고 JSON/파일 링크를 검사했다.
 

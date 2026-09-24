@@ -23,14 +23,14 @@ Node 26.8.2는 이 bootstrap 검증 환경이지 LTS라는 뜻이 아니다. `.n
 
 | 소유자 | 수정 경로 | 공개 진입점 |
 |---|---|---|
-| A / letstakeabreak | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | `src/core/index.ts` |
-| B / sy-Lee-01 | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | `src/render/index.ts` |
+| A / sy-Lee-01 | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | `src/core/index.ts` |
+| B / letstakeabreak | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | `src/render/index.ts` |
 | C / magic3ightball | `src/app/**`, `src/main.ts`, `tests/app/**`, `docs/handoffs/C/**` | `src/app/index.ts` |
 | 공유 / 통합 담당 A | `src/contracts/**`, `tests/contracts/**`, `scripts/**`, `.github/**`, 공통 docs 및 루트 설정·패키지·잠금 파일 | 승인된 계약 변경으로만 수정 |
 
 A의 core/content는 서로 import 가능하며 외부 패키지, DOM, 시간 API, `Math.random`을 사용하지 않는다. B는 자기 모듈·contracts·Three.js만 import한다. C는 자기 모듈·contracts와 **공개 core/render 진입점**만 import한다. core/render는 app을 모른다. 상대 import만 사용하고 별도 alias를 만들지 않는다. 테스트는 소비 계약 검증을 위해 공개 진입점을 조합할 수 있다.
 
-소유권 검사: `npm run ownership -- --role A --base bootstrap-v1`처럼 실제 역할 하나를 지정한다. base 기본값은 `bootstrap-v1`이다. base부터 현재 작업 트리까지의 변경과 untracked 파일을 검사하고 rename의 옛 경로·새 경로 모두 포함한다. 알려지지 않은 경로, 다른 소유자, shared 변경은 실패한다. **A도 기본적으로 shared 변경이 차단된다.** 승인·버전·영향·이전 방법을 기록하고 세 역할에 공유한 변경에만 `--allow-shared`를 사용할 수 있다. 이 플래그가 승인 자체를 생성하지 않는다.
+소유권 검사: `npm run ownership -- --role A --base bootstrap-v2`처럼 실제 역할 하나를 지정한다. base 기본값은 `bootstrap-v2`이다. base부터 현재 작업 트리까지의 변경과 untracked 파일을 검사하고 rename의 옛 경로·새 경로 모두 포함한다. 알려지지 않은 경로, 다른 소유자, shared 변경은 실패한다. **A도 기본적으로 shared 변경이 차단된다.** 승인·버전·영향·이전 방법을 기록하고 세 역할에 공유한 변경에만 `--allow-shared`를 사용할 수 있다. 이 플래그가 승인 자체를 생성하지 않는다.
 
 ## 단위, 시간, 데이터
 
@@ -108,4 +108,4 @@ mountApp(root: HTMLElement): () => void
 
 ## 공유 변경 절차
 
-bootstrap tag는 `bootstrap-v1`, 역할 브랜치는 `role/a-core`, `role/b-render`, `role/c-app`이다. A가 공유 변경 사유·버전·영향·마이그레이션을 기록하고 B/C에게 같은 계약을 전달한 뒤 수정한다. 계약 변경 시 타입, fixture, validator, consumer tests, 이 문서를 함께 갱신한다. 출발 ref와 계약 해시는 `docs/bootstrap.json`을 따른다. 전체 출발 SHA는 `git rev-parse bootstrap-v1^{commit}`으로 기록한다. 이 문서는 태그나 커밋이 이미 존재한다고 단정하지 않는다.
+bootstrap tag는 `bootstrap-v2`, 역할 브랜치는 `role/a-core`, `role/b-render`, `role/c-app`이다. A가 공유 변경 사유·버전·영향·마이그레이션을 기록하고 B/C에게 같은 계약을 전달한 뒤 수정한다. 계약 변경 시 타입, fixture, validator, consumer tests, 이 문서를 함께 갱신한다. 출발 ref와 계약 해시는 `docs/bootstrap.json`을 따른다. 전체 출발 SHA는 `git rev-parse bootstrap-v2^{commit}`으로 기록한다. 이 문서는 태그나 커밋이 이미 존재한다고 단정하지 않는다.

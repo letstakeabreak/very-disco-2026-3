@@ -8,11 +8,11 @@
 
 | 계정 | 역할 | 브랜치 |
 |---|---|---|
-| letstakeabreak | A 코어·콘텐츠·통합 | role/a-core |
-| sy-Lee-01 | B 렌더링·ImageGen/Meshy 에셋 | role/b-render |
+| sy-Lee-01 | A 코어·콘텐츠·통합 | role/a-core |
+| letstakeabreak | B 렌더링·ImageGen/Meshy 에셋 | role/b-render |
 | magic3ightball | C 앱·터치 입력·HUD | role/c-app |
 
-공통 출발 태그는 `bootstrap-v1`, 기여 PR의 대상은 `integration/v1`이다. 세 결과를 통합 후보에서 검증한 뒤 최종 PR 하나를 main에 반영한다. 파일 소유권·API·단위·이벤트·검증 절차를 계약으로 고정했다. 오류가 절대 없다는 보장은 하지 않는다.
+공통 출발 태그는 `bootstrap-v2`, 기여 PR의 대상은 `integration/v1`이다. 세 결과를 통합 후보에서 검증한 뒤 최종 PR 하나를 main에 반영한다. 파일 소유권·API·단위·이벤트·검증 절차를 계약으로 고정했다. 오류가 절대 없다는 보장은 하지 않는다.
 
 ```sh
 npm ci

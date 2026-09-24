@@ -14,7 +14,7 @@ function fixtureRepo(): string {
   writeFileSync(`${repo}/src/core/original.ts`, 'export {};\n');
   git('init', '-q'); git('add', '.');
   git('-c', 'user.name=Contract Test', '-c', 'user.email=contract-test@example.invalid', 'commit', '-qm', 'fixture');
-  git('tag', 'bootstrap-v1');
+  git('tag', 'bootstrap-v2');
   return repo;
 }
 describe('ownership CLI against isolated Git fixtures', () => {

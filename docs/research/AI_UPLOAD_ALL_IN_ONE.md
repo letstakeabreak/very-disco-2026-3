@@ -1,10 +1,13 @@
 # DEEP PRESS — 세 개발자 AI용 전체 컨텍스트
 
-버전 VD26.3-v2.0 · PRD/계약 1.0.0 · 2026-09-24. 현재 기준은 DEEP PRESS다. 거절된 정원·스프링 후보는 개발 대상이 아니다. 아래 AGENTS/instruction/goal/PRD와 계약을 우선한다. 실제 코드는 clone하여 읽고 검사한다. 이 합본은 지속 Goal을 자동 생성하지 않으며 goal.md의 시작 요청이 필요하다.
+버전 VD26.3-v2.1 · PRD1.0.1 / 계약1.0.0 · 2026-09-24. 현재 기준은 DEEP PRESS다. 거절된 정원·스프링 후보는 개발 대상이 아니다. 아래 AGENTS/instruction/goal/PRD와 계약을 우선한다. 실제 코드는 clone하여 읽고 검사한다. 이 합본은 지속 Goal을 자동 생성하지 않으며 goal.md의 시작 요청이 필요하다.
 
 시각 목표5장·Meshy master2개와 개발 기반이 준비됐으나 완성 게임/실기기/제출은 미완료다. 연구 사실, 설계 결정, 실제 시험을 구분한다.
 
 [저장소](https://github.com/letstakeabreak/very-disco-2026-3) · [공유 폴더](https://drive.google.com/drive/folders/1xtekUGeYoumuf2wn8YIGpkEAt1_bvjEr)
+
+
+최신 역할: A=sy-Lee-01 코어·콘텐츠·통합 / B=letstakeabreak 렌더링·에셋·그래픽 / C=magic3ightball 앱·입력·HUD. Meshy 구독은 B만 보유한다. 시작 태그 bootstrap-v2.
 
 
 ---
@@ -13,7 +16,7 @@
 
 # DEEP PRESS — 에이전트 작업 규칙
 
-이 저장소는 세 명이 각자의 AI와 독립 개발한 뒤 하나의 검증된 후보를 `main`에 통합하는 프로젝트다. 구현의 기준은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md), 작업 절차는 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md), Goal 시작 요청은 [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/goal.md)다. 먼저 세 문서와 [모듈 계약](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/contracts.md), [에셋 계약](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/asset-contract.md)을 읽는다. 없는 문서·파일·명령이 있다고 가정하지 않는다.
+이 저장소는 세 명이 각자의 AI와 독립 개발한 뒤 하나의 검증된 후보를 `main`에 통합하는 프로젝트다. 구현의 기준은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md), 작업 절차는 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md), Goal 시작 요청은 [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/goal.md)다. 먼저 세 문서와 [모듈 계약](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/contracts.md), [에셋 계약](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/asset-contract.md)을 읽는다. 없는 문서·파일·명령이 있다고 가정하지 않는다.
 
 ## 역할부터 확정한다
 
@@ -25,11 +28,13 @@ Git author 이름·이메일, 디렉터리명, 원격 저장소 소유자, 브�
 
 | 역할 | GitHub 사용자 | 수정 소유 범위 |
 |---|---|---|
-| A — 코어·콘텐츠 개발 | `letstakeabreak` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` |
-| B — 렌더링·시각 에셋 개발 | `sy-Lee-01` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` |
+| A — 코어·콘텐츠 개발 | `sy-Lee-01` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` |
+| B — 렌더링·시각 에셋 개발 | `letstakeabreak` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` |
 | C — 앱·입력·HUD 개발 | `magic3ightball` | `src/app/**`, `src/main.ts`, `tests/app/**`, `docs/handoffs/C/**` |
 
 세 역할 모두 코드와 테스트를 작성하는 독립 개발자다. C의 스타일은 `src/app/**` 안에 둔다. 오디오는 이번 범위에서 제외한다. 음원·합성음·오디오 제어를 추가하지 않는다. 다른 역할 파일을 고치거나 가져온 변경을 덮어쓰지 않는다. 공통 계약에 맞는 fixture·mock을 사용해 자기 모듈을 먼저 진행한다.
+
+Meshy.ai 구독은 **B인 사용자 letstakeabreak만 보유**한다. Meshy 생성·텍스처 작업은 B가 자기 인증 환경에서 수행한다. A/C는 요구 에셋 ID·용도·규격을 handoff로 B에게 전달하고 기존 결과와 fixture로 계속 개발한다. Meshy 계정·토큰을 공유하도록 요구하지 않는다.
 
 ## 공유 경계를 고정한다
 
@@ -76,11 +81,11 @@ Git author 이름·이메일, 디렉터리명, 원격 저장소 소유자, 브�
 
 # DEEP PRESS — 세 명이 함께 만드는 방법
 
-문서 버전 1.0. 제품의 최종 기준은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md)다. 이 문서는 각자 같은 출발점에서 자기 모듈을 완성하고, 세 결과를 한 번의 최종 통합으로 연결하는 작업 방식이다.
+문서 버전 1.1. 제품의 최종 기준은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md)다. 이 문서는 각자 같은 출발점에서 자기 모듈을 완성하고, 세 결과를 한 번의 최종 통합으로 연결하는 작업 방식이다.
 
 ## 만들 게임과 실행 기준
 
-DEEP PRESS는 사실적인 유압 프레스 작업대에서 회수물을 검사하고 압축해 제한된 운반 케이스에 담는 게임이다. 압력으로 부피를 줄이면서 손상 위험과 확보할 점수를 판단하고, 계속 작업하거나 정산한다. 행동·수치·시점·콘텐츠·완료 기준의 원전은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md)다.
+DEEP PRESS는 사실적인 유압 프레스 작업대에서 회수물을 검사하고 압축해 제한된 운반 케이스에 담는 게임이다. 압력으로 부피를 줄이면서 손상 위험과 확보할 점수를 판단하고, 계속 작업하거나 정산한다. 행동·수치·시점·콘텐츠·완료 기준의 원전은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md)다.
 
 사용자는 PRD 작성과 실행 준비를 위임했다. 각자 시작할 때 PRD의 `executionReady: true`와 버전을 읽고 bootstrap 및 계약이 그 기준과 일치하는지 확인한다. 일치하면 별도의 PRD 승인 질문 없이 바로 역할 Goal과 구현을 진행한다. 파일이 없거나 서로 맞지 않으면 그 불일치를 정확히 보고하고 가능한 독립 기반 점검을 계속한다. 임의의 다른 콘셉트로 빈칸을 채우지 않는다.
 
@@ -88,10 +93,10 @@ DEEP PRESS는 사실적인 유압 프레스 작업대에서 회수물을 검사�
 
 ## 같은 문서를 읽고 출발한다
 
-1. [AGENTS.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/AGENTS.md)에서 역할과 변경 범위를 확인한다.
-2. [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md)에서 게임·콘텐츠·시각 목표와 합격 기준을 읽는다.
-3. [docs/contracts.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/contracts.md)와 [docs/asset-contract.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/asset-contract.md)에서 모듈·에셋 계약을 읽는다.
-4. [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/goal.md)의 공통 시작 요청 또는 자기 계정 전용 요청을 현재 Codex 작업에 보낸다.
+1. [AGENTS.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/AGENTS.md)에서 역할과 변경 범위를 확인한다.
+2. [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md)에서 게임·콘텐츠·시각 목표와 합격 기준을 읽는다.
+3. [docs/contracts.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/contracts.md)와 [docs/asset-contract.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/asset-contract.md)에서 모듈·에셋 계약을 읽는다.
+4. [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/goal.md)의 공통 시작 요청 또는 자기 계정 전용 요청을 현재 Codex 작업에 보낸다.
 
 clone은 파일을 가져오는 동작이다. Codex를 실행하거나 Goal을 자동 생성하지 않는다. `AGENTS.md`는 Codex 세션에서 읽히는 프로젝트 지침이고, `goal.md`는 사용자가 Goal을 시작하도록 작성한 요청 문서다. 로컬 설정이나 존재하지 않는 자동 실행 설정을 만들 필요가 없다. [OpenAI AGENTS.md 문서](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [Goals 안내](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex)
 
@@ -99,8 +104,8 @@ clone은 파일을 가져오는 동작이다. Codex를 실행하거나 Goal을 �
 
 | 역할 / GitHub 계정 | 자기 모듈 | 독립적으로 완성할 결과 |
 |---|---|---|
-| A / `letstakeabreak` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | 프레임률과 화면 표현에 독립적인 PRD의 게임 규칙, 콘텐츠, 결과/재시작과 결정적 테스트 |
-| B / `sy-Lee-01` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | 계약 상태로 구동되는 Three.js 렌더러, ImageGen→Meshy 최종 에셋, 조명·재질·애니메이션, 콘셉트와 실행 화면의 대응 |
+| A / `sy-Lee-01` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | 프레임률과 화면 표현에 독립적인 PRD의 게임 규칙, 콘텐츠, 결과/재시작과 결정적 테스트 |
+| B / `letstakeabreak` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | 계약 상태로 구동되는 Three.js 렌더러, ImageGen→Meshy 최종 에셋, 조명·재질·애니메이션, 콘셉트와 실행 화면의 대응 |
 | C / `magic3ightball` | `src/app/**`, `src/main.ts`, `tests/app/**`, `docs/handoffs/C/**` | 앱 수명 주기, 포인터 입력, HUD·튜토리얼·결과/재시작, iPhone 브라우저 흐름 |
 
 셋 모두 독립 개발자다. A가 코어만 제공할 때 B/C도 정해진 fixture로 구현·테스트할 수 있고, B의 최종 모델을 기다리는 동안 A/C는 mock으로 자기 기능을 검증할 수 있어야 한다. C의 CSS와 기타 스타일은 `src/app/**` 아래 둔다. B의 시각 파일을 수정할 필요가 생기면 파일을 대신 고치지 말고 B의 계약에 맞는 요청을 한다.
@@ -109,7 +114,11 @@ clone은 파일을 가져오는 동작이다. Codex를 실행하거나 Goal을 �
 
 ## bootstrap과 독립 개발
 
-bootstrap은 세 사람에게 전달하기 전에 끝나 있어야 한다. A/B/C는 **같은 Git commit과 같은 잠금 파일**에서 시작한다. 공통 출발점은 실제로 생성된 `bootstrap-v1` 태그이며, 계약 해시와 태그 기준은 `docs/bootstrap.json`에 기록한다. 전체 SHA는 `git rev-parse bootstrap-v1^{commit}`으로 해석해 각자 handoff에 남긴다. commit 자체 안에 자기 SHA를 넣지 않는다. 각자는 그 commit에서 A=`role/a-core`, B=`role/b-render`, C=`role/c-app` 브랜치를 만든다. 체크아웃한 SHA가 다르면 구현을 시작하기 전에 맞춘다. 이미 작업한 내용은 삭제하지 않는다.
+이번 역할 변경은 사용자의 명시적 지시다. **A=sy-Lee-01, B=letstakeabreak, C=magic3ightball**이며 Meshy 구독은 B만 보유한다. API/소유 경로/역할 브랜치는 그대로 두고 A/B의 담당 계정을 교체했다. Meshy 생성·텍스처 작업은 B가 수행하고 A/C는 기존 결과·fixture로 진행한다. A/C에게 Meshy 구매나 계정·키 공유를 요구하지 않는다.
+
+새 출발점은 **bootstrap-v2 / PRD1.0.1 / 계약1.0.0**이다. 이전 bootstrap-v1 태그는 이력으로 보존하며 새 개발에는 사용하지 않는다. 이미 시작한 작업은 먼저 commit 또는 안전하게 보존하고 변경된 기준을 반영한다. 이전 담당 파일의 변경을 새 역할 브랜치에 섞지 말고 해당 소유자에게 commit SHA로 인계한다. 기존 브랜치를 강제로 초기화하거나 타인의 기록을 다시 쓰지 않는다. 이전 계정 배정의 시작 요청은 아래 최신 goal.md 요청으로 대체한다.
+
+bootstrap은 세 사람에게 전달하기 전에 끝나 있어야 한다. A/B/C는 **같은 Git commit과 같은 잠금 파일**에서 시작한다. 공통 출발점은 실제로 생성된 `bootstrap-v2` 태그이며, 계약 해시와 태그 기준은 `docs/bootstrap.json`에 기록한다. 전체 SHA는 `git rev-parse bootstrap-v2^{commit}`으로 해석해 각자 handoff에 남긴다. commit 자체 안에 자기 SHA를 넣지 않는다. 각자는 그 commit에서 A=`role/a-core`, B=`role/b-render`, C=`role/c-app` 브랜치를 만든다. 체크아웃한 SHA가 다르면 구현을 시작하기 전에 맞춘다. 이미 작업한 내용은 삭제하지 않는다.
 
 각 역할 handoff의 첫 기록에 다음을 남긴다.
 
@@ -118,7 +127,7 @@ bootstrap은 세 사람에게 전달하기 전에 끝나 있어야 한다. A/B/C
 - Node/npm 버전과 `npm ci`·baseline 검사 결과.
 - 자기 완료 조건과 외부 입력이 필요한 항목.
 
-먼저 원격 태그를 가져와 `git rev-parse bootstrap-v1^{commit}`을 기록하고 그 태그에서 자기 브랜치를 만든다. 기존 브랜치/변경이 있으면 강제로 초기화하지 않는다. `npm run bootstrap:check`가 공유 파일의 SHA-256을 대조한다. 이 검사는 `npm run check`에 포함된다. 계약을 정식 변경하면 A가 영향과 이전 방법을 기록하고 manifest·새 기준 ref를 함께 갱신해 세 역할에 전달한다. 해시만 다시 만들어 실패를 숨기지 않는다. 기여 PR 대상 `integration/v1`은 bootstrap에서 시작한 공통 후보 브랜치다.
+먼저 원격 태그를 가져와 `git rev-parse bootstrap-v2^{commit}`을 기록하고 그 태그에서 자기 브랜치를 만든다. 기존 브랜치/변경이 있으면 강제로 초기화하지 않는다. `npm run bootstrap:check`가 공유 파일의 SHA-256을 대조한다. 이 검사는 `npm run check`에 포함된다. 계약을 정식 변경하면 A가 영향과 이전 방법을 기록하고 manifest·새 기준 ref를 함께 갱신해 세 역할에 전달한다. 해시만 다시 만들어 실패를 숨기지 않는다. 기여 PR 대상 `integration/v1`은 bootstrap에서 시작한 공통 후보 브랜치다.
 
 기술 스택은 strict TypeScript, Three.js, Vite다. 기반의 정확한 버전은 저장소 `package.json`과 잠금 파일이 기준이다. 최신 버전으로 자동 갱신하지 않는다. `npm ci`가 실패하면 원인부터 확인하고 B/C가 잠금 파일을 새로 만들지 않는다.
 
@@ -158,10 +167,10 @@ npm run check
 필요한 실패를 좁힐 때는 실제 정의된 `npm run typecheck`, `npm run test`, `npm run build`, `npm run lint`, `npm run contracts:check`를 사용한다. `check`의 정확한 포함 범위는 `package.json`에서 확인한다. 소유권은 아래 형태로 검사하되 역할과 출발 ref를 실제 값으로 채운다.
 
 ```sh
-npm run ownership -- --role A --base bootstrap-v1
+npm run ownership -- --role A --base bootstrap-v2
 ```
 
-위 예시는 A다. B/C는 자기 역할로 실행한다. `bootstrap-v1`은 공통 출발 태그가 실제로 생성되고 검증되었을 때 사용한다. 아직 생성되지 않았다면 임의 SHA로 대체하지 말고 기록된 실제 공통 ref를 확인한다. 검사 실패를 숨기려고 설정·테스트를 약화하지 않는다.
+위 예시는 A다. B/C는 자기 역할로 실행한다. `bootstrap-v2`은 공통 출발 태그가 실제로 생성되고 검증되었을 때 사용한다. 아직 생성되지 않았다면 임의 SHA로 대체하지 말고 기록된 실제 공통 ref를 확인한다. 검사 실패를 숨기려고 설정·테스트를 약화하지 않는다.
 
 공통 smoke fixture는 모듈이 같은 상태 구조를 이해하는지 확인한다. 각 역할의 핵심 행동 테스트와 실제 연결 뒤의 흐름 검증도 필요하다. 코드 검사가 전부 통과해도 시각 품질·iPhone 실기기가 확인된 것은 아니다.
 
@@ -195,7 +204,7 @@ A는 세 기여의 최종 SHA를 고정하고 다음 순서로 통합한다.
 
 대회 정보 스냅샷은 2026-09-24 기준이다. 제출 직전에 [공식 안내](https://itch.io/jam/very-disco-game-jam-2026-3)를 다시 읽는다. 공개 기준은 Strong Core Loop, Good Cohesion, Distinctly Apple이며 iPhone 실행이 필요하다. 세 명은 공개 팀 규모 3–6명에 들어가지만 참가 자격·심사 방식 등의 미확정 사항은 별도 확인 대상이다.
 
-[이전 회차 결과](https://itch.io/jam/very-disco-game-jam-2026-2/results)와 [상세 조사](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/agent-findings/competition-history.md)는 단순한 중심 행동, 명료한 첫 경험, 표현의 일관성과 조작 안정성을 지지한다. [The Soda Sniper 심사평](https://itch.io/jam/very-disco-game-jam-2026-2/rate/4731557)은 Apple 기기를 사용해도 조작과 목표가 약하면 경험이 약해질 수 있음을 보여준다. 이는 연구자의 적용 해석이며 우승 확률이나 공식 가중치가 아니다.
+[이전 회차 결과](https://itch.io/jam/very-disco-game-jam-2026-2/results)와 [상세 조사](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/agent-findings/competition-history.md)는 단순한 중심 행동, 명료한 첫 경험, 표현의 일관성과 조작 안정성을 지지한다. [The Soda Sniper 심사평](https://itch.io/jam/very-disco-game-jam-2026-2/rate/4731557)은 Apple 기기를 사용해도 조작과 목표가 약하면 경험이 약해질 수 있음을 보여준다. 이는 연구자의 적용 해석이며 우승 확률이나 공식 가중치가 아니다.
 
 현재 [tight fit 제출 설명](https://itch.io/jam/very-disco-game-jam-2026-3/rate/5037728)은 이미 경기장 압축을 중심 행동으로 삼는다. DEEP PRESS의 압축 조작과 작업·위험 판단의 차이는 실제 플레이로 검증한다. 사실적인 그래픽이 다음 해의 흥행을 보장한다는 예측은 근거로 사용하지 않는다. 우승은 목표지만 외부 심사 결과를 구현 완료 조건이나 보장으로 삼지 않는다.
 
@@ -214,10 +223,12 @@ Goal 도구가 없으면 설치되었다고 주장하거나 임의 설정을 만
 
 ## 누구나 쓰는 공통 요청
 
+최신 매핑: **sy-Lee-01=A**, **letstakeabreak=B**, **magic3ightball=C**. 사용자 letstakeabreak만 Meshy 구독을 보유하므로 생성·텍스처 작업은 B가 수행한다. A/C는 결과와 fixture를 사용하며 Meshy 계정·키 공유를 요구하지 않는다. 시작 기준은 bootstrap-v2 / PRD1.0.1 / 계약1.0.0이다. 이전 A/B 매핑의 요청을 재사용하지 않는다.
+
 ```text
 이 저장소의 AGENTS.md, instruction.md, prd.md, goal.md, docs/contracts.md, docs/asset-contract.md를 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인하고 내 역할의 개발 Goal을 시작해. PRD 작성은 이미 위임했으므로 추가 승인 질문을 하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 하되 임의의 다른 게임을 만들지 마.
 
-내가 이 대화에서 역할을 명시했다면 그 역할을 사용하고, 아니면 인증된 GitHub 현재 계정을 확인해 letstakeabreak=A, sy-Lee-01=B, magic3ightball=C로 결정해. Git author, 이메일, 저장소 소유자, 폴더나 브랜치 이름으로 추정하지 마. 명시한 역할도 없고 계정으로 확인할 수도 없을 때만 한 번 물어봐.
+내가 이 대화에서 역할을 명시했다면 그 역할을 사용하고, 아니면 인증된 GitHub 현재 계정을 확인해 sy-Lee-01=A, letstakeabreak=B, magic3ightball=C로 결정해. Git author, 이메일, 저장소 소유자, 폴더나 브랜치 이름으로 추정하지 마. 명시한 역할도 없고 계정으로 확인할 수도 없을 때만 한 번 물어봐.
 
 먼저 현재 작업의 기존 Goal을 확인해. 같은 역할의 활성 목표는 이어가고, 무관한 미완료 목표를 덮어쓰지 마. 그런 목표가 있으면 보존하고 나에게 선택을 물어봐. 새 목표를 만들 수 있는 상태라면 goal.md의 해당 역할 완료 조건을 포함해 create_goal로 구체적인 목표를 만들어. 토큰 예산은 내가 지정하지 않았으므로 설정하지 마. 도구가 없으면 지원되는 /goal 시작 방법과 정확한 문구를 알려주고 활성화되었다고 가장하지 마.
 
@@ -230,14 +241,14 @@ executionReady:true인 DEEP PRESS prd.md와 강한 사실적 시각 목표를 �
 
 아래 조건을 선택된 역할의 Goal에 구체적으로 포함한다. PRD에 더 구체적인 수치와 검사 조건이 있으면 그것을 적용한다. 초기 scaffold의 녹색 검사만으로 Goal을 완료하지 않는다.
 
-### A — letstakeabreak
+### A — sy-Lee-01
 
 - `src/core/**`와 `src/content/**`에서 PRD의 핵심 행동, 진행·성공·실패, 결과와 재시작을 PRD와 계약에 맞게 구현한다.
 - DOM/렌더링에 독립적인 결정적 상태 전이와 콘텐츠 검증을 제공한다. 입력 취소, 상태 경계, 반복 재시작, 서로 다른 step 간격에서의 판정 일관성을 의미 있는 테스트로 확인한다.
 - `tests/core/**`와 공통 계약 smoke, 전체 검사, A 소유권 검사를 통과하고 `docs/handoffs/A/**`에 SHA·명령·결과·남은 조건을 기록한다.
 - 자기 기여 PR은 B/C를 기다리지 않고 먼저 완성한다. 통합은 세 기여가 준비된 뒤 고정된 A→B→C SHA로 별도 후보에서 수행한다. 최종 후보의 전체 검사·브라우저 흐름·실제 iPhone/시각 요구를 만족한 증거로 최종 통합 PR 하나를 준비한다. 다른 역할 미완료를 자기 코드로 임의 대체하지 않는다.
 
-### B — sy-Lee-01
+### B — letstakeabreak
 
 - `src/render/**`의 공개 렌더러가 고정 fixture와 실제 snapshot을 동일한 계약으로 표현하게 한다. resize·render·dispose·로딩 실패와 다시 시작을 검증한다.
 - `assets/source/**`의 ImageGen 원본을 출발점으로 Meshy 7 flagship·4K PBR 원본 텍스처 결과를 정리하고 `public/assets/**`에 에셋 계약에 맞게 제공한다. 모델·설정·출처·변환·사용 위치를 기록한다.
@@ -255,17 +266,17 @@ executionReady:true인 DEEP PRESS prd.md와 강한 사실적 시각 목표를 �
 
 역할을 이미 알고 있으면 아래 자기 요청 하나를 사용한다. 계정명은 작업 역할을 지정하는 정보다. 실제 인증 계정이 다르면 권한을 가장하지 않고 차이를 기록한다.
 
-### letstakeabreak
-
-```text
-나는 letstakeabreak이고 이 저장소의 역할 A다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 A 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
-실행 기준이 확인되면 공통 bootstrap SHA·계약 버전·내 브랜치를 기록하고 baseline 검사 후 src/core/**, src/content/**, tests/core/**, docs/handoffs/A/**에서 바로 구현해. 독립 테스트와 계약 smoke, 전체 검사, 소유권 검사, 증거와 기여 PR까지 완성해. 공유 변경은 버전 있는 계약 수정으로 세 역할에 전달한 뒤에만 진행해. 세 역할이 준비되면 A→B→C의 고정 SHA를 별도 통합 후보에 모아 검증하고 main 반영용 최종 통합 PR 하나를 준비해. 통합 전에 실기기·실제 화면 품질·최종 에셋 조건을 건너뛰지 말고, 배포나 대회 제출은 하지 마.
-```
-
 ### sy-Lee-01
 
 ```text
-나는 sy-Lee-01이고 이 저장소의 역할 B다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 B 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
+나는 sy-Lee-01이고 이 저장소의 역할 A다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 A 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
+실행 기준이 확인되면 공통 bootstrap SHA·계약 버전·내 브랜치를 기록하고 baseline 검사 후 src/core/**, src/content/**, tests/core/**, docs/handoffs/A/**에서 바로 구현해. 독립 테스트와 계약 smoke, 전체 검사, 소유권 검사, 증거와 기여 PR까지 완성해. 공유 변경은 버전 있는 계약 수정으로 세 역할에 전달한 뒤에만 진행해. 세 역할이 준비되면 A→B→C의 고정 SHA를 별도 통합 후보에 모아 검증하고 main 반영용 최종 통합 PR 하나를 준비해. 통합 전에 실기기·실제 화면 품질·최종 에셋 조건을 건너뛰지 말고, 배포나 대회 제출은 하지 마.
+```
+
+### letstakeabreak
+
+```text
+나는 letstakeabreak이고 이 저장소의 역할 B다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 B 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
 실행 기준이 확인되면 공통 bootstrap SHA·계약 버전·내 브랜치를 기록하고 baseline 검사 후 src/render/**, public/assets/**, assets/source/**, tests/render/**, docs/handoffs/B/**에서 바로 구현해. ImageGen 원본에서 Meshy 7 flagship·4K PBR 원본 텍스처로 최종 에셋을 만들고 런타임용으로 최적화한 뒤 콘셉트와 실제 런타임 화면을 비교해. 도구 접근이나 다른 개발자를 기다리는 동안 계약 fixture와 mock으로 구현하되 mock을 최종 아트 완료로 표시하지 마. 독립 테스트와 계약 smoke, 전체 검사, 소유권 검사, 실제 캡처와 기여 PR까지 완성해. 공유 계약·의존성이나 타인 파일은 수정하지 말고 main에 push·merge, 배포, 대회 제출은 하지 마.
 ```
 
@@ -287,10 +298,10 @@ executionReady:true인 DEEP PRESS prd.md와 강한 사실적 시각 목표를 �
 
 ---
 product: DEEP PRESS
-prdVersion: 1.0.0
+prdVersion: 1.0.1
 contractVersion: 1.0.0
 executionReady: true
-bootstrapRef: bootstrap-v1
+bootstrapRef: bootstrap-v2
 updated: 2026-09-24
 ---
 
@@ -311,11 +322,11 @@ updated: 2026-09-24
 - **Good Cohesion**: 물건의 재질, 표면 손상, 압력계, 결과 수치가 같은 사건을 설명한다. 시각적 손상과 계산된 무결성을 연결한다.
 - **Distinctly Apple**: iPhone의 직접 조작, 안정적인 포인터 해제, safe area, 44 CSS px 이상 터치 대상, 빠른 재시작. 웹의 햅틱·네이티브 기능을 지원한다고 가정하지 않는다.
 
-공식 심사위원은 아직 TBA다. 심사 취향이나 우승을 보장할 수 없다. [대회 조사](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/TEAM_AI_CONTEXT.md)와 [2027 전망](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/trends-2027.md)을 읽는다. 촉각적 작업·눈으로 보이는 결과·짧은 위험 판단의 지속 가능성을 설계 가설로 채택했다. 2027 흥행, 실사 그래픽의 우위, 이 게임의 수요는 입증된 사실이 아니다.
+공식 심사위원은 아직 TBA다. 심사 취향이나 우승을 보장할 수 없다. [대회 조사](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/TEAM_AI_CONTEXT.md)와 [2027 전망](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/trends-2027.md)을 읽는다. 촉각적 작업·눈으로 보이는 결과·짧은 위험 판단의 지속 가능성을 설계 가설로 채택했다. 2027 흥행, 실사 그래픽의 우위, 이 게임의 수요는 입증된 사실이 아니다.
 
 ## 정확한 규칙 v1
 
-공개 타입은 `src/contracts/index.ts` 하나다. 단위는 용량 L, 렌더 공간 m, 각도 rad, 시간 ms. 입력·판정·렌더의 소유권은 [계약](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/contracts.md)을 따른다.
+공개 타입은 `src/contracts/index.ts` 하나다. 단위는 용량 L, 렌더 공간 m, 각도 rad, 시간 ms. 입력·판정·렌더의 소유권은 [계약](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/contracts.md)을 따른다.
 
 | 회수물 ID | 표현 | 시작 부피 L | 최소 부피 L | 원래 가치 | 안전 압력 |
 |---|---|---:|---:|---:|---:|
@@ -364,7 +375,7 @@ CSS safe-area-inset을 반영한다. 320 CSS px 폭에서 필수 조작이 가�
 
 ## 그래픽의 합격선
 
-[아트 기준 5장](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/README.md)은 **ImageGen 시각 목표**다. 실제 게임 캡처가 아니다. 중심 카메라·형상·재질·조명을 구현하고 같은 화면 크기의 실행 캡처로 비교한다. 광고용 그림만 정교하고 게임은 기본 도형인 상태를 완료로 인정하지 않는다.
+[아트 기준 5장](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/README.md)은 **ImageGen 시각 목표**다. 실제 게임 캡처가 아니다. 중심 카메라·형상·재질·조명을 구현하고 같은 화면 크기의 실행 캡처로 비교한다. 광고용 그림만 정교하고 게임은 기본 도형인 상태를 완료로 인정하지 않는다.
 
 고정된 하나의 작업대에 제작량을 집중한다. 양쪽 유압 기둥, 실린더와 누름판, 두꺼운 금속 바닥, 호박색 압력계, 짙은 청록 배경, 우측 케이스, 회수품의 세 가지 재질을 유지한다. 물리 기반 금속·거칠기·노멀, 접촉 그림자, 절제한 반사와 발광을 사용한다. 무거운 무한 파티클·화면 전체 블룸·플라스틱 같은 표면으로 디테일을 덮지 않는다.
 
@@ -384,11 +395,11 @@ Three.js + TypeScript + Vite, 정확한 버전은 잠금 파일과 계약을 따
 
 | 역할 | 구현 | 반드시 남길 증거 |
 |---|---|---|
-| A letstakeabreak | 위 수식·전이·세 콘텐츠·snapshot/entity·이벤트·재시작·pause | 용량 경계/손상/반복 입력/정산/seed 재현/프레임 분할 결과 테스트, implementation=game 전환 근거 |
-| B sy-Lee-01 | 실제 모델 로드·재질·카메라·압착/파손/보관 연출·최적화 | 원본→Meshy7→런타임 lineage, 측정 geometry/texture, 5개 목표 대응 캡처, GPU/성능 증거 |
+| A sy-Lee-01 | 위 수식·전이·세 콘텐츠·snapshot/entity·이벤트·재시작·pause | 용량 경계/손상/반복 입력/정산/seed 재현/프레임 분할 결과 테스트, implementation=game 전환 근거 |
+| B letstakeabreak | 실제 모델 로드·재질·카메라·압착/파손/보관 연출·최적화 | 원본→Meshy7→런타임 lineage, 측정 geometry/texture, 5개 목표 대응 캡처, GPU/성능 증거 |
 | C magic3ightball | 앱·터치 입력·HUD·안내·오류·pause/resume·결과/재시작 | 실제 전체 루프, cancel/visibility/다중입력, iPhone 레이아웃 및 실기기 기록 |
 
-소유 경로와 브랜치는 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md) 단일 기준이다. 각자 테스트와 handoff를 남긴다. 셋의 결과를 통합 후보에서 먼저 검증하고 최종 PR 하나를 main에 반영한다. 파일 분리만으로 무결한 merge를 보장하지 않는다.
+소유 경로와 브랜치는 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md) 단일 기준이다. 각자 테스트와 handoff를 남긴다. 셋의 결과를 통합 후보에서 먼저 검증하고 최종 PR 하나를 main에 반영한다. 파일 분리만으로 무결한 merge를 보장하지 않는다.
 
 출시 합격은 실제 기기에서 설명 없이 첫 회수 완료, 압착·보관·실패·정산·재시작 전 과정 동작, 모든 최종 에셋 lineage, 콘셉트 대비 캡처, 위 성능 및 입력 조건을 충족하는 것이다. 작은 팀에 맞게 범위를 줄여도 이 핵심 품질을 완료했다고 거짓 보고하지 않는다. 현재 저장소는 **공통 기반/계약/연구/아트 원본 준비 단계**이며 완성 게임·실기기 검증·대회 제출은 남아 있다.
 
@@ -401,38 +412,45 @@ Three.js + TypeScript + Vite, 정확한 버전은 잠금 파일과 계약을 따
 {
   "schemaVersion": 1,
   "product": "DEEP PRESS",
-  "ref": "bootstrap-v1",
-  "resolveCommitCommand": "git rev-parse bootstrap-v1^{commit}",
+  "ref": "bootstrap-v2",
+  "resolveCommitCommand": "git rev-parse bootstrap-v2^{commit}",
   "integrationBranch": "integration/v1",
-  "prdVersion": "1.0.0",
+  "prdVersion": "1.0.1",
   "contractVersion": "1.0.0",
   "executionReady": true,
   "createdAt": "2026-09-24",
   "note": "Tag is created after the bootstrap commit. Resolve and record full SHA in each handoff. No self-referential commit hash.",
   "frozenFiles": {
-    "AGENTS.md": "4d9127cb33a30e442caf4ab5d0ed03dbea421fe2d2f92ae99917aa9e7c1a5d51",
-    "instruction.md": "07468debcbf94f40b4ea9eca6d26bcd9a23be0f7f29ab51f3d2a7767c1355ff8",
-    "goal.md": "b0396783ba7eee9930da97304025f225d9dbcacedaac3e8b9374c31924c721c8",
-    "prd.md": "d494ba5258cdc99c10f763db4f396afeba25a32cd01697bf7469b38662ad7bab",
+    "AGENTS.md": "53ee14aadbf420197a7bbe6d3b285c8eacbd5ff3c6105643088b5d3e3ea6a2e0",
+    "instruction.md": "6ee2497c6d4fb1670f54dba7858ea4c6d6b56e73089ce8e9020a7e68a53a83ee",
+    "goal.md": "4726d63507ce1dd26f5c7831289aabc9f7ef55a5e1f54de57c4244a6afeee77a",
+    "prd.md": "968d59008c58ad1539b042282724461f4c06d43091b9e6eb7f771355965606af",
     "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
     "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
     "tsconfig.json": "a21d5bdb1f0816ba7e6f6e016d5a6f0873c7f58cbdb4a3d68bb2c24655c3cdbb",
     "vite.config.ts": "84a674e08ad3b6a9077278fc6f067d097090f4298c53f37583d57d00e5a20a94",
     ".nvmrc": "8f8e373d500f414f7435fdc1d2fe9dd697e60cfb03b69657cecb873ac31b84df",
     ".editorconfig": "a6b98ea7cb6d61ed8d430dd0dffa46c87012b5cf859d4ce7207898954951fdcd",
-    "docs/contracts.md": "3a6e89306f964737fdda2698e3db1842058dae424adbb902cd905b6df84f299d",
-    "docs/asset-contract.md": "280b5294c703bbbe59c366275a7bfbc2e28819fe27ff01fcfbce6682f8166f26",
+    "docs/contracts.md": "46f3a0dc0823b3cb38f1a7e6dd064b01f8091ebe8e7e44230833024a71be66fe",
+    "docs/asset-contract.md": "02021c1480b9b2df01678b76f8d2413001fd69b0c950498fb28ab3f3a7ace8ee",
     "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
     "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
     "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
     "scripts/check-bootstrap.mjs": "1f008ca0a6f29c5e25959c9e5b7ebd93e114bcdb68140b9361e57fb44bd7747a",
     "scripts/check-boundaries.mjs": "b8be6586f5ff694a1c91f6d980c35e76a5a4fe4d35a6fc3a774f2184b57539cb",
-    "scripts/check-ownership.mjs": "d70f14b3baf63441ac454bf51777ceb1d5c89ae24ed70e19ceed00cd7296e0d2",
+    "scripts/check-ownership.mjs": "a003333dd779a974261aee0461e9b17148253344241209f85dc4707eea7ba460",
     "scripts/ownership-rules.mjs": "67db3b6976ed088341b3028d8feb68c0a046da4a53b365b5096cc57b9c4a634c",
-    "tests/contracts/ownership-cli.test.ts": "a499bfc4cc7d0a7819f679985abfd55a6827663d1590fdae57203de068164c21",
+    "tests/contracts/ownership-cli.test.ts": "27428470489629cddfad5133d0fa9ec4ab88aadf583191ccdf9a219034bf3dc9",
     "tests/contracts/ownership.test.ts": "0371b87b50a89ed254fd87c211c46a6cece15fbbe9810a3e3ca826151577e9cf",
     "tests/contracts/snapshots.test.ts": "e3d4e4755f653f1a6e8bca8e7981805fa1cb20e5cd38a800c2aea6e61e7f3696",
     ".github/workflows/ci.yml": "8a69223ba80175bdfa9762c6eefb35c6081fcafe0c44d35c4bb4e139351bca6a"
+  },
+  "supersedes": "bootstrap-v1",
+  "changeReason": "User takes rendering/assets/graphics because only letstakeabreak has Meshy; swap A/B account assignments. API contract unchanged.",
+  "roles": {
+    "A": "sy-Lee-01",
+    "B": "letstakeabreak",
+    "C": "magic3ightball"
   }
 }
 ```
@@ -467,14 +485,14 @@ Node 26.8.2는 이 bootstrap 검증 환경이지 LTS라는 뜻이 아니다. `.n
 
 | 소유자 | 수정 경로 | 공개 진입점 |
 |---|---|---|
-| A / letstakeabreak | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | `src/core/index.ts` |
-| B / sy-Lee-01 | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | `src/render/index.ts` |
+| A / sy-Lee-01 | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | `src/core/index.ts` |
+| B / letstakeabreak | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | `src/render/index.ts` |
 | C / magic3ightball | `src/app/**`, `src/main.ts`, `tests/app/**`, `docs/handoffs/C/**` | `src/app/index.ts` |
 | 공유 / 통합 담당 A | `src/contracts/**`, `tests/contracts/**`, `scripts/**`, `.github/**`, 공통 docs 및 루트 설정·패키지·잠금 파일 | 승인된 계약 변경으로만 수정 |
 
 A의 core/content는 서로 import 가능하며 외부 패키지, DOM, 시간 API, `Math.random`을 사용하지 않는다. B는 자기 모듈·contracts·Three.js만 import한다. C는 자기 모듈·contracts와 **공개 core/render 진입점**만 import한다. core/render는 app을 모른다. 상대 import만 사용하고 별도 alias를 만들지 않는다. 테스트는 소비 계약 검증을 위해 공개 진입점을 조합할 수 있다.
 
-소유권 검사: `npm run ownership -- --role A --base bootstrap-v1`처럼 실제 역할 하나를 지정한다. base 기본값은 `bootstrap-v1`이다. base부터 현재 작업 트리까지의 변경과 untracked 파일을 검사하고 rename의 옛 경로·새 경로 모두 포함한다. 알려지지 않은 경로, 다른 소유자, shared 변경은 실패한다. **A도 기본적으로 shared 변경이 차단된다.** 승인·버전·영향·이전 방법을 기록하고 세 역할에 공유한 변경에만 `--allow-shared`를 사용할 수 있다. 이 플래그가 승인 자체를 생성하지 않는다.
+소유권 검사: `npm run ownership -- --role A --base bootstrap-v2`처럼 실제 역할 하나를 지정한다. base 기본값은 `bootstrap-v2`이다. base부터 현재 작업 트리까지의 변경과 untracked 파일을 검사하고 rename의 옛 경로·새 경로 모두 포함한다. 알려지지 않은 경로, 다른 소유자, shared 변경은 실패한다. **A도 기본적으로 shared 변경이 차단된다.** 승인·버전·영향·이전 방법을 기록하고 세 역할에 공유한 변경에만 `--allow-shared`를 사용할 수 있다. 이 플래그가 승인 자체를 생성하지 않는다.
 
 ## 단위, 시간, 데이터
 
@@ -552,7 +570,7 @@ mountApp(root: HTMLElement): () => void
 
 ## 공유 변경 절차
 
-bootstrap tag는 `bootstrap-v1`, 역할 브랜치는 `role/a-core`, `role/b-render`, `role/c-app`이다. A가 공유 변경 사유·버전·영향·마이그레이션을 기록하고 B/C에게 같은 계약을 전달한 뒤 수정한다. 계약 변경 시 타입, fixture, validator, consumer tests, 이 문서를 함께 갱신한다. 출발 ref와 계약 해시는 `docs/bootstrap.json`을 따른다. 전체 출발 SHA는 `git rev-parse bootstrap-v1^{commit}`으로 기록한다. 이 문서는 태그나 커밋이 이미 존재한다고 단정하지 않는다.
+bootstrap tag는 `bootstrap-v2`, 역할 브랜치는 `role/a-core`, `role/b-render`, `role/c-app`이다. A가 공유 변경 사유·버전·영향·마이그레이션을 기록하고 B/C에게 같은 계약을 전달한 뒤 수정한다. 계약 변경 시 타입, fixture, validator, consumer tests, 이 문서를 함께 갱신한다. 출발 ref와 계약 해시는 `docs/bootstrap.json`을 따른다. 전체 출발 SHA는 `git rev-parse bootstrap-v2^{commit}`으로 기록한다. 이 문서는 태그나 커밋이 이미 존재한다고 단정하지 않는다.
 
 
 ---
@@ -561,7 +579,7 @@ bootstrap tag는 `bootstrap-v1`, 역할 브랜치는 `role/a-core`, `role/b-rend
 
 # DEEP PRESS 에셋 계약 v1.0.0
 
-담당 B는 `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**`를 소유한다. 타입은 `src/contracts/index.ts`, 런타임 registry는 `src/render/assets.ts`다. bootstrap의 **런타임 네 항목은 placeholder**다. ImageGen 콘셉트 5장과 Meshy 7 master 2개는 생성돼 [source 목록](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/assets/source/meshy/README.md)에 보존됐다. master는 generated-unverified이며 모바일용 파일·축·피벗·변형이 아직 준비되지 않았으므로 런타임 registry에 등록하지 않았다. 실제 게임 화면·검증된 런타임 GLB와 구분한다.
+담당 B는 `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**`를 소유한다. 타입은 `src/contracts/index.ts`, 런타임 registry는 `src/render/assets.ts`다. bootstrap의 **런타임 네 항목은 placeholder**다. ImageGen 콘셉트 5장과 Meshy 7 master 2개는 생성돼 [source 목록](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/assets/source/meshy/README.md)에 보존됐다. master는 generated-unverified이며 모바일용 파일·축·피벗·변형이 아직 준비되지 않았으므로 런타임 registry에 등록하지 않았다. 실제 게임 화면·검증된 런타임 GLB와 구분한다.
 
 ## 고정 asset ID와 산출물
 
@@ -577,6 +595,8 @@ registry의 runtimePath는 `assets/models/...glb`처럼 public을 제외한 상�
 좌표는 m, +Y up, +Z forward. 피벗은 base-center, 회전은 rad, 각 파일의 실제 heightM·triangle 수를 측정해 registry에 기록한다. config의 liter 용량과 3D mesh 크기는 별개의 값이다. mesh bounds나 scale로 게임 용량·손상·점수를 다시 계산하지 않는다.
 
 ## ImageGen → Meshy 7 lineage
+
+Meshy 구독 소유자는 **letstakeabreak(역할 B)**다. 실제 생성·텍스처·다운로드는 B의 인증 환경에서 수행하고 결과와 provenance를 저장소에 제공한다. A(sy-Lee-01)/C(magic3ightball)는 필요한 ID·용도·규격을 B에게 요청하며 그동안 fixture로 개발한다. 인증 정보는 공유하지 않는다.
 
 1. 승인된 PRD·콘셉트에 맞춘 ImageGen 이미지와 프롬프트를 `assets/source/<id>/`에 저장한다.
 2. 사용한 원본 이미지 경로, 생성 시각(ISO 8601), 생성 프롬프트 경로를 registry.imagegen에 기록한다.
@@ -607,35 +627,35 @@ registry의 runtimePath는 `assets/models/...glb`처럼 public을 제외한 상�
 
 # DEEP PRESS — 시각 기준 5장
 
-모든 그림은 ImageGen으로 생성한 **구현 목표**이며 게임 플레이 캡처가 아니다. 같은 시점·물건·재질을 실제 실행 화면에서 비교해야 아트 완료다. [정확한 프롬프트](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/prompts.json)와 [PRD](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md)를 함께 읽는다. 이전 거절된 정원·스프링 이미지는 현재 자산에 포함하지 않았다.
+모든 그림은 ImageGen으로 생성한 **구현 목표**이며 게임 플레이 캡처가 아니다. 같은 시점·물건·재질을 실제 실행 화면에서 비교해야 아트 완료다. [정확한 프롬프트](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/prompts.json)와 [PRD](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md)를 함께 읽는다. 이전 거절된 정원·스프링 이미지는 현재 자산에 포함하지 않았다.
 
 ## 01 작업대 — 기준 카메라
 
-![작업대 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/concepts/01-workbench.png)
+![작업대 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/concepts/01-workbench.png)
 
 짙은 청록색 잠수정 작업실, 두 개의 유압 기둥과 압착판, 중앙의 금속·호박색 회수품, 우측의 회수 케이스를 유지한다. 사실적인 표면이면서 물건과 버튼의 가독성이 우선이다. 버튼·수치·문자는 C가 실제 UI로 렌더한다. 이미지에 보이지 않는 동작을 이미 구현했다고 추정하지 않는다.
 
 ## 02 압력 적용
 
-![압력 상태](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/concepts/02-pressure-state.png)
+![압력 상태](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/concepts/02-pressure-state.png)
 
 누름판의 접촉 위치, 보호 하우징의 변형, 내부 코어 손상 징후를 검증한다. 기본 mesh 전체를 Y축으로 줄이는 것만으로 최종 압착 연출을 완료하지 않는다. 실제 물건의 접촉면·변형 방향이 맞아야 한다.
 
 ## 03 카세트 원본
 
-![카세트 생성 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/concepts/03-salvage-cassette-reference.png)
+![카세트 생성 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/concepts/03-salvage-cassette-reference.png)
 
 Meshy 7 재구성 입력. 원본 모델의 뒤쪽 형상은 단일 이미지에서 추정되므로 그대로 정확하다고 주장하지 않는다. B가 회전·압축·바닥 접촉과 PBR 재질을 확인하고 런타임 파생본을 만든다.
 
 ## 04 프레스 원본
 
-![프레스 생성 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/concepts/04-press-chamber-reference.png)
+![프레스 생성 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/concepts/04-press-chamber-reference.png)
 
 Meshy 7 재구성 입력. 생성 GLB가 단일 mesh일 수 있다. 기둥·실린더·누름판을 실제 움직임에 맞게 분리하고 피벗을 정리해야 한다. 이 원본은 완성 애니메이션 장치가 아니다.
 
 ## 05 회수 성공
 
-![회수 성공 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/art/concepts/05-success-state.png)
+![회수 성공 기준](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/art/concepts/05-success-state.png)
 
 회수 케이스에 보관된 물건과 안정된 압착판의 대비를 참고한다. 그림의 물건 개수·수치·부피는 게임 판정의 근거가 아니다. 실제 상태·보관 수·점수는 A의 snapshot만 따른다.
 
@@ -656,14 +676,14 @@ ImageGen 입력 → Meshy CLI 0.4.0 standard + 명시적 `ai_model=meshy-7`, tex
 
 | 파일 | 크기 bytes | triangle | 이미지 해상도 | 상태 |
 |---|---:|---:|---|---|
-| [카세트 master](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/assets/source/meshy/salvage-cassette/salvage-cassette-master.glb) | 63,499,220 | 1,158,358 | 4096² / 2048² / 4096² | generated-unverified |
-| [프레스 master](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/assets/source/meshy/press-chamber/press-chamber-master.glb) | 47,883,172 | 775,612 | 4096² / 2048² / 4096² | generated-unverified |
+| [카세트 master](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/assets/source/meshy/salvage-cassette/salvage-cassette-master.glb) | 63,499,220 | 1,158,358 | 4096² / 2048² / 4096² | generated-unverified |
+| [프레스 master](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/assets/source/meshy/press-chamber/press-chamber-master.glb) | 47,883,172 | 775,612 | 4096² / 2048² / 4096² | generated-unverified |
 
 GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base color와 normal은 4K, metallic/roughness는 2K다. 모두 단일 mesh·단일 primitive다. 프레스 누름판이 독립 부품으로 준비된 모델이 아니다. 작업 ID·입력 해시·원본 해시·실제 PBR 연결은 각 provenance.json에 있다. 다운로드 URL과 계정 정보는 공유하지 않는다.
 
-![카세트 서비스 미리보기](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/assets/source/meshy/salvage-cassette/preview.png)
+![카세트 서비스 미리보기](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/assets/source/meshy/salvage-cassette/preview.png)
 
-![프레스 서비스 미리보기](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/assets/source/meshy/press-chamber/preview.png)
+![프레스 서비스 미리보기](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/assets/source/meshy/press-chamber/preview.png)
 
 서비스 미리보기로 의도한 물체의 형상과 재질이 식별되는 것만 확인했다. 실행 렌더러·후면 형상·실기기·변형은 미검증이다. B는 기존 master를 재사용하고, 움직일 부품 분리·피벗·크기·압착 변형·모바일 최적화 후 public/assets/models에 별도의 파일을 만든다. PRD의 150k visible triangle/20MB 첫 로드 예산에 원본 그대로는 들어가지 않는다. 원본 파일을 덮어쓰지 않는다.
 
@@ -689,7 +709,7 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 빌드에는 536.49kB main JS chunk 경고가 남아 있다(gzip134.78kB). B/C의 실제 렌더·에셋 연결 후 성능 측정이 필요하다. 경고 임계값을 높여 숨기지 않았다.
 
-실행 캡처: [desktop](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/evidence/deep-press-scaffold.png), [mobile viewport](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/evidence/deep-press-scaffold-mobile.png). 캡처의 중립 도형은 계약 개발용 placeholder다. 목표 그래픽과 동일하다고 주장하지 않는다.
+실행 캡처: [desktop](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/evidence/deep-press-scaffold.png), [mobile viewport](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/evidence/deep-press-scaffold-mobile.png). 캡처의 중립 도형은 계약 개발용 placeholder다. 목표 그래픽과 동일하다고 주장하지 않는다.
 
 남은 제품 작업은 A의 전체 게임 규칙, B의 최종 장면·모바일 모델·변형, C의 실제 입력/HUD/흐름, 세 역할의 통합과 실기기 시험이다. 팀 소속 자격·AI 허용/고지·웹 전달 인정·제출용 이름·잼 신청/제출도 이 작업에서 확인되지 않았다.
 
@@ -702,10 +722,10 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 # 팀 상태 — 모든 AI에 같은 버전 전달
 
-> **최신 사용자 결정: 이전 COMPACT BLOOM·꽃섬·스프링 콘셉트는 REJECTED(폐기)다.** 이 파일의 해당 콘셉트와 연결된 개발 지시는 더 이상 실행하지 않는다. 현재 개발 기준은 루트 PRD 1.0.0의 **DEEP PRESS**다. 사용자는 귀엽거나 장난감 같은 표현을 거절하고 극도로 사실적인 그래픽을 요구했다. 현재 오디오는 제외한다. 시각 에셋 ImageGen·3D Meshy 7 flagship/high-quality texture 요구는 유지한다. 2027년 게임 흐름 조사는 예측이며 확정된 유행이 아니다.
+> **최신 사용자 결정: 이전 COMPACT BLOOM·꽃섬·스프링 콘셉트는 REJECTED(폐기)다.** 이 파일의 해당 콘셉트와 연결된 개발 지시는 더 이상 실행하지 않는다. 현재 개발 기준은 루트 PRD 1.0.1의 **DEEP PRESS**다. 사용자는 귀엽거나 장난감 같은 표현을 거절하고 극도로 사실적인 그래픽을 요구했다. 현재 오디오는 제외한다. 시각 에셋 ImageGen·3D Meshy 7 flagship/high-quality texture 요구는 유지한다. 2027년 게임 흐름 조사는 예측이며 확정된 유행이 아니다.
 
 
-버전: STATE-004 · 기준 컨텍스트: VD26.3-v2.0 · 갱신일: 2026-09-24 KST
+버전: STATE-005 · 기준 컨텍스트: VD26.3-v2.1 · 갱신일: 2026-09-24 KST
 
 ## 사용자 확정 사항
 
@@ -716,14 +736,16 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 - 협업 저장소: [very-disco-2026-3](https://github.com/letstakeabreak/very-disco-2026-3). 공유 폴더: [Google Drive](https://drive.google.com/drive/folders/1xtekUGeYoumuf2wn8YIGpkEAt1_bvjEr).
 - 승인된 문서 작업: 대회 조사·공유 컨텍스트 이관, PRD, 역할·코딩 convention을 담은 instruction, 한 번의 지시로 담당 개발을 수행할 goal, 공유 자료 정리. 게시·업로드 완료는 별도 결과로 확인한다.
 
+- 최신 역할 확정: **A=sy-Lee-01(코어·콘텐츠·통합), B=letstakeabreak(렌더링·에셋·그래픽), C=magic3ightball(앱·입력·HUD)**. Meshy.ai 구독은 사용자 letstakeabreak만 보유한다.
+
 ## 현재 개발 기준과 상태
 
 | 항목 | 상태 | 담당 / 근거 |
 |---|---|---|
-| 컨셉 | DEEP PRESS / PRD 1.0.0 executionReady=true | 총괄 AI에 위임된 새 설계. 이전 콘셉트 실행 금지 |
+| 컨셉 | DEEP PRESS / PRD 1.0.1 executionReady=true | 총괄 AI에 위임된 새 설계. 이전 콘셉트 실행 금지 |
 | 기술 | TypeScript 6.0.3 + Three.js 0.186.0 + Vite 8.3.0 | 고정 설치·기반 검사 통과, 완성 게임 성능 미검증 |
-| 역할 | 3인 모두 독립 개발 | 최종 영역·파일 소유권은 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md) |
-| 실행 목표 | 루트 goal.md 기준 | [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/goal.md). 명세와 구현 결과 구분 |
+| 역할 | 3인 모두 독립 개발 | 최종 영역·파일 소유권은 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md) |
+| 실행 목표 | 루트 goal.md 기준 | [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/goal.md). 명세와 구현 결과 구분 |
 | 그래픽·에셋 | 사용자 제작 방식 확정 | ImageGen + Meshy 7 flagship/high-quality texture, 실제 생성물은 제작 기록 확인 |
 | 팀명 / 제출용 전원 이름 | 미정 | GitHub ID와 제출용 이름 구분 |
 | 참가 자격 | 미확인 | 3명 인원 조건과 소속 자격 구분 |
@@ -737,7 +759,7 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 | 잼 참가 신청 / 제출 | 이 조사 이관 작업에서 미실시 | 사용자의 별도 작업 여부는 미확인 |
 | Drive 공유 | 사용자 지정 폴더 확인 | 파일 업로드 여부·URL은 실제 업로드 결과 확인 |
 
-기존 v1은 사용자 거절로 폐기됐다. 루트 PRD 1.0.0의 DEEP PRESS를 추가 승인 질문 없이 개발한다.
+기존 v1은 사용자 거절로 폐기됐다. 루트 PRD 1.0.1의 DEEP PRESS를 추가 승인 질문 없이 개발한다.
 
 ## 결정 기록
 
@@ -750,6 +772,7 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 | D-004 | 2026-09-24 | COMPACT BLOOM + TypeScript/Three.js/Vite 제안 | 이후 D-005로 폐기된 설계 v1 | 총괄 AI | 컨셉·엔진 미정 |
 | D-005 | 2026-09-24 | COMPACT BLOOM 거절·새 안 연구 | 사용자 최신 지시. 극사실 그래픽·오디오 제외·2027 흐름 별도 조사 | 사용자 | D-004 콘셉트 |
 | D-006 | 2026-09-24 | DEEP PRESS와 PRD/계약 1.0.0을 개발 기준으로 고정 | 2027 조사 + 사용자 위임; 촉각적 작업·가치 보존·실사 한 장면 | 총괄 AI | 폐기 후 새 안 조사 상태 |
+| D-007 | 2026-09-24 | 사용자 letstakeabreak=B 그래픽, sy-Lee-01=A 코어·통합, C 유지 | Meshy 구독은 사용자만 보유. bootstrap-v2부터 적용 | 사용자 | 이전 A/B 계정 배정 |
 
 ## 작업 인계 양식
 
@@ -778,10 +801,10 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 # Very Disco Game Jam 2026.3 — 팀 AI 공통 컨텍스트
 
-> **최신 사용자 결정: 이전 COMPACT BLOOM·꽃섬·스프링 콘셉트는 REJECTED(폐기)다.** 이 파일의 해당 콘셉트와 연결된 개발 지시는 더 이상 실행하지 않는다. 현재 개발 기준은 루트 PRD 1.0.0의 **DEEP PRESS**다. 사용자는 귀엽거나 장난감 같은 표현을 거절하고 극도로 사실적인 그래픽을 요구했다. 현재 오디오는 제외한다. 시각 에셋 ImageGen·3D Meshy 7 flagship/high-quality texture 요구는 유지한다. 2027년 게임 흐름 조사는 예측이며 확정된 유행이 아니다.
+> **최신 사용자 결정: 이전 COMPACT BLOOM·꽃섬·스프링 콘셉트는 REJECTED(폐기)다.** 이 파일의 해당 콘셉트와 연결된 개발 지시는 더 이상 실행하지 않는다. 현재 개발 기준은 루트 PRD 1.0.1의 **DEEP PRESS**다. 사용자는 귀엽거나 장난감 같은 표현을 거절하고 극도로 사실적인 그래픽을 요구했다. 현재 오디오는 제외한다. 시각 에셋 ImageGen·3D Meshy 7 flagship/high-quality texture 요구는 유지한다. 2027년 게임 흐름 조사는 예측이며 확정된 유행이 아니다.
 
 
-버전: VD26.3-v2.0 · 조사일: 2026-09-24, Asia/Seoul · 팀: 사용자 포함 총 3명
+버전: VD26.3-v2.1 · 조사일: 2026-09-24, Asia/Seoul · 팀: 사용자 포함 총 3명
 
 이 파일은 팀원 3명의 AI에 동일하게 전달하는 기준 문서다. 공식 규정, 공개 관찰, 연구자의 해석, 제안을 구분한다. 사용자는 우승을 목표로 한다. 우승은 보장할 수 없으며, 현재 목표는 제출 자격과 세 심사 항목을 모두 충족하는 완성된 플레이 경험이다.
 
@@ -789,14 +812,16 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 - 사용자 확정: 총 3명이 **모두 개발에 참여**한다. GitHub ID는 [letstakeabreak](https://github.com/letstakeabreak)(사용자), [sy-Lee-01](https://github.com/sy-Lee-01), [magic3ightball](https://github.com/magic3ightball)이다. 실명·소속 자격·역량·개발 계정·테스트 iPhone·가용 시간은 별도 미확인이다.
 - 사용자는 PRD 작성과 기술 선택을 이 작업의 총괄 AI에 맡겼다. 기존 개발 기준 v1의 **COMPACT BLOOM은 REJECTED**다. **DEEP PRESS / TypeScript + Three.js + Vite**를 현재 개발 기준으로 고정했다. 이는 위임에 따른 총괄 AI의 설계 결정이며, 별도 승인을 기다리는 보류안이 아니다. 사용자 변경 지시나 최신 PRD가 이를 대체한다. 재미·성능·배포 성공을 검증했다는 뜻은 아니다.
-- DEEP PRESS는 사실적인 심해 유압 작업대에서 회수품을 압축해 1L 케이스에 넣고 부피·손상·가치를 판단하는 세로형 3D 게임이다. 범위·규칙·완료 조건은 저장소 루트의 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md), [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md), [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/goal.md)를 따른다.
+- DEEP PRESS는 사실적인 심해 유압 작업대에서 회수품을 압축해 1L 케이스에 넣고 부피·손상·가치를 판단하는 세로형 3D 게임이다. 범위·규칙·완료 조건은 저장소 루트의 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md), [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md), [goal.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/goal.md)를 따른다.
 - 사용자 요구: **화려하고 완성도 높은 그래픽**, 모든 시각 에셋의 **ImageGen** 제작, 3D 에셋의 **Meshy 7 flagship / high-quality texture** 제작. 구체적 호출 옵션·에셋 상태·최적화·검증 기록은 제작 시 실제 도구와 산출물로 확인한다. 이 요구는 대회의 AI 허용을 확인한 근거가 아니다.
 - 협업 기준 저장소: [very-disco-2026-3](https://github.com/letstakeabreak/very-disco-2026-3). 공유 폴더: [Google Drive](https://drive.google.com/drive/folders/1xtekUGeYoumuf2wn8YIGpkEAt1_bvjEr). 링크 제공, 로컬 문서 작성, 원격 게시, Drive 업로드를 각각 구분해 기록한다.
 - 현재 리서치 문서 이관에서는 게임 구현·실기기 시험·참가 신청·작품 제출·주최자 연락을 하지 않았다. 에셋·문서의 최신 생성/게시 여부는 실제 파일과 업로드 기록을 확인한다.
 - 세 명의 개발 영역과 파일 소유권은 루트 `instruction.md`가 정한다. 이 문서의 과거 A=코어/B=경험/C=검증 전담안은 현재 역할 배정이 아니다.
-- 팀의 후속 결정은 [TEAM_STATE.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/TEAM_STATE.md)에 반영한다. 운영 지침·개발 명세는 최신 루트 문서, 대회 사실은 날짜와 출처가 붙은 조사 근거로 판단한다.
+- 팀의 후속 결정은 [TEAM_STATE.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/TEAM_STATE.md)에 반영한다. 운영 지침·개발 명세는 최신 루트 문서, 대회 사실은 날짜와 출처가 붙은 조사 근거로 판단한다.
 
 상태 표기: `CONFIRMED`=공식·직접 확인 또는 출처가 명시된 사용자 확정, `OBSERVED`=공개 페이지 관찰 또는 제작자 설명, `INFERENCE`=근거에서 도출한 해석, `PROPOSAL`=미채택 제안, `DESIGN_DECISION`=위임에 따른 현재 개발 기준, `REJECTED`=폐기되어 실행하지 않을 결정, `UNKNOWN`=미확인, `TESTED`=명시된 환경에서 실제 시험 완료. 게시된 기능 설명과 설계 명세는 TESTED가 아니다.
+
+현재 역할은 **A=sy-Lee-01 / B=letstakeabreak / C=magic3ightball**이다. Meshy.ai는 B인 사용자만 보유한다. A/C는 생성 요청을 B에게 인계하고 공유된 결과·fixture로 개발하며 Meshy 계정·키 공유를 요구하지 않는다. 최신 시작 기준은 bootstrap-v2, PRD1.0.1, contract1.0.0이다.
 
 ## 2. 공식 조건 — CONFIRMED
 
@@ -874,9 +899,9 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 ## 6. 현재 개발 기준과 초기 제안의 관계
 
-**DEEP PRESS**의 압착·가치 보존·유한 용량 판단을 구현한다. PRD 1.0.0과 계약 1.0.0이 현재 기준이다. ImageGen 새 콘셉트 5장, 실행 가능한 공통 개발 기반과 검증이 준비되어 있다. 실제 게임 루프·최종 렌더·실기기 검증은 각 역할의 개발 Goal로 남아 있다.
+**DEEP PRESS**의 압착·가치 보존·유한 용량 판단을 구현한다. PRD 1.0.1과 계약 1.0.0이 현재 기준이다. ImageGen 새 콘셉트 5장, 실행 가능한 공통 개발 기반과 검증이 준비되어 있다. 실제 게임 루프·최종 렌더·실기기 검증은 각 역할의 개발 Goal로 남아 있다.
 
-초기 조사에서는 “꾹! 스프링 택배 / 한 칸의 숲 / 접어 보내기”를 후보로 비교했다. 이전 후보 기록은 [폐기 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/archive/initial-strategy.md)에 보존하며 현재 개발 지시로 사용하지 않는다. [현재 실행안](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/STRATEGY_AND_SPRINT.md)은 DEEP PRESS 기준이다. 최신 PRD·instruction·goal을 대신하지 않는다.
+초기 조사에서는 “꾹! 스프링 택배 / 한 칸의 숲 / 접어 보내기”를 후보로 비교했다. 이전 후보 기록은 [폐기 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/archive/initial-strategy.md)에 보존하며 현재 개발 지시로 사용하지 않는다. [현재 실행안](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/STRATEGY_AND_SPRINT.md)은 DEEP PRESS 기준이다. 최신 PRD·instruction·goal을 대신하지 않는다.
 
 초기 검증 가설이었던 짧은 첫 행동, 이해 가능한 실패 원인, 재시작, 소리 없이도 읽히는 정보, 각 심사축의 플레이 증거는 참고할 수 있다. 수치·세션 길이·콘텐츠·담당 배정은 현재 PRD로 결정한다. 공식 심사 시간이나 배점이라고 말하지 않는다.
 
@@ -892,7 +917,7 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 ## 8. 3명과 3개의 AI가 충돌하지 않는 작업 방식
 
-세 명 모두 개발자다. 각자 루트 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md)에 지정된 개발 영역을 독립적으로 구현하고, 공통 인터페이스·파일 소유권·통합 기준을 지킨다. 이전 A=코어/B=경험/C=검증 구분은 초기 제안이며 한 사람을 디자인 전담이나 QA 전담으로 제한하지 않는다. 최종 역할을 이 조사 문서에 별도로 복제해 두지 않는다.
+세 명 모두 개발자다. 각자 루트 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md)에 지정된 개발 영역을 독립적으로 구현하고, 공통 인터페이스·파일 소유권·통합 기준을 지킨다. 이전 A=코어/B=경험/C=검증 구분은 초기 제안이며 한 사람을 디자인 전담이나 QA 전담으로 제한하지 않는다. 최종 역할을 이 조사 문서에 별도로 복제해 두지 않는다.
 
 작업 시작 때 최신 `prd.md`, `instruction.md`, `goal.md`, 이 파일과 `TEAM_STATE.md`를 함께 읽는다. 각 AI는 자신의 범위·필요 입력·완료 증거를 요약한다. 공통 계약 변경과 다른 담당 파일 수정은 `instruction.md`의 협업 규칙을 따른다. 각 개발자는 자신의 구현과 관련 테스트에 책임을 진다.
 
@@ -1044,9 +1069,9 @@ GLB binary의 meshes/accessors/materials/images를 읽어 측정했다. base col
 
 # DEEP PRESS 실행안
 
-현재 실행 기준은 [PRD 1.0.0](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md)과 [instruction](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md)이다. [초기 후보 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/archive/initial-strategy.md)은 폐기된 연구 이력이다.
+현재 실행 기준은 [PRD 1.0.1](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md)과 [instruction](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md)이다. [초기 후보 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/archive/initial-strategy.md)은 폐기된 연구 이력이다.
 
-1. 세 명이 bootstrap-v1의 같은 SHA와 계약 해시를 확인하고 자기 역할 Goal을 시작한다.
+1. 세 명이 bootstrap-v2의 같은 SHA와 계약 해시를 확인하고 자기 역할 Goal을 시작한다.
 2. A는 규칙·수치·전이, B는 고정 작업대 렌더·에셋, C는 터치·HUD·수명 주기를 fixture로 독립 개발한다. 다른 역할 결과를 기다리며 멈추지 않는다.
 3. 첫 90분에 A+C의 입력→압착→보관→정산→재시작을 연결하고 B의 작업대를 같은 snapshot에 연결한다. 처음부터 다른 시스템을 늘리지 않는다.
 4. 늦어도 9/25 17:00 KST 기능 추가를 끝내고 실제 iPhone과 컨셉 비교를 수행한다. 현재 시각이 이 기준을 지났다면 범위를 줄이되 QA를 생략하지 않는다.
@@ -1068,7 +1093,7 @@ We are preparing a three-person team for Very Disco Game Jam 2026.3. Please clar
 
 # Very Disco Research Lead — 전용 리서치 에이전트 지침
 
-버전 VD26.3-v2.0. 이 파일은 다른 AI나 후속 에이전트에 전달하는 재사용 가능한 작업 지침이다. 이번 조사에서는 공식 규정·경쟁 및 과거 결과·iPhone 전달의 3개 독립 에이전트를 실제 실행했고, 통합 담당이 핵심 근거를 재확인했다. 이 파일 자체가 상시 실행이나 자동 감시를 설치하지는 않는다.
+버전 VD26.3-v2.1. 이 파일은 다른 AI나 후속 에이전트에 전달하는 재사용 가능한 작업 지침이다. 이번 조사에서는 공식 규정·경쟁 및 과거 결과·iPhone 전달의 3개 독립 에이전트를 실제 실행했고, 통합 담당이 핵심 근거를 재확인했다. 이 파일 자체가 상시 실행이나 자동 감시를 설치하지는 않는다.
 
 ## 임무
 
@@ -1172,7 +1197,7 @@ Very Disco Game Jam 2026.3에 사용자 포함 3명이 참가하며 우승을 �
 
 ## 최신 사용자 제작 지시
 
-사용자는 화려한 그래픽과 완성도 높은 시각 표현을 원하며, 시각 에셋은 ImageGen, 3D 에셋은 Meshy 7 flagship와 high-quality texture로 제작하도록 지시했다. 이는 팀 제작 요구이며 대회 AI 정책의 허용 근거가 아니다. 위 공식 리소스 목록은 참고 출처로 보존하며 현재 에셋 제작 방식을 대체하지 않는다. 현재 에셋 목록·우선순위·파일 경로·생성 및 최적화 기준은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/prd.md)와 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/instruction.md)를 따른다. 도구가 지원하는 실제 모델·품질 옵션과 산출물은 제작 기록에 남긴다.
+사용자는 화려한 그래픽과 완성도 높은 시각 표현을 원하며, 시각 에셋은 ImageGen, 3D 에셋은 Meshy 7 flagship와 high-quality texture로 제작하도록 지시했다. 이는 팀 제작 요구이며 대회 AI 정책의 허용 근거가 아니다. 위 공식 리소스 목록은 참고 출처로 보존하며 현재 에셋 제작 방식을 대체하지 않는다. 현재 에셋 목록·우선순위·파일 경로·생성 및 최적화 기준은 [prd.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/prd.md)와 [instruction.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/instruction.md)를 따른다. 도구가 지원하는 실제 모델·품질 옵션과 산출물은 제작 기록에 남긴다.
 
 ## 초기 3인 팀 적용 제안 — 현재 범위는 PRD 우선
 
@@ -1221,7 +1246,7 @@ AI 사용은 대회 정책 확인과 별도로 제작 과정에 사실대로 기
 
 [itch의 Ranked 목록](https://itch.io/jams/sort-date/ranked)이 이 대회를 **Ranked**로 분류한다. 즉 순위 설정 자체는 관측된다. 다만 동일 페이지의 참여 인원은 오래된 캐시이므로 재사용하지 않는다.
 
-시간 원자료의 최소 발췌는 [event-time-metadata.json](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/evidence/event-time-metadata.json)에 저장했다. UTC 근거의 `Z`와 KST +09:00 변환을 대조했다. `voting_end_date`는 메타데이터 관측이며 수상 발표일·오프라인 전시일·심사위원 평가 종료일과 같다는 증거는 없다.
+시간 원자료의 최소 발췌는 [event-time-metadata.json](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/evidence/event-time-metadata.json)에 저장했다. UTC 근거의 `Z`와 KST +09:00 변환을 대조했다. `voting_end_date`는 메타데이터 관측이며 수상 발표일·오프라인 전시일·심사위원 평가 종료일과 같다는 증거는 없다.
 
 ## 확정: 추가 공지 검색 범위
 
@@ -1266,7 +1291,7 @@ AI 사용은 대회 정책 확인과 별도로 제작 과정에 사실대로 기
 - 이번 회차 URL의 끝은 `2026-3`. `2026-2`의 1–5명·웹 필수·Hook/Gameplay/Cohesion·심사위원·AI 사례를 이번 규정으로 가져오지 말 것.
 - 페이지 상단·본문·검색 캐시가 서로 다른 인원/작품 수를 보인다. 데이터에는 확인 시각과 출처를 붙이고 최종 경쟁자 수/우승확률을 계산하지 말 것.
 - 공식 안내는 수정될 수 있다. 제작 방향·배포 방식 결정 전과 제출 직전에 다시 확인할 것.
-- 테마 원본은 [official-theme.png](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/evidence/official-theme.png). 원본 URL과 대조한 시각 자료이며 팀이 만든 에셋이 아니다.
+- 테마 원본은 [official-theme.png](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/evidence/official-theme.png). 원본 URL과 대조한 시각 자료이며 팀이 만든 에셋이 아니다.
 - 이 문서는 접근 가능한 공개 근거의 조사 기록이다. 비공개 아카데미 채널 공지가 제공되면 그 내용을 교차 확인하고 빈칸을 갱신할 것.
 
 
@@ -1697,7 +1722,7 @@ USER_PROVIDED는 사용자가 제공한 링크·GitHub ID다. 페이지 전체, 
 
 ## 2027 전망 조사 — 관측일 2026-09-24
 
-이 자료의 현재 사실과 미래 전망은 [trends-2027.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v1/docs/research/trends-2027.md)에서 구분한다. 기능 설명·리뷰·단일 매출 스냅샷은 장르 성장률이나 유행 보장의 근거가 아니다.
+이 자료의 현재 사실과 미래 전망은 [trends-2027.md](https://github.com/letstakeabreak/very-disco-2026-3/blob/bootstrap-v2/docs/research/trends-2027.md)에서 구분한다. 기능 설명·리뷰·단일 매출 스냅샷은 장르 성장률이나 유행 보장의 근거가 아니다.
 
 | ID | 1차 출처 | 확인 범위 |
 |---|---|---|
@@ -1719,7 +1744,7 @@ USER_PROVIDED는 사용자가 제공한 링크·GitHub ID다. 페이지 전체, 
 
 ```json
 {
-  "version": "VD26.3-v2.0",
+  "version": "VD26.3-v2.1",
   "created_at": "2026-09-24T10:37:22.825837+00:00",
   "timezone": "Asia/Seoul",
   "facts": [
@@ -2031,12 +2056,21 @@ USER_PROVIDED는 사용자가 제공한 링크·GitHub ID다. 페이지 전체, 
     },
     {
       "id": "F35",
-      "claim": "DEEP PRESS: 심해 회수품의 압착·가치 보존·1L 수용량 게임; PRD 1.0.0 executionReady=true",
+      "claim": "DEEP PRESS: 심해 회수품의 압착·가치 보존·1L 수용량 게임; PRD 1.0.1 executionReady=true",
       "status": "DESIGN_DECISION",
       "source_url": null,
       "checked_at": "2026-09-24",
       "scope": "current implementation baseline",
       "caveat": "사용자가 위임한 설계. 흥행·우승·구현 완료 주장 아님"
+    },
+    {
+      "id": "F36",
+      "claim": "A=sy-Lee-01 코어·콘텐츠·통합; B=letstakeabreak 렌더링·에셋·그래픽; C=magic3ightball 앱·입력·HUD. Meshy 구독은 letstakeabreak만 보유",
+      "status": "CONFIRMED",
+      "source_url": null,
+      "checked_at": "2026-09-24",
+      "scope": "team role assignment",
+      "caveat": "사용자 최신 지시. bootstrap-v2 / PRD1.0.1부터 이전 A/B 계정 매핑 대체. API 계약1.0.0 유지"
     }
   ],
   "updated_at": "2026-09-24T11:06:00Z",
@@ -2061,7 +2095,7 @@ USER_PROVIDED는 사용자가 제공한 링크·GitHub ID다. 페이지 전체, 
 
 ```json
 {
-  "version": "VD26.3-v2.0",
+  "version": "VD26.3-v2.1",
   "created_at": "2026-09-24T10:37:22.825837+00:00",
   "sources": [
     {

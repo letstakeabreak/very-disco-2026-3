@@ -8,10 +8,12 @@ Goal 도구가 없으면 설치되었다고 주장하거나 임의 설정을 만
 
 ## 누구나 쓰는 공통 요청
 
+최신 매핑: **sy-Lee-01=A**, **letstakeabreak=B**, **magic3ightball=C**. 사용자 letstakeabreak만 Meshy 구독을 보유하므로 생성·텍스처 작업은 B가 수행한다. A/C는 결과와 fixture를 사용하며 Meshy 계정·키 공유를 요구하지 않는다. 시작 기준은 bootstrap-v2 / PRD1.0.1 / 계약1.0.0이다. 이전 A/B 매핑의 요청을 재사용하지 않는다.
+
 ```text
 이 저장소의 AGENTS.md, instruction.md, prd.md, goal.md, docs/contracts.md, docs/asset-contract.md를 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인하고 내 역할의 개발 Goal을 시작해. PRD 작성은 이미 위임했으므로 추가 승인 질문을 하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 하되 임의의 다른 게임을 만들지 마.
 
-내가 이 대화에서 역할을 명시했다면 그 역할을 사용하고, 아니면 인증된 GitHub 현재 계정을 확인해 letstakeabreak=A, sy-Lee-01=B, magic3ightball=C로 결정해. Git author, 이메일, 저장소 소유자, 폴더나 브랜치 이름으로 추정하지 마. 명시한 역할도 없고 계정으로 확인할 수도 없을 때만 한 번 물어봐.
+내가 이 대화에서 역할을 명시했다면 그 역할을 사용하고, 아니면 인증된 GitHub 현재 계정을 확인해 sy-Lee-01=A, letstakeabreak=B, magic3ightball=C로 결정해. Git author, 이메일, 저장소 소유자, 폴더나 브랜치 이름으로 추정하지 마. 명시한 역할도 없고 계정으로 확인할 수도 없을 때만 한 번 물어봐.
 
 먼저 현재 작업의 기존 Goal을 확인해. 같은 역할의 활성 목표는 이어가고, 무관한 미완료 목표를 덮어쓰지 마. 그런 목표가 있으면 보존하고 나에게 선택을 물어봐. 새 목표를 만들 수 있는 상태라면 goal.md의 해당 역할 완료 조건을 포함해 create_goal로 구체적인 목표를 만들어. 토큰 예산은 내가 지정하지 않았으므로 설정하지 마. 도구가 없으면 지원되는 /goal 시작 방법과 정확한 문구를 알려주고 활성화되었다고 가장하지 마.
 
@@ -24,14 +26,14 @@ executionReady:true인 DEEP PRESS prd.md와 강한 사실적 시각 목표를 �
 
 아래 조건을 선택된 역할의 Goal에 구체적으로 포함한다. PRD에 더 구체적인 수치와 검사 조건이 있으면 그것을 적용한다. 초기 scaffold의 녹색 검사만으로 Goal을 완료하지 않는다.
 
-### A — letstakeabreak
+### A — sy-Lee-01
 
 - `src/core/**`와 `src/content/**`에서 PRD의 핵심 행동, 진행·성공·실패, 결과와 재시작을 PRD와 계약에 맞게 구현한다.
 - DOM/렌더링에 독립적인 결정적 상태 전이와 콘텐츠 검증을 제공한다. 입력 취소, 상태 경계, 반복 재시작, 서로 다른 step 간격에서의 판정 일관성을 의미 있는 테스트로 확인한다.
 - `tests/core/**`와 공통 계약 smoke, 전체 검사, A 소유권 검사를 통과하고 `docs/handoffs/A/**`에 SHA·명령·결과·남은 조건을 기록한다.
 - 자기 기여 PR은 B/C를 기다리지 않고 먼저 완성한다. 통합은 세 기여가 준비된 뒤 고정된 A→B→C SHA로 별도 후보에서 수행한다. 최종 후보의 전체 검사·브라우저 흐름·실제 iPhone/시각 요구를 만족한 증거로 최종 통합 PR 하나를 준비한다. 다른 역할 미완료를 자기 코드로 임의 대체하지 않는다.
 
-### B — sy-Lee-01
+### B — letstakeabreak
 
 - `src/render/**`의 공개 렌더러가 고정 fixture와 실제 snapshot을 동일한 계약으로 표현하게 한다. resize·render·dispose·로딩 실패와 다시 시작을 검증한다.
 - `assets/source/**`의 ImageGen 원본을 출발점으로 Meshy 7 flagship·4K PBR 원본 텍스처 결과를 정리하고 `public/assets/**`에 에셋 계약에 맞게 제공한다. 모델·설정·출처·변환·사용 위치를 기록한다.
@@ -49,17 +51,17 @@ executionReady:true인 DEEP PRESS prd.md와 강한 사실적 시각 목표를 �
 
 역할을 이미 알고 있으면 아래 자기 요청 하나를 사용한다. 계정명은 작업 역할을 지정하는 정보다. 실제 인증 계정이 다르면 권한을 가장하지 않고 차이를 기록한다.
 
-### letstakeabreak
-
-```text
-나는 letstakeabreak이고 이 저장소의 역할 A다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 A 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
-실행 기준이 확인되면 공통 bootstrap SHA·계약 버전·내 브랜치를 기록하고 baseline 검사 후 src/core/**, src/content/**, tests/core/**, docs/handoffs/A/**에서 바로 구현해. 독립 테스트와 계약 smoke, 전체 검사, 소유권 검사, 증거와 기여 PR까지 완성해. 공유 변경은 버전 있는 계약 수정으로 세 역할에 전달한 뒤에만 진행해. 세 역할이 준비되면 A→B→C의 고정 SHA를 별도 통합 후보에 모아 검증하고 main 반영용 최종 통합 PR 하나를 준비해. 통합 전에 실기기·실제 화면 품질·최종 에셋 조건을 건너뛰지 말고, 배포나 대회 제출은 하지 마.
-```
-
 ### sy-Lee-01
 
 ```text
-나는 sy-Lee-01이고 이 저장소의 역할 B다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 B 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
+나는 sy-Lee-01이고 이 저장소의 역할 A다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 A 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
+실행 기준이 확인되면 공통 bootstrap SHA·계약 버전·내 브랜치를 기록하고 baseline 검사 후 src/core/**, src/content/**, tests/core/**, docs/handoffs/A/**에서 바로 구현해. 독립 테스트와 계약 smoke, 전체 검사, 소유권 검사, 증거와 기여 PR까지 완성해. 공유 변경은 버전 있는 계약 수정으로 세 역할에 전달한 뒤에만 진행해. 세 역할이 준비되면 A→B→C의 고정 SHA를 별도 통합 후보에 모아 검증하고 main 반영용 최종 통합 PR 하나를 준비해. 통합 전에 실기기·실제 화면 품질·최종 에셋 조건을 건너뛰지 말고, 배포나 대회 제출은 하지 마.
+```
+
+### letstakeabreak
+
+```text
+나는 letstakeabreak이고 이 저장소의 역할 B다. AGENTS.md, instruction.md, prd.md, goal.md와 docs의 모듈·에셋 계약을 읽어. prd.md의 executionReady:true와 버전, 일치하는 bootstrap·계약을 파일에서 확인한 뒤 추가 승인 질문 없이 goal.md의 B 완료 조건을 달성하는 지속 Goal을 시작해. 기존 Goal을 먼저 확인하고 같은 역할의 활성 목표면 이어가며 무관한 미완료 목표는 덮어쓰지 말고 내 선택을 물어봐. 새 목표를 만들 수 있을 때 create_goal을 사용하고 토큰 예산은 설정하지 마. 기준 파일이 없거나 서로 충돌하면 그 불일치를 보고하고 가능한 기반 점검을 진행해. 다른 게임을 임의로 만들지 마. Goal 도구가 없으면 정확한 /goal 시작 문구를 알려주고 활성화되었다고 가장하지 마.
 실행 기준이 확인되면 공통 bootstrap SHA·계약 버전·내 브랜치를 기록하고 baseline 검사 후 src/render/**, public/assets/**, assets/source/**, tests/render/**, docs/handoffs/B/**에서 바로 구현해. ImageGen 원본에서 Meshy 7 flagship·4K PBR 원본 텍스처로 최종 에셋을 만들고 런타임용으로 최적화한 뒤 콘셉트와 실제 런타임 화면을 비교해. 도구 접근이나 다른 개발자를 기다리는 동안 계약 fixture와 mock으로 구현하되 mock을 최종 아트 완료로 표시하지 마. 독립 테스트와 계약 smoke, 전체 검사, 소유권 검사, 실제 캡처와 기여 PR까지 완성해. 공유 계약·의존성이나 타인 파일은 수정하지 말고 main에 push·merge, 배포, 대회 제출은 하지 마.
 ```
 

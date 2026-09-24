@@ -1,9 +1,9 @@
 ---
 product: DEEP PRESS
-prdVersion: 1.0.0
+prdVersion: 1.0.1
 contractVersion: 1.0.0
 executionReady: true
-bootstrapRef: bootstrap-v1
+bootstrapRef: bootstrap-v2
 updated: 2026-09-24
 ---
 
@@ -97,8 +97,8 @@ Three.js + TypeScript + Vite, 정확한 버전은 잠금 파일과 계약을 따
 
 | 역할 | 구현 | 반드시 남길 증거 |
 |---|---|---|
-| A letstakeabreak | 위 수식·전이·세 콘텐츠·snapshot/entity·이벤트·재시작·pause | 용량 경계/손상/반복 입력/정산/seed 재현/프레임 분할 결과 테스트, implementation=game 전환 근거 |
-| B sy-Lee-01 | 실제 모델 로드·재질·카메라·압착/파손/보관 연출·최적화 | 원본→Meshy7→런타임 lineage, 측정 geometry/texture, 5개 목표 대응 캡처, GPU/성능 증거 |
+| A sy-Lee-01 | 위 수식·전이·세 콘텐츠·snapshot/entity·이벤트·재시작·pause | 용량 경계/손상/반복 입력/정산/seed 재현/프레임 분할 결과 테스트, implementation=game 전환 근거 |
+| B letstakeabreak | 실제 모델 로드·재질·카메라·압착/파손/보관 연출·최적화 | 원본→Meshy7→런타임 lineage, 측정 geometry/texture, 5개 목표 대응 캡처, GPU/성능 증거 |
 | C magic3ightball | 앱·터치 입력·HUD·안내·오류·pause/resume·결과/재시작 | 실제 전체 루프, cancel/visibility/다중입력, iPhone 레이아웃 및 실기기 기록 |
 
 소유 경로와 브랜치는 [instruction.md](instruction.md) 단일 기준이다. 각자 테스트와 handoff를 남긴다. 셋의 결과를 통합 후보에서 먼저 검증하고 최종 PR 하나를 main에 반영한다. 파일 분리만으로 무결한 merge를 보장하지 않는다.

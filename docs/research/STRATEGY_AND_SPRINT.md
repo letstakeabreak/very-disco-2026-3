@@ -1,8 +1,8 @@
 # DEEP PRESS 실행안
 
-현재 실행 기준은 [PRD 1.0.0](../../prd.md)과 [instruction](../../instruction.md)이다. [초기 후보 기록](archive/initial-strategy.md)은 폐기된 연구 이력이다.
+현재 실행 기준은 [PRD 1.0.1](../../prd.md)과 [instruction](../../instruction.md)이다. [초기 후보 기록](archive/initial-strategy.md)은 폐기된 연구 이력이다.
 
-1. 세 명이 bootstrap-v1의 같은 SHA와 계약 해시를 확인하고 자기 역할 Goal을 시작한다.
+1. 세 명이 bootstrap-v2의 같은 SHA와 계약 해시를 확인하고 자기 역할 Goal을 시작한다.
 2. A는 규칙·수치·전이, B는 고정 작업대 렌더·에셋, C는 터치·HUD·수명 주기를 fixture로 독립 개발한다. 다른 역할 결과를 기다리며 멈추지 않는다.
 3. 첫 90분에 A+C의 입력→압착→보관→정산→재시작을 연결하고 B의 작업대를 같은 snapshot에 연결한다. 처음부터 다른 시스템을 늘리지 않는다.
 4. 늦어도 9/25 17:00 KST 기능 추가를 끝내고 실제 iPhone과 컨셉 비교를 수행한다. 현재 시각이 이 기준을 지났다면 범위를 줄이되 QA를 생략하지 않는다.

@@ -1,6 +1,6 @@
 # DEEP PRESS — 세 명이 함께 만드는 방법
 
-문서 버전 1.0. 제품의 최종 기준은 [prd.md](prd.md)다. 이 문서는 각자 같은 출발점에서 자기 모듈을 완성하고, 세 결과를 한 번의 최종 통합으로 연결하는 작업 방식이다.
+문서 버전 1.1. 제품의 최종 기준은 [prd.md](prd.md)다. 이 문서는 각자 같은 출발점에서 자기 모듈을 완성하고, 세 결과를 한 번의 최종 통합으로 연결하는 작업 방식이다.
 
 ## 만들 게임과 실행 기준
 
@@ -23,8 +23,8 @@ clone은 파일을 가져오는 동작이다. Codex를 실행하거나 Goal을 �
 
 | 역할 / GitHub 계정 | 자기 모듈 | 독립적으로 완성할 결과 |
 |---|---|---|
-| A / `letstakeabreak` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | 프레임률과 화면 표현에 독립적인 PRD의 게임 규칙, 콘텐츠, 결과/재시작과 결정적 테스트 |
-| B / `sy-Lee-01` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | 계약 상태로 구동되는 Three.js 렌더러, ImageGen→Meshy 최종 에셋, 조명·재질·애니메이션, 콘셉트와 실행 화면의 대응 |
+| A / `sy-Lee-01` | `src/core/**`, `src/content/**`, `tests/core/**`, `docs/handoffs/A/**` | 프레임률과 화면 표현에 독립적인 PRD의 게임 규칙, 콘텐츠, 결과/재시작과 결정적 테스트 |
+| B / `letstakeabreak` | `src/render/**`, `public/assets/**`, `assets/source/**`, `tests/render/**`, `docs/handoffs/B/**` | 계약 상태로 구동되는 Three.js 렌더러, ImageGen→Meshy 최종 에셋, 조명·재질·애니메이션, 콘셉트와 실행 화면의 대응 |
 | C / `magic3ightball` | `src/app/**`, `src/main.ts`, `tests/app/**`, `docs/handoffs/C/**` | 앱 수명 주기, 포인터 입력, HUD·튜토리얼·결과/재시작, iPhone 브라우저 흐름 |
 
 셋 모두 독립 개발자다. A가 코어만 제공할 때 B/C도 정해진 fixture로 구현·테스트할 수 있고, B의 최종 모델을 기다리는 동안 A/C는 mock으로 자기 기능을 검증할 수 있어야 한다. C의 CSS와 기타 스타일은 `src/app/**` 아래 둔다. B의 시각 파일을 수정할 필요가 생기면 파일을 대신 고치지 말고 B의 계약에 맞는 요청을 한다.
@@ -33,7 +33,11 @@ clone은 파일을 가져오는 동작이다. Codex를 실행하거나 Goal을 �
 
 ## bootstrap과 독립 개발
 
-bootstrap은 세 사람에게 전달하기 전에 끝나 있어야 한다. A/B/C는 **같은 Git commit과 같은 잠금 파일**에서 시작한다. 공통 출발점은 실제로 생성된 `bootstrap-v1` 태그이며, 계약 해시와 태그 기준은 `docs/bootstrap.json`에 기록한다. 전체 SHA는 `git rev-parse bootstrap-v1^{commit}`으로 해석해 각자 handoff에 남긴다. commit 자체 안에 자기 SHA를 넣지 않는다. 각자는 그 commit에서 A=`role/a-core`, B=`role/b-render`, C=`role/c-app` 브랜치를 만든다. 체크아웃한 SHA가 다르면 구현을 시작하기 전에 맞춘다. 이미 작업한 내용은 삭제하지 않는다.
+이번 역할 변경은 사용자의 명시적 지시다. **A=sy-Lee-01, B=letstakeabreak, C=magic3ightball**이며 Meshy 구독은 B만 보유한다. API/소유 경로/역할 브랜치는 그대로 두고 A/B의 담당 계정을 교체했다. Meshy 생성·텍스처 작업은 B가 수행하고 A/C는 기존 결과·fixture로 진행한다. A/C에게 Meshy 구매나 계정·키 공유를 요구하지 않는다.
+
+새 출발점은 **bootstrap-v2 / PRD1.0.1 / 계약1.0.0**이다. 이전 bootstrap-v1 태그는 이력으로 보존하며 새 개발에는 사용하지 않는다. 이미 시작한 작업은 먼저 commit 또는 안전하게 보존하고 변경된 기준을 반영한다. 이전 담당 파일의 변경을 새 역할 브랜치에 섞지 말고 해당 소유자에게 commit SHA로 인계한다. 기존 브랜치를 강제로 초기화하거나 타인의 기록을 다시 쓰지 않는다. 이전 계정 배정의 시작 요청은 아래 최신 goal.md 요청으로 대체한다.
+
+bootstrap은 세 사람에게 전달하기 전에 끝나 있어야 한다. A/B/C는 **같은 Git commit과 같은 잠금 파일**에서 시작한다. 공통 출발점은 실제로 생성된 `bootstrap-v2` 태그이며, 계약 해시와 태그 기준은 `docs/bootstrap.json`에 기록한다. 전체 SHA는 `git rev-parse bootstrap-v2^{commit}`으로 해석해 각자 handoff에 남긴다. commit 자체 안에 자기 SHA를 넣지 않는다. 각자는 그 commit에서 A=`role/a-core`, B=`role/b-render`, C=`role/c-app` 브랜치를 만든다. 체크아웃한 SHA가 다르면 구현을 시작하기 전에 맞춘다. 이미 작업한 내용은 삭제하지 않는다.
 
 각 역할 handoff의 첫 기록에 다음을 남긴다.
 
@@ -42,7 +46,7 @@ bootstrap은 세 사람에게 전달하기 전에 끝나 있어야 한다. A/B/C
 - Node/npm 버전과 `npm ci`·baseline 검사 결과.
 - 자기 완료 조건과 외부 입력이 필요한 항목.
 
-먼저 원격 태그를 가져와 `git rev-parse bootstrap-v1^{commit}`을 기록하고 그 태그에서 자기 브랜치를 만든다. 기존 브랜치/변경이 있으면 강제로 초기화하지 않는다. `npm run bootstrap:check`가 공유 파일의 SHA-256을 대조한다. 이 검사는 `npm run check`에 포함된다. 계약을 정식 변경하면 A가 영향과 이전 방법을 기록하고 manifest·새 기준 ref를 함께 갱신해 세 역할에 전달한다. 해시만 다시 만들어 실패를 숨기지 않는다. 기여 PR 대상 `integration/v1`은 bootstrap에서 시작한 공통 후보 브랜치다.
+먼저 원격 태그를 가져와 `git rev-parse bootstrap-v2^{commit}`을 기록하고 그 태그에서 자기 브랜치를 만든다. 기존 브랜치/변경이 있으면 강제로 초기화하지 않는다. `npm run bootstrap:check`가 공유 파일의 SHA-256을 대조한다. 이 검사는 `npm run check`에 포함된다. 계약을 정식 변경하면 A가 영향과 이전 방법을 기록하고 manifest·새 기준 ref를 함께 갱신해 세 역할에 전달한다. 해시만 다시 만들어 실패를 숨기지 않는다. 기여 PR 대상 `integration/v1`은 bootstrap에서 시작한 공통 후보 브랜치다.
 
 기술 스택은 strict TypeScript, Three.js, Vite다. 기반의 정확한 버전은 저장소 `package.json`과 잠금 파일이 기준이다. 최신 버전으로 자동 갱신하지 않는다. `npm ci`가 실패하면 원인부터 확인하고 B/C가 잠금 파일을 새로 만들지 않는다.
 
@@ -82,10 +86,10 @@ npm run check
 필요한 실패를 좁힐 때는 실제 정의된 `npm run typecheck`, `npm run test`, `npm run build`, `npm run lint`, `npm run contracts:check`를 사용한다. `check`의 정확한 포함 범위는 `package.json`에서 확인한다. 소유권은 아래 형태로 검사하되 역할과 출발 ref를 실제 값으로 채운다.
 
 ```sh
-npm run ownership -- --role A --base bootstrap-v1
+npm run ownership -- --role A --base bootstrap-v2
 ```
 
-위 예시는 A다. B/C는 자기 역할로 실행한다. `bootstrap-v1`은 공통 출발 태그가 실제로 생성되고 검증되었을 때 사용한다. 아직 생성되지 않았다면 임의 SHA로 대체하지 말고 기록된 실제 공통 ref를 확인한다. 검사 실패를 숨기려고 설정·테스트를 약화하지 않는다.
+위 예시는 A다. B/C는 자기 역할로 실행한다. `bootstrap-v2`은 공통 출발 태그가 실제로 생성되고 검증되었을 때 사용한다. 아직 생성되지 않았다면 임의 SHA로 대체하지 말고 기록된 실제 공통 ref를 확인한다. 검사 실패를 숨기려고 설정·테스트를 약화하지 않는다.
 
 공통 smoke fixture는 모듈이 같은 상태 구조를 이해하는지 확인한다. 각 역할의 핵심 행동 테스트와 실제 연결 뒤의 흐름 검증도 필요하다. 코드 검사가 전부 통과해도 시각 품질·iPhone 실기기가 확인된 것은 아니다.
 
