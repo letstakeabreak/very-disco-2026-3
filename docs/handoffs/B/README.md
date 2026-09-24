@@ -2,7 +2,7 @@
 
 담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
-최신 보완은 ImageGen 케이스 홈·앞면의 깊이 가림과18mm 안착이다. [36개 배치·GPU 픽셀 증거](layout-study/foreground-report.json), 최신 브라우저·아트 캡처의 소스 SHA로 현재 구현을 식별한다. 직전 전경 이미지·배치 구현은 `68a68ec65a8d72f55bae0ed953febe22c86b0efe`이고, 램 진입 motion report는 `7007b48ff6faa3f1803082e15dd897c2c7b808e2`의 별도 이력이다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
+최신 보완은 ImageGen 케이스 홈·앞면의 깊이 가림과18mm 안착이며 구현 commit은 `b9cf40f898e4da2a5ff646365bed7c72e6a5354c`다. 이후 문서 commit과 구분한다. [36개 배치·GPU 픽셀 증거](layout-study/foreground-report.json), 최신 브라우저·아트 캡처의 소스 SHA로 현재 구현을 식별한다. 직전 전경 이미지·배치 구현은 `68a68ec65a8d72f55bae0ed953febe22c86b0efe`이고, 램 진입 motion report는 `7007b48ff6faa3f1803082e15dd897c2c7b808e2`의 별도 이력이다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
 
 ## 연결 방법
 
