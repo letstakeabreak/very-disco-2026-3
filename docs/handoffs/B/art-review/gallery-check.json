@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T16:55:10.099Z",
+  "checkedAt": "2026-09-24T17:30:22.028Z",
   "kind": "Static image gallery verification; does not open a WebGL view.",
   "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/index.html",
   "checks": [
@@ -689,7 +689,7 @@
     "gallery.css": "cb412ef7290257d2d81b9424700838bf81140f20fda49ec5534d5cfb446bc5f7",
     "review-data.ts": "1525153a788723964b218a0e364e95ec2b27da44cdad774c6b41a840622a1783",
     "gallery-check.mjs": "788a21a2dbf003061bc64a66674581ff32973093367ca1b1c79f73642c0fdca5",
-    "capture-report.json": "d6a9c2b316835e135255d73f51918436be999c8fdfeaccc954e7fe0ba3524397"
+    "capture-report.json": "7909795659f9e9c1fe399a12ceea230136d4aa0c7b7e16b5f85a2485ab98a311"
   },
   "passed": true
 }

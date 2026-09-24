@@ -1,0 +1,127 @@
+{
+  "kind": "Actual Safari startup failure before second soak; no completed performance result",
+  "browser": {
+    "receivedAt": "2026-09-24T17:26:19.921Z",
+    "requestUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+    "at": "2026-09-24T17:26:19.910Z",
+    "ready": false,
+    "lastCommand": 0,
+    "measuring": false,
+    "elapsedMs": 0,
+    "sampleFrames": 0,
+    "environment": {
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+      "dpr": 3,
+      "screen": [
+        440,
+        956
+      ],
+      "viewport": [
+        440,
+        796
+      ],
+      "buffer": [
+        880,
+        1592
+      ],
+      "gpu": null
+    },
+    "controls": {
+      "phase": "inspecting",
+      "specimenId": "salvage-core",
+      "pressure01": 0,
+      "integrity01": 1,
+      "yawDeg": 0,
+      "storedCount": 0
+    },
+    "metrics": {
+      "sampleFrames": 600,
+      "totalFrames": 4863,
+      "fps": 59.99400059994001,
+      "p95FrameMs": 17,
+      "maxFrameMs": 17,
+      "elapsedMs": 82049,
+      "viewport": {
+        "width": 440,
+        "height": 796,
+        "dpr": 2
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "error",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      }
+    },
+    "errors": [
+      {
+        "at": "2026-09-24T17:24:59.001Z",
+        "source": "render-failed",
+        "message": "Error: WebGL context lost; recreate renderer to retry"
+      }
+    ],
+    "visibility": [],
+    "resizes": [],
+    "collectorErrors": [],
+    "result": null
+  },
+  "build": {
+    "builtAt": "2026-09-24T17:24:18.099Z",
+    "sourceHashesBefore": {
+      "docs/handoffs/B/preview.html": "766400f098a369f917fadd648bb7071d98d5221849f65c8a457f0c7b8c8b741d",
+      "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
+      "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
+      "docs/handoffs/B/device-qa/client.ts": "a7b5d98b1ed73fc7d6ba433597d3d6f815035e569d5cda19475ddc02aba8c92f",
+      "docs/handoffs/B/device-qa/build.mjs": "2b3b411c309e771d07fbd4cefd531bfbf43a99ce3373df58e2e269309fd5eef5",
+      "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
+      "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
+      "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+      "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+      "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+      "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+      "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+      "src/render/index.ts": "2622f9903511949008cb9f9ba55c2002c7f92716366d6dec064660bf096ebd54",
+      "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+      "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+      "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+      "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+      "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+      "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
+      "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+      "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+      "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+      "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+      "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+      "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+    },
+    "sourceHashesAfter": {
+      "docs/handoffs/B/preview.html": "766400f098a369f917fadd648bb7071d98d5221849f65c8a457f0c7b8c8b741d",
+      "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
+      "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
+      "docs/handoffs/B/device-qa/client.ts": "a7b5d98b1ed73fc7d6ba433597d3d6f815035e569d5cda19475ddc02aba8c92f",
+      "docs/handoffs/B/device-qa/build.mjs": "2b3b411c309e771d07fbd4cefd531bfbf43a99ce3373df58e2e269309fd5eef5",
+      "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
+      "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
+      "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+      "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+      "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+      "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+      "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+      "src/render/index.ts": "2622f9903511949008cb9f9ba55c2002c7f92716366d6dec064660bf096ebd54",
+      "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+      "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+      "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+      "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+      "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+      "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
+      "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+      "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+      "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+      "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+      "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+      "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+    }
+  }
+}

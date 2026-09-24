@@ -316,7 +316,11 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       prop.deformation.compression.value = prop.compression;
       prop.deformation.damage.value = prop.damage;
       const renderedHeight = prop.deformation.height * (1 - prop.compression * compressionScale);
-      for (const material of prop.deformation.materials) if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
+      // Cassette cracks own their local transmission in the shader. The lens
+      // uses its original uniform haze response; do not overwrite other optics.
+      if (visual.id === 'salvage-lens') for (const material of prop.deformation.materials) {
+        if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
+      }
       if (toPress) currentTop = surfaceTop(prop.bounds, renderedHeight, toPress);
       if (visual.location === 'case' && !entity) {
         // The front (+Z) faces up; recenter after lying down and after deformation.
@@ -343,6 +347,9 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       width = size.width; height = size.height;
       const dpr = Number.isFinite(size.dpr) ? Math.min(2, Math.max(1, size.dpr)) : 1;
       gpu.setPixelRatio(dpr); gpu.setSize(width, height, false);
+      // Keep glass refraction at CSS resolution while the visible surface keeps
+      // full DPR. This avoids a full-resolution multisampled copy of the scene.
+      gpu.transmissionResolutionScale = 1 / dpr;
       stageHeight = Math.min(height, width / STAGE_ASPECT); stageWidth = stageHeight * STAGE_ASPECT;
       (plateMaterial.uniforms['stageFraction']!.value as Vector2).set(stageWidth / width, stageHeight / height);
     },

@@ -1,4 +1,4 @@
-import { Box3, Mesh, MeshDepthMaterial, MeshStandardMaterial, RGBADepthPacking, Vector3 } from 'three';
+import { Box3, Mesh, MeshDepthMaterial, MeshStandardMaterial, RGBADepthPacking, ShaderChunk, Vector3 } from 'three';
 import type { Object3D, WebGLProgramParametersWithUniforms } from 'three';
 import type { SalvageId } from '../contracts';
 
@@ -29,6 +29,26 @@ const VERTEX = `
   transformed.x += sign(position.x) * ribs * fold * h * 0.13 * housing;
   transformed.z += sign(position.z) * ribs * fold * h * 0.08 * housing;
   transformed.x += sin(position.z * 70.0 + u * 11.0) * pressDamage * shell * h * 0.035 * housing;
+`;
+
+// Authored surface fracture on the generated cylinder. It changes appearance
+// only; the core owns damage, failure and salvage value.
+const CASSETTE_FRACTURE = `
+  float cylinderAngle = atan(cassettePosition.z, cassettePosition.y - 0.074);
+  vec2 impact = vec2(cassettePosition.x / 0.105 - 0.03, (cylinderAngle - 1.2) * 0.28);
+  float fractureRadius = length(impact);
+  float fractureAngle = atan(impact.y, impact.x);
+  float spoke = abs(sin(fractureAngle * 3.0 + sin(fractureRadius * 43.0) * 0.12));
+  float crack = (1.0-smoothstep(0.018,0.05+fwidth(spoke),spoke)) * smoothstep(0.03,0.08,fractureRadius);
+  float ring = abs(fractureRadius - 0.26 - sin(fractureAngle * 7.0) * 0.014);
+  crack = max(crack,1.0-smoothstep(0.006,0.012+fwidth(fractureRadius),ring));
+  float opening = smoothstep(0.38,0.92,pressDamage);
+  float holeEdge = fractureRadius - opening * (0.24 + sin(fractureAngle*5.0)*0.025 + sin(fractureAngle*13.0)*0.012);
+  if (opening > 0.0 && holeEdge < 0.0) discard;
+  float chip = (1.0-smoothstep(0.008,0.018+fwidth(fractureRadius),abs(holeEdge))) * opening;
+  float cassetteCrack = max(crack * pressDamage,chip);
+  diffuseColor.rgb = mix(diffuseColor.rgb,vec3(0.82,0.67,0.37),cassetteCrack*0.65);
+  roughnessFactor = min(1.0,roughnessFactor + pressDamage*0.12 + cassetteCrack*0.3);
 `;
 
 export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
@@ -78,8 +98,13 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
         }
         // Optical masks must read the original albedo before damage darkens it.
         prepareOptics.call(material, shader, renderer);
+        if (object.name === 'cassette-window') {
+          shader.fragmentShader = shader.fragmentShader.replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n' + CASSETTE_FRACTURE)
+            .replace('#include <transmission_fragment>', ShaderChunk.transmission_fragment.replace(
+              'material.transmission = transmission;', 'material.transmission = transmission * (1.0-pressDamage*0.25) * (1.0-cassetteCrack*0.9);'));
+        }
       };
-      material.customProgramCacheKey = () => `deep-press-shell-v4-${id}-${rigidSurface}-${opticsKey}`;
+      material.customProgramCacheKey = () => `deep-press-shell-v5-${id}-${rigidSurface}-${opticsKey}`;
       deformation.materials.push(material);
       return material;
     });

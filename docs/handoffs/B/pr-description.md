@@ -1,15 +1,15 @@
-기존 wireframe probe를 DEEP PRESS의 실제 프레스·회수품 렌더러로 교체합니다. ImageGen 작업실 배경과 Meshy7 PBR 모델4종을 사용하며, 검사 회전·압착·손상·램 접촉·게이지·트레이/보관을 immutable snapshot으로 구동합니다. `createRenderer` 공개 API, bootstrap-v2/PRD1.0.1/계약1.0.0, A/C 모듈과 의존성은 유지합니다.
+기존 wireframe probe를 ImageGen 작업실과 Meshy 7 PBR 모델 4종을 사용하는 DEEP PRESS 렌더러로 교체합니다. 검사 회전·압착·램 접촉·손상·게이지·트레이/보관을 immutable snapshot으로 구동합니다. 공개 API, bootstrap-v2/PRD 1.0.1/계약 1.0.0과 A/C 모듈·의존성은 유지합니다.
 
-카세트 원본은 속이 빈 불투명 외피였습니다. 새 ImageGen → Meshy7 내부 축을9,000삼각형으로 최적화해 기존 GLB에 합쳤습니다. 외피 geometry/텍스처 바이트는 보존하고, 불투명 외피와 유리 패스를 분리해 안쪽 구리 띠와 반대편 외피가 보이도록 했습니다. 프레임 압축 중 유리·내부 축은 강체 이동하며 같은 시각 압축 계수를 램 높이에 적용합니다. 광학 마스크가 손상 색상에 의해 사라지지 않도록 셰이더 합성 순서도 검증합니다. 실제 부피·점수·무결성 판정은 계산하지 않습니다.
+카세트에 새 ImageGen → Meshy 7 내부 축과 실제 투명 패스를 추가했습니다. 렌즈의 투명도 설정이 카세트를 덮어쓰던 오류를 재현해 수정했고, 확정 무결성에 따른 균열·열린 파손 구멍을 표현합니다. 유리와 내부 축은 프레임과 분리해 강체 이동합니다. 기존 표면을 절단하는 시각 효과로, 물리 파괴·점수·부피 판정을 구현한 것은 아닙니다. 배경과 보이는 케이스는 2.5D이며 접촉 그림자·폼/앞 테두리의 깊이 가림을 사용합니다.
 
-이 PR에는 작업대 접촉 그림자, 램의 접촉 전 접근, ImageGen 전경 케이스, 폼 입구·앞면의 depth 가림, 로딩 실패/context loss/dispose 처리도 포함됩니다. 배경과 보이는 케이스는2.5D이며 이동 가능한 전체3D환경·물리 수납 모델은 아닙니다.
+실제 iPhone에서 비용을 확인한 뒤 화면 DPR 2를 유지하면서 유리 투과용 중간 영상만 CSS 해상도로 조정했습니다. 같은 기기의 3분 렌더 fixture에서 평균 32.18→40.05fps, P95 36→29ms를 관측했습니다. 한 실행의 P95 기준은 충족했으나 60fps 목표는 미달입니다.
 
-- 전체 검사:고정23파일·strictTS·17모듈 경계·58테스트·build 통과. 공유 geometry/텍스처1회 해제와 광학/변형 합성 회귀 포함.
-- GLB4종10,885,424bytes/89,998삼각형, 실제 파일 좌표·normal·index·self-contained PBR·2K상한 검사 통과. dist12,168,095bytes. JS675,808bytes에 대한 Vite500kB경고는 남습니다.
-- 실제 Chromium:3화면·8상태·9물건/상태 조합·오류0·전후해시 일치. 아트11장도 같은 source/asset을 고정해 촬영했습니다. 대표 visible105,096삼각형/33 draw calls이며 fragment discard·clipping으로 숨는 면도 보수적으로 포함합니다.
-- 보관36조합의 실제 GPU readPixels:앞 테두리 누출12,088→0픽셀, 케이스 밖 변화0, 홈 가시 픽셀 최소624. CPUbounds의 최소 수평 여유13.84px,320폭에서 B130px패널까지5.60px. 실제 C HUD/safe-area·물리 수납은 미검증입니다.
-- HMR 없는 desktop 하네스3분:180.012초/10,802 rAF/평균60.0072FPS/P95 16.7ms/max16.8ms/오류0. AppleM5/Chromium153/390×844/DPR2이며15개 source/asset SHA가 전후 일치합니다. 실제 iPhone·통제된 시스템부하·통합 게임 플레이 증거는 아닙니다.
+- 전체 검사: 고정 23파일, strict TypeScript, 17모듈 경계, 11파일 59테스트, build, B 소유권 검사 통과.
+- 모델 4종 10,885,424bytes / 89,998삼각형. 실제 좌표·index·PBR·2K 상한 검사 통과. 대표 visible 105,096삼각형 / draw 33. dist 12,169,653bytes이며 JS 677,366bytes의 Vite 500kB 경고는 남습니다.
+- Chromium: 3화면·8상태·9물건/상태 조합, 아트 11장, 카세트 손상 비교 현재 21장 재검사. 로드·오류·전후 소스 해시 검사 통과. 아트 전체 합격이라는 뜻은 아닙니다.
+- 실제 iPhone 16 Pro Max / iOS 27.2 / Safari 27.2: 조정 후 180.005초 / 7,210 rAF 간격 / 평균 40.0544fps / P95 29ms / 최대 60ms / 측정 중 렌더 오류·hidden 전환 0회. CSS 440×796, buffer 880×1592. 전체 프레임, 빌드/측정 전후 해시와 실제 기기 전후 14장을 보존했습니다.
+- 조정 후 첫 페이지 로드에서 GPU context-loss 1회가 발생했습니다. 다음 실행에서 3분 측정을 완료했지만 시작 실패의 원인은 미확정입니다. 오류 기록과 기기 화면도 함께 보존했습니다.
 
-[인계와 연결 방법](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/README.md) · [새 내부 부품과 생성 기록](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/cassette-insert-study/README.md) · [검증 범위](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/renderer-validation.md) · [아트 판정](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/art-review.md)
+[인계와 연결 방법](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/README.md) · [실기기 전체 결과](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/device-acceptance.md) · [파손 및 광학 회귀](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/damage-study/README.md) · [아트 판정](https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/art-review.md)
 
-Draft를 유지합니다. 실제 iPhone Safari3분 플레이·터치/복귀·A/C 통합 게임은 미검증이며 에셋4종은 generated-unverified입니다. 작업 영역 구도, 작은 화면의 손상 식별, 유리 경계·미세 재질, 케이스 세부 접촉 음영과 생성 프레스의 상부 교차가 남습니다. 저장 물건의 압축/손상 이력이 없는 snapshot 제약도 인계에 기록했습니다. 자동 검사 통과를 완성 아트로 표시하지 않습니다. integration/v1 대상이며 main 머지·배포·대회 제출은 하지 않습니다.
+Draft를 유지합니다. 60fps, 초기 GPU 실패 원인, 콘셉트와의 구도·재질·작은 화면 가독성, 실제 회전·touch/cancel·복귀·A/C 통합 게임은 미달 또는 미검증입니다. iPhone 13급 시험은 수행하지 않았습니다. 에셋 4종은 generated-unverified이며 저장 물건의 형태 이력이 없는 snapshot 제약도 인계에 남겼습니다. integration/v1 대상이고 main 머지·배포·대회 제출은 포함하지 않습니다.

@@ -2,7 +2,7 @@
 
 담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
-최신 보완은 [카세트 내부 부품·투명 깊이](cassette-insert-study/README.md)다. 새 ImageGen → Meshy7 내부 축을 모바일 GLB에 합치고 유리와 프레임의 광학·변형을 분리했다. 이번 출발 HEAD는 `7551a1b8fe2818b2b2c175691e936428a94c3463`이며 현재 구현의 재현 기준은 [아트 캡처 보고서](art-review/capture-report.json)의 전체 소스·에셋 SHA다. 케이스 깊이 가림 구현 `b9cf40f898e4da2a5ff646365bed7c72e6a5354c`도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 미검증이 남은 Draft**다.
+최신 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남은 Draft**다.
 
 ## 연결 방법
 
@@ -35,7 +35,7 @@ v1의 네 asset ID에 각 한 개의 장면 물체를 대응시킨다. `assetId:
 - 카메라를 작업 영역에 가깝게 옮기고 장비 하부를 `Y=.22m` 작업대 아래로 매립한 구도로 표시한다. 이는 GLB를 바꾸지 않는 clipping이며 그림자 패스에도 같은 평면을 적용한다. 기본 선택 물건은 모델 scale 1.1, 트레이 물건은 원래 X폭 최대 .19m로 맞춘다. snapshot entity transform이 있으면 이 기본 배치를 덮어쓴다.
 - 케이스는 배경의 실제 홈을 측정한 중심·앞뒤 방향으로 물건을 눕히고 변형된 중심을 맞춘다. [배치·깊이 측정](layout-study/README.md)을 따라 보이지 않는72삼각형 depth 형상을 만들고 보관물을18mm 내렸다. 홈·앞면 뒤의 조각을 가리지만 보이는 케이스는 원본 이미지다. 움직일 수 있는 가시3D케이스·물리 수납을 구현한 것은 아니다. ImageGen의 전경 케이스 편집본을 사용해 세 홈을 모두 이미지 안으로 옮겼고 보관 scale을 .52에서 .7로 키웠다. [편집 원본·프롬프트·해시](../../../assets/source/environment/case-layout-provenance.json)에 채택하지 않은 안도 보존했다.
 - 프레스는 `press-frame`/`press-ram`으로 분리했다. 플랜지는 움직이고 실린더 상단은 붙어 있는 상태를 유지한다. 검사/대기에서는 90mm 후퇴해 공간을 열고 압착·정착은 접근 뒤 접촉 상면을 따른다. [후퇴·진입 조사](retraction-study/README.md)는 404개 상단 정점의 고정 및 생성 자산의 하우징 교차 한계를 기록한다. [접촉 조사](contact-study/README.md)에서 과거 높이 측정 오류를 확인해 실제 상면 raycast로 수정했다. 선택 물건 base Y는 .3782m이며 `ram.ts`와 재생성 파이프라인의 값을 교차 검사한다. 받침의 ShadowMaterial에 그림자 수신이 꺼져 있던 누락도 수정했다. [GPU 원인 분리](shadow-study/README.md)는 한 설정만 바꾼 실제 전후 비교다.
-- 금속은 보호 부분이 접히는 authored shader 변형이다. 렌즈·카세트는 프레임이 먼저 눌리고 유리·카세트 내부 축은 강체 이동한다. 카세트는 최대 시각 높이 감소 계수를 .52에서 .12로 변경했고 램 높이에도 같은 값을 적용한다. 렌즈 유리 손상은 균열·거칠기·투과 감소와 심한 손상에서 빠진 조각으로 읽는다. 카세트 손상은 현재 어두워짐과 프레임 변화이며 별도 유리 파편 표현은 남는다. 손상은 오직 snapshot의 확정 무결성을 따른다. 이 표현은 물성/파괴 시뮬레이션이 아니다.
+- 금속은 보호 부분이 접히는 authored shader 변형이다. 렌즈·카세트는 프레임이 먼저 눌리고 유리·카세트 내부 축은 강체 이동한다. 카세트는 최대 시각 높이 감소 계수를 .52에서 .12로 변경했고 램 높이에도 같은 값을 적용한다. 렌즈 유리 손상은 균열·거칠기·투과 감소와 심한 손상에서 빠진 조각으로 읽는다. 카세트 유리에도 균열·모서리 거칠기·투과 변화와 심한 손상의 열린 구멍을 표현한다. 기존 유리 면의 authored shader 절단이며 동적 파편이나 새 유리 두께 옆면은 없다. 손상은 오직 snapshot의 확정 무결성을 따른다. 이 표현은 물성/파괴 시뮬레이션이 아니다.
 - 계기판은 ImageGen으로 별도 생성한 바늘 없는 눈금판을 기존 금속 테두리 뒤에 장착했다. 원본의 고정 바늘은 가려지며 기능 바늘은 `snapshot.pressure01`에 따라 왼쪽(0) → 위(0.5) → 오른쪽(1)으로 움직인다. 일시정지·첫 프레임도 즉시 동기화한다. 숫자 HUD는 여전히 C의 책임이다. [원본/프롬프트/변환 기록](../../../assets/source/gauge/provenance.json), [실측 좌표](gauge-calibration.json).
 - 오디오 없음. Meshy 인증·키 공유 없음. 외부 모델/음원/재질 팩 없음.
 
@@ -49,11 +49,11 @@ A는 `integration/v1` 후보에 이 브랜치의 고정 commit을 다른 역할�
 
 ## 현재 배포 산출물 크기
 
-B 반영 후 `npm run build` 산출물은 **12,168,095 bytes**(압축 전 파일 합계)다. 이 중 모델 10,885,424 bytes, 현재 배경 WebP 223,350 bytes(과거 독립 조사용 285,686 bytes 파일도 dist에 보존), 계기판 WebP 90,242 bytes이며 JS는 675,808 bytes(gzip 약174.20kB)다. 20MB 초기 예산 이내다. Vite는 JS 단일 chunk 500kB 초과 경고를 남기지만 빌드는 성공했다. 공유 설정/의존성 변경은 하지 않았다. A/C 최종 통합 후 다시 측정해야 한다.
+B 반영 후 `npm run build` 산출물은 **12,169,653 bytes**(압축 전 파일 합계)다. 이 중 모델 10,885,424 bytes, 현재 배경 WebP 223,350 bytes(과거 독립 조사용 285,686 bytes 파일도 dist에 보존), 계기판 WebP 90,242 bytes이며 JS는 677,366 bytes(gzip 약174.61kB)다. 20MB 초기 예산 이내다. Vite는 JS 단일 chunk 500kB 초과 경고를 남기지만 빌드는 성공했다. 공유 설정/의존성 변경은 하지 않았다. A/C 최종 통합 후 다시 측정해야 한다.
 
-[macOS Safari 관찰](evidence/safari-desktop.md)은 이전 게이지 보완 revision의 기록이며 현재 램/반사 변경 뒤 Safari를 재검사한 결과가 아니다. [데스크톱 3분 측정](evidence/desktop-soak.json)도 실제 iPhone 검증과 구분한다.
+[macOS Safari 관찰](evidence/safari-desktop.md)은 이전 게이지 보완 revision의 기록이며 현재 램/반사 변경 뒤 Safari를 재검사한 결과가 아니다. [데스크톱 3분 측정](evidence/desktop-soak-20260924T164805.json)은 직전27fc244 구현의 이력이며 현재 코드나 실제 iPhone 합격의 근거가 아니다.
 
-남은 [실제 iPhone 검증 절차](device-acceptance.md)는 준비 문서이며 측정 결과가 아니다.
+[실제 iPhone 검증 기록](device-acceptance.md)에 iPhone 16 Pro Max / iOS 27.2 / Safari 27.2의 전체 프레임과 기기 화면을 남겼다. 첫 3분은32.18fps/P95 36ms로 미달했고, 화면 DPR2를 유지한 투과 패스 조정 뒤40.05fps/P95 29ms를 측정했다. P95 기준은 충족했지만60fps 목표는 미달이다. 초기 GPU context-loss도 별도 실패로 보존한다. 전체 게임·iPhone 13급 기기의 검증을 대신하지 않는다.
 
 ## A가 통합할 때 갱신할 공동 상태
 

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { BoxGeometry, DirectionalLight, Euler, Group, Mesh, MeshBasicMaterial, MeshStandardMaterial, Plane, Quaternion, Raycaster, ShadowMaterial, Texture, Vector2, Vector3 } from 'three';
+import { BoxGeometry, DirectionalLight, Euler, Group, Mesh, MeshBasicMaterial, MeshPhysicalMaterial, MeshStandardMaterial, Plane, Quaternion, Raycaster, ShadowMaterial, Texture, Vector2, Vector3 } from 'three';
 import type { Camera, Material, Object3D, Scene, WebGLProgramParametersWithUniforms, WebGLRenderer } from 'three';
 import { WebGLShadowMap } from 'three/src/renderers/webgl/WebGLShadowMap.js';
 import type { WebGLObjects } from 'three/src/renderers/webgl/WebGLObjects.js';
@@ -100,6 +100,25 @@ beforeEach(() => {
 });
 
 describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles)', () => {
+  it('keeps cassette optical transmission while snapshot damage is handled by its fracture shader', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() });
+    const cassette = model(); cassette.mesh.name = 'salvage-cassette';
+    for (const [url, pending] of boundary.loads) {
+      if (url.endsWith('salvage-cassette.glb')) pending.resolve({ scene: cassette.scene });
+      else pending.resolve(url.endsWith('.glb') ? { scene: model(url.includes('press-chamber')).scene } : new Texture());
+    }
+    await flush();
+    const glass = (cassette.scene.getObjectByName('cassette-window') as Mesh).material as MeshPhysicalMaterial;
+    expect(glass).toBeInstanceOf(MeshPhysicalMaterial);
+    for (const integrity01 of [1, .5, 0]) {
+      renderer.render({ ...SNAPSHOT_FIXTURES.paused, resumePhase: 'inspecting', currentSpecimen: {
+        id: 'salvage-cassette', material: 'composite', currentVolume: .45, value: 100, compression01: .55, integrity01,
+      } }, 0);
+      expect(glass.transmission).toBe(.94);
+    }
+    renderer.dispose();
+  });
+
   it('reports unavailable WebGL and leaves a safe idempotent controller', () => {
     boundary.unavailable = true;
     const onFatal = vi.fn(); const renderer = createRenderer({ canvas: canvas(), onFatal });
