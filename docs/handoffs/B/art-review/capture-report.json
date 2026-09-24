@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-24T15:43:02.337Z",
-  "head": "e06c0a9239930ed5de8fa746119e6f17041e4275",
+  "checkedAt": "2026-09-24T16:07:46.043Z",
+  "head": "6d928d1364938b22e6421a1ff4e56bc9c91bcd59",
   "kind": "Actual desktop Chromium WebGL art evidence. Scene fixture and independent asset inspector are distinct. Not iPhone or gameplay proof.",
   "captures": [
     {
@@ -14,7 +14,7 @@
         "height": 1536
       },
       "errors": [],
-      "frames": 204,
+      "frames": 138,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -66,12 +66,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -90,7 +90,7 @@
         "height": 844
       },
       "errors": [],
-      "frames": 139,
+      "frames": 138,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -142,12 +142,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -166,7 +166,7 @@
         "height": 568
       },
       "errors": [],
-      "frames": 139,
+      "frames": 136,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -218,12 +218,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -242,7 +242,7 @@
         "height": 1536
       },
       "errors": [],
-      "frames": 144,
+      "frames": 157,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -294,12 +294,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -370,12 +370,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -394,7 +394,7 @@
         "height": 568
       },
       "errors": [],
-      "frames": 142,
+      "frames": 137,
       "ready": true,
       "snapshot": {
         "capacity": 1,
@@ -446,12 +446,12 @@
         "volumeUsed": 0
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -470,7 +470,7 @@
         "height": 1254
       },
       "errors": [],
-      "frames": 147,
+      "frames": 144,
       "ready": true,
       "snapshot": null,
       "status": {
@@ -501,7 +501,7 @@
         "height": 1254
       },
       "errors": [],
-      "frames": 147,
+      "frames": 148,
       "ready": true,
       "snapshot": null,
       "status": {
@@ -527,10 +527,148 @@
       "variant": "canonical",
       "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
       "screenshot": "captures/05-canonical.png",
-      "screenshotSha256": "17c745f00aa243548fa49e32768b8c4bf596bed03cc9a7c7c3a77f1a5de7611c",
+      "screenshotSha256": "f4613bbf8e6036656bf0dfc137dd51832ede0d57ffd60b92e2a93e357ad966ba",
       "dimensions": {
         "width": 1024,
         "height": 1536
+      },
+      "errors": [],
+      "frames": 142,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "complete",
+        "pressure01": 0,
+        "remainingSpecimenIds": [],
+        "resumePhase": null,
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "tick": 0,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "29",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239192",
+        "visibleTriangles": "81096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 1536,
+        "width": 1024
+      }
+    },
+    {
+      "target": "05",
+      "variant": "390",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
+      "screenshot": "captures/05-390.png",
+      "screenshotSha256": "83830fda4e8454fe91dbc0e7d68c937e7f6db0bd858ac08184d7c8ae4a09aedc",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "frames": 143,
+      "ready": true,
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "complete",
+        "pressure01": 0,
+        "remainingSpecimenIds": [],
+        "resumePhase": null,
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "tick": 0,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "29",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239192",
+        "visibleTriangles": "81096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "target": "05",
+      "variant": "320",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
+      "screenshot": "captures/05-320.png",
+      "screenshotSha256": "3c0a467295fab7038f89504b3bc56a4acdd890f4c7bf95dfe671ca2248ae3515",
+      "dimensions": {
+        "width": 320,
+        "height": 568
       },
       "errors": [],
       "frames": 139,
@@ -578,150 +716,12 @@
         "volumeUsed": 0.585
       },
       "status": {
-        "drawCalls": "27",
+        "drawCalls": "29",
         "engine": "three.js r186",
         "loadedAssets": "4",
         "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
-      },
-      "viewport": {
-        "dpr": 1,
-        "height": 1536,
-        "width": 1024
-      }
-    },
-    {
-      "target": "05",
-      "variant": "390",
-      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
-      "screenshot": "captures/05-390.png",
-      "screenshotSha256": "71ecb2b9421d7d71e1539dc0370c4f7ff4d650d7a1475efef046caae617d0ec7",
-      "dimensions": {
-        "width": 390,
-        "height": 844
-      },
-      "errors": [],
-      "frames": 137,
-      "ready": true,
-      "snapshot": {
-        "capacity": 1,
-        "contractVersion": "1.0.0",
-        "currentSpecimen": null,
-        "elapsedMs": 0,
-        "entities": [
-          {
-            "assetId": null,
-            "id": "dev-placeholder",
-            "position": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "rotationRad": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            }
-          }
-        ],
-        "implementation": "scaffold",
-        "inspectionYawRad": 0,
-        "phase": "complete",
-        "pressure01": 0,
-        "remainingSpecimenIds": [],
-        "resumePhase": null,
-        "score": 360,
-        "seed": 260903,
-        "storedSpecimenIds": [
-          "salvage-cassette",
-          "salvage-lens",
-          "salvage-core"
-        ],
-        "tick": 0,
-        "volumeUsed": 0.585
-      },
-      "status": {
-        "drawCalls": "27",
-        "engine": "three.js r186",
-        "loadedAssets": "4",
-        "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
-      },
-      "viewport": {
-        "dpr": 1,
-        "height": 844,
-        "width": 390
-      }
-    },
-    {
-      "target": "05",
-      "variant": "320",
-      "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/capture.html?target=05",
-      "screenshot": "captures/05-320.png",
-      "screenshotSha256": "0e291da02ae83d005d0ef7cf95da0cee1917ce821024bfec7e69376e21dd0f58",
-      "dimensions": {
-        "width": 320,
-        "height": 568
-      },
-      "errors": [],
-      "frames": 138,
-      "ready": true,
-      "snapshot": {
-        "capacity": 1,
-        "contractVersion": "1.0.0",
-        "currentSpecimen": null,
-        "elapsedMs": 0,
-        "entities": [
-          {
-            "assetId": null,
-            "id": "dev-placeholder",
-            "position": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "rotationRad": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            }
-          }
-        ],
-        "implementation": "scaffold",
-        "inspectionYawRad": 0,
-        "phase": "complete",
-        "pressure01": 0,
-        "remainingSpecimenIds": [],
-        "resumePhase": null,
-        "score": 360,
-        "seed": 260903,
-        "storedSpecimenIds": [
-          "salvage-cassette",
-          "salvage-lens",
-          "salvage-core"
-        ],
-        "tick": 0,
-        "volumeUsed": 0.585
-      },
-      "status": {
-        "drawCalls": "27",
-        "engine": "three.js r186",
-        "loadedAssets": "4",
-        "renderState": "ready",
-        "triangles": "239048",
-        "visibleTriangles": "81024"
+        "triangles": "239192",
+        "visibleTriangles": "81096"
       },
       "viewport": {
         "dpr": 1,
@@ -749,9 +749,10 @@
     "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
     "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "123cc9d64caa951ed8dd3b4a649357ebbb2f5c8533d3aa26239ff924ae3651e1",
+    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"
@@ -774,9 +775,10 @@
     "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
     "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "123cc9d64caa951ed8dd3b4a649357ebbb2f5c8533d3aa26239ff924ae3651e1",
+    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18"

@@ -1,5 +1,19 @@
 # 케이스 홈 배치 측정과 독립 실험
 
+## 2026-09-25 깊이 가림 보완
+
+`src/render/case-depth.ts`는 채택한 ImageGen `workshop-v4.webp`의 세 홈과 폼 외곽을 같은 카메라의 Y=.22m 평면에 역투영한다. `colorWrite:false`인 72삼각형 형상으로 입구와 아래쪽 벽의 깊이만 기록한다. 폼 뒤의 GLB 조각이 앞면으로 다시 보이지 않게 하고, 보관물은 기존 scale .7을 유지하며18mm 내려 놓았다. 가시 원본 이미지를 수정하지 않았고, 가시 3D 케이스를 새로 제작한 것은 아니다. 160mm 벽 깊이와18mm 안착은 고정 카메라를 위한 아트 설정이며 사진에서 복원한 물리 치수가 아니다.
+
+처음에는 입구 평면만 사용했으나 물건 끝이 가림 띠 아래 케이스 앞면으로 다시 보이는 문제가 실제 캡처에서 발견됐다. 채택한 버전은 구멍을 유지한 입구와 아래쪽 벽을 함께 사용한다. [측정·설정](foreground-case-measurements.json), [실행 캡처·GPU 결과](foreground-report.json)에 기준을 보존했다.
+
+6순서×압축0/.55/1×2화면=36개 조합에서 같은 보관 상태의 깊이 켜기/끄기와 빈 케이스를 비교했다. WebGL2의 실제 RGBA readPixels를 프레임 직후 읽었다. RGB 차이>3/255를 기준으로 지정한 앞면 영역의 보관물 누출은 총10,446픽셀에서0, 케이스 밖 변화0, 각 홈에서 남은 물건은 최소514픽셀이었다. 깊이를 꺼도 이미 새 보관 높이를 사용하므로 이 비교는 깊이 형상만의 효과이며 이전 높이와의 비교는 아니다.
+
+물건의 CPU geometry bounds는 가려진 정점도 포함한다. 최소 수평 간격13.84px, 320×568에서 B의130px 패널까지 보수적 여유5.60px다. 시각 홈 가림의 통과는 물리적 수납·A/C게임 루프·실제HUD/safe-area·실제iPhone 검증을 대신하지 않는다. 구멍 모서리의 수동 측정 허용 오차4px와 카메라 고정 제약이 남는다.
+
+같은 complete fixture의 [이전 실행 캡처](https://github.com/letstakeabreak/very-disco-2026-3/blob/68a68ec65a8d72f55bae0ed953febe22c86b0efe/docs/handoffs/B/art-review/captures/05-canonical.png)와 [현재 실행 캡처](../art-review/captures/05-canonical.png)를 비교할 수 있다. 두 화면 모두 실제 renderer이며 생성 콘셉트가 아니다.
+
+아래 전경 배치 설명은 깊이 가림 도입 전의 이력이다. 최신 `foreground-report.json`은 이 깊이 보완을 포함하며 이전 원본 결과는 구현 commit `68a68ec65a8d72f55bae0ed953febe22c86b0efe`에서 확인한다.
+
 ## 최신 production 배치 — 전경 케이스
 
 2026-09-25의 production은 ImageGen 편집본 `workshop-v4.webp`를 사용한다. [source·세 편집 프롬프트·판정·해시](../../../../assets/source/environment/case-layout-provenance.json)에 원본과 채택하지 않은 v2/v3도 보존했다. v2는 중앙 프레스와 겹쳤고 v3도 홈이 너무 높았다. v4는 케이스를 전경으로 옮기고 왼쪽 트레이·작업등·창문을 유지했다. 카메라나 GLB/PBR은 변경하지 않았다. 케이스 자체는 여전히 2D 배경이다.

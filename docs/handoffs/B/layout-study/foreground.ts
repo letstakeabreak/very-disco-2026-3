@@ -11,9 +11,11 @@ const status = document.querySelector('#status')!;
 const errors: string[] = [];
 const meshes = new Map<Mesh, WebGLProgramParametersWithUniforms['uniforms']>();
 let camera: Camera | null = null;
+let caseDepth: Mesh | null = null;
 const original = Mesh.prototype.onBeforeRender;
 Mesh.prototype.onBeforeRender = function (gpu, scene, view, geometry, material, group): void {
   original.call(this, gpu, scene, view, geometry, material, group);
+  if (this.name === 'case-foam-depth') caseDepth = this;
   if (canvas.dataset['renderState'] !== 'ready') return;
   if (!meshes.has(this)) {
     const shader = { uniforms: {}, vertexShader: '#include <begin_vertex>', fragmentShader: '#include <color_fragment>' } as WebGLProgramParametersWithUniforms;
@@ -26,7 +28,8 @@ const renderer = createRenderer({ canvas, onFatal: error => errors.push(`${error
 const resize = (): void => renderer.resize({ width: innerWidth, height: innerHeight, dpr: 1 });
 resize(); window.addEventListener('resize', resize);
 let tick = 0;
-const render = (snapshot: GameSnapshot): void => { assertSnapshot(snapshot); renderer.render(deepFreeze(snapshot), 0); };
+let lastSnapshot: GameSnapshot = SNAPSHOT_FIXTURES.idle;
+const render = (snapshot: GameSnapshot): void => { assertSnapshot(snapshot); lastSnapshot = snapshot; renderer.render(deepFreeze(snapshot), 0); };
 
 function measure(): Record<string, unknown>[] {
   if (!camera) throw new Error('No production camera observed');
@@ -78,6 +81,49 @@ const show = (order: SalvageId[], compression: number): Record<string, unknown> 
   status.textContent = `${compression.toFixed(2)} · ${innerWidth}×${innerHeight}`;
   return { order, compression, viewport: { width: innerWidth, height: innerHeight, dpr: 1 }, bounds: measure(), errors, status: { ...canvas.dataset } };
 };
+function compareDepth(order: SalvageId[], compression: number): Record<string, unknown> {
+  show(order, compression);
+  if (!caseDepth) throw new Error('Case depth mesh not observed');
+  const depth = caseDepth;
+  const snapshot = lastSnapshot;
+  const gl = canvas.getContext('webgl2')!;
+  const pixels = (): Uint8Array => {
+    const data = new Uint8Array(canvas.width * canvas.height * 4);
+    gl.readPixels(0, 0, canvas.width, canvas.height, gl.RGBA, gl.UNSIGNED_BYTE, data);
+    return data;
+  };
+  depth.visible = false; render(snapshot); const withoutDepth = pixels();
+  depth.visible = true; render(snapshot); const withDepth = pixels();
+  render({ ...snapshot, storedSpecimenIds: [] }); const empty = pixels();
+  render(snapshot);
+  const stageH = Math.min(innerHeight, innerWidth * 1.5); const stageW = stageH * 2 / 3;
+  const visiblePixels = [0, 0, 0];
+  let changed = 0; let outsideCase = 0; let frontBefore = 0; let frontAfter = 0;
+  const differs = (a: Uint8Array, b: Uint8Array, offset: number): boolean =>
+    Math.max(Math.abs(a[offset]! - b[offset]!), Math.abs(a[offset + 1]! - b[offset + 1]!), Math.abs(a[offset + 2]! - b[offset + 2]!)) > 3;
+  for (let y = 0; y < canvas.height; y++) for (let x = 0; x < canvas.width; x++) {
+    const offset = ((canvas.height - 1 - y) * canvas.width + x) * 4;
+    const u = (x - (innerWidth - stageW) / 2) / stageW * 1024;
+    const v = (y - (innerHeight - stageH) / 2) / stageH * 1536;
+    if (differs(withDepth, withoutDepth, offset)) {
+      changed++;
+      if (u < 390 || u > 990 || v < 1045 || v > 1360) outsideCase++;
+    }
+    if (u > 443 && u < 920 && v > 1222 && v < 1280) {
+      if (differs(withoutDepth, empty, offset)) frontBefore++;
+      if (differs(withDepth, empty, offset)) frontAfter++;
+    }
+    if (v > 1085 && v < 1190 && differs(withDepth, empty, offset)) {
+      for (const [i, [left, right]] of [[492, 582], [638, 750], [800, 902]].entries()) {
+        if (u > left! && u < right!) visiblePixels[i]!++;
+      }
+    }
+  }
+  return { order, compression, viewport: { width: innerWidth, height: innerHeight },
+    changedPixels: changed, changedOutsideCase: outsideCase,
+    specimenPixelsOnFrontBefore: frontBefore, specimenPixelsOnFrontAfter: frontAfter, visiblePixelsInApertures: visiblePixels,
+    readback: 'Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.', errors };
+}
 let frame = 0;
 const load = (): void => {
   renderer.render(SNAPSHOT_FIXTURES.inspecting, 0);
@@ -85,7 +131,7 @@ const load = (): void => {
   else show(['salvage-cassette', 'salvage-lens', 'salvage-core'], .55);
 };
 frame = requestAnimationFrame(load);
-Object.assign(window, { __caseProbe: { show, errors, get ready() { return canvas.dataset['renderState'] === 'ready'; } } });
+Object.assign(window, { __caseProbe: { show, compareDepth, errors, get ready() { return canvas.dataset['renderState'] === 'ready'; } } });
 window.addEventListener('error', event => errors.push(event.message));
 window.addEventListener('unhandledrejection', event => errors.push(String(event.reason)));
 const dispose = (): void => { cancelAnimationFrame(frame); window.removeEventListener('resize', resize); renderer.dispose(); Mesh.prototype.onBeforeRender = original; };

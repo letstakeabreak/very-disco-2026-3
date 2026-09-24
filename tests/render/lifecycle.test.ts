@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { BoxGeometry, DirectionalLight, Euler, Group, Mesh, MeshStandardMaterial, Quaternion, ShadowMaterial, Texture, Vector3 } from 'three';
+import { BoxGeometry, DirectionalLight, Euler, Group, Mesh, MeshBasicMaterial, MeshStandardMaterial, Plane, Quaternion, Raycaster, ShadowMaterial, Texture, Vector2, Vector3 } from 'three';
 import type { Camera, Material, Object3D, Scene, WebGLProgramParametersWithUniforms, WebGLRenderer } from 'three';
 import { WebGLShadowMap } from 'three/src/renderers/webgl/WebGLShadowMap.js';
 import type { WebGLObjects } from 'three/src/renderers/webgl/WebGLObjects.js';
@@ -428,6 +428,34 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     expect(core.scene.position.distanceTo(position)).toBeLessThan(1e-9); expect(core.scene.scale.distanceTo(scale)).toBeLessThan(1e-9);
     expect(core.scene.quaternion.angleTo(rotation)).toBeLessThan(1e-7); checkAperture(1);
     renderer.dispose();
+  });
+
+  it('occludes below the measured foam mouth while leaving the three apertures open', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); await finishLoading();
+    renderer.render(SNAPSHOT_FIXTURES.stored, 0);
+    const [scene, camera] = lastStageDraw(); scene.updateMatrixWorld(true); camera.updateMatrixWorld(true);
+    const depth = scene.getObjectByName('case-foam-depth') as Mesh;
+    expect(depth.material).toBeInstanceOf(MeshBasicMaterial);
+    expect((depth.material as MeshBasicMaterial).colorWrite).toBe(false);
+    expect((depth.material as MeshBasicMaterial).depthWrite).toBe(true);
+    const ray = new Raycaster(); const mouth = new Plane(new Vector3(0, 1, 0), -0.22);
+    const sample = (x: number, y: number): { distance: number; hit: number | undefined } => {
+      ray.setFromCamera(new Vector2(x / 1024 * 2 - 1, 1 - y / 1536 * 2), camera);
+      const point = ray.ray.intersectPlane(mouth, new Vector3())!;
+      return { distance: ray.ray.origin.distanceTo(point), hit: ray.intersectObject(depth)[0]?.distance };
+    };
+    // Independently measured foam between openings versus the centers of each opening.
+    const foam = sample(616, 1137); expect(foam.hit).toBeCloseTo(foam.distance, 6);
+    for (const x of [534, 694, 855]) {
+      const aperture = sample(x, 1137);
+      // A below-mouth cavity wall may be hit later; no cap may fill the aperture.
+      expect(aperture.hit === undefined || aperture.hit > aperture.distance + 0.005).toBe(true);
+    }
+    expect(sample(300, 1137).hit).toBeUndefined();
+    const releaseGeometry = vi.spyOn(depth.geometry, 'dispose');
+    const releaseMaterial = vi.spyOn(depth.material as MeshBasicMaterial, 'dispose');
+    renderer.dispose(); renderer.dispose();
+    expect(releaseGeometry).toHaveBeenCalledTimes(1); expect(releaseMaterial).toHaveBeenCalledTimes(1);
   });
 
   it('passes worktop clipping into real Three shadow materials and releases ram and cached frame depth materials', async () => {

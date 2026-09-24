@@ -1,5 +1,20 @@
 # B renderer 검증 기록
 
+## 2026-09-25 — 케이스 깊이 가림과 안착 (현재)
+
+원본 ImageGen plate와 네 Meshy GLB는 그대로 두고 폼 입구·아래쪽 벽을 가리는72삼각형 depth-only 형상을 추가했다. 보관물은18mm 내려 놓는다. 픽셀 기반 폼 경계는 같은 카메라의 작업대 평면에 역투영하며160mm 아래쪽 깊이는 아트 설정이다. 가시3D케이스나 물리 수납 모델이 아니다.
+
+[36개 배치](../layout-study/foreground-report.json)의 실제 GPU 비교에서 같은 보관 높이의 depth 켜기/끄기/빈 케이스를 비교했다. 앞면 지정 영역 누출10,446→0픽셀, 케이스 밖 변화0, 각 홈의 가시 물건 최소514픽셀이다. RGB차이>3/255 기준이며 CPUbounds 판정과 구분한다. 가림 전 정점을 포함한 수평 여유 최소13.84px, B130px패널 여유 최소5.60px. C HUD/safe-area·실제iPhone은 미검증이다.
+
+- npm run check: 고정23파일, strictTS,16모듈 경계,10파일57테스트, build 통과. 새 테스트는 실제 Three raycast로 폼/세 열린 홈을 구분하고 depth 자원 해제를 확인한다.
+- 공개 renderer 캡처11장 및 browser-check의3화면/8상태/9물건조합 통과. 대표 장면 visibleTriangles81,096 (가시 flag가 켜진 depth-only72포함), 여러 패스 합계239,192, draw29.
+- preview·art-viewer·foreground study strictTS 통과. 아트 갤러리5목표/35판정/16이미지/3모드/390·320 확인. 아트 미달 판정은 유지한다.
+- dist10,238,002bytes, JS674,291bytes/gzip173.78kB. Vite500kB경고가 남는다.
+- 최신 index.ts SHA256: e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e
+- case-depth.ts SHA256: 51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835
+
+[최신 데스크톱 측정](desktop-soak.json): 2026-09-25 01:10 KST 시작, HMR 없는 정적 B 하네스에서 180.013초, 10,802 rAF 표본, 평균60.0069 FPS / P95 16.7ms / max16.8ms / 오류0. AppleM5/Chromium153, CSS390×844/DPR2/버퍼780×1688. 이전 GPU 검사 브라우저를 닫은 뒤 별도로 실행했고14개 source/asset SHA는 전후 일치했다. 실제iPhone·입력 지연·통제된 시스템 부하 시험은 아니다. 이전 케이스 측정은 [별도 이력](desktop-soak-20260924T154438.json)에 보존했다. 아래 전경 케이스·램 보완 부분은 당시 이력이다.
+
 ## 2026-09-25 전경 보관함과 화면 잘림 보완
 
 ImageGen으로 작업실 케이스를 전경으로 옮겼다. v2/v3는 프레스와 겹쳐 기각하고 v4를 runtime WebP로 인코딩했다. 원본·각 프롬프트·연쇄 입력과 출력 SHA는 `assets/source/environment/case-layout-provenance.json`에 있다. 현재 배경223,350bytes/1024×1536. 기존 workshop.webp는 이전 연구 뷰어를 위해 보존하므로 dist 총량은10,225,516bytes이며 실제 renderer는 v4 하나만 로드한다. 네 GLB/PBR 및 shared23파일은 변하지 않았다.

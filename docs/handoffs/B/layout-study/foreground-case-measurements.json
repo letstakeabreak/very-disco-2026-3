@@ -153,7 +153,42 @@
     ],
     "runtimeScale": 0.7,
     "oldRuntimeScale": 0.52,
-    "minimumHorizontalClearancePx": 13.873977537288596,
-    "minimumMarginTo130pxStudyDock": 10.881549305646333
+    "minimumHorizontalClearancePx": 13.83617971501971,
+    "minimumMarginTo130pxStudyDock": 5.5980333137496245,
+    "boundsNote": "Conservative CPU bounds include vertices hidden by the depth mask.",
+    "gpuDepth": {
+      "layouts": 36,
+      "frontLeakPixelsBefore": 10446,
+      "frontLeakPixelsAfter": 0,
+      "changedOutsideCase": 0,
+      "minPixelsVisibleInAnAperture": 514
+    }
+  },
+  "depthProxy": {
+    "checkedAt": "2026-09-24T16:05:45.586Z",
+    "type": "Invisible depth-only extruded foam mask, derived from the ImageGen plate. Not a visible 3D case asset or a physical fit model.",
+    "outerPixels": [
+      [
+        443,
+        1065
+      ],
+      [
+        920,
+        1065
+      ],
+      [
+        962,
+        1212
+      ],
+      [
+        406,
+        1212
+      ]
+    ],
+    "mouthWorldY": 0.22,
+    "artDirectedExtrusionM": 0.16,
+    "artDirectedSeatingOffsetM": 0.018,
+    "triangles": 72,
+    "source": "src/render/case-depth.ts"
   }
 }

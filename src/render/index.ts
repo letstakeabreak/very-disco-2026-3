@@ -14,6 +14,7 @@ import { disposeObjects } from './resources';
 import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state';
 import { animateRam, PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from './ram';
 import { ASSET_REGISTRY } from './assets';
+import { createCaseDepth } from './case-depth';
 
 const STAGE_ASPECT = 2 / 3;
 const WORKTOP_Y = 0.22;
@@ -104,6 +105,8 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     return { center: onTable(u!, v!), rotation };
   });
   const caseOffset = new Vector3();
+  const caseDepth = createCaseDepth(onTable);
+  stage.add(caseDepth); roots.push(caseDepth);
   scene.add(new AmbientLight('#d2d4d3', 0.12));
   const key = new DirectionalLight('#ffe1ac', 2.6);
   key.position.set(-1.8, 2.8, 2.0);
@@ -318,6 +321,8 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         const slot = slots[visual.index]!;
         caseOffset.set(0, renderedHeight / 2, 0).applyQuaternion(slot.rotation).multiplyScalar(0.7);
         prop.root.position.sub(caseOffset);
+        // Art-directed seating below the photographed foam mouth; no volume/physics rule.
+        prop.root.position.y -= 0.018;
       }
     }
     if (ram) {

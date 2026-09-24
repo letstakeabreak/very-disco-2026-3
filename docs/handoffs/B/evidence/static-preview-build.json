@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-24T15:42:13.984Z",
+  "builtAt": "2026-09-24T16:08:29.350Z",
   "purpose": "Static production build of B fixture harness without Vite HMR; not the integrated game or itch deployment validation",
   "root": "/Users/miro/Developer/very-disco-2026-3/",
   "outDir": "/tmp/deep-press-b-static-preview",
@@ -9,9 +9,10 @@
     "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
     "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "123cc9d64caa951ed8dd3b4a649357ebbb2f5c8533d3aa26239ff924ae3651e1",
+    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
@@ -26,9 +27,10 @@
     "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
     "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
     "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
     "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
     "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
-    "src/render/index.ts": "123cc9d64caa951ed8dd3b4a649357ebbb2f5c8533d3aa26239ff924ae3651e1",
+    "src/render/index.ts": "e591083e8d27ed08296aed4a4bb98e2fa260999e2d438eabf19686a1d619277e",
     "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
     "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
     "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
@@ -39,6 +41,10 @@
     "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b"
   },
   "files": {
+    "assets/.DS_Store": {
+      "bytes": 6148,
+      "sha256": "0c0704b0dbb09c2061fff4a65eb6f75a4418c67cf2c42d4ec401cd27844bd738"
+    },
     "assets/models/press-chamber.glb": {
       "bytes": 2872664,
       "sha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75"
@@ -55,13 +61,13 @@
       "bytes": 2073588,
       "sha256": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc"
     },
+    "assets/preview-BH2gVqHA.js": {
+      "bytes": 675350,
+      "sha256": "ed89b517b22bafc393e8a7ad86078b673442dc2116d6e74d2a3d0a26700a87c0"
+    },
     "assets/preview-BXghWxwx.css": {
       "bytes": 4119,
       "sha256": "d770d61ef68980bf1c20f2d7db81f8fc4033e8d4c2c925d7108a175bbfdeae08"
-    },
-    "assets/preview-bldj20EZ.js": {
-      "bytes": 669010,
-      "sha256": "6ddca8273f72fbaf3cc523260d02735672eb6b4695e9d51ff64a730790c98877"
     },
     "assets/textures/pressure-dial.webp": {
       "bytes": 90242,
@@ -77,7 +83,7 @@
     },
     "docs/handoffs/B/preview.html": {
       "bytes": 3136,
-      "sha256": "a34657f6322aab9ef5ab80860306141b0195277ab1f57d654ac4975c44e4134d"
+      "sha256": "54e58fd1af7d48fb703c1d1de934d605b4af1fe18c3a4308981215a384fb9506"
     }
   }
 }
