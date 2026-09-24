@@ -5,7 +5,8 @@ Role: C — app, input, HUD (`magic3ightball`, verified through the connected Gi
 Contract: 1.0.0  
 PRD: 1.0.1 (`executionReady: true`)  
 Target branch: `role/c-app`  
-Implementation commit: `a59a1cdc01534fb4644cfa6fdc0300d1e68ae528` (local archive history; the GitHub PR uses an official-base commit)
+Implementation commit: `06e8d24d1c02b9c04df39ecb8e2ce2b251a69172` (official `bootstrap-v2` parent)
+PR: [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3), open against `integration/v1`
 
 ## Starting point and provenance
 
@@ -34,7 +35,7 @@ Environment: Node `v22.22.3`, npm `10.9.8`; the repository pins Node `26.8.2` an
 
 ## Remaining work and limits
 
-- Open a PR from the GitHub `role/c-app` branch against `integration/v1`; its implementation commit uses official parent `c739b527449b2527e46b567bfffbd4a7122f571c`.
+- Review PR [#3](https://github.com/letstakeabreak/very-disco-2026-3/pull/3) on `integration/v1`; its implementation commit uses official parent `c739b527449b2527e46b567bfffbd4a7122f571c`.
 - The local environment is Node `v22.22.3` / npm `10.9.8`, while the repository pins Node `26.8.2` / npm `11.19.1`; `npm ci` and `npm run check` passed with an engine mismatch warning. Re-run on the pinned runtime if available.
 - Verify the 320 CSS px layout and safe-area behavior at an actual mobile viewport; no viewport emulation was available in this review.
 - Test the full connected core/render loop and a real iPhone Safari session after A/B integrations. Those checks remain unverified.
