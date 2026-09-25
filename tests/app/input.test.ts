@@ -17,7 +17,7 @@ function harness(initial: GameSnapshot = SNAPSHOT_FIXTURES.inspecting) {
     },
     onInspectionMoved,
   });
-  return { controller, commands, onInspectionMoved, getSnapshot: () => snapshot };
+  return { controller, commands, onInspectionMoved, getSnapshot: () => snapshot, setSnapshot: (next: GameSnapshot) => { snapshot = next; } };
 }
 
 describe('single-pointer input lifecycle', () => {
@@ -38,6 +38,15 @@ describe('single-pointer input lifecycle', () => {
     expect(getSnapshot().phase).toBe('paused');
     expect(controller.endPress(21)).toBe(false);
     expect(commands).toEqual([{ type: 'press-start' }, { type: 'pause' }]);
+  });
+
+  it('does not pause a hold the core already ended by settling at full pressure', () => {
+    const { controller, commands, getSnapshot, setSnapshot } = harness();
+    expect(controller.beginPress(51)).toBe(true);
+    setSnapshot({ ...getSnapshot(), phase: 'settling' });
+    expect(controller.cancel(51)).toBe(true);
+    expect(controller.endPress(51)).toBe(false);
+    expect(commands).toEqual([{ type: 'press-start' }]);
   });
 
   it('rotates by horizontal drag in radians and prevents overlapping gestures', () => {

@@ -33,3 +33,12 @@ Current integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec9991
 - The current branch list contains no A role branch. `src/core/index.ts` still identifies itself as `implementation: 'scaffold'`; `src/render/index.ts` on integration is the neutral probe. Game outcomes, connected core/render behavior, and final visual assets are not complete.
 - After A/B integration, run the combined app/core/render tests and verify C interaction, renderer recreation after actual context loss, and touch/cancel/resume on real iPhone Safari. Also rerun with the pinned Node/npm versions when available.
 - Do not merge from C. Project instructions reserve final integration for A.
+
+## Press, failure and result fixes (2026-09-25)
+
+- Assigned by the user to this session (authenticated GitHub account `letstakeabreak`, working in C's paths for these fixes). Branch `role/c-app-play-fixes` from `integration/v1` at `6045b4e7`.
+- **Keyboard press paused immediately.** `renderUi` disabled the hold button as soon as the phase became `compressing`. The focused button then blurred, and the blur handler cancelled the keyboard gesture into `pause`. The hold button now stays enabled while compressing. Disabling a captured, pressed button was also a risk on touch.
+- **Failure result covered by a pause.** When the core auto-settled at full pressure, the failure dialog took focus and the still-held hold button blurred. `cancel` then paused, replacing the failure dialog. `cancel` no longer pauses a press gesture the core already ended (the phase is no longer `compressing`). A press cancelled during compression still pauses and drops the uncommitted stroke. `requestPause` and the renderer-fatal path now pause whenever the game is still in a gameplay phase after cancelling, so visibility loss still pauses.
+- **No discard after failure.** PRD 1.0.1 rules 6–7 let a failed lot be discarded to continue. The failure dialog now leads with discard (`폐기하고 계속`, or `폐기하고 마치기` for the last lot), then cash-out and restart. The copy explains both choices, and the failed phase label reads `회수 실패`.
+- **Settled result not shown.** The pressure card now shows the core-committed volume, value and integrity (`압축 70% · 0.38L · 가치 330 · 무결성 73%`) instead of only the committed pressure. Values are read from the snapshot; nothing is predicted.
+- Tests: `tests/app/input.test.ts` covers a hold ended by the core, and `tests/app/presentation.test.ts` covers the result, failure and discard text. All three new cases fail before the fix and pass after.

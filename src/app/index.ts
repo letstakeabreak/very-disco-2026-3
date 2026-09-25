@@ -3,7 +3,7 @@ import { createRenderer } from '../render';
 import { CONTRACT_VERSION, type GameEvent, type GameSnapshot, type SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
-import { canStore, phaseLabel, remainingCapacity, resultSummary, SPECIMEN_LABELS, tutorialText } from './presentation';
+import { canStore, discardLabel, failureText, phaseLabel, remainingCapacity, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
@@ -72,8 +72,8 @@ export function mountApp(root: HTMLElement): () => void {
     },
   });
   handleRendererFatal = () => {
-    const phase = game.snapshot().phase;
-    if (!input.cancel() && isGameplayPhase(phase)) runtime.dispatch({ type: 'pause' });
+    input.cancel();
+    if (isGameplayPhase(game.snapshot().phase)) runtime.dispatch({ type: 'pause' });
     renderUi(game.snapshot());
   };
 
@@ -108,8 +108,9 @@ export function mountApp(root: HTMLElement): () => void {
   }
 
   function requestPause(): void {
-    const pausedByGesture = input.cancel();
-    if (!pausedByGesture && isGameplayPhase(game.snapshot().phase)) runtime.dispatch({ type: 'pause' });
+    // A cancelled gesture may already have paused; otherwise pause here.
+    input.cancel();
+    if (isGameplayPhase(game.snapshot().phase)) runtime.dispatch({ type: 'pause' });
     renderUi(game.snapshot());
   }
 
@@ -132,7 +133,7 @@ export function mountApp(root: HTMLElement): () => void {
       const content: Record<string, string> = {
         start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SALVAGE SHIFT 01</p><h2 id="dialog-title">공간은 1L</h2><p>회수물을 살펴보고, 눌러 담아 케이스에 보관하세요.</p><button data-action="start" class="dialog-primary" type="button">작업 시작</button></section>`,
         paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">PAUSED</p><h2 id="dialog-title">작업이 멈췄습니다</h2><p>압력은 멈춰 있습니다. 준비되면 이어서 작업하세요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
-        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SHIFT ENDED</p><h2 id="dialog-title">회수 작업 종료</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="cash-out" class="dialog-primary" type="button">확보 점수 정산</button><button data-action="restart" class="dialog-secondary" type="button">다시 하기</button></section>`,
+        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SALVAGE LOST</p><h2 id="dialog-title">회수 실패</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">폐기하고 계속</button><button data-action="cash-out" class="dialog-secondary" type="button">확보 점수 정산</button><button data-action="restart" class="dialog-secondary" type="button">다시 하기</button></section>`,
         complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SHIFT COMPLETE</p><h2 id="dialog-title">회수 완료</h2><p>이번 작업 결과</p><p class="dialog-summary" id="dialog-summary"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DISPLAY ERROR</p><h2 id="dialog-title">3D 화면을 시작할 수 없습니다</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
@@ -144,9 +145,9 @@ export function mountApp(root: HTMLElement): () => void {
     const summary = overlay.querySelector<HTMLElement>('#dialog-summary');
     if (summary) summary.textContent = resultSummary(snapshot);
     const copy = overlay.querySelector<HTMLElement>('#dialog-copy');
-    if (copy && key === 'failed') copy.textContent = failureReason === 'capacity-exceeded'
-      ? '케이스 용량을 초과했습니다. 이미 보관한 회수품은 유지됩니다.'
-      : '회수물이 한계 압력에 도달했습니다. 이미 확보한 점수만 정산할 수 있습니다.';
+    if (copy && key === 'failed') copy.textContent = failureText(failureReason);
+    const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
+    if (discardChoice) discardChoice.textContent = discardLabel(snapshot);
     if (copy && key === 'fatal') copy.textContent = `3D 초기화 오류 (${fatalMessage}). 현재 작업은 일시 정지되었습니다. 그래픽 연결을 다시 시도하거나 페이지를 새로고침해 주세요.`;
   }
 
@@ -173,12 +174,11 @@ export function mountApp(root: HTMLElement): () => void {
     const pressure = Math.round(snapshot.pressure01 * 100);
     pressureValue.textContent = `${pressure}%`;
     pressureBar.style.transform = `scaleX(${snapshot.pressure01})`;
-    resultValue.textContent = snapshot.currentSpecimen
-      ? `확정 압축 ${Math.round(snapshot.currentSpecimen.compression01 * 100)}% · 결과는 코어 판정을 따릅니다.`
-      : '물건을 검사해 압착을 시작하세요.';
+    resultValue.textContent = specimenResult(snapshot);
     tutorial.hidden = !started || tutorialComplete || snapshot.currentSpecimen?.id !== tutorialSpecimenId || snapshot.phase === 'complete' || snapshot.phase === 'failed';
     tutorial.textContent = tutorialText(tutorialStep);
-    hold.disabled = snapshot.phase !== 'inspecting';
+    // Stay enabled while held: disabling the pressed button blurs it and drops capture.
+    hold.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'compressing';
     store.disabled = !canStore(snapshot);
     discard.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'failed';
     cashOut.disabled = !['idle', 'inspecting', 'stored', 'failed'].includes(snapshot.phase);
@@ -221,6 +221,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (action === 'restart') beginRound(true);
     if (action === 'resume') { runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot()); }
     if (action === 'cash-out') { runtime.dispatch({ type: 'cash-out' }); renderUi(game.snapshot()); }
+    if (action === 'discard') { runtime.dispatch({ type: 'discard' }); renderUi(game.snapshot()); }
     if (action === 'retry-renderer') retryRenderer();
   }, options);
   choices.addEventListener('click', (event) => {
