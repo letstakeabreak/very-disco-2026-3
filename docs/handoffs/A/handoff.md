@@ -24,6 +24,7 @@ Contribution base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41
 
 ## PR and integration audit
 
+- A contribution is available for review in [PR #7](https://github.com/letstakeabreak/very-disco-2026-3/pull/7), branch `role/a-core` to `integration/v1`. It is open, non-draft and mergeable on the latest recheck; no CI statuses have been reported yet. Its changed files are the five A-owned paths listed above. It remains unmerged.
 - Latest C PR [#6](https://github.com/letstakeabreak/very-disco-2026-3/pull/6) was rechecked: open, non-draft, mergeable against `integration/v1` at the same base SHA. No submitted review or inline review threads were present at the recheck. It remains unmerged for final integration.
 - B PR [#1](https://github.com/letstakeabreak/very-disco-2026-3/pull/1) remains open, draft and mergeable. Its reported iPhone 16 Pro Max renderer fixture run averaged about 40.05 fps (P95 29 ms), below the 60 fps goal; an earlier GPU context-loss cause remains unresolved. Neither PR provides combined A/B/C gameplay evidence.
 - A's core/content contribution is ready for review. It does not claim final art, real-device integrated gameplay, or overall project completion.
