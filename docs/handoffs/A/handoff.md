@@ -101,3 +101,18 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 - `release/v1` is `integration/v1` `34a7765`, plus C PR #12 (`2e616f4`, HUD kept off the gauge and case), plus a merge of `main` (`03d7b58`, the work-document links from PR #2/#4). Release polish changes shared, non-frozen files only: the `index.html` title (`DEEP PRESS`), the README status sentence and `docs/validation.md`. The bootstrap-frozen contract, fixtures, scripts, package and lock files are unchanged, and `npm run bootstrap:check` still matches all 23 hashes.
 - Verification: Node 26.8.2 `npm run check` passed. Headless Chromium played the full loop, including completion and restart. The release ZIP (`npm run build`, zipped from `dist/` with `index.html` at the root, 12.9MB unpacked) loaded every asset from a nested path and played.
 - Not done here: the itch.io upload and jam submission, and iPhone Safari checks (both by the user). The contract 1.1.0 stored-state migration was not applied. The merge to `main` is the repository owner's decision on the final PR.
+
+
+## Contract 1.1.0 for M1 (2026-09-25)
+
+- Assigned by the user to this session (authenticated GitHub account `letstakeabreak`) as A and integration owner. Branch `role/a-core-m1` from `main` `1a1aff2` (v1). Target `integration/v2`.
+- Why: inspection gave no information, pressing gave no readable risk or space cue, and a new renderer could not restore stored lots' committed look (the earlier `storedSpecimens` proposal).
+- Contract: `Tolerance`, `SpecimenDefinition.tolerance`, `SpecimenState.tolerance | null`, and `GameSnapshot.storedSpecimens`, `stress01`, `previewVolume`. The rules are in PRD 1.1.0 "v1.1 판단 단서".
+  - Tolerance is revealed by rotating a lot ≥ 45° while inspecting. It is kept per lot until restart.
+  - Stress is 0 up to the safe pressure, then rises to 1 at full pressure.
+  - Preview is the volume at the live pressure. No value is previewed.
+  - Stored states follow `storedSpecimenIds` order, and their volumes sum to `volumeUsed`.
+- Migration, all in this change:
+  - types, validator, the 8 fixtures, authored content, contract tests, PRD, `docs/contracts.md`, and the `docs/bootstrap.json` hashes. Exactly six frozen files changed; the manifest diff was checked for no other hash changes.
+  - B's `tests/render/lifecycle.test.ts` needed `tolerance: null` on two hand-built `SpecimenState` literals. This is the only edit outside A/shared paths. It is a mechanical consumer migration required by the contract-change rule, and the reason the A ownership check flags that one B path.
+- Tests: 5 new core cases cover tolerance reveal, persistence and restart, the stress curve, preview vs committed volume, and stored-state order and volume sum. A new whole-shift test asserts every snapshot against the 1.1 validator. The new contract case rejects bad stress, preview, stored-state and tolerance values.

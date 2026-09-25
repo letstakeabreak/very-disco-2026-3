@@ -163,7 +163,7 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     expect(glass).toBeInstanceOf(MeshPhysicalMaterial);
     for (const integrity01 of [1, .5, 0]) {
       renderer.render({ ...SNAPSHOT_FIXTURES.paused, resumePhase: 'inspecting', currentSpecimen: {
-        id: 'salvage-cassette', material: 'composite', currentVolume: .45, value: 100, compression01: .55, integrity01,
+        id: 'salvage-cassette', material: 'composite', currentVolume: .45, value: 100, compression01: .55, integrity01, tolerance: null,
       } }, 0);
       expect(glass.transmission).toBe(.94);
     }
@@ -468,7 +468,7 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     expect(compression.value).toBeCloseTo(0.7); expect(damage.value).toBeCloseTo(0.35);
     for (const pressure01 of [0, 0.2, 0.9]) {
       renderer.render(deepFreeze({ ...stored, tick: 52, phase: 'paused', resumePhase: 'inspecting', pressure01,
-        currentSpecimen: { id: 'salvage-lens', material: 'glass', currentVolume: 0.5, integrity01: 0.9, value: 100, compression01: 0.2 } }), 100);
+        currentSpecimen: { id: 'salvage-lens', material: 'glass', currentVolume: 0.5, integrity01: 0.9, value: 100, compression01: 0.2, tolerance: null } }), 100);
       expect(compression.value).toBeCloseTo(0.7); expect(damage.value).toBeCloseTo(0.35);
       expect(core.scene.quaternion.angleTo(storedRotation)).toBeLessThan(1e-7);
     }

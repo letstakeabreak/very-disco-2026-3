@@ -1,10 +1,10 @@
 ---
 product: DEEP PRESS
-prdVersion: 1.0.1
-contractVersion: 1.0.0
+prdVersion: 1.1.0
+contractVersion: 1.1.0
 executionReady: true
 bootstrapRef: bootstrap-v2
-updated: 2026-09-24
+updated: 2026-09-25
 ---
 
 # DEEP PRESS — 압력과 가치 사이
@@ -30,11 +30,11 @@ updated: 2026-09-24
 
 공개 타입은 `src/contracts/index.ts` 하나다. 단위는 용량 L, 렌더 공간 m, 각도 rad, 시간 ms. 입력·판정·렌더의 소유권은 [계약](docs/contracts.md)을 따른다.
 
-| 회수물 ID | 표현 | 시작 부피 L | 최소 부피 L | 원래 가치 | 안전 압력 |
-|---|---|---:|---:|---:|---:|
-| salvage-core | 찌그러지는 금속 보호 하우징 | 0.90 | 0.27 | 260 | 0.80 |
-| salvage-lens | 완충 프레임 안의 광학 렌즈 | 0.58 | 0.30 | 450 | 0.38 |
-| salvage-cassette | 티타늄·복합재 데이터 카세트 | 0.72 | 0.24 | 340 | 0.62 |
+| 회수물 ID | 표현 | 시작 부피 L | 최소 부피 L | 원래 가치 | 안전 압력 | 내구 성향 |
+|---|---|---:|---:|---:|---:|---|
+| salvage-core | 찌그러지는 금속 보호 하우징 | 0.90 | 0.27 | 260 | 0.80 | sturdy |
+| salvage-lens | 완충 프레임 안의 광학 렌즈 | 0.58 | 0.30 | 450 | 0.38 | fragile |
+| salvage-cassette | 티타늄·복합재 데이터 카세트 | 0.72 | 0.24 | 340 | 0.62 | normal |
 
 케이스 용량은 **1.00L**, 압력 증가율은 **0.25/s**, seed는 **260903**, 보관 보너스는 물건당 **100**이다. 유리 자체가 고무처럼 줄어들지 않게 프레임·완충재를 먼저 압축한다. 재질 변형은 사실적인 연출이고 실제 공학 해석이라고 주장하지 않는다.
 
@@ -47,7 +47,16 @@ retainedValue = round(baseValue * integrity)
 storeScoreDelta = retainedValue + 100
 ```
 
-누르는 동안 UI와 렌더러는 `pressure01`를 표현하고, 확정 결과는 `currentSpecimen.compression01`, `currentVolume`, `integrity01`, `value`에서 읽는다. B/C가 위 공식을 복제해 별도 판정을 만들지 않는다. 예고 부피·가치가 필요하면 A가 공유 계약 변경 절차를 거쳐 명시적으로 제공한다. 초기 버전 UI는 현재 압력과 마지막 확정 결과만 보여도 된다.
+누르는 동안 UI와 렌더러는 `pressure01`를 표현하고, 확정 결과는 `currentSpecimen.compression01`, `currentVolume`, `integrity01`, `value`에서 읽는다. B/C가 위 공식을 복제해 별도 판정을 만들지 않는다. 판단 단서는 아래 v1.1 규칙으로 A가 snapshot에 제공한다.
+
+### v1.1 판단 단서
+
+검사가 실제 정보를 주고, 누르는 동안 위험과 공간을 읽을 수 있게 한다. 값은 모두 코어가 계산하며 B/C는 표시만 한다.
+
+- **내구 성향 공개:** 각 회수물은 저작된 `tolerance`(fragile/normal/sturdy)를 가진다. `inspecting`에서 절대 회전 `|yawRad| ≥ π/4`가 되면 그 물건의 `currentSpecimen.tolerance`가 공개되고 restart 전까지 유지된다. 공개 전에는 null이다. 안전 압력 수치는 공개하지 않는다.
+- **긴장도:** `stress01 = p ≤ safePressure01 ? 0 : min(1, (p − safe)/(1 − safe))`이며 현재 압력 기준이다. 현재 물건이 없으면 0이다. 경고 연출 입력일 뿐이며 판정은 정착 시 확정 결과가 정한다.
+- **예상 부피:** `previewVolume`은 현재 압력으로 떼었을 때의 부피(위 volume 공식)다. 현재 물건이 없으면 null이다. 가치는 미리 보여 주지 않는다.
+- **보관 상태:** `storedSpecimens`는 보관 시점의 확정 SpecimenState 목록이다. 순서는 `storedSpecimenIds`와 같고, 부피 합은 `volumeUsed`와 같다. restart에서 비운다. 결과 화면과 보관 외형 복원에 쓴다.
 
 ### 상태 전이와 예외
 

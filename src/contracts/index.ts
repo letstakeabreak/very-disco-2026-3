@@ -1,5 +1,5 @@
-/** DEEP PRESS contract v1. Integration owner A controls approved shared changes. */
-export const CONTRACT_VERSION = '1.0.0' as const;
+/** DEEP PRESS contract v1.1. Integration owner A controls approved shared changes. */
+export const CONTRACT_VERSION = '1.1.0' as const;
 export const FIXED_STEP_MS = 1000 / 60;
 export const MAX_STEP_MS = 100;
 export type Vec3 = Readonly<{ x: number; y: number; z: number }>;
@@ -8,9 +8,12 @@ export type GamePhase = ActivePhase | 'paused';
 export type SalvageId = 'salvage-core' | 'salvage-lens' | 'salvage-cassette';
 export type AssetId = 'press-chamber' | SalvageId;
 export type Material = 'metal' | 'glass' | 'composite';
+/** Authored, coarse pressure tolerance a player can learn by inspecting a lot. */
+export type Tolerance = 'fragile' | 'normal' | 'sturdy';
 export type SceneEntity = Readonly<{ id: string; assetId: AssetId | null; position: Vec3; rotationRad: Vec3; scale: Vec3 }>;
-export type SpecimenDefinition = Readonly<{ id: SalvageId; material: Material; initialVolume: number; minimumVolume: number; baseValue: number; safePressure01: number }>;
-export type SpecimenState = Readonly<{ id: SalvageId; material: Material; currentVolume: number; integrity01: number; value: number; compression01: number }>;
+export type SpecimenDefinition = Readonly<{ id: SalvageId; material: Material; initialVolume: number; minimumVolume: number; baseValue: number; safePressure01: number; tolerance: Tolerance }>;
+/** `tolerance` is null until the lot has been inspected (rotated at least 45°). */
+export type SpecimenState = Readonly<{ id: SalvageId; material: Material; currentVolume: number; integrity01: number; value: number; compression01: number; tolerance: Tolerance | null }>;
 export type GameConfig = Readonly<{
   seed: number;
   capacity: number;
@@ -35,6 +38,12 @@ export type GameSnapshot = Readonly<{
   currentSpecimen: SpecimenState | null;
   remainingSpecimenIds: readonly SalvageId[];
   storedSpecimenIds: readonly SalvageId[];
+  /** Committed state of each stored lot, in `storedSpecimenIds` order. */
+  storedSpecimens: readonly SpecimenState[];
+  /** 0 at or below the current lot's safe pressure, rising to 1 at full pressure. Cue input only. */
+  stress01: number;
+  /** Liters the current lot would occupy at `pressure01`; null without a current lot. */
+  previewVolume: number | null;
   inspectionYawRad: number;
   entities: readonly SceneEntity[];
 }>;
