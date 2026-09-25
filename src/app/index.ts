@@ -35,8 +35,9 @@ export function mountApp(root: HTMLElement): () => void {
       <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
       <footer class="controls" aria-label="조작">
         <div class="specimen-choices" id="specimen-choices" role="group" aria-label="물건 고르기"></div>
-        <div class="operation-row"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러서 압축</button>
-        <div class="secondary-controls"><button id="store" type="button">담기</button><button id="discard" type="button">버리기</button><button id="cash-out" type="button">마치기</button></div></div>
+        <div class="operation-row"><div class="specimen-actions" role="group" aria-label="현재 물건 처리"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러 압축</button>
+        <div class="secondary-controls"><button id="store" type="button">담기</button><button id="discard" type="button">버리기</button></div></div>
+        <div class="finish-controls" role="group" aria-label="회수 작업 종료"><button id="cash-out" type="button">마치기</button></div></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>`;
