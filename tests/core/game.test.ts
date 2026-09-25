@@ -125,8 +125,14 @@ describe('DEEP PRESS authored game rules', () => {
     expect(game.drainEvents().some((event) => event.type === 'discarded' && event.specimenId === 'salvage-lens')).toBe(true);
     game.dispatch({ type: 'cash-out' });
     expect(game.snapshot()).toMatchObject({ phase: 'complete', score: 360, currentSpecimen: null });
-    expect(game.drainEvents().filter((event) => event.type === 'completed')).toHaveLength(1);
+    const completionEvents = game.drainEvents();
+    expect(completionEvents.filter((event) => event.type === 'completed')).toHaveLength(1);
+    expect(Object.isFrozen(completionEvents)).toBe(true);
+    expect(Object.isFrozen(completionEvents[0])).toBe(true);
+    const complete = game.snapshot();
+    game.dispatch({ type: 'start' }); game.dispatch({ type: 'select', specimenId: 'salvage-cassette' });
     game.dispatch({ type: 'discard' }); game.dispatch({ type: 'store' }); game.step(100);
+    expect(game.snapshot()).toEqual(complete);
     expect(game.snapshot().phase).toBe('complete');
     game.dispatch({ type: 'restart' });
     expect(game.snapshot()).toEqual(createGame(getGameConfig()).snapshot());
@@ -159,8 +165,17 @@ describe('DEEP PRESS authored game rules', () => {
   });
 
   it('validates invalid command values and protects selection boundaries', () => {
-    const game = selected();
+    const game = createGame(getGameConfig());
+    game.dispatch({ type: 'store' }); game.dispatch({ type: 'discard' }); game.dispatch({ type: 'press-release' });
+    expect(game.snapshot()).toMatchObject({ phase: 'idle', score: 0, volumeUsed: 0, currentSpecimen: null });
+    game.dispatch({ type: 'select', specimenId: 'salvage-core' });
     game.dispatch({ type: 'inspect', yawRad: 1.25 });
+    const inspected = game.snapshot();
+    game.dispatch({ type: 'select', specimenId: 'salvage-core' });
+    expect(game.snapshot()).toEqual(inspected);
+    game.dispatch({ type: 'select', specimenId: 'salvage-lens' });
+    expect(game.snapshot().currentSpecimen?.id).toBe('salvage-lens');
+    game.dispatch({ type: 'select', specimenId: 'salvage-core' });
     game.dispatch({ type: 'press-start' });
     game.dispatch({ type: 'select', specimenId: 'salvage-lens' }); // cannot replace a pressed specimen
     expect(game.snapshot().currentSpecimen?.id).toBe('salvage-core');
@@ -182,6 +197,16 @@ describe('DEEP PRESS authored game rules', () => {
     expect(game.snapshot().phase).toBe('complete');
     expect(game.snapshot().remainingSpecimenIds).toEqual([]);
     expect(game.snapshot().storedSpecimenIds).toEqual(['salvage-core', 'salvage-lens', 'salvage-cassette']);
+    expect(game.drainEvents().filter((event) => event.type === 'completed')).toHaveLength(1);
+  });
+
+  it('completes after discarding the final remaining specimen without awarding its value', () => {
+    const game = selected('salvage-core');
+    game.dispatch({ type: 'discard' });
+    expect(game.snapshot()).toMatchObject({ phase: 'idle', remainingSpecimenIds: ['salvage-lens', 'salvage-cassette'], score: 0 });
+    game.dispatch({ type: 'select', specimenId: 'salvage-lens' }); game.dispatch({ type: 'discard' });
+    game.dispatch({ type: 'select', specimenId: 'salvage-cassette' }); game.dispatch({ type: 'discard' });
+    expect(game.snapshot()).toMatchObject({ phase: 'complete', remainingSpecimenIds: [], storedSpecimenIds: [], score: 0, volumeUsed: 0 });
     expect(game.drainEvents().filter((event) => event.type === 'completed')).toHaveLength(1);
   });
 });
