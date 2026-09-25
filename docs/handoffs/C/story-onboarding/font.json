@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-25T11:28:25.203Z",
+  "family": "Cafe24 PRO SLIM Max",
+  "use": "English DEEP PRESS wordmark only; body remains S-Core Dream and RIDI Batang",
+  "discovery": "https://noonnu.cc/font_page/1699",
+  "official": "https://fonts.cafe24.com/",
+  "catalog": "https://img.cafe24.com/csdstatic/freefonts/data/fonts_ko.json",
+  "download": "https://img.cafe24.com/csdstatic/freefonts/download/kr/Cafe24PROSlimMax_v2.0.zip",
+  "archive": {
+    "bytes": 1376156,
+    "sha256": "a9aa1c6d4c2415b44c8b8907b2e331d26a3486e5ff8e8c01ea253f2bd44e8d70"
+  },
+  "note": "Noonnu lists PRO SLIM; current maker catalog provides PRO SLIM Max v2.0. Uses the unmodified original maker webfont, not the older Noonnu CDN version. Supports Korean and Latin; selected for the English wordmark, not claimed as an English-only font.",
+  "files": [
+    {
+      "path": "src/app/fonts/Cafe24PROSlimMax.woff2",
+      "bytes": 156692,
+      "sha256": "3b45eba93637d6f0806d49bc2cfb063188eee123c0ac21d1704f5735f74eddef"
+    },
+    {
+      "path": "src/app/fonts/Cafe24PROSlimMax-license.pdf",
+      "bytes": 806565,
+      "sha256": "1fa298bc78a8065fcdcb3fb11734174fc952d08dde7e24ea3516e8cce84f0f50"
+    },
+    {
+      "path": "src/app/fonts/Cafe24PROSlimMax-license.txt",
+      "bytes": 4320,
+      "sha256": "9f5b168c024928506e57f2ca6b174f5343ef3d5973c806fecb15d5721aa9cbe3"
+    }
+  ],
+  "license": "Original maker PDF plus SIL OFL 1.1 full text included locally and linked from title screen."
+}

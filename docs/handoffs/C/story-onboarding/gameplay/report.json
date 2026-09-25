@@ -1,0 +1,1188 @@
+{
+  "checkedAt": "2026-09-25T11:56:55.290Z",
+  "baseline": "b0c9da296c13ed29c3b961795f3938bb70583299",
+  "kind": "Actual integrated A/B/C M1 production build in desktop Chromium. Real browser pointer actions, no injected snapshots. Not iPhone or touch validation.",
+  "sourcesBefore": {
+    "src/app/index.ts": "b6e7d410fed7e63f46e10979a6403ab62c66104364fb934ef9b63ffbb9d5bb51",
+    "src/app/style.css": "6b03b8ca45542d7d85abb50b4bffcc3257341c74e5c12a0511da90e0542f8f7e",
+    "src/app/story.ts": "f5a07d2998712f1d790be829d35d269b031f919305834697bcab5e49a2319702",
+    "src/render/gauge.ts": "a0161ee1e2f9dcde2d6decbd068085f99c8f98e4ade49efceb612228f7363e5b",
+    "src/render/visual-state.ts": "5fef481afa369383460e24f6be00dbad9806483c1c29b48746156a55cb63fb68",
+    "src/app/presentation.ts": "484f36fcd8d5c7ef350d9faf33093339b3a893b1c8ebbddac7bfa78a53cfa65b",
+    "src/app/input.ts": "400907c6ca11ab5674242d907c993ccaaaeca54bd294de7b08993761e3e7c148",
+    "src/app/runtime.ts": "2355ed59618d966163797e57f8b297905cbb4b7d260035a4b207009fabbd8ff1",
+    "src/core/index.ts": "72a11f2421fcbc801070edb2c0895104d68318ed8582d719c02ddecca6a15bf5",
+    "src/render/index.ts": "bedba7af1a20e84e87df1335ce9586677a1259d1f02f6813289cd6c571e15ca8",
+    "src/render/deformation.ts": "fd66bd9d0bdf69225a8c7f8ad88f9a5ffe075564ca048ce20a4ea3d78bcf5068",
+    "src/app/fonts/SCDream4.otf": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4",
+    "src/app/fonts/SCDream6.otf": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a",
+    "src/app/fonts/RIDIBatang.otf": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54",
+    "src/app/fonts/RIDIBatang-license.txt": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453",
+    "src/app/fonts/S-Core-Dream-license.png": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257",
+    "src/app/fonts/Cafe24PROSlimMax.woff2": "3b45eba93637d6f0806d49bc2cfb063188eee123c0ac21d1704f5735f74eddef",
+    "src/app/fonts/Cafe24PROSlimMax-license.pdf": "1fa298bc78a8065fcdcb3fb11734174fc952d08dde7e24ea3516e8cce84f0f50",
+    "src/app/fonts/Cafe24PROSlimMax-license.txt": "9f5b168c024928506e57f2ca6b174f5343ef3d5973c806fecb15d5721aa9cbe3",
+    "public/assets/characters/yunseo-concerned.webp": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+    "public/assets/characters/yunseo-relieved.webp": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+    "public/assets/characters/dohyeon-explaining.webp": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+    "public/assets/characters/dohyeon-resolved.webp": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4"
+  },
+  "layouts": [
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 113.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 113.34375
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 113.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 169
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 844,
+        "height": 844,
+        "left": 0,
+        "right": 390,
+        "top": 0,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 832,
+        "height": 122,
+        "left": 16,
+        "right": 374,
+        "top": 710,
+        "width": 358,
+        "x": 16,
+        "y": 710
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 844,
+      "overflow": false,
+      "status": {
+        "bottom": 186.96875,
+        "height": 118.96875,
+        "left": 16,
+        "right": 374,
+        "top": 68,
+        "width": 358,
+        "x": 16,
+        "y": 68
+      },
+      "width": 390,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "Cafe24 PRO SLIM Max",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 131.125,
+          "left": 16,
+          "right": 349.703125,
+          "selector": ".mission-identity",
+          "top": 24
+        },
+        {
+          "bottom": 571.8125,
+          "left": 41,
+          "right": 349,
+          "selector": "#dialog-title",
+          "top": 499.8125
+        },
+        {
+          "bottom": 755,
+          "left": 41,
+          "right": 349,
+          "selector": "[data-action=\"start\"]",
+          "top": 707
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 90
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 90
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 90
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 99
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 467.015625,
+        "height": 325.28125,
+        "left": 0,
+        "right": 320,
+        "top": 141.734375,
+        "width": 320,
+        "x": 0,
+        "y": 141.734375
+      },
+      "controls": {
+        "bottom": 560,
+        "height": 122,
+        "left": 16,
+        "right": 304,
+        "top": 438,
+        "width": 288,
+        "x": 16,
+        "y": 438
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 568,
+      "overflow": false,
+      "status": {
+        "bottom": 177.28125,
+        "height": 113.28125,
+        "left": 16,
+        "right": 304,
+        "top": 64,
+        "width": 288,
+        "x": 16,
+        "y": 64
+      },
+      "width": 320,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "Cafe24 PRO SLIM Max",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 114.3125,
+          "left": 16,
+          "right": 291.234375,
+          "selector": ".mission-identity",
+          "top": 16
+        },
+        {
+          "bottom": 319.8125,
+          "left": 33,
+          "right": 287,
+          "selector": "#dialog-title",
+          "top": 256.8125
+        },
+        {
+          "bottom": 495,
+          "left": 33,
+          "right": 287,
+          "selector": "[data-action=\"start\"]",
+          "top": 447
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 178
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 178
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 178
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 363
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 1024,
+        "height": 1024,
+        "left": 0,
+        "right": 768,
+        "top": 0,
+        "width": 768,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 1012,
+        "height": 122,
+        "left": 108,
+        "right": 660,
+        "top": 890,
+        "width": 552,
+        "x": 108,
+        "y": 890
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 1024,
+      "overflow": false,
+      "status": {
+        "bottom": 186.96875,
+        "height": 118.96875,
+        "left": 108,
+        "right": 660,
+        "top": 68,
+        "width": 552,
+        "x": 108,
+        "y": 68
+      },
+      "width": 768,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "Cafe24 PRO SLIM Max",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 146.796875,
+          "left": 16,
+          "right": 453.484375,
+          "selector": ".mission-identity",
+          "top": 24
+        },
+        {
+          "bottom": 751.8125,
+          "left": 219,
+          "right": 549,
+          "selector": "#dialog-title",
+          "top": 679.8125
+        },
+        {
+          "bottom": 935,
+          "left": 219,
+          "right": 549,
+          "selector": "[data-action=\"start\"]",
+          "top": 887
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 372
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 182
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 182
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 372
+        }
+      ],
+      "canvas": {
+        "bottom": 900,
+        "height": 900,
+        "left": 0,
+        "right": 1440,
+        "top": 0,
+        "width": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 888,
+        "height": 259,
+        "left": 1044,
+        "right": 1416,
+        "top": 629,
+        "width": 372,
+        "x": 1044,
+        "y": 629
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 900,
+      "overflow": false,
+      "status": {
+        "bottom": 186.96875,
+        "height": 118.96875,
+        "left": 24,
+        "right": 396,
+        "top": 68,
+        "width": 372,
+        "x": 24,
+        "y": 68
+      },
+      "width": 1440,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "Cafe24 PRO SLIM Max",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 326.796875,
+          "left": 170,
+          "right": 607.484375,
+          "selector": ".mission-identity",
+          "top": 204
+        },
+        {
+          "bottom": 447.796875,
+          "left": 195,
+          "right": 525,
+          "selector": "#dialog-title",
+          "top": 375.796875
+        },
+        {
+          "bottom": 630.984375,
+          "left": 195,
+          "right": 525,
+          "selector": "[data-action=\"start\"]",
+          "top": 582.984375
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 75.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 75.34375
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 75.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 244
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 244
+        }
+      ],
+      "canvas": {
+        "bottom": 390,
+        "height": 390,
+        "left": 0,
+        "right": 844,
+        "top": 0,
+        "width": 844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 382,
+        "height": 259,
+        "left": 576,
+        "right": 820,
+        "top": 123,
+        "width": 244,
+        "x": 576,
+        "y": 123
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 390,
+      "overflow": false,
+      "status": {
+        "bottom": 177.28125,
+        "height": 113.28125,
+        "left": 24,
+        "right": 268,
+        "top": 64,
+        "width": 244,
+        "x": 24,
+        "y": 64
+      },
+      "width": 844,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "Cafe24 PRO SLIM Max",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 206.375,
+          "left": 24,
+          "right": 334.0625,
+          "selector": ".mission-identity",
+          "top": 102.8125
+        },
+        {
+          "bottom": 85,
+          "left": 457,
+          "right": 803,
+          "selector": "#dialog-title",
+          "top": 29
+        },
+        {
+          "bottom": 244.1875,
+          "left": 457,
+          "right": 803,
+          "selector": "[data-action=\"start\"]",
+          "top": 196.1875
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    }
+  ],
+  "flow": [
+    {
+      "step": "inspect",
+      "capacity": "1.00",
+      "cue": "적당히 버틸 것 같아요",
+      "inert": false,
+      "light": "14%",
+      "phase": "살펴보기",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "크기 0.72L · 가치 340",
+      "score": "0",
+      "strained": false
+    },
+    {
+      "step": "release",
+      "capacity": "1.00",
+      "cue": "적당히 버틸 것 같아요",
+      "inert": false,
+      "light": "49.1%",
+      "phase": "살펴보기",
+      "pressing": false,
+      "pressure": "49%",
+      "renderer": {
+        "drawCalls": "34",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281270",
+        "visibleTriangles": "105168"
+      },
+      "result": "크기 0.49L · 가치 340 · 내구도 100%",
+      "score": "0",
+      "strained": false
+    },
+    {
+      "step": "store",
+      "capacity": "0.51",
+      "cue": "",
+      "inert": false,
+      "light": "14%",
+      "phase": "담았어요",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "아래에서 물건을 하나 골라 주세요",
+      "score": "440",
+      "strained": false
+    },
+    {
+      "step": "complete",
+      "capacity": "0.51",
+      "cue": "",
+      "inert": true,
+      "light": "14%",
+      "note": "연구 기록이 수면 위로 돌아가요. 작은 케이스에 남길 것을 잘 골랐어요.",
+      "phase": "끝",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "아래에서 물건을 하나 골라 주세요",
+      "score": "440",
+      "strained": false
+    },
+    {
+      "step": "strain",
+      "capacity": "1.00",
+      "cue": "삐걱거려요! 곧 부서질 수 있어요",
+      "inert": false,
+      "light": "50.300000000024006%",
+      "phase": "압축 중",
+      "pressing": true,
+      "pressure": "50%",
+      "renderer": {
+        "drawCalls": "34",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281270",
+        "visibleTriangles": "105168"
+      },
+      "result": "예상 크기 0.44L · 들어가요",
+      "score": "0",
+      "strained": true
+    },
+    {
+      "step": "failed",
+      "capacity": "1.00",
+      "cue": "",
+      "inert": true,
+      "light": "86%",
+      "phase": "실패",
+      "pressing": false,
+      "pressure": "100%",
+      "renderer": {
+        "drawCalls": "30",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "194232",
+        "visibleTriangles": "105188"
+      },
+      "result": "크기 0.30L · 가치 0 · 내구도 0%",
+      "score": "0",
+      "strained": true
+    },
+    {
+      "step": "empty",
+      "capacity": "1.00",
+      "cue": "",
+      "inert": true,
+      "light": "14%",
+      "note": "이번에는 빈 케이스예요. 다음 작업에서는 물건을 살펴보고, 조금씩 눌러 봐요.",
+      "phase": "끝",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "25",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "172272",
+        "visibleTriangles": "93668"
+      },
+      "result": "아래에서 물건을 하나 골라 주세요",
+      "score": "0",
+      "strained": false
+    },
+    {
+      "step": "retry",
+      "capacity": "1.00",
+      "cue": "",
+      "inert": false,
+      "light": "14%",
+      "phase": "살펴보기",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "크기 0.90L · 가치 260",
+      "score": "0",
+      "strained": false
+    }
+  ],
+  "captures": [
+    {
+      "path": "after/390-start.png",
+      "sha256": "a7e00037242be8a39a43fa77a28b0f161aba9b48a77e4d58d760b4a2bb653f94"
+    },
+    {
+      "path": "after/390-game.png",
+      "sha256": "960c013ff690694e226681a6f6df727037c6af14ff98c2606cc020dfa0c51a17"
+    },
+    {
+      "path": "after/320-start.png",
+      "sha256": "84c898a8d4622a95289a9991b5efc2923e4678ae25b774a09320efd4a5216ba6"
+    },
+    {
+      "path": "after/320-game.png",
+      "sha256": "15ec967c2b4c6616468fc3b9dd9570c387a5b85a4d6ae7ab4fdae91e9b235d30"
+    },
+    {
+      "path": "after/768-start.png",
+      "sha256": "52e0a882b26dcedd276b37b93f648eb6bbc0b83476135ad4c17b866f44dd7a7e"
+    },
+    {
+      "path": "after/768-game.png",
+      "sha256": "8d2261b284215ac7861908ba2e16b8d5a2e6bae4a55e002ee53b604496962c6b"
+    },
+    {
+      "path": "after/1440-start.png",
+      "sha256": "77e980a470fd75a3526bab95ac701d75d9cbde4a268f29760ce73326f842baad"
+    },
+    {
+      "path": "after/1440-game.png",
+      "sha256": "219f905d2c318b18ea61ededbd150b031d1ddd2c7437564a465e462eade79070"
+    },
+    {
+      "path": "after/844-start.png",
+      "sha256": "a61a7a5b966c9beee3c4ce8c4f98cac279a1729f168bb93fb23fa1230d23edb2"
+    },
+    {
+      "path": "after/844-game.png",
+      "sha256": "5f2d2e1c6310c7ea10705d47673cb016f167ad934fda48fdbbbcef2ae3cd78d4"
+    },
+    {
+      "path": "after/390-settled.png",
+      "sha256": "3e06024fbf02789a29ee7de01637502f0b33657b6d5e760956928ffb693b93a9"
+    },
+    {
+      "path": "after/390-outro-cassette.png",
+      "sha256": "f6d10dc75f14d243723301fc3d7e29945b07c4d893fdf0d4cc350da95a120597"
+    },
+    {
+      "path": "after/390-complete.png",
+      "sha256": "132c4547c50d8ced04ea700efeb5803109ee1f57c6fa7ddfb34e5a6acb806be6"
+    },
+    {
+      "path": "after/390-strain.png",
+      "sha256": "8b2250ac7cdf1137acaff657f0d7b42f27c41fd0ca77945eb3684f3075913d50"
+    },
+    {
+      "path": "after/390-failed.png",
+      "sha256": "9865da9db05e2c432d4a063f5a04d85c3c34965767bc69057932cdfc61b6123c"
+    },
+    {
+      "path": "after/390-outro-empty.png",
+      "sha256": "1dd7b25e1961f403b6674907b29af169a1ec8a4df64494405564d9e8ad761fd3"
+    },
+    {
+      "path": "after/390-empty.png",
+      "sha256": "a354cf3a2d4785e79581fb1272dc4a03169e616c35aee18d4439e35daf4733d2"
+    },
+    {
+      "path": "after/390-paused.png",
+      "sha256": "9a12a3eb38a5b3798ac66de67950f403cb465fbccdd16b9dd85aab0969033dda"
+    },
+    {
+      "path": "after/390-retry.png",
+      "sha256": "8ef5729da098e7ffe076ec20f7e99d9c47be88a7c4b10967f677fb7fab223c11"
+    }
+  ],
+  "dialogButtons": [
+    {
+      "height": 48,
+      "radius": "4px",
+      "text": "버리고 계속하기"
+    },
+    {
+      "height": 48,
+      "radius": "4px",
+      "text": "지금 점수로 마치기"
+    },
+    {
+      "height": 48,
+      "radius": "4px",
+      "text": "처음부터 다시"
+    }
+  ],
+  "errors": [],
+  "console": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.WebGLRenderer: Context Lost."
+          }
+        ],
+        "text": "THREE.WebGLRenderer: Context Lost.",
+        "type": "log"
+      }
+    ]
+  },
+  "sourcesAfter": {
+    "src/app/index.ts": "b6e7d410fed7e63f46e10979a6403ab62c66104364fb934ef9b63ffbb9d5bb51",
+    "src/app/style.css": "6b03b8ca45542d7d85abb50b4bffcc3257341c74e5c12a0511da90e0542f8f7e",
+    "src/app/story.ts": "f5a07d2998712f1d790be829d35d269b031f919305834697bcab5e49a2319702",
+    "src/render/gauge.ts": "a0161ee1e2f9dcde2d6decbd068085f99c8f98e4ade49efceb612228f7363e5b",
+    "src/render/visual-state.ts": "5fef481afa369383460e24f6be00dbad9806483c1c29b48746156a55cb63fb68",
+    "src/app/presentation.ts": "484f36fcd8d5c7ef350d9faf33093339b3a893b1c8ebbddac7bfa78a53cfa65b",
+    "src/app/input.ts": "400907c6ca11ab5674242d907c993ccaaaeca54bd294de7b08993761e3e7c148",
+    "src/app/runtime.ts": "2355ed59618d966163797e57f8b297905cbb4b7d260035a4b207009fabbd8ff1",
+    "src/core/index.ts": "72a11f2421fcbc801070edb2c0895104d68318ed8582d719c02ddecca6a15bf5",
+    "src/render/index.ts": "bedba7af1a20e84e87df1335ce9586677a1259d1f02f6813289cd6c571e15ca8",
+    "src/render/deformation.ts": "fd66bd9d0bdf69225a8c7f8ad88f9a5ffe075564ca048ce20a4ea3d78bcf5068",
+    "src/app/fonts/SCDream4.otf": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4",
+    "src/app/fonts/SCDream6.otf": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a",
+    "src/app/fonts/RIDIBatang.otf": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54",
+    "src/app/fonts/RIDIBatang-license.txt": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453",
+    "src/app/fonts/S-Core-Dream-license.png": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257",
+    "src/app/fonts/Cafe24PROSlimMax.woff2": "3b45eba93637d6f0806d49bc2cfb063188eee123c0ac21d1704f5735f74eddef",
+    "src/app/fonts/Cafe24PROSlimMax-license.pdf": "1fa298bc78a8065fcdcb3fb11734174fc952d08dde7e24ea3516e8cce84f0f50",
+    "src/app/fonts/Cafe24PROSlimMax-license.txt": "9f5b168c024928506e57f2ca6b174f5343ef3d5973c806fecb15d5721aa9cbe3",
+    "public/assets/characters/yunseo-concerned.webp": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+    "public/assets/characters/yunseo-relieved.webp": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+    "public/assets/characters/dohyeon-explaining.webp": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+    "public/assets/characters/dohyeon-resolved.webp": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4"
+  },
+  "passed": true
+}

@@ -1,0 +1,102 @@
+{
+  "createdAt": "2026-09-25T11:28:25.191Z",
+  "generator": "OpenAI built-in ImageGen",
+  "modelVersion": "not exposed by tool",
+  "status": "integrated as pre-rendered 2D dialogue portraits; not 3D NPCs or gameplay renders",
+  "promptFile": "prompts.json",
+  "assets": [
+    {
+      "id": "yunseo-concerned",
+      "reference": "../korean-salvagers-v1/female-salvager-v1.png",
+      "source": "yunseo-concerned.png",
+      "generatedFile": "exec-a8944c40-51e8-4978-adc3-b078540eae0f.png",
+      "bytes": 2681710,
+      "sha256": "bdea91144e345133fe2504ea819884f6e0e1163e8fc907ae62687d694069b73b",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "runtime": {
+        "path": "public/assets/characters/yunseo-concerned.webp",
+        "bytes": 329642,
+        "sha256": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+        "width": 1024,
+        "height": 1536,
+        "encoding": "cwebp -q 88 -m 6; no resizing, cropping or retouching; alpha preserved"
+      }
+    },
+    {
+      "id": "dohyeon-explaining",
+      "reference": "../korean-salvagers-v1/male-salvager-v1.png",
+      "source": "dohyeon-explaining.png",
+      "generatedFile": "exec-605d0d92-c5ba-409c-8c02-6b3a13e97219.png",
+      "bytes": 2535790,
+      "sha256": "422abe447b8feadb4e3263cf7cdda5507ec34a649779eb058997eaebcb87d69f",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "runtime": {
+        "path": "public/assets/characters/dohyeon-explaining.webp",
+        "bytes": 290170,
+        "sha256": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+        "width": 1024,
+        "height": 1536,
+        "encoding": "cwebp -q 88 -m 6; no resizing, cropping or retouching; alpha preserved"
+      }
+    },
+    {
+      "id": "yunseo-relieved",
+      "reference": "../korean-salvagers-v1/female-salvager-v1.png",
+      "source": "yunseo-relieved.png",
+      "generatedFile": "exec-49283e22-b34d-430a-a33a-09dda0553511.png",
+      "bytes": 2664069,
+      "sha256": "b86eb05de939d97452634b6520dbf7de505e8a234e9130c966e0e944c91faa94",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "runtime": {
+        "path": "public/assets/characters/yunseo-relieved.webp",
+        "bytes": 327124,
+        "sha256": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+        "width": 1024,
+        "height": 1536,
+        "encoding": "cwebp -q 88 -m 6; no resizing, cropping or retouching; alpha preserved"
+      }
+    },
+    {
+      "id": "dohyeon-resolved",
+      "reference": "../korean-salvagers-v1/male-salvager-v1.png",
+      "source": "dohyeon-resolved.png",
+      "generatedFile": "exec-eaba97bf-6e4d-4836-8fde-db0f87208c60.png",
+      "bytes": 2651717,
+      "sha256": "b7413dab1c1e0d127783c92dcd5caabc21c3ce97fa47d2f6d13926c01f79f7dd",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "runtime": {
+        "path": "public/assets/characters/dohyeon-resolved.webp",
+        "bytes": 317874,
+        "sha256": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4",
+        "width": 1024,
+        "height": 1536,
+        "encoding": "cwebp -q 88 -m 6; no resizing, cropping or retouching; alpha preserved"
+      }
+    }
+  ],
+  "validation": "Original identity/costume referenced per image; faces, expressions, hands and costume visually inspected. Generated images are authored narrative illustrations, not live rendered characters. Original PNGs copied unchanged. See C/story-onboarding for actual browser evidence."
+}

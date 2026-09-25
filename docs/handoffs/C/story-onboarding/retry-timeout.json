@@ -1,0 +1,106 @@
+{
+  "checkedAt": "2026-09-25T11:43:09.672Z",
+  "kind": "Actual browser actions with M1 core/C app and v1 renderer; no injected game state. Desktop Chromium only.",
+  "sourcesBefore": {
+    "src/app/index.ts": "b6e7d410fed7e63f46e10979a6403ab62c66104364fb934ef9b63ffbb9d5bb51",
+    "src/app/story.ts": "f5a07d2998712f1d790be829d35d269b031f919305834697bcab5e49a2319702",
+    "src/app/style.css": "6b03b8ca45542d7d85abb50b4bffcc3257341c74e5c12a0511da90e0542f8f7e",
+    "public/assets/characters/yunseo-concerned.webp": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+    "public/assets/characters/yunseo-relieved.webp": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+    "public/assets/characters/dohyeon-explaining.webp": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+    "public/assets/characters/dohyeon-resolved.webp": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4"
+  },
+  "layouts": [],
+  "flow": [],
+  "captures": [
+    {
+      "path": "after/failure.png",
+      "sha256": "34cece1b5d987a8475d4c13e640c7dc2af4114b1edc992986112d904fb962681"
+    }
+  ],
+  "passed": false,
+  "failure": "Error: Condition timeout: document.querySelector('canvas').dataset.renderState==='ready'",
+  "failureState": {
+    "capacity": "1.00",
+    "hidden": false,
+    "inert": true,
+    "phase": "일시정지",
+    "portrait": "/assets/characters/dohyeon-explaining.webp",
+    "pressure": "85%",
+    "renderer": {
+      "drawCalls": "1",
+      "engine": "three.js r186",
+      "loadedAssets": "0",
+      "renderState": "loading",
+      "triangles": "2",
+      "visibleTriangles": "146"
+    },
+    "score": "0",
+    "specimen": "데이터 카세트",
+    "text": "큰 운반함은 침수됐어요. 수면으로 올릴 회수 캡슐에는 이 1L 케이스만 들어가요. 세 부품은 그대로 모두 담을 수 없어요. 안에 남은 가치를 골라 가져가야 해요.",
+    "title": "가져갈 수 있는 건 1L"
+  },
+  "errors": {
+    "errors": [],
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    }
+  },
+  "console": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.WebGLRenderer: Context Lost."
+          }
+        ],
+        "text": "THREE.WebGLRenderer: Context Lost.",
+        "type": "log"
+      }
+    ]
+  }
+}
