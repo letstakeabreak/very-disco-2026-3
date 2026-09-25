@@ -68,7 +68,7 @@ describe('DEEP PRESS authored game rules', () => {
     expect(result.value).toBe(260);
     expect(result.compression01).toBeCloseTo(0.5);
     game.dispatch({ type: 'store' });
-    expect(game.snapshot()).toMatchObject({ phase: 'stored', score: 360, volumeUsed: 0.585, currentSpecimen: null });
+    expect(game.snapshot()).toMatchObject({ phase: 'stored', score: 360, volumeUsed: 0.585, currentSpecimen: null, pressure01: 0 });
     expect(game.snapshot().remainingSpecimenIds).not.toContain('salvage-core');
     expect(game.snapshot().storedSpecimenIds).toEqual(['salvage-core']);
   });
@@ -195,6 +195,7 @@ describe('DEEP PRESS authored game rules', () => {
       game.dispatch({ type: 'store' });
     }
     expect(game.snapshot().phase).toBe('complete');
+    expect(game.snapshot().pressure01).toBe(0);
     expect(game.snapshot().remainingSpecimenIds).toEqual([]);
     expect(game.snapshot().storedSpecimenIds).toEqual(['salvage-core', 'salvage-lens', 'salvage-cassette']);
     expect(game.drainEvents().filter((event) => event.type === 'completed')).toHaveLength(1);
