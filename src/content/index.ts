@@ -9,9 +9,9 @@ const AUTHORED_GAME_CONFIG: GameConfig = deepFreeze({
   settleDurationMs: 300,
   collectionBonus: 100,
   specimens: [
-    { id: 'salvage-core', material: 'metal', initialVolume: 0.9, minimumVolume: 0.27, baseValue: 260, safePressure01: 0.8 },
-    { id: 'salvage-lens', material: 'glass', initialVolume: 0.58, minimumVolume: 0.3, baseValue: 450, safePressure01: 0.38 },
-    { id: 'salvage-cassette', material: 'composite', initialVolume: 0.72, minimumVolume: 0.24, baseValue: 340, safePressure01: 0.62 },
+    { id: 'salvage-core', material: 'metal', initialVolume: 0.9, minimumVolume: 0.27, baseValue: 260, safePressure01: 0.8, tolerance: 'sturdy' },
+    { id: 'salvage-lens', material: 'glass', initialVolume: 0.58, minimumVolume: 0.3, baseValue: 450, safePressure01: 0.38, tolerance: 'fragile' },
+    { id: 'salvage-cassette', material: 'composite', initialVolume: 0.72, minimumVolume: 0.24, baseValue: 340, safePressure01: 0.62, tolerance: 'normal' },
   ],
   initialEntities: [{
     id: 'press-chamber', assetId: 'press-chamber',

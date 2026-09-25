@@ -225,3 +225,91 @@ describe('DEEP PRESS authored game rules', () => {
     }
   });
 });
+
+describe('contract 1.1 inspection hints, stress cue, preview and stored states', () => {
+  const start = (id: 'salvage-core' | 'salvage-lens' | 'salvage-cassette') => {
+    const game = createGame(getGameConfig());
+    game.dispatch({ type: 'start' }); game.dispatch({ type: 'select', specimenId: id });
+    return game;
+  };
+  const stroke = (game: ReturnType<typeof createGame>, steps: number) => {
+    game.dispatch({ type: 'press-start' }); for (let i = 0; i < steps; i++) game.step(100);
+  };
+
+  it('reveals the authored tolerance only after rotating 45 degrees, and keeps it per lot until restart', () => {
+    const game = start('salvage-lens');
+    expect(game.snapshot().currentSpecimen?.tolerance).toBeNull();
+    game.dispatch({ type: 'inspect', yawRad: 0.7 });
+    expect(game.snapshot().currentSpecimen?.tolerance).toBeNull();
+    game.dispatch({ type: 'inspect', yawRad: -Math.PI / 4 });
+    expect(game.snapshot().currentSpecimen?.tolerance).toBe('fragile');
+    game.dispatch({ type: 'select', specimenId: 'salvage-core' });
+    expect(game.snapshot().currentSpecimen?.tolerance).toBeNull();
+    game.dispatch({ type: 'select', specimenId: 'salvage-lens' });
+    expect(game.snapshot().currentSpecimen?.tolerance).toBe('fragile');
+    stroke(game, 4); game.dispatch({ type: 'press-release' }); for (let i = 0; i < 3; i++) game.step(100);
+    expect(game.snapshot().currentSpecimen?.tolerance).toBe('fragile');
+    game.dispatch({ type: 'restart' }); game.dispatch({ type: 'select', specimenId: 'salvage-lens' });
+    expect(game.snapshot().currentSpecimen?.tolerance).toBeNull();
+  });
+
+  it('keeps stress at zero up to the safe pressure and reaches one at full pressure', () => {
+    const game = start('salvage-core'); // safe 0.80
+    expect(game.snapshot().stress01).toBe(0);
+    stroke(game, 32); // p = 0.80
+    expect(game.snapshot().pressure01).toBeCloseTo(0.8);
+    expect(game.snapshot().stress01).toBe(0);
+    game.step(100); game.step(100); // p = 0.85
+    expect(game.snapshot().stress01).toBeCloseTo(0.25);
+    for (let i = 0; i < 6; i++) game.step(100); // auto-settles at full pressure
+    expect(game.snapshot().stress01).toBe(1);
+    const idle = createGame(getGameConfig()).snapshot();
+    expect(idle.stress01).toBe(0); expect(idle.previewVolume).toBeNull();
+  });
+
+  it('previews the volume at the live pressure and settles to the committed volume', () => {
+    const game = start('salvage-cassette'); // 0.72 → 0.24 L
+    expect(game.snapshot().previewVolume).toBeCloseTo(0.72);
+    stroke(game, 20); // p = 0.5
+    expect(game.snapshot().previewVolume).toBeCloseTo(0.48);
+    expect(game.snapshot().currentSpecimen?.currentVolume).toBeCloseTo(0.72);
+    game.dispatch({ type: 'press-release' }); for (let i = 0; i < 3; i++) game.step(100);
+    expect(game.snapshot().previewVolume).toBe(game.snapshot().currentSpecimen?.currentVolume);
+    game.dispatch({ type: 'store' });
+    expect(game.snapshot().previewVolume).toBeNull();
+  });
+
+  it('records each stored lot state in order, matching volume used, and clears it on restart', () => {
+    const game = start('salvage-core');
+    game.dispatch({ type: 'inspect', yawRad: 1 });
+    stroke(game, 34); game.dispatch({ type: 'press-release' }); for (let i = 0; i < 3; i++) game.step(100);
+    const committedCore = game.snapshot().currentSpecimen!;
+    game.dispatch({ type: 'store' });
+    game.dispatch({ type: 'select', specimenId: 'salvage-lens' });
+    stroke(game, 30); game.dispatch({ type: 'press-release' }); for (let i = 0; i < 3; i++) game.step(100);
+    game.dispatch({ type: 'store' });
+    const snapshot = game.snapshot();
+    expect(snapshot.storedSpecimens.map((item) => item.id)).toEqual(['salvage-core', 'salvage-lens']);
+    expect(snapshot.storedSpecimens[0]).toEqual(committedCore);
+    expect(snapshot.storedSpecimens[0]!.tolerance).toBe('sturdy');
+    expect(snapshot.storedSpecimens[1]!.tolerance).toBeNull();
+    expect(snapshot.storedSpecimens.reduce((sum, item) => sum + item.currentVolume, 0)).toBeCloseTo(snapshot.volumeUsed);
+    game.dispatch({ type: 'restart' });
+    expect(game.snapshot().storedSpecimens).toEqual([]);
+  });
+
+  it('produces contract-valid snapshots through a whole shift', () => {
+    const game = start('salvage-core');
+    const check = () => assertSnapshot(game.snapshot());
+    for (const id of ['salvage-core', 'salvage-lens', 'salvage-cassette'] as const) {
+      if (game.snapshot().currentSpecimen?.id !== id) game.dispatch({ type: 'select', specimenId: id });
+      check(); game.dispatch({ type: 'inspect', yawRad: 0.9 }); check();
+      game.dispatch({ type: 'press-start' });
+      for (let i = 0; i < 36; i++) { game.step(100); check(); }
+      game.dispatch({ type: 'press-release' });
+      for (let i = 0; i < 3; i++) { game.step(100); check(); }
+      game.dispatch({ type: 'store' }); check();
+    }
+    expect(game.snapshot().phase).toBe('complete');
+  });
+});

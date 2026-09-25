@@ -1,4 +1,4 @@
-# DEEP PRESS 모듈 계약 v1.0.0
+# DEEP PRESS 모듈 계약 v1.1.0
 
 이 문서는 공통 bootstrap 계약이다. `src/contracts/index.ts`가 타입 원본이며 `prd.md`가 제품 규칙 원본이다. 둘이 충돌하면 임의로 한쪽을 구현하지 말고 통합 담당 A에게 알린다. 현재 코드는 **통합 scaffold**다. 압력 입력·선택·시간·pause·snapshot 전달은 구현되어 있지만 압축 결과, 손상 판정, settling 종료, 보관, 폐기, 정산, 최종 화면은 역할 작업으로 남아 있다. fixture는 해당 결과를 흉내 내는 소비자 개발 자료다.
 
@@ -92,11 +92,11 @@ mountApp(root: HTMLElement): () => void
 
 ## 공유 초기 수치 — PRD와 함께 변경
 
-| lot | material | initialVolume L | minimumVolume L | baseValue | safePressure01 |
-|---|---|---:|---:|---:|---:|
-| salvage-lens | glass | 0.58 | 0.30 | 450 | 0.38 |
-| salvage-core | metal | 0.90 | 0.27 | 260 | 0.80 |
-| salvage-cassette | composite | 0.72 | 0.24 | 340 | 0.62 |
+| lot | material | initialVolume L | minimumVolume L | baseValue | safePressure01 | tolerance |
+|---|---|---:|---:|---:|---:|---|
+| salvage-lens | glass | 0.58 | 0.30 | 450 | 0.38 | fragile |
+| salvage-core | metal | 0.90 | 0.27 | 260 | 0.80 | sturdy |
+| salvage-cassette | composite | 0.72 | 0.24 | 340 | 0.62 | normal |
 
 케이스 1.00L, 압력 증가 0.25/s, settling 300ms, 저장당 collectionBonus 100. 예정 공식은 `volume = initialVolume - (initialVolume - minimumVolume) * p`; `integrity = p <= safe ? 1 : max(0, 1 - ((p-safe)/(1-safe))**2)`; `value = round(baseValue * integrity)`; 저장 score는 retained value + 100. p=1에서 integrity/value 0, failed. **위 공식은 config·fixture·구현 지침이며 현재 stub가 계산한다고 주장하지 않는다.** A는 실제 outcome 테스트를 추가해야 한다.
 
@@ -105,6 +105,21 @@ mountApp(root: HTMLElement): () => void
 `src/contracts/fixtures.ts`의 `DEFAULT_GAME_CONFIG`, `SNAPSHOT_FIXTURES`는 세 역할이 동일하게 사용한다. 8개 phase 전부 제공한다. B의 fixture 테스트는 Three.js renderer를 CPU mock으로 바꾸므로 GPU 품질 검증이 아니다. app의 DEV 화면은 진입·fixture 선택·압력 stub를 확인하는 용도다. 파손/저장/완료 fixture가 보인다고 게임 규칙이 구현된 것은 아니다.
 
 현재 검사: 유한 JSON/시간/정규값/참조/중복 ID, deep freeze, deterministic replay, pause 입력, event drain, module imports, role ownership rules, app fixed step, renderer fixture 소비와 cleanup. 추가 필요한 증거는 실제 게임 루프, GPU 화면, 실제 iPhone Safari, 최종 GLB 로드·성능, 제출 경로다. Vite의 safari16.4 target은 번들 변환 설정일 뿐 실기기 호환 보증이 아니다.
+
+## v1.1.0 변경 (2026-09-25, M1)
+
+- **사유:** 검사가 정보를 주지 않고, 누르는 동안 위험과 공간을 읽을 단서가 없었다. 또 보관물의 확정 외형을 새 renderer가 복원할 수 없었다.
+- **추가된 것**
+  - `Tolerance`와 `SpecimenDefinition.tolerance`
+  - `SpecimenState.tolerance: Tolerance | null` (검사로 공개)
+  - `GameSnapshot.storedSpecimens`, `stress01`, `previewVolume`
+  - 정확한 규칙은 PRD "v1.1 판단 단서"를 따른다.
+- **호환:** 기존 필드는 그대로다. `CONTRACT_VERSION`이 1.1.0이 되므로, `assertSnapshot`은 1.0.0 snapshot과 새 필드가 빠진 snapshot을 거부한다.
+- **이전 방법:** 이 변경과 함께 한 번에 옮긴다.
+  - fixture 8개와 저작 콘텐츠에 `tolerance`, `storedSpecimens`, `stress01`, `previewVolume` 추가
+  - `SpecimenState`를 직접 만드는 소비자 테스트에 `tolerance: null` 추가 (B `tests/render/lifecycle.test.ts` 2곳)
+  - B는 보관 외형을 `storedSpecimens`에서 읽는다.
+  - C는 힌트, 예상 부피, 긴장도를 표시만 한다. B/C는 안전 압력이나 공식을 복제하지 않는다.
 
 ## 공유 변경 절차
 

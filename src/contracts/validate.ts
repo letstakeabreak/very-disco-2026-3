@@ -1,4 +1,4 @@
-import { CONTRACT_VERSION, type AssetRegistry, type GameConfig, type GameSnapshot, type SalvageId } from './index';
+import { CONTRACT_VERSION, type AssetRegistry, type GameConfig, type GameSnapshot, type SalvageId, type SpecimenState } from './index';
 
 export function assertFiniteJson(value: unknown): void {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
@@ -18,6 +18,7 @@ export function deepFreeze<T>(value: T): T {
 const salvageIds: readonly SalvageId[] = ['salvage-core', 'salvage-lens', 'salvage-cassette'];
 const assetIds = ['press-chamber', ...salvageIds];
 const materials = ['metal', 'glass', 'composite'];
+const tolerances = ['fragile', 'normal', 'sturdy'];
 function assertSeed(seed: number): void {
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new RangeError('seed must be uint32');
 }
@@ -32,7 +33,7 @@ export function assertConfig(config: GameConfig): void {
   const ids = config.specimens.map((specimen) => specimen.id);
   if (ids.length !== 3 || new Set(ids).size !== 3 || ids.some((id) => !salvageIds.includes(id))) throw new RangeError('Exactly three unique salvage definitions are required');
   for (const specimen of config.specimens) {
-    if (!materials.includes(specimen.material) || specimen.initialVolume <= 0 || !Number.isInteger(specimen.baseValue) || specimen.baseValue < 0 || specimen.safePressure01 <= 0 || specimen.safePressure01 >= 1 || specimen.minimumVolume <= 0 || specimen.minimumVolume > specimen.initialVolume) throw new RangeError('Invalid specimen definition');
+    if (!materials.includes(specimen.material) || specimen.initialVolume <= 0 || !Number.isInteger(specimen.baseValue) || specimen.baseValue < 0 || specimen.safePressure01 <= 0 || specimen.safePressure01 >= 1 || specimen.minimumVolume <= 0 || specimen.minimumVolume > specimen.initialVolume || !tolerances.includes(specimen.tolerance)) throw new RangeError('Invalid specimen definition');
   }
 }
 export function assertSnapshot(snapshot: GameSnapshot): void {
@@ -47,8 +48,18 @@ export function assertSnapshot(snapshot: GameSnapshot): void {
   const allIds = [...snapshot.remainingSpecimenIds, ...snapshot.storedSpecimenIds];
   if (new Set(allIds).size !== allIds.length || allIds.some((id) => !salvageIds.includes(id))) throw new RangeError('Invalid specimen lists');
   const specimen = snapshot.currentSpecimen;
-  if (specimen && (!salvageIds.includes(specimen.id) || !materials.includes(specimen.material) || specimen.currentVolume <= 0 || specimen.integrity01 < 0 || specimen.integrity01 > 1 || specimen.compression01 < 0 || specimen.compression01 > 1 || !Number.isInteger(specimen.value) || specimen.value < 0)) throw new RangeError('Invalid current specimen');
+  if (specimen && !validSpecimen(specimen)) throw new RangeError('Invalid current specimen');
   if (['inspecting', 'compressing', 'settling', 'failed'].includes(snapshot.phase) && specimen === null) throw new RangeError('This phase requires a specimen');
+  if (snapshot.stress01 < 0 || snapshot.stress01 > 1) throw new RangeError('stress01 must be within 0..1');
+  if ((specimen === null) !== (snapshot.previewVolume === null) || (snapshot.previewVolume !== null && snapshot.previewVolume <= 0)) throw new RangeError('previewVolume must be positive exactly when a lot is current');
+  const stored = snapshot.storedSpecimens;
+  if (stored.length !== snapshot.storedSpecimenIds.length || stored.some((item, index) => item.id !== snapshot.storedSpecimenIds[index] || !validSpecimen(item))) throw new RangeError('storedSpecimens must match storedSpecimenIds in order');
+  if (Math.abs(stored.reduce((sum, item) => sum + item.currentVolume, 0) - snapshot.volumeUsed) > 1e-6) throw new RangeError('volumeUsed must equal the stored volumes');
+}
+function validSpecimen(specimen: SpecimenState): boolean {
+  return salvageIds.includes(specimen.id) && materials.includes(specimen.material) && specimen.currentVolume > 0
+    && specimen.integrity01 >= 0 && specimen.integrity01 <= 1 && specimen.compression01 >= 0 && specimen.compression01 <= 1
+    && Number.isInteger(specimen.value) && specimen.value >= 0 && (specimen.tolerance === null || tolerances.includes(specimen.tolerance));
 }
 export function assertAssetRegistry(registry: AssetRegistry): void {
   assertFiniteJson(registry);

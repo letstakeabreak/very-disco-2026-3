@@ -1,4 +1,7 @@
-import { CONTRACT_VERSION, MAX_STEP_MS, type ActivePhase, type Game, type GameCommand, type GameConfig, type GameEvent, type GamePhase, type GameSnapshot, type SpecimenState } from '../contracts';
+import { CONTRACT_VERSION, MAX_STEP_MS, type ActivePhase, type Game, type GameCommand, type GameConfig, type GameEvent, type GamePhase, type GameSnapshot, type SalvageId, type SpecimenState } from '../contracts';
+
+/** Rotating a lot this far while inspecting reveals its authored tolerance. */
+const REVEAL_YAW_RAD = Math.PI / 4;
 import { assertConfig, deepFreeze } from '../contracts/validate';
 export { getGameConfig } from '../content';
 
@@ -19,6 +22,8 @@ export function createGame(input: GameConfig): Game {
   let score = 0;
   let remainingSpecimenIds = [...initialIds];
   let storedSpecimenIds: typeof initialIds = [];
+  let storedSpecimens: SpecimenState[] = [];
+  const revealed = new Set<SalvageId>();
   let currentSpecimen: SpecimenState | null = null;
   let settleRemainingMs = 0;
   let brokenOnSettle = false;
@@ -40,7 +45,7 @@ export function createGame(input: GameConfig): Game {
   const reset = (): void => {
     const previousPhase = phase;
     tick = 0; elapsedMs = 0; pressure01 = 0; strokeStartPressure01 = 0; strokeElapsedMs = 0; inspectionYawRad = 0;
-    volumeUsed = 0; score = 0; remainingSpecimenIds = [...initialIds]; storedSpecimenIds = [];
+    volumeUsed = 0; score = 0; remainingSpecimenIds = [...initialIds]; storedSpecimenIds = []; storedSpecimens = []; revealed.clear();
     currentSpecimen = null; resumePhase = null; settleRemainingMs = 0; brokenOnSettle = false;
     events = [];
     phase = previousPhase;
@@ -106,7 +111,8 @@ export function createGame(input: GameConfig): Game {
         if (!remainingSpecimenIds.includes(command.specimenId)) return;
         if (currentSpecimen?.id === command.specimenId) return;
         const definition = specimenDefinition(command.specimenId);
-        currentSpecimen = { id: definition.id, material: definition.material, currentVolume: definition.initialVolume, integrity01: 1, value: definition.baseValue, compression01: 0 };
+        currentSpecimen = { id: definition.id, material: definition.material, currentVolume: definition.initialVolume, integrity01: 1, value: definition.baseValue, compression01: 0,
+          tolerance: revealed.has(definition.id) ? definition.tolerance : null };
         pressure01 = 0;
         inspectionYawRad = 0;
         events.push({ type: 'specimen-selected', tick, specimenId: definition.id });
@@ -114,8 +120,12 @@ export function createGame(input: GameConfig): Game {
         return;
       }
       if (command.type === 'inspect') {
-        if (phase !== 'inspecting') return;
+        if (phase !== 'inspecting' || !currentSpecimen) return;
         inspectionYawRad = command.yawRad;
+        if (currentSpecimen.tolerance === null && Math.abs(command.yawRad) >= REVEAL_YAW_RAD) {
+          revealed.add(currentSpecimen.id);
+          currentSpecimen = { ...currentSpecimen, tolerance: specimenDefinition(currentSpecimen.id).tolerance };
+        }
         return;
       }
       if (command.type === 'press-start') {
@@ -148,6 +158,7 @@ export function createGame(input: GameConfig): Game {
         volumeUsed += stored.currentVolume;
         removeRemaining(stored.id);
         storedSpecimenIds = [...storedSpecimenIds, stored.id];
+        storedSpecimens = [...storedSpecimens, stored];
         currentSpecimen = null;
         // The press is empty once the lot is banked, as after a discard.
         pressure01 = 0;
@@ -211,11 +222,18 @@ export function createGame(input: GameConfig): Game {
     },
     snapshot(): GameSnapshot {
       alive();
+      const definition = currentSpecimen === null ? null : specimenDefinition(currentSpecimen.id);
+      // Cue input only: how far the live pressure sits past the lot's safe pressure.
+      const stress01 = definition === null || pressure01 <= definition.safePressure01
+        ? 0 : Math.min(1, (pressure01 - definition.safePressure01) / (1 - definition.safePressure01));
+      const previewVolume = definition === null ? null
+        : definition.initialVolume - (definition.initialVolume - definition.minimumVolume) * pressure01;
       return deepFreeze({
         contractVersion: CONTRACT_VERSION, implementation: 'game', seed: config.seed,
         tick, elapsedMs, phase, resumePhase, pressure01, volumeUsed, capacity: config.capacity,
         score, currentSpecimen: currentSpecimen === null ? null : { ...currentSpecimen },
         remainingSpecimenIds: [...remainingSpecimenIds], storedSpecimenIds: [...storedSpecimenIds],
+        storedSpecimens: storedSpecimens.map((item) => ({ ...item })), stress01, previewVolume,
         inspectionYawRad, entities: config.initialEntities,
       });
     },
