@@ -93,3 +93,11 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 - Bug: after a successful `store`, `currentSpecimen` became null but `pressure01` kept the last committed stroke. The HUD and B's gauge needle kept showing e.g. 70% over an empty press until the next select. `discard` already reset it.
 - Fix: `store` sets `pressure01 = 0` when the lot is banked (both `stored` and last-item `complete`). Capacity-exceeded failure and cash-out keep the specimen in the press, so their pressure is unchanged.
 - Tests: the storage and last-item completion cases now assert `pressure01: 0`. Both fail without the fix and pass with it. `npm run check` and `npm run ownership -- --role A --base origin/integration/v1` are recorded in the PR.
+
+
+## Final integration candidate `release/v1` (2026-09-25)
+
+- Assigned by the user to this session (authenticated GitHub account `letstakeabreak`), acting as the integration owner. The history order is A → B → C through `integration/v1` (PR #1, #3, #5–#11 merged by the repository owner).
+- `release/v1` is `integration/v1` `34a7765`, plus C PR #12 (`2e616f4`, HUD kept off the gauge and case), plus a merge of `main` (`03d7b58`, the work-document links from PR #2/#4). Release polish changes shared, non-frozen files only: the `index.html` title (`DEEP PRESS`), the README status sentence and `docs/validation.md`. The bootstrap-frozen contract, fixtures, scripts, package and lock files are unchanged, and `npm run bootstrap:check` still matches all 23 hashes.
+- Verification: Node 26.8.2 `npm run check` passed. Headless Chromium played the full loop, including completion and restart. The release ZIP (`npm run build`, zipped from `dist/` with `index.html` at the root, 12.9MB unpacked) loaded every asset from a nested path and played.
+- Not done here: the itch.io upload and jam submission, and iPhone Safari checks (both by the user). The contract 1.1.0 stored-state migration was not applied. The merge to `main` is the repository owner's decision on the final PR.

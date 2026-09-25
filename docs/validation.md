@@ -1,22 +1,21 @@
-# 검증 현황 — 2026-09-24
+# 검증 현황 — 2026-09-25 (v1 통합)
 
-현재 제품 상태는 **공통 개발 기반(scaffold)**이다. implementation: scaffold를 유지하며 완성 게임으로 표시하지 않는다. PRD의 executionReady는 세 역할의 개발 시작 준비만 뜻한다.
+v1은 bootstrap-v2 / PRD 1.0.1 / 계약 1.0.0 위에서 A 코어, B 렌더, C 앱을 통합한 게임이다. snapshot의 `implementation`은 `game`이다. 통합 경로는 `integration/v1`(PR #1, #3, #5–#11)에서 PR #12와 `main`의 문서 변경을 더한 `release/v1`이다. 각 역할의 세부 증거는 `docs/handoffs/A|B|C/`에 있다.
 
 | 항목 | 실제 결과 | 한계 |
 |---|---|---|
-| 고정 설치 | Node26.8.2/npm11.19.1에서 npm ci 통과, audit 0 vulnerabilities | fsevents 선택 설치 스크립트 미승인 안내; 빌드는 성공 |
-| 전체 검사 | npm run check 통과: 23개 고정 파일 해시, strict typecheck, AST 모듈 경계, 6파일13테스트, production build | 실제 게임 규칙 전체와 실기기 검증을 대신하지 않음 |
-| 소유권 | 임시 Git 저장소에서 타인 파일·cross-role rename 거부, 정상 범위 허용 | 통합 뒤에는 역할별 원래 SHA로 감사 |
-| 공유 변경 감지 | 격리된 임시 디렉터리에서 원래 PRD 통과, 변경 PRD 실패 | 정식 계약 변경은 버전·영향·manifest 동시 갱신 필요 |
-| 브라우저 | 개발 에이전트가 headless WebGL DEV 화면 로드·모바일 viewport 확인, root가 캡처 대조 | 에뮬레이션. 실제 iPhone Safari·완성 게임·프레임 성능 아님 |
-| ImageGen | 새 콘셉트5장과 정확한 프롬프트 저장 | 실제 실행 화면 아님 |
-| Meshy | Meshy7 명시 요청, master2개 SUCCEEDED, GLB 파싱·서비스 preview 확인, 총60credits | 단일 mesh의 고밀도 원본. 부품·pivot·runtime·실기기 미검증 |
-| 문서 | 최신 PRD/역할/Goal/계약 연결, 폐기 콘셉트 archive, JSON·상대 링크 검사 | 외부 페이지 변경 가능; 제출 직전 공식 안내 재확인 |
+| 전체 검사 | Node 26.8.2 / npm 11.19.1에서 `npm run check` 통과: 고정 23파일, strict TypeScript, AST 모듈 경계, 15파일 91테스트, production build | 자동 검사일 뿐이며 실기기·시각 판정을 대신하지 않는다 |
+| 게임 흐름 | 헤드리스 Chromium에서 실제 앱을 끝까지 진행: 시작 → 검사 → 누르기 유지 → 300ms 정착 결과 → 보관(압력 0%로 복귀) → 100% 자동 실패 → 폐기 → 마지막 보관 → 완료 → 재시작. 브라우저 오류 0 | 데스크톱 Chromium과 키보드 입력이다. 터치와 iPhone Safari는 아니다 |
+| 화면 배치 | 390×844와 375×812에서 HUD가 압력계와 보관 케이스를 가리지 않는다. 1440×900에서는 무대 양옆 패널로 배치된다. 320×568은 문서 넘침 없이 조작부가 모두 보이지만 장면 일부가 겹친다 | viewport 에뮬레이션 결과다 |
+| 렌더·에셋 | ImageGen → Meshy 7 → 모바일 GLB 4개. 압착 시 외피가 퍼지고 파손 시 파편이 보인다. 5개 아트 목표의 판정은 B `art-review.md`를 따른다 | registry는 `generated-unverified`이고 일부 아트 목표는 미달이다 |
+| 실제 iPhone | 사용자가 직접 확인한다. B는 iPhone 16 Pro Max에서 40.05fps / P95 29ms를 기록했다 | 60fps 목표에는 미달이고, 이후 변경은 재측정하지 않았다 |
+| 제출 빌드 | `npm run build` 산출물 12.9MB(20MB 예산 이내). 루트 `index.html`과 상대 경로를 쓴다. ZIP을 하위 경로(`/html/<id>/`)에서 열어 모든 에셋 로드와 플레이를 확인했다 | itch.io 업로드와 대회 제출은 사용자가 한다 |
 
-빌드에는 536.49kB main JS chunk 경고가 남아 있다(gzip134.78kB). B/C의 실제 렌더·에셋 연결 후 성능 측정이 필요하다. 경고 임계값을 높여 숨기지 않았다.
+## 남은 조건
 
-실행 캡처: [desktop](evidence/deep-press-scaffold.png), [mobile viewport](evidence/deep-press-scaffold-mobile.png). 캡처의 중립 도형은 계약 개발용 placeholder다. 목표 그래픽과 동일하다고 주장하지 않는다.
+- 보관물의 손상 외형은 renderer를 다시 만들면 복원되지 않는다. 계약 1.1.0(`storedSpecimens`) 제안은 적용하지 않았다.
+- B 아트 판정의 미달 항목(카메라·케이스 구도, 작은 화면 손상 식별, 재질 세부)과 60fps 목표가 남아 있다.
+- JS 단일 chunk가 697kB로 Vite의 500kB 권고를 넘는다. 빌드는 성공한다.
+- 대회 확인 항목은 아직 확인되지 않았다: AI 사용 허용·고지, 참가 자격, 웹 전달 인정 방식, 제출용 이름. 오디오는 범위에서 제외했다.
 
-남은 제품 작업은 A의 전체 게임 규칙, B의 최종 장면·모바일 모델·변형, C의 실제 입력/HUD/흐름, 세 역할의 통합과 실기기 시험이다. 팀 소속 자격·AI 허용/고지·웹 전달 인정·제출용 이름·잼 신청/제출도 이 작업에서 확인되지 않았다.
-
-원격 저장소/Drive 게시 결과는 최종 공유 receipt의 실제 SHA·파일 ID로 확인한다. 코드가 업로드된 것과 세 사람의 AI가 같은 내용을 읽은 것은 별개다.
+이전 scaffold 시점의 캡처(`evidence/deep-press-scaffold*.png`)는 계약 개발용 placeholder 기록으로 보존한다.
