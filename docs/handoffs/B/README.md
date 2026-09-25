@@ -1,10 +1,12 @@
 # B 작업 인계 — DEEP PRESS 렌더링
 
-담당: `letstakeabreak` · 후속 브랜치: `role/b-render-performance` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
+담당: `letstakeabreak` · 후속 브랜치: `role/b-render-compression` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
+
+최신 보완은 [압착 연출](compression-study/README.md)이다. 눌릴수록 외피가 누름판 링 밖으로 퍼지고, 손상이 확정되면 받침판 앞쪽에 재질별 조각이 흩어진다. 입력은 `pressure01`·`1-integrity01`뿐이다. GPU normal 검사(27조건, 최대 0.065°), 실제 WebGL 전후 11쌍, 전체 74테스트, build를 통과했다. PR #8(`bbe18c4`) 머지 뒤 `integration/v1`에서 출발했다.
 
 PR #1은 `integration/v1`에 `fa622b70566cdacc37cc419552b20ae62b8d61ed`로 머지했다. 후속 [정지 자세의 그림자 재사용](performance-study/README.md)은 d9db1df 시점에서 전후 WebGL9쌍 동일과 draw33→27 / 모든 패스 triangles281,192→193,194를 확인했다.
 
-최신 보완은 [케이스 접촉 그림자](case-shadow-study/README.md)다. 작업대 그림자 면이 케이스 홈을 가로지르지 않게 하고 폼 입구·안쪽 벽에서 그림자를 받는다. 실제 GPU36조건·전후12장·전체69테스트·build를 통과했다. 정지 자세는 draw28 / 모든 패스 triangles193,272다. 작은 화면의 차이는 미세하며 전체 아트 합격을 뜻하지 않는다.
+직전 보완은 [케이스 접촉 그림자](case-shadow-study/README.md)다. 작업대 그림자 면이 케이스 홈을 가로지르지 않게 하고 폼 입구·안쪽 벽에서 그림자를 받는다. 실제 GPU36조건·전후12장·전체69테스트·build를 통과했다. 정지 자세는 draw28 / 모든 패스 triangles193,272다. 작은 화면의 차이는 미세하며 전체 아트 합격을 뜻하지 않는다.
 
 직전 [압착 형상에 맞는 표면 반사](normal-study/README.md)는 위치만 변하던 외피·실린더의 normal/tangent를 형상에 맞춰 변환하며 유리·내부 축의 강체 표면은 유지한다. 실제 GPU27조건(4,189표본)과 실행 전후9쌍으로 확인했다. 반사를 의도적으로 고친 변경이므로 이전 그림자 최적화의 “화면 동일” 결과와 구분한다. 이 후속 변경들의 iPhone 성능은 아직 재측정하지 않았다.
 

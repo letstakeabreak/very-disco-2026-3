@@ -270,6 +270,20 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     expect(boundary.draw).toHaveBeenCalled(); expect(onFatal).not.toHaveBeenCalled(); renderer.dispose();
   });
 
+  it('spills debris on the press bed only for the damaged specimen in the press', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); await finishLoading();
+    const debris = (): Object3D & { count: number } => {
+      const [scene] = lastStageDraw();
+      return scene.getObjectByName('press-debris') as Object3D & { count: number };
+    };
+    renderer.render(SNAPSHOT_FIXTURES.failed, 0);
+    expect(debris().visible).toBe(true); expect(debris().count).toBe(24);
+    for (const snapshot of [SNAPSHOT_FIXTURES.stored, SNAPSHOT_FIXTURES.complete, SNAPSHOT_FIXTURES.idle, SNAPSHOT_FIXTURES.inspecting]) {
+      renderer.render(snapshot, 0); expect(debris().visible).toBe(false);
+    }
+    renderer.dispose();
+  });
+
   it('points the actual needle left/up/right from pressure and snaps to a paused snapshot', async () => {
     const onFatal = vi.fn(); const renderer = createRenderer({ canvas: canvas(), onFatal }); await finishLoading();
     const tipAt = (snapshot: GameSnapshot): Vector3 => {

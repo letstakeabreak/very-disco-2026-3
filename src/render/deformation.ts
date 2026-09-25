@@ -26,6 +26,11 @@ const VERTEX = `
   transformed.y = mix(position.y * (1.0 - crush), rigidGlassY, pressIsGlass);
   transformed.y = mix(transformed.y, position.y - crush * h * 0.5, pressGlassSurface);
   float housing = 1.0 - pressGlassSurface;
+  // Crushed housings spread sideways past the platen: a barrel for the metal
+  // core, splayed protective bands around rigid optics. Pressure drives it only.
+  float bulge = pressCompression * mix(0.18 * sin(u * 3.14159), 0.10 * shell, pressIsGlass) * housing;
+  transformed.x += position.x * bulge;
+  transformed.z += position.z * bulge;
   transformed.x += sign(position.x) * ribs * fold * h * 0.13 * housing;
   transformed.z += sign(position.z) * ribs * fold * h * 0.08 * housing;
   transformed.x += sin(position.z * 70.0 + u * 11.0) * pressDamage * shell * h * 0.035 * housing;
@@ -47,16 +52,23 @@ const NORMAL = `
     float inside = position.y > 0.0 && position.y < h ? 1.0 : 0.0;
     float foldDerivative = crush*(ribsDerivative*shell+ribs*shellDerivative)*inside;
     float wave = position.z*70.0+u*11.0;
-    float dxdy = sign(position.x)*foldDerivative*0.13
+    float bulge = pressCompression*mix(0.18*sin(u*3.14159),0.10*shell,pressIsGlass);
+    float bulgeDerivative = pressCompression*mix(0.18*3.14159*cos(u*3.14159),0.10*shellDerivative,pressIsGlass)*inside/h;
+    float dxdx = 1.0+bulge;
+    float dzdz = 1.0+bulge;
+    float dxdy = sign(position.x)*foldDerivative*0.13 + position.x*bulgeDerivative
       + pressDamage*0.035*(cos(wave)*11.0*shell+sin(wave)*shellDerivative)*inside;
     float dxdz = cos(wave)*70.0*pressDamage*shell*h*0.035;
-    float dzdy = sign(position.z)*foldDerivative*0.08;
+    float dzdy = sign(position.z)*foldDerivative*0.08 + position.z*bulgeDerivative;
     float dydy = mix(1.0-crush, u < 0.3 || u >= 0.7 ? 1.0-crush/0.6 : 1.0, pressIsGlass);
-    float nz = objectNormal.z-dxdz*objectNormal.x;
-    objectNormal = vec3(objectNormal.x,(objectNormal.y-dxdy*objectNormal.x-dzdy*nz)/dydy,nz);
+    // Cofactor of J = [dxdx dxdy dxdz; 0 dydy 0; 0 dzdy dzdz], i.e. det(J)·J^-T.
+    vec3 n = objectNormal;
+    objectNormal = vec3(dydy*dzdz*n.x,
+      -(dxdy*dzdz-dxdz*dzdy)*n.x+dxdx*dzdz*n.y-dxdx*dzdy*n.z,
+      -dxdz*dydy*n.x+dxdx*dydy*n.z);
     #ifdef USE_TANGENT
-      objectTangent = vec3(objectTangent.x+dxdy*objectTangent.y+dxdz*objectTangent.z,
-        dydy*objectTangent.y,objectTangent.z+dzdy*objectTangent.y);
+      objectTangent = vec3(dxdx*objectTangent.x+dxdy*objectTangent.y+dxdz*objectTangent.z,
+        dydy*objectTangent.y,dzdy*objectTangent.y+dzdz*objectTangent.z);
     #endif
   }
 `;
@@ -135,14 +147,14 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
               'material.transmission = transmission;', 'material.transmission = transmission * (1.0-pressDamage*0.25) * (1.0-cassetteCrack*0.9);'));
         }
       };
-      material.customProgramCacheKey = () => `deep-press-shell-v6-${id}-${rigidSurface}-${opticsKey}`;
+      material.customProgramCacheKey = () => `deep-press-shell-v7-${id}-${rigidSurface}-${opticsKey}`;
       deformation.materials.push(material);
       return material;
     });
     if (object.material.length === 1) object.material = object.material[0]!;
     const depth = new MeshDepthMaterial({ depthPacking: RGBADepthPacking });
     depth.onBeforeCompile = (shader) => patchVertex(shader, rigidSurface);
-    depth.customProgramCacheKey = () => `deep-press-shell-depth-v3-${id}-${rigidSurface}`;
+    depth.customProgramCacheKey = () => `deep-press-shell-depth-v4-${id}-${rigidSurface}`;
     object.customDepthMaterial = depth;
     deformation.depthMaterials.push(depth);
     object.frustumCulled = false;
