@@ -1,0 +1,113 @@
+{
+  "status": "Redundant intermediate PNGs removed; final JPEG atlases are embedded in runtime GLBs. Reproduce with rebake_mobile.py -- --keep-bake-images.",
+  "historicalIntermediateFiles": [
+    {
+      "path": "assets/source/pipeline/baked/salvage-core/baseColor.png",
+      "sha256": "94e890d0cd35686b13284e1e39945878797ba0890ee284a06886d16d1756454b",
+      "bytes": 4316258,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-core/metallicRoughness.png",
+      "sha256": "aef5ed59a9249fb3868a533d90795d4d671d139fbfd98c606218cb8e727bc02a",
+      "bytes": 1469413,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-core/normal.png",
+      "sha256": "789ed8f6710acf38092101926d2c517453f28a5c607a63dc7a01541c0066b06a",
+      "bytes": 3547222,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-lens/baseColor.png",
+      "sha256": "8a69ecb4ee5074db39e0bc865e6a19fa63afd50cac5deeb91fba80cb50e40798",
+      "bytes": 3406532,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-lens/metallicRoughness.png",
+      "sha256": "905f32d1c16cc730f7efc9b4d4ea3cbc9cfee0747825be9bf19b13450f6bd919",
+      "bytes": 1227249,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-lens/normal.png",
+      "sha256": "68a4284f8a929286b18d1b03b7de6419e9538a67cceb3c54abfc8da25f25f26b",
+      "bytes": 3409688,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/press-chamber/baseColor.png",
+      "sha256": "6eebd2f93f786a85ec4b7cb70aec5da09b0ae96933146585be8dc9efafd64c15",
+      "bytes": 3007610,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/press-chamber/metallicRoughness.png",
+      "sha256": "eabc1367981d0ddc3e3df949f76a944f480b5aba50cf3d307063191e0551f0dd",
+      "bytes": 856401,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/press-chamber/normal.png",
+      "sha256": "49979b8c297d3233f0a71befc3932632f05eaad32c98b33305744fe8534d2e76",
+      "bytes": 2692512,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-cassette/baseColor.png",
+      "sha256": "d8e0a03843dd905558db4117e703a4edf60ff24181754649deb1281890ed633e",
+      "bytes": 4058834,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-cassette/metallicRoughness.png",
+      "sha256": "7dad551aca00a80752b7b7f7084f04f239de3b7f41da61e33051c6c8d1ab5a81",
+      "bytes": 1471154,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "assets/source/pipeline/baked/salvage-cassette/normal.png",
+      "sha256": "8f265b84214addcf6977b2f8873e744f9fb01cca30ccd414e3d7b4fefbcb31a6",
+      "bytes": 3472724,
+      "dimensions": [
+        2048,
+        2048
+      ]
+    }
+  ]
+}

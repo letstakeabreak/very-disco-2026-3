@@ -1,0 +1,25 @@
+import { createInspector } from './inspector';
+import { SNAPSHOT_FIXTURES } from '../../../../src/contracts/fixtures';
+import './capture.css';
+const params = new URLSearchParams(location.search);
+const id = params.get('asset') === 'press' ? 'press-chamber' : 'salvage-cassette';
+const variant = params.get('variant') === 'amber-opaque' ? 'amber-opaque' : params.get('variant') === 'reflection' ? 'reflection' : params.get('variant') === 'amber' ? 'amber' : 'baseline';
+const canvas = document.querySelector<HTMLCanvasElement>('#art-canvas')!;
+const errors: string[] = [];
+const report = (message: string): void => { errors.push(message); document.querySelector('#fatal')!.textContent = message; };
+const viewer = createInspector(canvas, id, report, variant);
+document.querySelector('#title')!.textContent = `${id.toUpperCase()} / ${variant.toUpperCase()}`;
+let frames = 0; let frameId = 0;
+const resize = (): void => viewer.resize({width: canvas.clientWidth,height: canvas.clientHeight,dpr: Math.min(2,devicePixelRatio)});
+const observer = new ResizeObserver(resize); observer.observe(canvas); resize();
+const frame = (): void => { viewer.render(SNAPSHOT_FIXTURES.idle,0); frames += 1;
+  document.querySelector('#status')!.textContent = `${canvas.dataset['renderState']} · ${canvas.dataset['drawCalls'] ?? 0} calls`;
+  frameId = requestAnimationFrame(frame); };
+frameId = requestAnimationFrame(frame);
+window.addEventListener('error', ({message}) => report(message));
+window.addEventListener('unhandledrejection', ({reason}) => report(String(reason)));
+Object.assign(window, {__materialProbe: {get ready() {return canvas.dataset['renderState'] === 'ready' && frames > 3;},
+  get errors() {return errors;}, get status() {return {...canvas.dataset};},get frames() {return frames;}}});
+const dispose = (): void => { cancelAnimationFrame(frameId); observer.disconnect(); viewer.dispose(); };
+window.addEventListener('pagehide',dispose,{once:true});
+if (import.meta.hot) import.meta.hot.dispose(dispose);

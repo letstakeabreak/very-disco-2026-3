@@ -1,0 +1,4396 @@
+{
+  "kind": "Desktop Chromium WebGL fixture workload, 390x844 with DPR 2; NOT a physical iPhone or gameplay test",
+  "url": "http://127.0.0.1:4174/docs/handoffs/B/preview.html",
+  "checkedAt": "2026-09-24T14:35:14.297Z",
+  "startHashes": {
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+  },
+  "samples": [
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 30308.5,
+        "fps": 60.002400096003825,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1819,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 60609.20000000298,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.700000000004366,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 3637,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 90940.59999999404,
+        "fps": 60.00240009600389,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.70000000001164,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 5457,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 121377.29999999702,
+        "fps": 60.00240009600381,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.70000000001164,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 7283,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 151693.59999999404,
+        "fps": 60.00240009600398,
+        "maxFrameMs": 16.800000000017462,
+        "p95FrameMs": 16.70000000001164,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 9102,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": true,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 182101.5,
+        "fps": 60.0030001500075,
+        "maxFrameMs": 16.800000000017462,
+        "p95FrameMs": 16.79999999998836,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 10927,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    }
+  ],
+  "measurement": {
+    "done": true,
+    "durationMs": 180006.79999999105,
+    "environment": {
+      "buffer": [
+        780,
+        1688
+      ],
+      "dpr": 2,
+      "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    "errors": [],
+    "fps": 60.00328876464965,
+    "frames": 10801,
+    "maxFrameMs": 16.800000000017462,
+    "p95FrameMs": 16.70000000001164,
+    "phaseSamples": [
+      {
+        "elapsed": 513.8999999910593,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 1030.4999999910597,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 1547.1999999910597,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 2063.799999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 2580.4999999910597,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 3097.099999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 3597.09999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 4113.699999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 4630.399999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 5146.99999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 5663.699999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 6180.399999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 6696.99999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 7213.59999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 7730.299999991059,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 8246.99999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 8763.59999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 9280.19999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 9796.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 10313.49999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 10830.09999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 11346.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 11846.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 12363.39999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 12880.09999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 13396.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 13913.39999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 14429.999999991058,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 14946.59999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 15446.69999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 15963.29999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 16479.999999991058,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 16996.499999991058,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 17513.19999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 18029.89999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 18546.499999991054,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 19063.09999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 19579.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 20096.499999991054,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 20613.09999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 21129.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 21646.39999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 22162.999999991054,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 22679.69999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 23196.29999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 23712.999999991054,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 24229.59999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 24746.29999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 25262.89999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 25779.499999991054,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 26296.19999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 26812.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 27329.39999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 27846.19999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 28362.79999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 28879.39999999106,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 29396.099999991056,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 29912.699999991062,
+        "phase": "inspecting",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 30429.39999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 30946.099999991056,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 31462.699999991062,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 31979.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 32495.89999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 32995.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 33512.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 34029.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 34545.89999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 35062.49999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 35579.19999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 36095.79999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 36612.49999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 37129.09999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 37645.79999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 38162.39999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 38678.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 39195.69999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 39712.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 40228.89999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 40728.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 41245.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 41762.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 42278.89999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 42795.49999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 43295.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 43812.19999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 44328.79999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 44845.49999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 45362.09999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 45878.69999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 46395.39999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 46912.09999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 47428.69999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 47945.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 48461.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 48978.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 49495.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 50011.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 50528.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 51045.19999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 51561.79999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 52078.49999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 52595.19999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 53111.79999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 53628.49999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 54145.09999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 54661.69999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 55178.39999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 55694.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 56211.69999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 56728.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 57244.99999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 57761.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 58278.29999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 58794.89999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 59311.59999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 59828.19999999106,
+        "phase": "compressing",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 60344.89999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 60861.499999991065,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 61378.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 61894.79999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 62411.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 62928.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 63444.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 63961.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 64477.999999991065,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 64994.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 65511.29999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 66027.89999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 66544.49999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 67044.59999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 67561.19999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 68077.79999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 68594.49999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 69111.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 69627.79999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 70144.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 70661.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 71177.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 71694.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 72210.99999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 72727.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 73244.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 73760.99999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 74277.59999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 74794.29999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 75310.89999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 75827.59999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 76344.19999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 76860.89999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 77377.49999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 77894.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 78410.79999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 78927.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 79444.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 79960.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 80477.29999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 80993.99999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 81510.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 82027.29999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 82543.99999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 83060.59999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 83577.19999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 84093.89999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 84610.59999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 85127.19999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 85643.79999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 86160.49999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 86677.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 87193.79999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 87710.39999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 88226.99999999107,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 88727.09999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 89243.69999999106,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 89760.29999999105,
+        "phase": "failed",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 90276.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 90776.99999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 91293.59999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 91810.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 92326.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 92843.49999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 93360.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 93876.79999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 94393.49999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 94910.09999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 95426.79999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 95943.39999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 96459.99999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 96960.09999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 97476.69999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 97993.29999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 98493.39999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 99009.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 99526.59999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 100043.29999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 100559.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 101076.49999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 101593.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 102109.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 102626.49999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 103143.09999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 103659.79999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 104176.39999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 104693.09999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 105209.69999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 105726.29999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 106242.99999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 106759.59999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 107276.29999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 107792.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 108309.59999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 108826.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 109342.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 109859.59999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 110376.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 110892.79999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 111409.49999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 111926.09999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 112442.79999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 112959.39999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 113476.09999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 113992.69999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 114509.29999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 115009.39999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 115525.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 116025.99999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 116542.59999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 117059.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 117575.89999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 118092.49999999108,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 118609.19999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 119125.79999999104,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 119642.39999999106,
+        "phase": "stored",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 120142.49999999108,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 120659.09999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 121175.69999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 121692.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 122209.09999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 122725.69999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 123242.29999999104,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 123758.89999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 124275.59999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 124792.29999999104,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 125308.89999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 125825.59999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 126342.19999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 126858.79999999104,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 127358.89999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 127875.49999999108,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 128392.09999999109,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 128908.69999999103,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 129408.79999999104,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 129925.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 130441.99999999108,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 130958.69999999103,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 131475.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 131991.9999999911,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 132508.59999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 133025.29999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 133541.89999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 134058.4999999911,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 134575.19999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 135091.89999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 135608.4999999911,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 136125.09999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 136641.79999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 137158.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 137675.09999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 138191.69999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 138708.29999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 139208.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 139724.9999999911,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 140241.69999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 140758.29999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 141274.89999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 141791.59999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 142308.29999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 142824.79999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 143341.4999999911,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 143858.19999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 144374.79999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 144891.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 145408.09999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 145924.79999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 146441.39999999106,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 146958.09999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 147474.69999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 147991.29999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 148507.9999999911,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 149024.59999999107,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 149541.19999999105,
+        "phase": "complete",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 150041.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 150557.89999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 151074.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 151591.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 152107.89999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 152624.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 153141.09999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 153657.79999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 154174.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 154690.9999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 155207.79999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 155724.39999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 156240.9999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 156757.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 157274.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 157790.9999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 158307.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 158824.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 159340.89999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 159857.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 160374.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 160890.79999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 161407.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 161924.09999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 162440.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 162957.39999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 163474.09999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 163990.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 164507.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 165023.9999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 165540.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 166057.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 166573.89999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 167090.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 167607.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 168123.89999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 168640.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 169157.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 169673.79999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 170190.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 170707.09999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 171223.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 171740.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 172257.09999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 172773.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 173273.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 173790.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 174306.9999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 174823.59999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 175340.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 175856.79999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 176356.89999999106,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 176873.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 177390.19999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 177906.79999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 178423.4999999911,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 178940.09999999107,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 179456.69999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      },
+      {
+        "elapsed": 179973.29999999105,
+        "phase": "paused",
+        "renderer": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        }
+      }
+    ]
+  },
+  "endHashes": {
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+  },
+  "passed": true
+}

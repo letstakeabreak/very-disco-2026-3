@@ -1,0 +1,279 @@
+{
+  "method": "Xcode devicectl screenshot from independently verified physical iPhone; fixture controls, not touch gameplay",
+  "label": "full-transmission",
+  "captures": [
+    {
+      "name": "cassette-intact",
+      "controls": {
+        "phase": "inspecting",
+        "specimenId": "salvage-cassette",
+        "pressure01": 0.55,
+        "integrity01": 1,
+        "yawDeg": 26,
+        "storedCount": 0
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:23:39.463Z",
+      "sha256": "2c51288359c356fad0f7f00ad6cac6a80fb46b78c273b227e077717cd6401b9c"
+    },
+    {
+      "name": "cassette-broken",
+      "controls": {
+        "phase": "inspecting",
+        "specimenId": "salvage-cassette",
+        "pressure01": 0.55,
+        "integrity01": 0,
+        "yawDeg": 26,
+        "storedCount": 0
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:23:43.576Z",
+      "sha256": "192c73a1ae0f83e422855b9aca1cbb1801f0d5ec647ec71e329391bad790b97e"
+    },
+    {
+      "name": "cassette-failed",
+      "controls": {
+        "phase": "failed",
+        "specimenId": "salvage-cassette",
+        "pressure01": 1,
+        "integrity01": 0,
+        "yawDeg": 26,
+        "storedCount": 0
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:23:46.659Z",
+      "sha256": "937aa9b00ff4ee64725fb6aaf3176daea22262d6eb42a527fc835cc70a6c373d"
+    },
+    {
+      "name": "lens-intact",
+      "controls": {
+        "phase": "inspecting",
+        "specimenId": "salvage-lens",
+        "pressure01": 0,
+        "integrity01": 1,
+        "yawDeg": 26,
+        "storedCount": 0
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:23:51.801Z",
+      "sha256": "7c747e9202c5de968708f635e74f53eb8663eafc2ab551045c79e8518f055caf"
+    },
+    {
+      "name": "lens-broken",
+      "controls": {
+        "phase": "failed",
+        "specimenId": "salvage-lens",
+        "pressure01": 1,
+        "integrity01": 0,
+        "yawDeg": 26,
+        "storedCount": 0
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:23:55.901Z",
+      "sha256": "3cb55197106a218c2197551742b93a3bf332734b533cb6e6fbdd52d2ff1aea82"
+    },
+    {
+      "name": "core-pressed",
+      "controls": {
+        "phase": "compressing",
+        "specimenId": "salvage-core",
+        "pressure01": 0.8,
+        "integrity01": 0.5,
+        "yawDeg": 26,
+        "storedCount": 0
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:24:00.005Z",
+      "sha256": "1ef605a1069dd1fb92869322dfa52a7c9f0d1698473d7fbf97d2867589267b5b"
+    },
+    {
+      "name": "stored",
+      "controls": {
+        "phase": "stored",
+        "specimenId": "salvage-core",
+        "pressure01": 0.8,
+        "integrity01": 0.5,
+        "yawDeg": 26,
+        "storedCount": 3
+      },
+      "environment": {
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+        "dpr": 3,
+        "screen": [
+          440,
+          956
+        ],
+        "viewport": [
+          440,
+          796
+        ],
+        "buffer": [
+          880,
+          1592
+        ],
+        "gpu": "Apple GPU"
+      },
+      "rendererStatus": {
+        "engine": "three.js r186",
+        "renderState": "ready",
+        "loadedAssets": "4",
+        "triangles": "281192",
+        "drawCalls": "33",
+        "visibleTriangles": "105096"
+      },
+      "errors": [],
+      "at": "2026-09-24T17:24:03.110Z",
+      "sha256": "b795bc715b01ddac5c4ab4aef43133af310ed259f4f1218c5e8b45d604ff0194"
+    }
+  ]
+}

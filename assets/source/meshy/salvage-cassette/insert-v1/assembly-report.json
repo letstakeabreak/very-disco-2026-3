@@ -1,0 +1,21 @@
+{
+  "method": "Append embedded GLB buffers; original housing geometry and texture bytes unchanged",
+  "inputs": [
+    {
+      "path": "assets/source/meshy/salvage-cassette/insert-v1/shell-mobile.glb",
+      "sha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee"
+    },
+    {
+      "path": "assets/source/meshy/salvage-cassette/insert-v1/insert-mobile.glb",
+      "sha256": "1a467e1ef5a386a0ea30241c4e2466da65afe8fa499a8245d4120065079e3c6e"
+    }
+  ],
+  "output": {
+    "path": "public/assets/models/salvage-cassette.glb",
+    "sha256": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "bytes": 4037856,
+    "triangles": 24000,
+    "meshes": 2,
+    "materials": 2
+  }
+}

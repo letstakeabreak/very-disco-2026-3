@@ -1,0 +1,37 @@
+{
+  "status": "optional-concept-not-integrated",
+  "project": "DEEP PRESS",
+  "ownerRole": "B",
+  "generationDate": "2026-09-25",
+  "generationTimezone": "Asia/Seoul",
+  "generator": "OpenAI built-in ImageGen",
+  "modelVersion": "not exposed by tool",
+  "promptFile": "prompts.json",
+  "referenceImages": [],
+  "sourceKind": "original fictional adult character concept artwork",
+  "assets": [
+    {
+      "file": "male-salvager-v1.png",
+      "sha256": "c17882c7451ec767cbe38cca34c03e80a427919c48e71b59dcda2472e5b193ad",
+      "bytes": 2342475,
+      "width": 1024,
+      "height": 1536,
+      "mimeType": "image/png",
+      "promptKey": "male",
+      "postprocessing": "none; byte-for-byte copy of ImageGen output"
+    },
+    {
+      "file": "female-salvager-v1.png",
+      "sha256": "b31c7629cf11a9f80dd950f3a41b330364c41d6d861b6b9f167570820c49ebd6",
+      "bytes": 2375696,
+      "width": 1024,
+      "height": 1536,
+      "mimeType": "image/png",
+      "promptKey": "female",
+      "postprocessing": "none; byte-for-byte copy of ImageGen output"
+    }
+  ],
+  "runtimeIncluded": false,
+  "meshGenerated": false,
+  "validationScope": "Generated PNGs visually inspected; source bytes, dimensions and SHA-256 verified. Not gameplay, a render capture, a 3D model, or a runtime fidelity claim."
+}

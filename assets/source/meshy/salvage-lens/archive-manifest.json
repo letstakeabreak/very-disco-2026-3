@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "assetId": "salvage-lens",
+  "archiveFormat": "gzip",
+  "lossless": true,
+  "compression": {
+    "level": 9,
+    "mtime": 0
+  },
+  "reassembledFile": "salvage-lens-master.glb.gz",
+  "archiveBytes": 112768005,
+  "archiveSha256": "2b31e85642a0a749fddaac1344ffb55013e7661920a7cb194166fd60a64fac74",
+  "restoredFile": "salvage-lens-master.glb",
+  "restoredBytes": 144142508,
+  "restoredSha256": "6c1804a11b44a4a54411f6e980af7329ae4ef345bbf2aaaac5051875f67f6397",
+  "chunkSizeBytes": 25000000,
+  "parts": [
+    {
+      "file": "salvage-lens-master.glb.gz.part-01",
+      "bytes": 25000000,
+      "sha256": "36aee849834cabbe36ae57f744d1a97cf2e1c2b4e195d428e03a444a78e1a3fc"
+    },
+    {
+      "file": "salvage-lens-master.glb.gz.part-02",
+      "bytes": 25000000,
+      "sha256": "72b7151d9b7611fbad6ef70b0ab69cdb86bf33701e5f6653c7e9297386c91a95"
+    },
+    {
+      "file": "salvage-lens-master.glb.gz.part-03",
+      "bytes": 25000000,
+      "sha256": "7455f1aa846f8ca1766313f30a8dff379ea1924928bad2baedf249ebe757c0cc"
+    },
+    {
+      "file": "salvage-lens-master.glb.gz.part-04",
+      "bytes": 25000000,
+      "sha256": "60df31fdbb1713f81ac54172e7b442b53ef8d7fcc418f906f717d33c347eac7b"
+    },
+    {
+      "file": "salvage-lens-master.glb.gz.part-05",
+      "bytes": 12768005,
+      "sha256": "b2564ae98d30217c2d6c4c96bd7282d8cf9ffb5f5094798d6f86eb60762458cf"
+    }
+  ],
+  "restoreCommands": [
+    "cat salvage-lens-master.glb.gz.part-* | gzip -dc > salvage-lens-master.glb",
+    "shasum -a 256 salvage-lens-master.glb"
+  ],
+  "restorationVerified": true,
+  "restorationVerification": "Reassembled part SHA256 matched original gzip; decompressed gzip SHA256 matched the original raw GLB.",
+  "generatedMasterStatus": "generated-unverified"
+}

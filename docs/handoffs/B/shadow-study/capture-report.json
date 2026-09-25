@@ -1,0 +1,308 @@
+{
+  "checkedAt": "2026-09-24T13:58:18.147Z",
+  "kind": "Actual desktop Chromium WebGL static inspection. Not mobile or gameplay performance evidence.",
+  "captures": [
+    {
+      "asset": "contact",
+      "variant": "baseline",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/shadow-study/capture.html?variant=baseline",
+      "screenshot": "captures/contact-baseline.png",
+      "sha256": "a3b4bb7da198404f8bd6e8673cacb0bdc5e311be651540f9730083adc1f06201",
+      "depthFacts": {
+        "allWhite": 942709,
+        "format": 1023,
+        "height": 1024,
+        "maxR": 255,
+        "minR": 111,
+        "nonWhite": 105867,
+        "type": 1009,
+        "width": 1024
+      },
+      "errors": [],
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "sceneFacts": {
+        "camera": [
+          0,
+          1.37,
+          2.7
+        ],
+        "key": {
+          "bias": -0.00005,
+          "mapSize": [
+            1024,
+            1024
+          ],
+          "normalBias": 0.0015,
+          "position": [
+            -1.8,
+            2.8,
+            2
+          ],
+          "target": [
+            0,
+            0.45,
+            0
+          ]
+        },
+        "receivers": [
+          {
+            "castShadow": false,
+            "depthTest": true,
+            "depthWrite": false,
+            "name": "",
+            "opacity": 0.4,
+            "parent": "Scene",
+            "position": [
+              0.021474093198776245,
+              0.3798680458068848,
+              -0.09367392398416996
+            ],
+            "receiveShadow": false,
+            "visible": true,
+            "worldPosition": [
+              0.021474093198776245,
+              0.3798680458068848,
+              -0.09367392398416996
+            ]
+          },
+          {
+            "castShadow": false,
+            "depthTest": true,
+            "depthWrite": false,
+            "name": "",
+            "opacity": 0.52,
+            "parent": "",
+            "position": [
+              0,
+              0.221,
+              0
+            ],
+            "receiveShadow": true,
+            "visible": true,
+            "worldPosition": [
+              0,
+              0.221,
+              0
+            ]
+          }
+        ],
+        "variant": "baseline"
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "contact",
+      "variant": "receive",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/shadow-study/capture.html?variant=receive",
+      "screenshot": "captures/contact-receive.png",
+      "sha256": "fb35863322705b385446ae1f58643e4f69f03df9ddbaf7462a872bf3a47aa486",
+      "depthFacts": {
+        "allWhite": 942709,
+        "format": 1023,
+        "height": 1024,
+        "maxR": 255,
+        "minR": 111,
+        "nonWhite": 105867,
+        "type": 1009,
+        "width": 1024
+      },
+      "errors": [],
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "sceneFacts": {
+        "camera": [
+          0,
+          1.37,
+          2.7
+        ],
+        "key": {
+          "bias": -0.00005,
+          "mapSize": [
+            1024,
+            1024
+          ],
+          "normalBias": 0.0015,
+          "position": [
+            -1.8,
+            2.8,
+            2
+          ],
+          "target": [
+            0,
+            0.45,
+            0
+          ]
+        },
+        "receivers": [
+          {
+            "castShadow": false,
+            "depthTest": true,
+            "depthWrite": false,
+            "name": "",
+            "opacity": 0.4,
+            "parent": "Scene",
+            "position": [
+              0.021474093198776245,
+              0.3798680458068848,
+              -0.09367392398416996
+            ],
+            "receiveShadow": true,
+            "visible": true,
+            "worldPosition": [
+              0.021474093198776245,
+              0.3798680458068848,
+              -0.09367392398416996
+            ]
+          },
+          {
+            "castShadow": false,
+            "depthTest": true,
+            "depthWrite": false,
+            "name": "",
+            "opacity": 0.52,
+            "parent": "",
+            "position": [
+              0,
+              0.221,
+              0
+            ],
+            "receiveShadow": true,
+            "visible": true,
+            "worldPosition": [
+              0,
+              0.221,
+              0
+            ]
+          }
+        ],
+        "variant": "receive"
+      },
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "hashesBefore": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "src/render/index.ts": "a11ec53c568d93db04f51a38a5c1c0e83b198f2f881f9c9e02a0019b6029e874",
+    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "docs/handoffs/B/shadow-study/capture.ts": "772615fd1da64dcfe57c57941488b34e0152c3940f8b7d31ca3c91b2380e62da"
+  },
+  "hashesAfter": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "src/render/index.ts": "a11ec53c568d93db04f51a38a5c1c0e83b198f2f881f9c9e02a0019b6029e874",
+    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "docs/handoffs/B/shadow-study/capture.ts": "772615fd1da64dcfe57c57941488b34e0152c3940f8b7d31ca3c91b2380e62da"
+  },
+  "passed": true
+}

@@ -1,0 +1,138 @@
+{
+  "checkedAt": "2026-09-24T14:27:09.418Z",
+  "kind": "Actual desktop Chromium WebGL static inspection. Not mobile or gameplay performance evidence.",
+  "captures": [
+    {
+      "asset": "structure",
+      "variant": "textured",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/cassette-structure-study/viewer.html?mode=textured",
+      "screenshot": "captures/structure-textured.png",
+      "sha256": "db7d489fee261bf049ac6906273f280c20924369125f27e4a4215767b22a64d6",
+      "errors": [],
+      "loaded": 2,
+      "mode": "textured",
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "structure",
+      "variant": "cut",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/cassette-structure-study/viewer.html?mode=cut",
+      "screenshot": "captures/structure-cut.png",
+      "sha256": "8b16e41057320bc74c7a0a1700fe022a583f1ae9a7fdc3c652291da375af09a5",
+      "errors": [],
+      "loaded": 2,
+      "mode": "cut",
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "hashesBefore": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "assets/source/meshy/salvage-cassette/salvage-cassette-master.glb": "80ef1c8ab4cd8ef2ca1b25b26ce8aed83e6da1aea8b75791bbadcee826a1a960",
+    "docs/handoffs/B/cassette-structure-study/viewer.ts": "4f8c63331bb3b6002f5e4c8897a50fdc0ee774e9b943fd78c6c443fa33d64ddf"
+  },
+  "hashesAfter": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "assets/source/meshy/salvage-cassette/salvage-cassette-master.glb": "80ef1c8ab4cd8ef2ca1b25b26ce8aed83e6da1aea8b75791bbadcee826a1a960",
+    "docs/handoffs/B/cassette-structure-study/viewer.ts": "4f8c63331bb3b6002f5e4c8897a50fdc0ee774e9b943fd78c6c443fa33d64ddf"
+  },
+  "passed": true
+}

@@ -1,0 +1,173 @@
+{
+  "assetId": "salvage-lens",
+  "status": "generated-unverified",
+  "sourceImage": "assets/source/meshy/salvage-lens/input.png",
+  "sourceSha256": "8cfb013853bb43f0014e8a4dbe33db20aac038f705566e03eca7ffd5480ec435",
+  "promptFile": "assets/source/meshy/salvage-lens/prompt.md",
+  "imagegen": {
+    "generator": "built-in ImageGen",
+    "calls": 1,
+    "referenceInspected": true,
+    "referenceObservation": "Single complete object; worn ivory steel and blackened metal consistent with prior cassette/press. Clear blue-green optical disk inside external protective frame.",
+    "sourceFileModifiedAt": "2026-09-24T12:16:06.574865+00:00",
+    "sourceFileModifiedAtNote": "Timestamp of original ImageGen output file preserved during copy, not a service-reported generation timestamp.",
+    "promptSha256": "4e9f32f476473f7513f29fe6075005ae9d5fdf3d549b19bdfa06bea182fd2ddd"
+  },
+  "generator": "Meshy image-to-3d",
+  "cliVersion": "0.4.0",
+  "requestedModel": "meshy-7",
+  "modelEvidence": "CLI standard explicitly documents Meshy7; request payload explicitly ai_model=meshy-7. Completed service task does not echo model identifier.",
+  "settings": {
+    "model_type": "standard",
+    "should_texture": true,
+    "enable_pbr": true,
+    "texture_resolution": "4k",
+    "ultra_mode": false,
+    "target_formats": [
+      "glb"
+    ]
+  },
+  "taskId": "01a0d35a-079c-7391-b3bc-90351feb4c04",
+  "resource": "image-to-3d",
+  "statusFromService": "SUCCEEDED",
+  "consumedCredits": 30,
+  "createdAtUnixMs": 1790252289363,
+  "finishedAtUnixMs": 1790252597210,
+  "createdAt": "2026-09-24T12:18:09.363000+00:00",
+  "finishedAt": "2026-09-24T12:23:17.210000+00:00",
+  "masterFile": "salvage-lens-master.glb",
+  "bytes": 144142508,
+  "sha256": "6c1804a11b44a4a54411f6e980af7329ae4ef345bbf2aaaac5051875f67f6397",
+  "previewFile": "preview.png",
+  "previewSha256": "582dfe59c80dfaff764f355c97c89c561c4143ddebab2d93b207617e34e8e03e",
+  "geometry": {
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "triangleCount": 3952752,
+    "nodeCount": 1,
+    "positionAccessorBounds": [
+      {
+        "min": [
+          -0.9519349932670593,
+          -0.8279110193252563,
+          -0.7060750126838684
+        ],
+        "max": [
+          0.9510210156440735,
+          0.826545000076294,
+          0.6827300190925598
+        ]
+      }
+    ],
+    "riggingVerified": false,
+    "axisPivotScaleVerified": false
+  },
+  "embeddedImages": [
+    {
+      "imageIndex": 0,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    },
+    {
+      "imageIndex": 1,
+      "mimeType": "image/jpeg",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "imageIndex": 2,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metallicFactor": 1.0,
+        "roughnessFactor": 1.0,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 2,
+        "texCoord": 0
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 1,
+      "source": 1
+    },
+    {
+      "sampler": 2,
+      "source": 2
+    }
+  ],
+  "gameplayVolumeL": 0.58,
+  "gameplayVolumeNote": "PRD initial volume is game-state data, not measured mesh volume.",
+  "verification": {
+    "binaryParsed": true,
+    "runtimeOptimized": false,
+    "iPhoneTested": false,
+    "visualFidelityPassed": false,
+    "servicePreviewInspected": true,
+    "previewObservation": "Complete recognizable optical housing and outer crush frame; central lens is a pale blue-gray opaque disk in the service preview. Reference optical transparency was not preserved."
+  },
+  "remaining": [
+    "Restore optical glass appearance on central disk in runtime material; current master is opaque.",
+    "Author compression/deformation states; preserve rigid optical lens while outer frame compresses.",
+    "Optimize mesh/textures to PRD mobile budget.",
+    "Measure scale/pivot/axes.",
+    "Real renderer and actual iPhone fidelity/performance test."
+  ],
+  "glassRegion": {
+    "description": "Central convex circular optical disk bounded by dark metal retaining ring, visible on front of source image; outer rectangular cage is deformable protective frame.",
+    "separateGlassPrimitivePresent": false,
+    "rendererAdjustmentRequired": true,
+    "note": "The circular front disk must remain rigid while the rectangular protective frame compresses. Identify the disk on actual geometry/UV before making a masked or separated runtime material; do not apply transparency or jelly scaling to the whole assembly.",
+    "materialEvidence": "Only one OPAQUE material for the entire mesh, no glTF transmission extension or separate lens primitive. Transparent/refraction response is not present in this master."
+  },
+  "cost": {
+    "estimateCredits": 30,
+    "estimateSource": "Meshy CLI0.4.0 make image --dry-run",
+    "consumedCredits": 30,
+    "batchBalanceBefore": 1050,
+    "batchBalanceAfter": 990,
+    "batchTaskCount": 2,
+    "batchConsumedCredits": 60
+  },
+  "projectFolderRelativeToRepository": "../very-disco-2026-3-meshy-work/salvage-lens/20260924_211821_salvage-lens_01a0d35a",
+  "masterStorage": {
+    "kind": "lossless-gzip-split-archive",
+    "manifest": "archive-manifest.json",
+    "rawFile": "salvage-lens-master.glb",
+    "rawFileIgnored": true,
+    "archiveBytes": 112768005,
+    "archiveSha256": "2b31e85642a0a749fddaac1344ffb55013e7661920a7cb194166fd60a64fac74",
+    "partCount": 5,
+    "rawFileAvailableInRepository": false,
+    "rawPreservedRelativeToRepository": "../very-disco-2026-3-meshy-work/salvage-lens/salvage-lens-master.glb",
+    "rawPreservationSha256Verified": true
+  }
+}

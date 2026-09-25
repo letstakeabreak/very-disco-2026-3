@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-24T22:08:00+09:00",
+  "status": "geometry-feasibility-verified-implementation-not-performed",
+  "source": {
+    "path": "public/assets/models/press-chamber.glb",
+    "sha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "node": "press-frame",
+    "coordinateSpace": "press asset root, meters; +Y up, +Z front; baked geometry, identity node transforms"
+  },
+  "measurement": {
+    "method": "Read actual runtime GLB vertices and cast a 1.25mm XY grid from +Z into press-frame; inspect Blender 5.1.1 front and oblique renders; add temporary opaque diagnostic plane without exporting any model",
+    "samplePitchM": 0.00125,
+    "apertureEnvelopeToleranceM": 0.00125,
+    "frontSurfaceThresholdZ": 0.018,
+    "apertureBoundsXY": [[-0.10125, 0.91], [0.13125, 1.01125]],
+    "apertureBoundingCenterXY": [0.015, 0.960625],
+    "apertureWidthM": 0.2325,
+    "apertureHeightM": 0.10125,
+    "approximateArc": {
+      "baselineCenterXY": [0.015, 0.91],
+      "radiusXM": 0.11625,
+      "radiusYM": 0.10125,
+      "note": "Generated mesh opening is approximately a half ellipse, not a mathematically exact semicircle"
+    },
+    "dialBackgroundFrontZApprox": -0.0023,
+    "bezelFrontZApproxRange": [0.023, 0.0262],
+    "existingNeedle": {
+      "isRealRaisedGeometry": true,
+      "sampledVertexCount": 37,
+      "boundsXYZ": [[0.01191279012709856, 0.9093543291091919, -0.0000781485578045249], [0.022018538787961006, 0.9751862287521362, 0.010919133201241493]],
+      "selection": "Runtime vertices x=[0.006,0.030], y=[0.9092,0.980], z=[-0.001,0.018] inside the aperture"
+    }
+  },
+  "recommendedCover": {
+    "geometry": "PlaneGeometry",
+    "widthM": 0.25,
+    "heightM": 0.115,
+    "positionXYZ": [0.015, 0.9635, 0.014],
+    "rotationXYZRadians": [0, 0, 0],
+    "normalXYZ": [0, 0, 1],
+    "boundsXY": [[-0.11, 0.906], [0.14, 1.021]],
+    "needleForwardClearanceM": 0.003080866798758507,
+    "approximateBezelBackwardClearanceM": 0.009,
+    "material": {
+      "opaque": true,
+      "depthTest": true,
+      "depthWrite": true,
+      "transparent": false,
+      "note": "The existing physical bezel masks rectangle corners. The full dial/old needle region must be opaque; do not use a transparent ring-only image. No depth-test override is needed."
+    },
+    "attachTo": "press asset root, not screen space and not press-ram",
+    "imageAspectRatio": 2.1739130434782608
+  },
+  "recommendedFunctionalNeedle": {
+    "status": "placement recommendation, not implemented or animation-tested",
+    "pivotXYZ": [0.017, 0.912, 0.0146],
+    "lengthM": 0.08,
+    "maximumWidthM": 0.003,
+    "zeroRotationDirection": "+Y",
+    "rotationAxis": "+Z",
+    "pressure0AngleDegrees": 80,
+    "pressure1AngleDegrees": -80,
+    "angleFormula": "rotation.z = (80 - 160 * clamp(snapshot.pressure01, 0, 1)) * Math.PI / 180",
+    "pivotCoverUVBottomOrigin": [0.508, 0.05217391304347826],
+    "pivotImageUVTopOrigin": [0.508, 0.9478260869565217],
+    "recommendedFaceContent": "Orthographic front-facing tick marks and dial background with no baked needle; place pivot near the bottom center using the recorded UV"
+  },
+  "verification": {
+    "originalNeedleCompletelyHiddenAtFront": true,
+    "originalNeedleCompletelyHiddenAtOblique": true,
+    "rectangleCornersHiddenByExistingBezel": true,
+    "bezelAndFourScrewsRemainVisible": true,
+    "modelAndRendererModified": false,
+    "generatedReplacementFaceCreated": false,
+    "functionalNeedleImplemented": false,
+    "actualWebGLOrDeviceTest": false,
+    "scratchEvidenceDirectory": "/var/folders/yr/5q2wwd3n70jb3xrklk47b9j00000gp/T/deep-press-gauge-ccklom9v",
+    "scratchEvidenceFiles": ["gauge-front.png", "gauge-oblique.png", "gauge-cover-front.png", "gauge-cover-oblique.png", "gauge-cover-production-angle.png"],
+    "evidenceRetention": "Temporary local inspection renders only; not committed because this task may write only the two calibration documents. They are not gameplay screenshots."
+  }
+}
