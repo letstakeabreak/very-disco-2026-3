@@ -4,6 +4,8 @@ import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
 import { canStore, cueText, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
+import scoreLicenseUrl from './fonts/S-Core-Dream-license.png?url';
+import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
@@ -19,6 +21,7 @@ function readBestScore(): number | null {
 
 /** App-owned DOM, pointer lifecycle, HUD, tutorial and result flow. No audio. */
 export function mountApp(root: HTMLElement): () => void {
+  root.style.setProperty('--workshop-ambient', `url("${import.meta.env.BASE_URL}assets/textures/workshop-v4.webp")`);
   root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 끌어서 물건을 돌려 볼 수 있어요."></canvas>
     <div class="screen">
       <header class="topbar" aria-label="현황"><div class="metric"><span>점수</span><strong id="score">0</strong></div><div class="metric"><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
@@ -32,13 +35,14 @@ export function mountApp(root: HTMLElement): () => void {
       <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
       <footer class="controls" aria-label="조작">
         <div class="specimen-choices" id="specimen-choices" role="group" aria-label="물건 고르기"></div>
-        <button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러서 압축</button>
-        <div class="secondary-controls"><button id="store" type="button">담기</button><button id="discard" type="button">버리기</button><button id="cash-out" type="button">마치기</button></div>
+        <div class="operation-row"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러서 압축</button>
+        <div class="secondary-controls"><button id="store" type="button">담기</button><button id="discard" type="button">버리기</button><button id="cash-out" type="button">마치기</button></div></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>`;
 
   let canvas = root.querySelector('canvas')!;
+  const screen = root.querySelector<HTMLElement>('.screen')!;
   const score = root.querySelector<HTMLElement>('#score')!;
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
   const specimenName = root.querySelector<HTMLElement>('#specimen-name')!;
@@ -123,6 +127,7 @@ export function mountApp(root: HTMLElement): () => void {
       selectSpecimen(firstId);
     }
     renderUi(game.snapshot());
+    resize();
     hold.focus({ preventScroll: true });
   }
 
@@ -148,12 +153,23 @@ export function mountApp(root: HTMLElement): () => void {
       const previousKey = overlayKey;
       overlayKey = key;
       overlay.hidden = !key;
-      overlay.className = `overlay${key === 'fatal' ? ' overlay-error' : ''}`;
+      overlay.className = `overlay overlay-${key}`;
+      screen.inert = Boolean(key);
+      screen.classList.toggle('awaiting-start', key === 'start');
       const content: Record<string, string> = {
-        start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">케이스는 딱 1L</h2><p>건져 올린 물건을 눌러서 작게 만들고, 케이스에 담아요.</p><p>세게 누를수록 작아지지만, 물건마다 버티는 힘이 달라요. 너무 누르면 부서져요!</p><button data-action="start" class="dialog-primary" type="button">시작하기</button></section>`,
-        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><p>준비되면 이어서 해요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
+        start: `<div class="mission-identity"><p class="eyebrow">심해 회수반 · 마지막 작업</p><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
+        <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="mission-story">
+          <h2 id="dialog-title">가라앉은 연구소에,<br>아직 남은 것들.</h2>
+          <p id="mission-story">당신은 마지막 회수 담당자예요.<br>부품과 연구 기록을 수면 위로 보내 주세요.</p>
+          <div class="mission-limit"><span>가져갈 수 있는 공간</span><strong>1.00<small>L</small></strong></div>
+          <p class="mission-rule">겉은 줄이고, 안의 가치는 지켜요.<br>너무 세게 누르면 소중한 것까지 부서져요.</p>
+          <ol class="mission-steps" aria-label="작업 순서"><li><span>01</span>돌려 보고</li><li><span>02</span>눌러 줄이고</li><li><span>03</span>담아 올려요</li></ol>
+          <button data-action="start" class="dialog-primary" type="button">회수 시작하기 <span aria-hidden="true">↗</span></button>
+          <details class="font-credits"><summary>글꼴 출처</summary><p>에스코어드림 · S-Core / 리디바탕 · 리디주식회사</p><a href="${scoreLicenseUrl}" target="_blank" rel="noopener">에스코어드림 이용 조건</a><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a></details>
+        </section>`,
+        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">심해 회수반 · 작업 대기</p><h2 id="dialog-title">잠깐 멈췄어요</h2><p>아직 아래에 남은 것들이 있어요.<br>준비되면 이어서 회수해요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">지금 점수로 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터 다시</button></section>`,
-        complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">작업 끝!</h2><p class="dialog-summary" id="dialog-summary"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">회수 작업을 마쳤어요</h2><p id="recovery-note"></p><p class="dialog-summary" id="dialog-summary"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
@@ -161,6 +177,11 @@ export function mountApp(root: HTMLElement): () => void {
       else if (previousKey === 'paused' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
       else if (previousKey === 'fatal' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
     }
+    const recoveryNote = overlay.querySelector<HTMLElement>('#recovery-note');
+    if (recoveryNote) recoveryNote.textContent = snapshot.storedSpecimenIds.includes('salvage-cassette')
+      ? '연구 기록이 수면 위로 돌아가요. 작은 케이스에 남길 것을 잘 골랐어요.'
+      : snapshot.storedSpecimenIds.length > 0 ? '건져 올린 부품을 수면 위로 보내요. 다음에는 무엇을 더 담을 수 있을까요?'
+      : '이번에는 빈 케이스예요. 다음 작업에서는 물건을 살펴보고, 조금씩 눌러 봐요.';
     const summary = overlay.querySelector<HTMLElement>('#dialog-summary');
     if (summary) summary.textContent = resultSummary(snapshot);
     const copy = overlay.querySelector<HTMLElement>('#dialog-copy');
@@ -199,6 +220,8 @@ export function mountApp(root: HTMLElement): () => void {
     const pressure = Math.round(snapshot.pressure01 * 100);
     pressureValue.textContent = `${pressure}%`;
     pressureBar.style.transform = `scaleX(${snapshot.pressure01})`;
+    statusCard.style.setProperty('--light-x', `${14 + snapshot.pressure01 * 72}%`);
+    hold.classList.toggle('pressing', snapshot.phase === 'compressing');
     resultValue.textContent = specimenResult(snapshot);
     tutorial.hidden = !started || tutorialComplete || snapshot.currentSpecimen?.id !== tutorialSpecimenId || snapshot.phase === 'complete' || snapshot.phase === 'failed';
     tutorial.textContent = tutorialText(tutorialStep);
@@ -223,7 +246,21 @@ export function mountApp(root: HTMLElement): () => void {
   }
 
   function resize(): void {
-    renderer.resize({ width: root.clientWidth, height: root.clientHeight || window.innerHeight, dpr: window.devicePixelRatio });
+    const width = root.clientWidth;
+    let height = root.clientHeight || window.innerHeight;
+    let top = 0;
+    if (started && height < 700 && width < height) {
+      // The fixed 2:3 workshop's gauge and case occupy its central 14–88%.
+      // Fit that working area between HUD and controls on short portrait screens.
+      const rootTop = root.getBoundingClientRect().top;
+      const start = statusCard.getBoundingClientRect().bottom - rootTop + 10;
+      const end = root.querySelector<HTMLElement>('.controls')!.getBoundingClientRect().top - rootTop - 10;
+      height = Math.max(1, Math.min(width * 1.5, (end - start) / .74));
+      top = start - height * .14;
+    }
+    canvas.style.top = `${top}px`;
+    canvas.style.height = `${height}px`;
+    renderer.resize({ width, height, dpr: window.devicePixelRatio });
   }
 
   function retryRenderer(): void {
@@ -242,6 +279,8 @@ export function mountApp(root: HTMLElement): () => void {
 
   const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(resize);
   observer?.observe(root);
+  observer?.observe(statusCard);
+  observer?.observe(root.querySelector<HTMLElement>('.controls')!);
   window.addEventListener('resize', resize, options);
   resize();
 
@@ -308,5 +347,5 @@ export function mountApp(root: HTMLElement): () => void {
   };
   frameId = requestAnimationFrame(frame);
   renderUi(game.snapshot());
-  return () => { input.clear(); abort.abort(); observer?.disconnect(); cancelAnimationFrame(frameId); runtime.dispose(); root.replaceChildren(); };
+  return () => { input.clear(); abort.abort(); observer?.disconnect(); cancelAnimationFrame(frameId); runtime.dispose(); root.replaceChildren(); root.style.removeProperty('--workshop-ambient'); };
 }

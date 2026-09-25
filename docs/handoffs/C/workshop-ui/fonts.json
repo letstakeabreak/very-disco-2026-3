@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-09-25T10:37:45.416693+00:00",
+  "selection": {
+    "S-Core Dream": "HUD, labels, controls, English wordmark; original weights 400 and 600",
+    "RIDI Batang": "Korean story and modal headings; original regular"
+  },
+  "discovery": [
+    "https://noonnu.cc/font_page/223",
+    "https://noonnu.cc/font_page/324"
+  ],
+  "upstream": [
+    {
+      "family": "S-Core Dream",
+      "page": "https://s-core.co.kr/company/font2/",
+      "download": "https://s-core.co.kr/wp-content/uploads/2020/03/S-Core_Dream_OTF.zip",
+      "archiveSha256": "ab2d18f0f142e46ba0f4c7c2890ea4f2e604d85256781c28953136205e1d0e5e",
+      "note": "Original OTF and license PNG extracted byte-for-byte. No conversion, subsetting or editing."
+    },
+    {
+      "family": "RIDI Batang",
+      "page": "https://ridicorp.com/ridibatang/",
+      "download": "https://ridicorp.com/wp-content/themes/ridicorp/css/font/RIDIBatang.otf",
+      "note": "Original OTF, no conversion or subsetting. RIDI copyright notice and SIL OFL 1.1 text included.",
+      "licenseText": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/OFL-1.1.txt"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/app/fonts/SCDream4.otf",
+      "bytes": 729724,
+      "sha256": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4"
+    },
+    {
+      "path": "src/app/fonts/SCDream6.otf",
+      "bytes": 743480,
+      "sha256": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a"
+    },
+    {
+      "path": "src/app/fonts/RIDIBatang.otf",
+      "bytes": 1453448,
+      "sha256": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54"
+    },
+    {
+      "path": "src/app/fonts/S-Core-Dream-license.png",
+      "bytes": 48516,
+      "sha256": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257"
+    },
+    {
+      "path": "src/app/fonts/RIDIBatang-license.txt",
+      "bytes": 4616,
+      "sha256": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453"
+    }
+  ],
+  "runtime": "All fonts and license files bundled by Vite from src/app/fonts. No runtime font CDN. User expressly requested Noonnu fonts, an exception to ImageGen visual-asset-only preference."
+}
