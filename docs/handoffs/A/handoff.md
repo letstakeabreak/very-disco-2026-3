@@ -85,3 +85,11 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 - Compare at merge commit `8b8e3bb`: `role/a-core` is 26 commits ahead / 0 behind `integration/v1`; its diff contains only A-owned paths: `docs/handoffs/A/handoff.md`, `src/content/index.ts`, `src/core/index.ts`, `tests/core/content.test.ts`, and `tests/core/game.test.ts`. GitHub reports the PR open, non-draft, and mergeable; no reviews, inline threads, or commit statuses were reported. This handoff refresh itself adds one documentation-only commit, so recheck the current count before merging.
 - The source tree is still the same code that passed the post-B candidate check: A code from `e7a0d77`, B at `fa622b7`, and C `f42f919`. Node.js 26.8.2 / npm 11.19.1 `npm run check` passed 14 test files / 81 tests and build. No code changed in the branch-sync commit.
 - C's PR remains an independent contribution; this A sync does not rewrite or modify C's branch. The final release gates are still open: integrated iPhone Safari and real context-loss validation, performance and initial-GPU issue disposition, stored-damage continuity, and explicit agreement on any shared-contract migration.
+
+
+## Store clears press pressure (2026-09-25)
+
+- Assigned by the user to this session (authenticated GitHub account `letstakeabreak`, working as A for this fix). Branch `role/a-core-store-pressure` from `integration/v1` at `6045b4e7`.
+- Bug: after a successful `store`, `currentSpecimen` became null but `pressure01` kept the last committed stroke. The HUD and B's gauge needle kept showing e.g. 70% over an empty press until the next select. `discard` already reset it.
+- Fix: `store` sets `pressure01 = 0` when the lot is banked (both `stored` and last-item `complete`). Capacity-exceeded failure and cash-out keep the specimen in the press, so their pressure is unchanged.
+- Tests: the storage and last-item completion cases now assert `pressure01: 0`. Both fail without the fix and pass with it. `npm run check` and `npm run ownership -- --role A --base origin/integration/v1` are recorded in the PR.

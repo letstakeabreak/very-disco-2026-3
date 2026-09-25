@@ -149,6 +149,8 @@ export function createGame(input: GameConfig): Game {
         removeRemaining(stored.id);
         storedSpecimenIds = [...storedSpecimenIds, stored.id];
         currentSpecimen = null;
+        // The press is empty once the lot is banked, as after a discard.
+        pressure01 = 0;
         events.push({ type: 'stored', tick, specimenId: stored.id, scoreDelta });
         if (remainingSpecimenIds.length === 0) finish();
         else transition('stored');
