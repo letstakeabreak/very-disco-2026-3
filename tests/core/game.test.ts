@@ -210,7 +210,7 @@ describe('DEEP PRESS authored game rules', () => {
     expect(game.drainEvents().filter((event) => event.type === 'completed')).toHaveLength(1);
   });
 
-it('restarts repeatedly from active phases without leaking prior-round state or events', () => {
+  it('restarts repeatedly from active phases without leaking prior-round state or events', () => {
     const config = getGameConfig();
     const game = createGame(config);
     for (const id of ['salvage-core', 'salvage-lens', 'salvage-cassette'] as const) {
@@ -223,5 +223,4 @@ it('restarts repeatedly from active phases without leaking prior-round state or 
       expect(game.drainEvents()).toEqual([{ type: 'phase-changed', tick: 0, from: 'compressing', to: 'idle' }]);
     }
   });
-});
 });
