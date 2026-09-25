@@ -14,7 +14,7 @@ import { disposeObjects } from './resources';
 import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state';
 import { animateRam, PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from './ram';
 import { ASSET_REGISTRY } from './assets';
-import { createCaseDepth } from './case-depth';
+import { createCaseDepth, createWorktopShadowGeometry } from './case-depth';
 import { prepareCassette } from './cassette';
 
 const STAGE_ASPECT = 2 / 3;
@@ -51,6 +51,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   const roots: Object3D[] = [];
   const props = new Map<SalvageId, Prop>();
   const storedLooks = new Map<SalvageId, { compression: number; damage: number }>();
+  const shadowState: number[] = [];
   const depths: { dispose(): void }[] = [];
   let press: Object3D | null = null;
   let ram: ReturnType<typeof animateRam> | null = null;
@@ -113,6 +114,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   key.position.set(-1.8, 2.8, 2.0);
   key.target.position.set(0, 0.45, 0);
   key.castShadow = true;
+  key.shadow.autoUpdate = false;
   key.shadow.mapSize.set(1024, 1024);
   key.shadow.camera.left = -1.3; key.shadow.camera.right = 1.3;
   key.shadow.camera.top = 1.8; key.shadow.camera.bottom = -1.0;
@@ -124,7 +126,8 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   rim.position.set(1.2, 1.7, -1.2); scene.add(rim);
   const fill = new DirectionalLight('#abc5ca', 0.3);
   fill.position.set(0.2, 1.8, 3.5); scene.add(fill);
-  const shadow = new Mesh(new PlaneGeometry(5, 5), new ShadowMaterial({ opacity: 0.52, depthWrite: false }));
+  const shadow = new Mesh(createWorktopShadowGeometry(onTable), new ShadowMaterial({ opacity: 0.52, depthWrite: false }));
+  shadow.name = 'worktop-shadow';
   shadow.rotation.x = -Math.PI / 2; shadow.position.y = WORKTOP_Y + 0.001; shadow.receiveShadow = true;
   scene.add(shadow); roots.push(shadow);
   const bedShadow = new Mesh(new PlaneGeometry(0.30, 0.27), new ShadowMaterial({ opacity: 0.4, depthWrite: false }));
@@ -341,6 +344,32 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     hasSynced = true;
   }
 
+  function refreshShadows(): void {
+    let cursor = 0;
+    let changed = false;
+    const track = (value: number): void => {
+      // Compare the values the GPU receives, including custom vertex uniforms.
+      const current = Math.fround(value);
+      if (shadowState[cursor] !== current) { shadowState[cursor] = current; changed = true; }
+      cursor += 1;
+    };
+    const transform = (root: Object3D): void => {
+      root.updateMatrix();
+      track(root.visible ? 1 : 0);
+      for (const value of root.matrix.elements) track(value);
+    };
+    if (press) transform(press);
+    track(ram?.travel.value ?? 0);
+    for (const id of SPECIMEN_IDS) {
+      const prop = props.get(id)!;
+      transform(prop.root);
+      track(prop.compression); track(prop.damage);
+    }
+    // The light, stage parent and internal mesh transforms are fixed. The gauge
+    // does not cast a shadow. Resizing only changes the camera viewport.
+    key.shadow.needsUpdate = changed;
+  }
+
   return {
     resize(size) {
       if (disposed || failed || !Number.isFinite(size.width) || !Number.isFinite(size.height) || size.width <= 0 || size.height <= 0) return;
@@ -362,6 +391,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         if (plate) gpu.render(background, flatCamera);
         if (ready) {
           sync(snapshot, dt);
+          refreshShadows();
           gpu.clearDepth();
           gpu.setViewport((width - stageWidth) / 2, (height - stageHeight) / 2, stageWidth, stageHeight);
           gpu.render(scene, camera);

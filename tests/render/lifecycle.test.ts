@@ -100,6 +100,57 @@ beforeEach(() => {
 });
 
 describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles)', () => {
+  it('reuses settled shadows but refreshes on visible rotation, damage, compression and placement changes', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); await finishLoading();
+    const shadow = (): DirectionalLight['shadow'] => {
+      const [scene] = lastStageDraw();
+      return (scene.children.find(object => object instanceof DirectionalLight && object.castShadow) as DirectionalLight).shadow;
+    };
+    const unchanged = SNAPSHOT_FIXTURES.paused;
+    renderer.render(unchanged, 0);
+    expect(shadow().autoUpdate).toBe(false);
+    expect(shadow().needsUpdate).toBe(true);
+    renderer.render({ ...unchanged, tick: 10, elapsedMs: 200, score: 999 }, 0);
+    expect(shadow().needsUpdate).toBe(false);
+    const rotated = { ...unchanged, inspectionYawRad: .5 };
+    renderer.render(rotated, 0); expect(shadow().needsUpdate).toBe(true);
+    renderer.render(rotated, 0); expect(shadow().needsUpdate).toBe(false);
+    const damaged = { ...rotated, currentSpecimen: { ...rotated.currentSpecimen!, integrity01: .5 } };
+    renderer.render(damaged, 0); expect(shadow().needsUpdate).toBe(true);
+    renderer.render(damaged, 0); expect(shadow().needsUpdate).toBe(false);
+    const compressed = { ...damaged, currentSpecimen: { ...damaged.currentSpecimen, compression01: .4 } };
+    renderer.render(compressed, 0); expect(shadow().needsUpdate).toBe(true);
+    renderer.render(compressed, 0); expect(shadow().needsUpdate).toBe(false);
+    for (const snapshot of [SNAPSHOT_FIXTURES.stored, SNAPSHOT_FIXTURES.complete, SNAPSHOT_FIXTURES.idle]) {
+      renderer.render(snapshot, 0); expect(shadow().needsUpdate).toBe(true);
+      renderer.render(snapshot, 0); expect(shadow().needsUpdate).toBe(false);
+    }
+    renderer.resize({ width: 844, height: 390, dpr: 2 });
+    renderer.render(SNAPSHOT_FIXTURES.idle, 0); expect(shadow().needsUpdate).toBe(false);
+    renderer.dispose();
+  });
+
+  it('refreshes shadows through ram approach and easing, and for explicit entity transforms', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); await finishLoading();
+    const requested = (): boolean => {
+      const [scene] = lastStageDraw();
+      return (scene.children.find(object => object instanceof DirectionalLight && object.castShadow) as DirectionalLight).shadow.needsUpdate;
+    };
+    renderer.render(SNAPSHOT_FIXTURES.inspecting, 0);
+    for (let frame = 0; frame < 12; frame += 1) {
+      renderer.render(SNAPSHOT_FIXTURES.compressing, 16); expect(requested()).toBe(true);
+    }
+    renderer.render(SNAPSHOT_FIXTURES.paused, 0); expect(requested()).toBe(true);
+    renderer.render(SNAPSHOT_FIXTURES.paused, 0); expect(requested()).toBe(false);
+    for (const assetId of ['press-chamber', 'salvage-core'] as const) {
+      const moved: GameSnapshot = { ...SNAPSHOT_FIXTURES.paused, entities: [{ id: assetId, assetId,
+        position: { x: .1, y: .2, z: -.1 }, rotationRad: { x: .1, y: .2, z: .3 }, scale: { x: 1.1, y: .9, z: 1.2 } }] };
+      renderer.render(moved, 0); expect(requested()).toBe(true);
+      renderer.render(moved, 0); expect(requested()).toBe(false);
+    }
+    renderer.dispose();
+  });
+
   it('keeps cassette optical transmission while snapshot damage is handled by its fracture shader', async () => {
     const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() });
     const cassette = model(); cassette.mesh.name = 'salvage-cassette';
@@ -471,10 +522,26 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
       expect(aperture.hit === undefined || aperture.hit > aperture.distance + 0.005).toBe(true);
     }
     expect(sample(300, 1137).hit).toBeUndefined();
+    const worktop = scene.getObjectByName('worktop-shadow') as Mesh;
+    const contact = scene.getObjectByName('case-contact-shadow') as Mesh;
+    // The global table plane must not cast a floating shadow across any cavity.
+    for (const x of [534, 616, 694, 855]) {
+      sample(x, 1137);
+      expect(ray.intersectObject(worktop)).toHaveLength(0);
+    }
+    sample(300, 1137); expect(ray.intersectObject(worktop)).toHaveLength(1);
+    // The new receiver stays on the same registered mouth and recessed walls.
+    for (const x of [534, 616, 694, 855]) {
+      const { hit } = sample(x, 1137);
+      expect(ray.intersectObject(contact)[0]?.distance).toBe(hit);
+    }
     const releaseGeometry = vi.spyOn(depth.geometry, 'dispose');
     const releaseMaterial = vi.spyOn(depth.material as MeshBasicMaterial, 'dispose');
+    const releaseShadow = vi.spyOn(contact.material as ShadowMaterial, 'dispose');
+    const releaseWorktop = vi.spyOn(worktop.geometry, 'dispose');
     renderer.dispose(); renderer.dispose();
     expect(releaseGeometry).toHaveBeenCalledTimes(1); expect(releaseMaterial).toHaveBeenCalledTimes(1);
+    expect(releaseShadow).toHaveBeenCalledTimes(1); expect(releaseWorktop).toHaveBeenCalledTimes(1);
   });
 
   it('passes worktop clipping into real Three shadow materials and releases ram and cached frame depth materials', async () => {
@@ -483,7 +550,7 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     const [scene, camera] = lastStageDraw(); scene.updateMatrixWorld(true);
     const receivers: Mesh[] = [];
     scene.traverse(object => { if (object instanceof Mesh && object.material instanceof ShadowMaterial) receivers.push(object); });
-    expect(receivers).toHaveLength(2);
+    expect(receivers).toHaveLength(3);
     for (const receiver of receivers) expect(receiver.receiveShadow).toBe(true);
     const press = [...models.entries()].find(([url]) => url.includes('press-chamber'))![1];
     const ram = press.mesh; const frame = press.scene.getObjectByName('press-frame-test') as Mesh<BoxGeometry, MeshStandardMaterial>;

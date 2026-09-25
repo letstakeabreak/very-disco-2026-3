@@ -31,14 +31,24 @@ export function animateRam(root: Object3D): { travel: { value: number }; depthMa
     shader.uniforms['ramTravel'] = travel;
     shader.vertexShader = 'uniform float ramTravel;\n' + shader.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\ntransformed.y -= ramTravel * (1.0 - smoothstep(${PRESS_ANCHORS.flangeY.toFixed(8)}, ${PRESS_ANCHORS.topY.toFixed(8)}, position.y));`);
   };
+  const patchNormal = (shader: WebGLProgramParametersWithUniforms): void => {
+    shader.vertexShader = shader.vertexShader.replace('#include <beginnormal_vertex>', `#include <beginnormal_vertex>
+      float sleeveT = clamp((position.y-${PRESS_ANCHORS.flangeY.toFixed(8)})/${(PRESS_ANCHORS.topY - PRESS_ANCHORS.flangeY).toFixed(8)},0.0,1.0);
+      float sleeveSlope = 1.0+ramTravel*6.0*sleeveT*(1.0-sleeveT)/${(PRESS_ANCHORS.topY - PRESS_ANCHORS.flangeY).toFixed(8)};
+      objectNormal.y /= sleeveSlope;
+      #ifdef USE_TANGENT
+        objectTangent.y *= sleeveSlope;
+      #endif
+    `);
+  };
   root.traverse((object) => {
     if (!(object instanceof Mesh) || !object.name.startsWith('press-ram')) return;
     const materials = Array.isArray(object.material) ? object.material : [object.material];
     // The two press parts share a source material; only the ram gets this shader.
     object.material = materials.map((original) => {
       const material = original.clone() as MeshStandardMaterial;
-      material.onBeforeCompile = patch;
-      material.customProgramCacheKey = () => 'deep-press-ram-v1';
+      material.onBeforeCompile = shader => { patch(shader); patchNormal(shader); };
+      material.customProgramCacheKey = () => 'deep-press-ram-v2';
       return material;
     });
     if (object.material.length === 1) object.material = object.material[0]!;
