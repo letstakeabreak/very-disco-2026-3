@@ -421,18 +421,45 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     renderer.dispose();
   });
 
-  it('does not reuse the previous run stored look after seed or tick reset', async () => {
+  it('restores a stored look from snapshot state on the first frame of a fresh renderer', async () => {
     const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
-    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1]; const compression = uniform(core.mesh, 'pressCompression');
-    const pressed: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.settling, tick: 100, pressure01: 0.9 });
-    renderer.render(pressed, 100);
-    renderer.render({ ...SNAPSHOT_FIXTURES.stored, tick: 101 }, 100); expect(compression.value).toBeCloseTo(0.9);
-    // A synthetic stored fixture has no committed-shape history in a new run.
-    for (let i = 0; i < 20; i += 1) renderer.render({ ...SNAPSHOT_FIXTURES.stored, seed: pressed.seed + 1, tick: 0 }, 100);
-    expect(compression.value).toBeCloseTo(0.55, 5);
-    renderer.render({ ...pressed, seed: pressed.seed + 1 }, 100);
-    for (let i = 0; i < 20; i += 1) renderer.render({ ...SNAPSHOT_FIXTURES.stored, seed: pressed.seed + 1, tick: 0 }, 100);
-    expect(compression.value).toBeCloseTo(0.55, 5); renderer.dispose();
+    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
+    const compression = uniform(core.mesh, 'pressCompression'); const damage = uniform(core.mesh, 'pressDamage');
+    const stored = (compression01: number, integrity01: number): GameSnapshot => deepFreeze({ ...SNAPSHOT_FIXTURES.stored,
+      storedSpecimens: [{ ...SNAPSHOT_FIXTURES.stored.storedSpecimens[0]!, compression01, integrity01 }] });
+    // No press history: this is the GPU-retry path that used to show a fixed fallback.
+    renderer.render(stored(0.9, 0.4), 0);
+    expect(compression.value).toBeCloseTo(0.9); expect(damage.value).toBeCloseTo(0.6);
+    for (let i = 0; i < 20; i += 1) renderer.render(stored(0.3, 1), 100);
+    expect(compression.value).toBeCloseTo(0.3, 3); expect(damage.value).toBeCloseTo(0, 3);
+    renderer.dispose();
+  });
+
+  it('warms the dial past the safe pressure and trembles needle and lot only while pressing', async () => {
+    const renderer = createRenderer({ canvas: canvas(), onFatal: vi.fn() }); const models = await finishLoading();
+    const core = [...models.entries()].find(([url]) => url.includes('salvage-core'))![1];
+    const scene = (): Object3D => lastStageDraw()[0];
+    const needle = (): number => scene().getObjectByName('pressure-needle')!.rotation.z;
+    const face = (): MeshBasicMaterial => (scene().getObjectByName('pressure-dial') as Mesh).material as MeshBasicMaterial;
+    const base = (80 - 160 * 0.9) * Math.PI / 180;
+    const pressing: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.compressing, pressure01: 0.9, stress01: 0 });
+    renderer.render(pressing, 0); renderer.render(pressing, 16);
+    expect(needle()).toBeCloseTo(base, 9); expect(face().color.g).toBe(1);
+    expect(core.scene.position.x).toBeCloseTo(PRESS_ANCHORS.x, 9);
+    const strained = { ...pressing, stress01: 1 };
+    const angles: number[] = []; const offsets: number[] = [];
+    for (let i = 0; i < 30; i += 1) {
+      renderer.render(strained, 16); angles.push(needle() - base); offsets.push(core.scene.position.x - PRESS_ANCHORS.x);
+    }
+    expect(Math.max(...angles.map(Math.abs))).toBeGreaterThan(0.01);
+    expect(Math.max(...angles.map(Math.abs))).toBeLessThanOrEqual(4 * Math.PI / 180 + 1e-9);
+    expect(Math.max(...offsets.map(Math.abs))).toBeGreaterThan(0.0005);
+    expect(Math.max(...offsets.map(Math.abs))).toBeLessThanOrEqual(0.0041);
+    expect(face().color.g).toBeCloseTo(0.55);
+    renderer.render({ ...strained, phase: 'paused', resumePhase: 'inspecting' }, 16);
+    expect(needle()).toBeCloseTo(base, 9); expect(face().color.g).toBeCloseTo(0.55);
+    expect(core.scene.position.x).toBeCloseTo(PRESS_ANCHORS.x, 9);
+    renderer.dispose();
   });
 
   it('keeps contact in press-local meters when the press or active specimen entity transforms', async () => {
@@ -462,7 +489,8 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     const committed: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.paused, tick: 50,
       pressure01: 0.95, currentSpecimen: { ...SNAPSHOT_FIXTURES.inspecting.currentSpecimen!, compression01: 0.7, integrity01: 0.65 } });
     renderer.render(committed, 0);
-    const stored: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.stored, tick: 51 });
+    const stored: GameSnapshot = deepFreeze({ ...SNAPSHOT_FIXTURES.stored, tick: 51,
+      storedSpecimens: [{ ...SNAPSHOT_FIXTURES.stored.storedSpecimens[0]!, compression01: 0.7, integrity01: 0.65 }] });
     renderer.render(stored, 0);
     const storedRotation = core.scene.quaternion.clone();
     expect(compression.value).toBeCloseTo(0.7); expect(damage.value).toBeCloseTo(0.35);

@@ -14,7 +14,11 @@ export function specimenVisuals(snapshot: GameSnapshot): readonly SpecimenVisual
       return { id, location: 'press', index: 0, compression: pressing ? snapshot.pressure01 : current.compression01, damage: 1 - current.integrity01, yaw: snapshot.inspectionYawRad };
     }
     const storedIndex = snapshot.storedSpecimenIds.indexOf(id);
-    if (storedIndex >= 0) return { id, location: 'case', index: storedIndex, compression: 0.55, damage: 0, yaw: 0 };
+    if (storedIndex >= 0) {
+      // Contract 1.1 carries each stored lot's committed state, so any renderer can restore it.
+      const stored = snapshot.storedSpecimens.find((item) => item.id === id);
+      return { id, location: 'case', index: storedIndex, compression: stored?.compression01 ?? 0, damage: stored ? 1 - stored.integrity01 : 0, yaw: 0 };
+    }
     return { id, location: trayIds.includes(id) ? 'tray' : 'hidden', index: Math.max(0, trayIds.indexOf(id)), compression: 0, damage: 0, yaw: 0 };
   });
 }
