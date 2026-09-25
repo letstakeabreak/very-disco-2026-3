@@ -75,10 +75,12 @@ export function createInputController({ getSnapshot, dispatch, onInspectionMoved
   /** Cancel capture safely: the game pauses, so a stale pointer-up cannot release the press. */
   function cancel(pointerId?: number): boolean {
     if (activePointerId === null || (pointerId !== undefined && activePointerId !== pointerId)) return false;
+    // A hold the core already ended (automatic settling at full pressure) has no
+    // uncommitted stroke left; pausing would only cover its result.
+    const endedPress = gesture === 'press' && getSnapshot().phase !== 'compressing';
     activePointerId = null;
     gesture = null;
-    const phase = getSnapshot().phase;
-    if (phase !== 'idle' && phase !== 'paused' && phase !== 'complete') dispatch({ type: 'pause' });
+    if (!endedPress && isGameplayPhase(getSnapshot().phase)) dispatch({ type: 'pause' });
     return true;
   }
 
