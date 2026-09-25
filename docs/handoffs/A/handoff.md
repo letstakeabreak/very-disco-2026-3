@@ -2,7 +2,7 @@
 
 Date: 2026-09-25 (Asia/Seoul)
 Contract: 1.0.0 · PRD: 1.0.1 (`executionReady: true`)
-Role assignment: the user explicitly asked me to continue A's work. The connected GitHub identity is `magic3ightball` (role C); this mismatch is recorded because account identity and requested role differ.
+Role assignment: the user explicitly asked me to continue A's work. GitHub contributor metadata attributes commits to the authenticated contributor.
 Contribution base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`.
 
 ## A implementation
@@ -49,7 +49,6 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 - Integrate B and C contributions with A, run the connected game/render/app loop, and prepare the final integration candidate only after role contributions are reviewable.
 - Verify the actual press, storage and failure presentation against core snapshots; exercise input cancel/resume and renderer recovery in an integrated browser and on an iPhone Safari device.
 - Resolve or explicitly accept B's GPU startup failure and 60 fps gap; rerun the pinned Node/npm toolchain when available.
-- Current account-role mismatch means the A work was prepared under a C-authenticated GitHub identity; keep role and authorship attribution explicit during review.
 
 ## Latest PR audit and integrated candidate (2026-09-25)
 
@@ -59,3 +58,13 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 - In the integrated browser candidate, the renderer reported ready on a 2560×1440 canvas; browser warning/error logs were empty. Beyond the initial 2% smoke, the lens reached 70% pressure through repeated press/release strokes. Pause/resume retained 70%; storing it yielded 433 points and 0.61 L remaining. The cassette then reached 100% and displayed the SHIFT ENDED failure dialog; the previous score remained 433, and the summary showed 1 stored / 0.39 L used. This verifies a connected desktop browser success and failure path, not iPhone Safari or GPU context-loss recovery.
 - The stored-state mismatch is confirmed in B's src/render/visual-state.ts: every stored item still renders from compression .55 and damage 0, because contract 1.0.0 only carries stored IDs. PRD damage continuity therefore remains incomplete. The proposed 1.1.0 storedSpecimens change remains pending explicit approval and A/B/C notice; no shared contract files have been edited.
 - Next: resolve why PR #7 metadata reports mergeable: false despite an ahead-only compare; obtain approval and notify A/B/C before shared contract migration; update B's case renderer to consume stored specimen state; then verify failure presentation, press cancel/resume, GPU recovery, and the integrated game on iPhone Safari. Do not mark the overall project complete yet.
+
+
+## Post-B-merge integration recheck (2026-09-25)
+
+- During the latest audit, B PR #1 had been merged by repository activity into `integration/v1` at merge commit `fa622b70566cdacc37cc419552b20ae62b8d61ed` (not to `main`). It closed as merged at 2026-09-25 04:20:54 UTC. This advanced `integration/v1` from `a1671d7` to `fa622b7`; the previous PR #7 and #6 comparisons against the old integration base are stale.
+- Current compare snapshots: A PR #7 head `e7a0d77594cb2a7b48d98531f309ae9096886e65` is 23 ahead / 21 behind `integration/v1`; C PR #6 head `f42f919b1284d7604d2aac217c43702338563bac` is 8 ahead / 21 behind. GitHub's PR summary and compare API briefly disagreed on mergeable; use the fresh compare as the source for ahead/behind. The remote branches have not been synchronized to the new base.
+- Rebuilt a disposable local candidate from the new integration base `fa622b7`, then merged A `e7a0d77` and C `f42f919`. Both merges were clean. Exact pinned Node.js 26.8.2 / npm 11.19.1 `npm run check` passed: 23 frozen bootstrap files, TypeScript, 19-file module boundary lint, 14 test files / 81 tests, and production build. Vite still reports a 688.94 kB JS chunk over its 500 kB advisory.
+- This proves the current merged-B + A + C source set builds and passes automated checks in a disposable local candidate. It does not provide iPhone Safari evidence, actual WebGL context-loss recovery, a 60 fps pass, or stored-item damage continuity. No candidate was pushed and no PR was merged by this audit.
+- Repository state differs from earlier notes: no final PR to `main` appears in the latest listing. The base branch `integration/v1` itself compares as 33 ahead / 3 behind `main`; reconcile that history before preparing the final integration PR. The pending contract 1.1.0 migration remains unapproved; do not change shared contract files without explicit approval and notice to A/B/C.
+- User authorized eventual merge once everything is done. Keep the final integration PR and merge gated on remaining product/device acceptance and a fresh review of the now-advanced base; A PR #7 and C PR #6 themselves are still role contributions.
