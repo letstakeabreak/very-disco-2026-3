@@ -209,4 +209,19 @@ describe('DEEP PRESS authored game rules', () => {
     expect(game.snapshot()).toMatchObject({ phase: 'complete', remainingSpecimenIds: [], storedSpecimenIds: [], score: 0, volumeUsed: 0 });
     expect(game.drainEvents().filter((event) => event.type === 'completed')).toHaveLength(1);
   });
+
+it('restarts repeatedly from active phases without leaking prior-round state or events', () => {
+    const config = getGameConfig();
+    const game = createGame(config);
+    for (const id of ['salvage-core', 'salvage-lens', 'salvage-cassette'] as const) {
+      game.dispatch({ type: 'select', specimenId: id });
+      game.dispatch({ type: 'press-start' });
+      game.step(100);
+      expect(game.snapshot().phase).toBe('compressing');
+      game.dispatch({ type: 'restart' });
+      expect(game.snapshot()).toEqual(createGame(config).snapshot());
+      expect(game.drainEvents()).toEqual([{ type: 'phase-changed', tick: 0, from: 'compressing', to: 'idle' }]);
+    }
+  });
+});
 });
