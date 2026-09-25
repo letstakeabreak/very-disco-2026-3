@@ -3,27 +3,27 @@ import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
-import { canStore, discardLabel, failureText, phaseLabel, remainingCapacity, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, remainingCapacity, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
 
 /** App-owned DOM, pointer lifecycle, HUD, tutorial and result flow. No audio. */
 export function mountApp(root: HTMLElement): () => void {
-  root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 회수물을 끌어 살펴볼 수 있습니다."></canvas>
+  root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 끌어서 물건을 돌려 볼 수 있어요."></canvas>
     <div class="screen">
-      <header class="topbar" aria-label="회수 현황"><div class="metric"><span>확보 점수</span><strong id="score">0</strong></div><div class="metric"><span>케이스 여유</span><strong><span id="capacity">1.00</span><small>L</small></strong></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
-      <section class="status-card" aria-label="현재 회수물과 압력">
-        <div class="status-head"><h2 id="specimen-name">회수물을 선택하세요</h2><span class="phase-pill" id="phase">대기 중</span></div>
+      <header class="topbar" aria-label="현황"><div class="metric"><span>점수</span><strong id="score">0</strong></div><div class="metric"><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
+      <section class="status-card" aria-label="지금 물건과 압력">
+        <div class="status-head"><h2 id="specimen-name">빈 프레스</h2><span class="phase-pill" id="phase">대기 중</span></div>
         <div class="pressure-row"><span>압력</span><div class="pressure-track"><span id="pressure-bar"></span></div><strong id="pressure-value">0%</strong></div>
-        <p id="result-value">물건을 검사해 압착을 시작하세요.</p>
+        <p id="result-value">아래에서 물건을 하나 골라 주세요</p>
         <p class="tutorial" id="tutorial" hidden></p>
       </section>
-      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="회수물 회전 조작 영역"></div></main>
-      <footer class="controls" aria-label="작업 조작">
-        <div class="specimen-choices" id="specimen-choices" role="group" aria-label="회수물 선택"></div>
-        <button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 회수물을 압착">누르고 압착</button>
-        <div class="secondary-controls"><button id="store" type="button">보관</button><button id="discard" type="button">폐기</button><button id="cash-out" type="button">정산</button></div>
+      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
+      <footer class="controls" aria-label="조작">
+        <div class="specimen-choices" id="specimen-choices" role="group" aria-label="물건 고르기"></div>
+        <button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러서 압축</button>
+        <div class="secondary-controls"><button id="store" type="button">담기</button><button id="discard" type="button">버리기</button><button id="cash-out" type="button">마치기</button></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>`;
@@ -131,11 +131,11 @@ export function mountApp(root: HTMLElement): () => void {
       overlay.hidden = !key;
       overlay.className = `overlay${key === 'fatal' ? ' overlay-error' : ''}`;
       const content: Record<string, string> = {
-        start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS · SALVAGE SHIFT 01</p><h2 id="dialog-title">공간은 1L</h2><p>회수물을 살펴보고, 눌러 담아 케이스에 보관하세요.</p><p>더 누를수록 작아지지만, 재질마다 버티는 압력이 달라요. 너무 누르면 가치를 잃고 부서집니다.</p><button data-action="start" class="dialog-primary" type="button">작업 시작</button></section>`,
-        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">PAUSED</p><h2 id="dialog-title">작업이 멈췄습니다</h2><p>압력은 멈춰 있습니다. 준비되면 이어서 작업하세요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
-        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SALVAGE LOST</p><h2 id="dialog-title">회수 실패</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">폐기하고 계속</button><button data-action="cash-out" class="dialog-secondary" type="button">확보 점수 정산</button><button data-action="restart" class="dialog-secondary" type="button">다시 하기</button></section>`,
-        complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SHIFT COMPLETE</p><h2 id="dialog-title">회수 완료</h2><p>이번 작업 결과</p><p class="dialog-summary" id="dialog-summary"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
-        fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DISPLAY ERROR</p><h2 id="dialog-title">3D 화면을 시작할 수 없습니다</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
+        start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">케이스는 딱 1L</h2><p>건져 올린 물건을 눌러서 작게 만들고, 케이스에 담아요.</p><p>세게 누를수록 작아지지만, 물건마다 버티는 힘이 달라요. 너무 누르면 부서져요!</p><button data-action="start" class="dialog-primary" type="button">시작하기</button></section>`,
+        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><p>준비되면 이어서 해요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
+        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">지금 점수로 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터 다시</button></section>`,
+        complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">작업 끝!</h2><p class="dialog-summary" id="dialog-summary"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
       if (key) overlay.querySelector<HTMLButtonElement>('button[data-action]')?.focus({ preventScroll: true });
@@ -145,10 +145,12 @@ export function mountApp(root: HTMLElement): () => void {
     const summary = overlay.querySelector<HTMLElement>('#dialog-summary');
     if (summary) summary.textContent = resultSummary(snapshot);
     const copy = overlay.querySelector<HTMLElement>('#dialog-copy');
+    const title = overlay.querySelector<HTMLElement>('#dialog-title');
+    if (title && key === 'failed') title.textContent = failureTitle(failureReason);
     if (copy && key === 'failed') copy.textContent = failureText(failureReason);
     const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
     if (discardChoice) discardChoice.textContent = discardLabel(snapshot);
-    if (copy && key === 'fatal') copy.textContent = `3D 초기화 오류 (${fatalMessage}). 현재 작업은 일시 정지되었습니다. 그래픽 연결을 다시 시도하거나 페이지를 새로고침해 주세요.`;
+    if (copy && key === 'fatal') copy.textContent = `게임은 멈춰 뒀어요. 다시 시도해 보고, 계속 안 되면 새로고침해 주세요. (오류: ${fatalMessage})`;
   }
 
   function renderChoices(snapshot: GameSnapshot): void {
@@ -157,7 +159,7 @@ export function mountApp(root: HTMLElement): () => void {
     const buttons = snapshot.remainingSpecimenIds.map((id) => {
       const selected = snapshot.currentSpecimen?.id === id;
       const disabled = !mayChoose || selected;
-      return `<button type="button" data-specimen="${id}"${disabled ? ' disabled' : ''}${selected ? ' aria-current="true"' : ''}>${SPECIMEN_LABELS[id]}${selected ? ' · 선택됨' : ''}</button>`;
+      return `<button type="button" data-specimen="${id}"${disabled ? ' disabled' : ''}${selected ? ' aria-current="true"' : ''}>${selected ? '✓ ' : ''}${SPECIMEN_LABELS[id]}</button>`;
     }).join('');
     if (buttons !== renderedChoices) {
       renderedChoices = buttons;
@@ -169,7 +171,7 @@ export function mountApp(root: HTMLElement): () => void {
   function renderUi(snapshot: GameSnapshot): void {
     score.textContent = snapshot.score.toLocaleString('ko-KR');
     capacity.textContent = remainingCapacity(snapshot).toFixed(2);
-    specimenName.textContent = snapshot.currentSpecimen ? SPECIMEN_LABELS[snapshot.currentSpecimen.id] : '회수물을 선택하세요';
+    specimenName.textContent = snapshot.currentSpecimen ? SPECIMEN_LABELS[snapshot.currentSpecimen.id] : '빈 프레스';
     phaseElement.textContent = phaseLabel(snapshot.phase);
     const pressure = Math.round(snapshot.pressure01 * 100);
     pressureValue.textContent = `${pressure}%`;
@@ -185,9 +187,9 @@ export function mountApp(root: HTMLElement): () => void {
     pauseButton.hidden = snapshot.phase === 'idle' || snapshot.phase === 'paused' || snapshot.phase === 'complete';
     devNote.hidden = snapshot.implementation === 'game';
     devNote.textContent = snapshot.implementation === 'scaffold'
-      ? '개발 연결 중: 압축 결과·보관·정산은 코어 구현과 연결되면 활성화됩니다.'
+      ? '개발 중: 코어가 연결되면 담기와 마치기가 켜져요.'
       : '';
-    liveStatus.textContent = `${phaseLabel(snapshot.phase)} · 압력 ${pressure}% · 확보 점수 ${snapshot.score}`;
+    liveStatus.textContent = `${phaseLabel(snapshot.phase)} · 압력 ${pressure}% · 점수 ${snapshot.score}점`;
     renderChoices(snapshot);
     renderOverlay(snapshot);
   }
