@@ -45,44 +45,40 @@ export function remainingCapacity(snapshot: GameSnapshot): number {
   return Math.max(0, snapshot.capacity - snapshot.volumeUsed);
 }
 
-/** While pressing: the core's size preview and whether it fits. Otherwise the committed result. */
-export function specimenResult(snapshot: GameSnapshot): string {
-  const specimen = snapshot.currentSpecimen;
-  if (specimen === null) return '아래에서 물건을 하나 골라 주세요';
-  const room = remainingCapacity(snapshot) + 1e-9;
-  if (snapshot.phase === 'compressing' && snapshot.previewVolume !== null) {
-    return `예상 크기 ${snapshot.previewVolume.toFixed(2)}L · ${snapshot.previewVolume <= room ? '들어가요' : '안 들어가요'}`;
-  }
-  const outcome = `크기 ${specimen.currentVolume.toFixed(2)}L · 가치 ${specimen.value}`;
-  if (specimen.compression01 === 0) return outcome;
-  const fit = specimen.currentVolume <= room ? '' : ' · 안 들어가요';
-  return `${outcome} · 내구도 ${Math.round(specimen.integrity01 * 100)}%${fit}`;
-}
-
-const TOLERANCE_HINTS: Readonly<Record<Tolerance, string>> = {
-  fragile: '약해 보여요. 살살 누르세요',
-  normal: '적당히 버틸 것 같아요',
-  sturdy: '튼튼해 보여요. 세게 눌러도 돼요',
+const TOLERANCE_LABELS: Readonly<Record<Tolerance, string>> = {
+  fragile: '약해요',
+  normal: '보통이에요',
+  sturdy: '튼튼해요',
 };
 
-/** One cue line: live strain while pressing, else the inspected tolerance, else (optionally) a nudge to inspect. */
-export function cueText(snapshot: GameSnapshot, nudge = true): string | null {
+export interface Fact { readonly text: string; readonly warn?: boolean }
+
+/** Short facts for the lot in the press, shown as separate chips. While pressing: the core's size preview, fit and strain. */
+export function specimenResult(snapshot: GameSnapshot): readonly Fact[] {
   const specimen = snapshot.currentSpecimen;
-  if (specimen === null || snapshot.phase === 'complete') return null;
-  if (snapshot.phase === 'compressing' && snapshot.stress01 > 0) return '삐걱거려요! 곧 부서질 수 있어요';
-  if (specimen.tolerance !== null) return TOLERANCE_HINTS[specimen.tolerance];
-  return nudge && snapshot.phase === 'inspecting' ? '돌려 보면 얼마나 버틸지 보여요' : null;
+  if (specimen === null) return [{ text: '다음 물건을 올려요' }];
+  const room = remainingCapacity(snapshot) + 1e-9;
+  if (snapshot.phase === 'compressing' && snapshot.previewVolume !== null) {
+    const fits = snapshot.previewVolume <= room;
+    const facts: Fact[] = [{ text: `예상 ${snapshot.previewVolume.toFixed(2)}L` }, fits ? { text: '들어가요' } : { text: '안 들어가요', warn: true }];
+    if (snapshot.stress01 > 0) facts.push({ text: '삐걱거려요!', warn: true });
+    return facts;
+  }
+  const facts: Fact[] = [{ text: `${specimen.currentVolume.toFixed(2)}L` }, { text: `가치 ${specimen.value}` }];
+  if (specimen.compression01 > 0) facts.push({ text: `내구도 ${Math.round(specimen.integrity01 * 100)}%` });
+  if (specimen.tolerance !== null) facts.push({ text: TOLERANCE_LABELS[specimen.tolerance] });
+  if (specimen.compression01 > 0 && specimen.currentVolume > room) facts.push({ text: '안 들어가요', warn: true });
+  return facts;
 }
 
-export function resultItems(snapshot: GameSnapshot): string[] {
-  return snapshot.storedSpecimens.map((item) => `${SPECIMEN_LABELS[item.id]} · ${item.currentVolume.toFixed(2)}L · 가치 ${item.value}`);
+/** Stored lots as [name, volume, value] rows. */
+export function resultItems(snapshot: GameSnapshot): string[][] {
+  return snapshot.storedSpecimens.map((item) => [SPECIMEN_LABELS[item.id], `${item.currentVolume.toFixed(2)}L`, `가치 ${item.value}`]);
 }
 
-/** Score per liter used, then the device best: a new best replaces the old line. */
-export function recordText(snapshot: GameSnapshot, best: number | null, isNewBest: boolean): string {
-  const perLiter = snapshot.volumeUsed > 0 ? `1L당 ${Math.round(snapshot.score / snapshot.volumeUsed)}점` : null;
-  const record = isNewBest ? '새 기록!' : best !== null ? `최고 기록 ${best}점` : null;
-  return [perLiter, record].filter((part) => part !== null).join(' · ');
+/** The device best: a new best replaces the old line. */
+export function recordText(best: number | null, isNewBest: boolean): string {
+  return isNewBest ? '새 기록이에요' : best !== null ? `최고 기록 ${best}점` : '';
 }
 
 export function failureTitle(reason: 'specimen-broken' | 'capacity-exceeded' | null): string {
@@ -90,16 +86,10 @@ export function failureTitle(reason: 'specimen-broken' | 'capacity-exceeded' | n
 }
 
 export function failureText(reason: 'specimen-broken' | 'capacity-exceeded' | null): string {
-  return reason === 'capacity-exceeded'
-    ? '남은 공간보다 커요. 담아 둔 물건은 그대로예요. 이건 버리고 계속하거나, 지금 점수로 마칠 수 있어요.'
-    : '이 물건은 이제 가치가 없어요. 버리고 다른 물건을 이어서 하거나, 지금 점수로 마칠 수 있어요.';
+  return reason === 'capacity-exceeded' ? '남은 공간보다 커요.' : '이 물건은 더 쓸 수 없어요.';
 }
 
 /** Discarding the last unprocessed lot completes the shift. */
 export function discardLabel(snapshot: GameSnapshot): string {
   return snapshot.remainingSpecimenIds.length > 1 ? '버리고 계속하기' : '버리고 마치기';
-}
-
-export function resultSummary(snapshot: GameSnapshot): string {
-  return `${snapshot.storedSpecimenIds.length}개 담음 · ${snapshot.volumeUsed.toFixed(2)}L 사용 · ${snapshot.score}점`;
 }
