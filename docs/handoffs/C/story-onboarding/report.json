@@ -1,0 +1,898 @@
+{
+  "checkedAt": "2026-09-25T11:54:04.930Z",
+  "baseline": "b0c9da296c13ed29c3b961795f3938bb70583299",
+  "kind": "Actual browser actions with integrated A/B/C M1; no injected game state. Desktop Chromium only.",
+  "sourcesBefore": {
+    "src/core/index.ts": "72a11f2421fcbc801070edb2c0895104d68318ed8582d719c02ddecca6a15bf5",
+    "src/render/index.ts": "bedba7af1a20e84e87df1335ce9586677a1259d1f02f6813289cd6c571e15ca8",
+    "src/app/index.ts": "b6e7d410fed7e63f46e10979a6403ab62c66104364fb934ef9b63ffbb9d5bb51",
+    "src/app/story.ts": "f5a07d2998712f1d790be829d35d269b031f919305834697bcab5e49a2319702",
+    "src/render/gauge.ts": "a0161ee1e2f9dcde2d6decbd068085f99c8f98e4ade49efceb612228f7363e5b",
+    "src/render/visual-state.ts": "5fef481afa369383460e24f6be00dbad9806483c1c29b48746156a55cb63fb68",
+    "src/app/style.css": "6b03b8ca45542d7d85abb50b4bffcc3257341c74e5c12a0511da90e0542f8f7e",
+    "public/assets/characters/yunseo-concerned.webp": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+    "public/assets/characters/yunseo-relieved.webp": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+    "public/assets/characters/dohyeon-explaining.webp": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+    "public/assets/characters/dohyeon-resolved.webp": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4"
+  },
+  "layouts": [
+    {
+      "width": 390,
+      "height": 844,
+      "page": 0,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 236
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "물속에 남은 연구소",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "page": 1,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 236
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "가져갈 수 있는 건 1L",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "page": 2,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "프레스 앞에 서기",
+          "width": 236
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "겉을 줄여, 안을 지켜요",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "page": 0,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 174
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "물속에 남은 연구소",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "page": 1,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 174
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "가져갈 수 있는 건 1L",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "page": 2,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "프레스 앞에 서기",
+          "width": 174
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "겉을 줄여, 안을 지켜요",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "page": 0,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 256.375
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "물속에 남은 연구소",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "page": 1,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 256.375
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "가져갈 수 있는 건 1L",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "page": 2,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "프레스 앞에 서기",
+          "width": 256.375
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "겉을 줄여, 안을 지켜요",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": 0,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 313.09375
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "물속에 남은 연구소",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": 1,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 313.09375
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "가져갈 수 있는 건 1L",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": 2,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "프레스 앞에 서기",
+          "width": 313.09375
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "겉을 줄여, 안을 지켜요",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "page": 0,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 366
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "물속에 남은 연구소",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "page": 1,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "다음 이야기",
+          "width": 366
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "가져갈 수 있는 건 1L",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "page": 2,
+      "buttons": [
+        {
+          "height": 48,
+          "inside": true,
+          "text": "건너뛰기",
+          "width": 60.25
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "이전",
+          "width": 72
+        },
+        {
+          "height": 48,
+          "inside": true,
+          "text": "프레스 앞에 서기",
+          "width": 366
+        }
+      ],
+      "cardInside": true,
+      "overflow": false,
+      "title": "겉을 줄여, 안을 지켜요",
+      "logo": {
+        "clear": true,
+        "font": "\"Cafe24 PRO SLIM Max\", sans-serif",
+        "inside": true,
+        "loaded": true
+      }
+    }
+  ],
+  "flow": [
+    {
+      "step": "pause-replay-resume",
+      "before": {
+        "capacity": "1.00",
+        "hidden": false,
+        "inert": false,
+        "phase": "살펴보기",
+        "pressure": "79%",
+        "renderer": {
+          "drawCalls": "36",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281470",
+          "visibleTriangles": "105188"
+        },
+        "score": "0",
+        "specimen": "데이터 카세트"
+      },
+      "after": {
+        "capacity": "1.00",
+        "hidden": false,
+        "inert": false,
+        "phase": "살펴보기",
+        "pressure": "79%",
+        "renderer": {
+          "drawCalls": "30",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "193472",
+          "visibleTriangles": "105188"
+        },
+        "score": "0",
+        "specimen": "데이터 카세트"
+      }
+    },
+    {
+      "step": "damaged-cassette",
+      "capacity": "0.66",
+      "hidden": false,
+      "inert": true,
+      "phase": "끝",
+      "portrait": "/assets/characters/yunseo-relieved.webp",
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "score": "374",
+      "specimen": "빈 프레스",
+      "text": "데이터 카세트를 담았군요. 손상은 있지만, 남아 있는 기록부터 읽어 볼게요. 작은 케이스 안에 우리가 이어 갈 일이 남았어요. 이제 수면으로 보내 주세요.",
+      "title": "남아 있는 기록부터"
+    },
+    {
+      "step": "parts-ending",
+      "capacity": "0.47",
+      "hidden": false,
+      "inert": true,
+      "phase": "끝",
+      "portrait": "/assets/characters/dohyeon-resolved.webp",
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "score": "360",
+      "specimen": "빈 프레스",
+      "text": "담아 둔 부품은 제가 수면으로 올릴게요. 연구 기록까지 가져오진 못했지만, 이 부품으로 다시 시작할 수 있겠죠. 무엇을 남길지 끝까지 골라 줘서 고마워요.",
+      "title": "다시 시작할 부품들"
+    },
+    {
+      "step": "last-compressed-object-discarded",
+      "capacity": "1.00",
+      "hidden": false,
+      "inert": true,
+      "phase": "끝",
+      "portrait": "/assets/characters/yunseo-concerned.webp",
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "13",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "86176",
+        "visibleTriangles": "43168"
+      },
+      "score": "0",
+      "specimen": "빈 프레스",
+      "text": "이번에는 가져올 물건을 담지 못했네요. 다음 작업에서는 조금씩 눌렀다 떼어 봐요. 작아지는 것보다 중요한 건 안에 남는 가치예요. 다시 해 볼 수 있어요.",
+      "title": "아직, 빈 케이스"
+    }
+  ],
+  "captures": [
+    {
+      "path": "after/390-title.png",
+      "sha256": "a7e00037242be8a39a43fa77a28b0f161aba9b48a77e4d58d760b4a2bb653f94"
+    },
+    {
+      "path": "after/390-story-1.png",
+      "sha256": "47a9d5bcf37b2d03675d619557e61dfccbb24751a953481af5a9e7259ffa27cf"
+    },
+    {
+      "path": "after/390-story-2.png",
+      "sha256": "815b5f4f42e189133d4a13f8664d3f348c2bcaf057570ea0beaa88d66682b761"
+    },
+    {
+      "path": "after/390-story-3.png",
+      "sha256": "214bebc19335f9f3056385dd624ac6ec706bbcce3760ee7d5e647d7f457526d7"
+    },
+    {
+      "path": "after/390-tutorial.png",
+      "sha256": "960c013ff690694e226681a6f6df727037c6af14ff98c2606cc020dfa0c51a17"
+    },
+    {
+      "path": "after/320-title.png",
+      "sha256": "0cf3b1b014ce908a0acd3ae5c344179731962fc582403773786ca3993a5afff0"
+    },
+    {
+      "path": "after/320-story-1.png",
+      "sha256": "6cc07036afcae1991e7749a5e04b871398fb2cc7a83ff0aa22a35b1eeed82905"
+    },
+    {
+      "path": "after/320-story-2.png",
+      "sha256": "a171b85f2a4664ba3d9cf1de4b08e428caa852a0e92d841f0b66146e771bb8ed"
+    },
+    {
+      "path": "after/320-story-3.png",
+      "sha256": "d1d0fc338402e1bfa58f6d7ed146a15ad48ea641262ab55c210a809b219143e3"
+    },
+    {
+      "path": "after/320-tutorial.png",
+      "sha256": "15ec967c2b4c6616468fc3b9dd9570c387a5b85a4d6ae7ab4fdae91e9b235d30"
+    },
+    {
+      "path": "after/768-title.png",
+      "sha256": "52e0a882b26dcedd276b37b93f648eb6bbc0b83476135ad4c17b866f44dd7a7e"
+    },
+    {
+      "path": "after/768-story-1.png",
+      "sha256": "a337b9b42e1b4cd311b589e934e6492194695d7c6a7e7df18370c2e2a101b29f"
+    },
+    {
+      "path": "after/768-story-2.png",
+      "sha256": "c94954eb20fe0c5ea4d061d5478ad1d80d3c46a69c50e052209dd490fa2b1945"
+    },
+    {
+      "path": "after/768-story-3.png",
+      "sha256": "9ce199e4e92042604db538a75e0d44fe87874413371188cece5aad46bb6e1f2d"
+    },
+    {
+      "path": "after/768-tutorial.png",
+      "sha256": "8d2261b284215ac7861908ba2e16b8d5a2e6bae4a55e002ee53b604496962c6b"
+    },
+    {
+      "path": "after/1440-title.png",
+      "sha256": "77e980a470fd75a3526bab95ac701d75d9cbde4a268f29760ce73326f842baad"
+    },
+    {
+      "path": "after/1440-story-1.png",
+      "sha256": "dd9e768f3add3e0a789cc3dec1017dcd30bd98fd253e1442237f32b219c24ada"
+    },
+    {
+      "path": "after/1440-story-2.png",
+      "sha256": "164637e6ca672e75ecebe6b32f96fd8a5ff71518e117e4155a54c2679b0c52b0"
+    },
+    {
+      "path": "after/1440-story-3.png",
+      "sha256": "70c39365ff59ee8f18042737a996c28df82df064fccf9491005bb1a706251952"
+    },
+    {
+      "path": "after/1440-tutorial.png",
+      "sha256": "219f905d2c318b18ea61ededbd150b031d1ddd2c7437564a465e462eade79070"
+    },
+    {
+      "path": "after/844-title.png",
+      "sha256": "a61a7a5b966c9beee3c4ce8c4f98cac279a1729f168bb93fb23fa1230d23edb2"
+    },
+    {
+      "path": "after/844-story-1.png",
+      "sha256": "10b7c58f54cc0436aa455f295ab86e3be0eb725a7ef66fc3460f56327a3aa7df"
+    },
+    {
+      "path": "after/844-story-2.png",
+      "sha256": "4658ae08a141c41190f84b19054d58fe9066a6e63813d3e2a17fd5065f22d1fc"
+    },
+    {
+      "path": "after/844-story-3.png",
+      "sha256": "19993a01e4c983ba1bb46d76f0ac374e7fa5f814d7e8653f34fe6ac588541590"
+    },
+    {
+      "path": "after/844-tutorial.png",
+      "sha256": "5f2d2e1c6310c7ea10705d47673cb016f167ad934fda48fdbbbcef2ae3cd78d4"
+    },
+    {
+      "path": "after/390-outro-damaged.png",
+      "sha256": "d70b8997ec87b3038efa752802eb44a86bf7b0df86e7be328ba50414cc33de2b"
+    },
+    {
+      "path": "after/390-outro-parts.png",
+      "sha256": "512061bfb305c7fb4c06cbae342982d4a9dbc687c85435fd0e751b736e676994"
+    },
+    {
+      "path": "after/390-outro-last-lot.png",
+      "sha256": "299ee34e8ed4ecb91013a6fcc24baf04a898469613d7c0d227db0fdba6b2b7a6"
+    }
+  ],
+  "errors": [],
+  "console": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      }
+    ]
+  },
+  "sourcesAfter": {
+    "src/core/index.ts": "72a11f2421fcbc801070edb2c0895104d68318ed8582d719c02ddecca6a15bf5",
+    "src/render/index.ts": "bedba7af1a20e84e87df1335ce9586677a1259d1f02f6813289cd6c571e15ca8",
+    "src/app/index.ts": "b6e7d410fed7e63f46e10979a6403ab62c66104364fb934ef9b63ffbb9d5bb51",
+    "src/app/story.ts": "f5a07d2998712f1d790be829d35d269b031f919305834697bcab5e49a2319702",
+    "src/render/gauge.ts": "a0161ee1e2f9dcde2d6decbd068085f99c8f98e4ade49efceb612228f7363e5b",
+    "src/render/visual-state.ts": "5fef481afa369383460e24f6be00dbad9806483c1c29b48746156a55cb63fb68",
+    "src/app/style.css": "6b03b8ca45542d7d85abb50b4bffcc3257341c74e5c12a0511da90e0542f8f7e",
+    "public/assets/characters/yunseo-concerned.webp": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+    "public/assets/characters/yunseo-relieved.webp": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+    "public/assets/characters/dohyeon-explaining.webp": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+    "public/assets/characters/dohyeon-resolved.webp": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4"
+  },
+  "passed": true
+}

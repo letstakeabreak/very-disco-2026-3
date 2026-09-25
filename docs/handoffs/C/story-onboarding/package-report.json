@@ -1,0 +1,163 @@
+{
+  "checkedAt": "2026-09-25T11:54:42.586Z",
+  "baseline": "b0c9da296c13ed29c3b961795f3938bb70583299",
+  "kind": "Local static package at /package/; not deployed",
+  "builtBytes": 17419215,
+  "checks": [
+    {
+      "file": "dist/assets/Cafe24PROSlimMax-Dt3ayVuU.woff2",
+      "status": 200,
+      "bytes": 156692,
+      "sha256": "3b45eba93637d6f0806d49bc2cfb063188eee123c0ac21d1704f5735f74eddef",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/Cafe24PROSlimMax-license-BPfM_gk5.pdf",
+      "status": 200,
+      "bytes": 806565,
+      "sha256": "1fa298bc78a8065fcdcb3fb11734174fc952d08dde7e24ea3516e8cce84f0f50",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/Cafe24PROSlimMax-license-DsKEjPeb.txt",
+      "status": 200,
+      "bytes": 4320,
+      "sha256": "9f5b168c024928506e57f2ca6b174f5343ef3d5973c806fecb15d5721aa9cbe3",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/RIDIBatang-C8ZMPhPn.otf",
+      "status": 200,
+      "bytes": 1453448,
+      "sha256": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/RIDIBatang-license-CBqV4IIm.txt",
+      "status": 200,
+      "bytes": 4616,
+      "sha256": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/S-Core-Dream-license-1s6Vy9JG.png",
+      "status": 200,
+      "bytes": 48516,
+      "sha256": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/SCDream4-KpLFo22y.otf",
+      "status": 200,
+      "bytes": 729724,
+      "sha256": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/SCDream6-DqcRfF1Y.otf",
+      "status": 200,
+      "bytes": 743480,
+      "sha256": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/characters/dohyeon-explaining.webp",
+      "status": 200,
+      "bytes": 290170,
+      "sha256": "4aa8cd604a73930727f1117d1af0272bce2519e6c5dc1355c242976715703f91",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/characters/dohyeon-resolved.webp",
+      "status": 200,
+      "bytes": 317874,
+      "sha256": "dd4cec91c2d0432e1c660cbbf7023c2f7b4af29ea9e105a91ccd3f77868692e4",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/characters/yunseo-concerned.webp",
+      "status": 200,
+      "bytes": 329642,
+      "sha256": "1166ea01e6def98cf75b6c70a60a982d194ae24d9775da0f3552c391d5c439b9",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/characters/yunseo-relieved.webp",
+      "status": 200,
+      "bytes": 327124,
+      "sha256": "f0a69f90607706455afe73c1739ac7c16730fb1bea4fa2fa7a9b0104fda92daa",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/index-3BZaHAGH.js",
+      "status": 200,
+      "bytes": 706986,
+      "sha256": "19476d89b8689b28e5ae9de7dda4b1ff8818570454ccab24462101833b4189e7",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/index-eB_26GS-.css",
+      "status": 200,
+      "bytes": 14892,
+      "sha256": "acbdbafe1a4fa423dbb1d3641d9340ca74f83a01c5671f93224b3244dfb6d008",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/models/press-chamber.glb",
+      "status": 200,
+      "bytes": 2872664,
+      "sha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/models/salvage-cassette.glb",
+      "status": 200,
+      "bytes": 4037856,
+      "sha256": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/models/salvage-core.glb",
+      "status": 200,
+      "bytes": 1901316,
+      "sha256": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/models/salvage-lens.glb",
+      "status": 200,
+      "bytes": 2073588,
+      "sha256": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/textures/pressure-dial.webp",
+      "status": 200,
+      "bytes": 90242,
+      "sha256": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/textures/workshop-v4.webp",
+      "status": 200,
+      "bytes": 223350,
+      "sha256": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/assets/textures/workshop.webp",
+      "status": 200,
+      "bytes": 285686,
+      "sha256": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+      "matchesBuild": true
+    },
+    {
+      "file": "dist/index.html",
+      "status": 200,
+      "bytes": 464,
+      "sha256": "1f4a9407ac8e67098444c946c5d603084eb991ae3377c16defbfdbdde73a5581",
+      "matchesBuild": true
+    }
+  ],
+  "passed": true
+}
