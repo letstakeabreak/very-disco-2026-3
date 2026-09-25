@@ -1,6 +1,6 @@
 import { createGame, getGameConfig } from '../core';
 import { createRenderer } from '../render';
-import { CONTRACT_VERSION, type GameEvent, type GameSnapshot, type SalvageId } from '../contracts';
+import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
 import { canStore, discardLabel, failureText, phaseLabel, remainingCapacity, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
@@ -12,16 +12,16 @@ const KEYBOARD_POINTER_ID = -1;
 export function mountApp(root: HTMLElement): () => void {
   root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 회수물을 끌어 살펴볼 수 있습니다."></canvas>
     <div class="screen">
-      <header class="topbar"><div class="brand"><p class="eyebrow">DEEP RECOVERY · ${CONTRACT_VERSION}</p><h1>DEEP PRESS</h1></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
-      <section class="hud" aria-label="회수 현황"><div class="metric"><span>확보 점수</span><strong id="score">0</strong></div><div class="metric"><span>케이스 여유</span><strong><span id="capacity">1.00</span><small>L</small></strong></div></section>
-      <main class="work-area">
-        <div class="specimen-card" aria-live="polite"><div><span class="eyebrow">CURRENT SALVAGE</span><h2 id="specimen-name">회수물을 선택하세요</h2></div><span class="phase-pill" id="phase">대기 중</span></div>
+      <header class="topbar" aria-label="회수 현황"><div class="metric"><span>확보 점수</span><strong id="score">0</strong></div><div class="metric"><span>케이스 여유</span><strong><span id="capacity">1.00</span><small>L</small></strong></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
+      <section class="status-card" aria-label="현재 회수물과 압력">
+        <div class="status-head"><h2 id="specimen-name">회수물을 선택하세요</h2><span class="phase-pill" id="phase">대기 중</span></div>
+        <div class="pressure-row"><span>압력</span><div class="pressure-track"><span id="pressure-bar"></span></div><strong id="pressure-value">0%</strong></div>
+        <p id="result-value">물건을 검사해 압착을 시작하세요.</p>
         <p class="tutorial" id="tutorial" hidden></p>
-        <div class="workbench-input" id="workbench-input" role="img" aria-label="회수물 회전 조작 영역"></div>
-        <div class="pressure-card" aria-label="현재 압력"><div class="pressure-label"><span>압력</span><strong id="pressure-value">0%</strong></div><div class="pressure-track"><span id="pressure-bar"></span></div><p id="result-value">물건을 검사해 압착을 시작하세요.</p></div>
-        <div class="specimen-choices" id="specimen-choices" role="group" aria-label="회수물 선택"></div>
-      </main>
+      </section>
+      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="회수물 회전 조작 영역"></div></main>
       <footer class="controls" aria-label="작업 조작">
+        <div class="specimen-choices" id="specimen-choices" role="group" aria-label="회수물 선택"></div>
         <button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 회수물을 압착">누르고 압착</button>
         <div class="secondary-controls"><button id="store" type="button">보관</button><button id="discard" type="button">폐기</button><button id="cash-out" type="button">정산</button></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
@@ -131,7 +131,7 @@ export function mountApp(root: HTMLElement): () => void {
       overlay.hidden = !key;
       overlay.className = `overlay${key === 'fatal' ? ' overlay-error' : ''}`;
       const content: Record<string, string> = {
-        start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SALVAGE SHIFT 01</p><h2 id="dialog-title">공간은 1L</h2><p>회수물을 살펴보고, 눌러 담아 케이스에 보관하세요.</p><button data-action="start" class="dialog-primary" type="button">작업 시작</button></section>`,
+        start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS · SALVAGE SHIFT 01</p><h2 id="dialog-title">공간은 1L</h2><p>회수물을 살펴보고, 눌러 담아 케이스에 보관하세요.</p><p>더 누를수록 작아지지만, 재질마다 버티는 압력이 달라요. 너무 누르면 가치를 잃고 부서집니다.</p><button data-action="start" class="dialog-primary" type="button">작업 시작</button></section>`,
         paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">PAUSED</p><h2 id="dialog-title">작업이 멈췄습니다</h2><p>압력은 멈춰 있습니다. 준비되면 이어서 작업하세요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SALVAGE LOST</p><h2 id="dialog-title">회수 실패</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">폐기하고 계속</button><button data-action="cash-out" class="dialog-secondary" type="button">확보 점수 정산</button><button data-action="restart" class="dialog-secondary" type="button">다시 하기</button></section>`,
         complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SHIFT COMPLETE</p><h2 id="dialog-title">회수 완료</h2><p>이번 작업 결과</p><p class="dialog-summary" id="dialog-summary"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,

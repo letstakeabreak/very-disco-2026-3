@@ -22,50 +22,47 @@ button:disabled { cursor: not-allowed; opacity: 0.42; }
 
 #app { position: relative; width: 100%; min-height: 100svh; overflow: hidden; isolation: isolate; background: #08191b; }
 .scene { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; }
+/* The renderer centers a 2:3 workshop stage. HUD rows sit in its empty wall and
+   floor margins so the gauge, press and case stay uncovered on portrait phones. */
 .screen {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-rows: auto auto minmax(160px, 1fr) auto;
-  gap: 14px;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 8px;
   width: 100%;
   min-height: 100svh;
-  padding: max(16px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+  padding: max(12px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
   pointer-events: none;
 }
 .screen > * { pointer-events: auto; }
-.topbar { display: flex; align-items: center; justify-content: space-between; min-height: 54px; }
-.brand { display: flex; flex-direction: column; gap: 2px; }
-h1, h2, p { margin: 0; }
-h1 { font-size: clamp(20px, 6vw, 26px); font-weight: 760; letter-spacing: 0.04em; line-height: 1.1; }
-h2 { font-size: 17px; line-height: 1.25; }
+h2, p { margin: 0; }
+h2 { font-size: 15px; line-height: 1.25; }
 .eyebrow { color: var(--amber); font-size: 10px; font-weight: 760; letter-spacing: 0.14em; }
+.topbar { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: center; }
 .icon-button { width: 46px; height: 46px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--panel); font-size: 17px; }
-.hud { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.metric, .specimen-card, .pressure-card {
+.metric, .status-card {
   border: 1px solid rgb(113 153 137 / 38%);
   border-radius: 14px;
   background: var(--panel);
   box-shadow: 0 12px 32px rgb(0 0 0 / 15%);
   backdrop-filter: blur(14px);
 }
-.metric { display: flex; min-height: 66px; flex-direction: column; justify-content: center; gap: 2px; padding: 9px 13px; }
-.metric span { color: var(--muted); font-size: 12px; }
-.metric strong { font-size: 21px; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.metric { display: flex; min-height: 50px; flex-direction: column; justify-content: center; gap: 1px; padding: 6px 12px; }
+.metric span { color: var(--muted); font-size: 11px; }
+.metric strong { font-size: 19px; font-variant-numeric: tabular-nums; line-height: 1.05; }
 .metric small { margin-left: 4px; color: var(--muted); font-size: 12px; }
-.work-area { display: flex; min-height: 0; flex-direction: column; justify-content: space-between; gap: 12px; padding-top: 4px; pointer-events: none; }
-.work-area > * { pointer-events: auto; }
-.workbench-input { flex: 1 1 auto; min-height: 24px; touch-action: none; }
-.specimen-card { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 66px; padding: 11px 13px; }
-.specimen-card h2 { margin-top: 4px; }
-.phase-pill { flex: none; padding: 6px 9px; border: 1px solid rgb(240 188 101 / 45%); border-radius: 99px; color: var(--amber); font-size: 11px; }
-.tutorial { align-self: center; max-width: 100%; padding: 9px 13px; border: 1px solid rgb(240 188 101 / 36%); border-radius: 99px; background: rgb(8 25 27 / 82%); color: #fff0d0; font-size: 12px; text-align: center; }
-.pressure-card { margin-top: auto; padding: 13px; }
-.pressure-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--muted); }
-.pressure-label strong { color: var(--amber); font-size: 20px; font-variant-numeric: tabular-nums; }
-.pressure-track { height: 8px; margin-top: 8px; overflow: hidden; border-radius: 99px; background: #263c3b; }
+.status-card { display: flex; flex-direction: column; gap: 5px; padding: 9px 12px; }
+.status-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.phase-pill { flex: none; padding: 4px 9px; border: 1px solid rgb(240 188 101 / 45%); border-radius: 99px; color: var(--amber); font-size: 11px; }
+.pressure-row { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; }
+.pressure-row strong { min-width: 3.1em; color: var(--amber); font-size: 17px; font-variant-numeric: tabular-nums; text-align: right; }
+.pressure-track { flex: 1; height: 8px; overflow: hidden; border-radius: 99px; background: #263c3b; }
 .pressure-track span { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #83b89b, #f0bc65 62%, #e76e54); transform: scaleX(0); transform-origin: left center; transition: transform 80ms linear; }
-.pressure-card > p { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.status-card > p { color: var(--muted); font-size: 11px; line-height: 1.35; }
+.status-card > .tutorial { color: #ffe1a8; font-size: 12px; font-weight: 650; }
+.work-area { display: flex; min-height: 0; pointer-events: none; }
+.workbench-input { flex: 1 1 auto; min-height: 24px; touch-action: none; pointer-events: auto; }
 .specimen-choices { display: flex; flex-wrap: wrap; gap: 6px; }
 .specimen-choices button, .secondary-controls button, .dialog-secondary {
   min-height: 44px;
@@ -78,9 +75,9 @@ h2 { font-size: 17px; line-height: 1.25; }
 }
 .specimen-choices button { flex: 1 1 31%; padding: 8px 7px; }
 .specimen-choices button[aria-current="true"] { border-color: var(--amber); color: #ffe4ae; }
-.controls { display: flex; flex-direction: column; gap: 8px; }
+.controls { display: flex; flex-direction: column; gap: 7px; }
 .press-button, .dialog-primary {
-  min-height: 58px;
+  min-height: 54px;
   border: 1px solid #e3be7c;
   border-radius: 14px;
   background: linear-gradient(180deg, #c77b3c, #8e482c);
@@ -105,21 +102,28 @@ h2 { font-size: 17px; line-height: 1.25; }
 .dialog-secondary { min-height: 48px; background: transparent; font-size: 14px; }
 
 @media (min-width: 700px) {
-  .screen { width: min(100%, 760px); min-height: 100svh; margin: 0 auto; padding-right: 28px; padding-left: 28px; }
-  .work-area { max-width: 540px; justify-self: center; width: 100%; }
-  .controls { width: min(100%, 540px); justify-self: center; }
-  .metric { min-height: 72px; padding: 11px 16px; }
+  .screen { width: min(100%, 600px); margin: 0 auto; padding-right: 24px; padding-left: 24px; }
+}
+
+/* Wide landscape: panels move into the empty columns beside the stage. */
+@media (min-aspect-ratio: 3/2) and (min-height: 480px) {
+  .screen {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) calc(100svh * 2 / 3) minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-areas: "top work controls" "status work controls" ". work controls";
+    column-gap: 20px;
+  }
+  .topbar { grid-area: top; align-self: start; }
+  .status-card { grid-area: status; align-self: start; }
+  .work-area { grid-area: work; }
+  .controls { grid-area: controls; align-self: end; }
 }
 
 @media (max-height: 620px) {
-  .screen { gap: 8px; padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: max(8px, env(safe-area-inset-bottom)); }
-  .topbar { min-height: 42px; }
-  .metric { min-height: 56px; }
-  .work-area { gap: 7px; }
-  .pressure-card { padding: 9px 12px; }
-  .press-button { min-height: 52px; }
-}
-
-@media (max-height: 580px) {
-  .screen { gap: 6px; }
+  .screen { gap: 6px; padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+  .metric { min-height: 44px; padding: 4px 10px; }
+  .metric strong { font-size: 17px; }
+  .status-card { gap: 3px; padding: 7px 11px; }
+  .press-button { min-height: 50px; }
 }
