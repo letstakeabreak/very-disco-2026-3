@@ -68,3 +68,12 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
 - This proves the current merged-B + A + C source set builds and passes automated checks in a disposable local candidate. It does not provide iPhone Safari evidence, actual WebGL context-loss recovery, a 60 fps pass, or stored-item damage continuity. No candidate was pushed and no PR was merged by this audit.
 - Repository state differs from earlier notes: no final PR to `main` appears in the latest listing. The base branch `integration/v1` itself compares as 33 ahead / 3 behind `main`; reconcile that history before preparing the final integration PR. The pending contract 1.1.0 migration remains unapproved; do not change shared contract files without explicit approval and notice to A/B/C.
 - User authorized eventual merge once everything is done. Keep the final integration PR and merge gated on remaining product/device acceptance and a fresh review of the now-advanced base; A PR #7 and C PR #6 themselves are still role contributions.
+
+
+## Latest follow-up after B merge (2026-09-25)
+
+- B PR #1 is now closed/merged into `integration/v1` at `fa622b70566cdacc37cc419552b20ae62b8d61ed`; this occurred after the previous open/draft snapshot. It was not merged to `main`.
+- At A head `6ec09aef9508fda02592ca52b5db5ce7c9238e58`, GitHub compare reports 24 ahead / 21 behind `integration/v1`; PR #7 currently reports mergeable false. C PR #6 is also 21 commits behind. The A/C remote branches are not yet synchronized to the new base.
+- The post-B candidate at `fa622b7`, plus A `e7a0d77` and C `f42f919`, passed `npm run check` under Node 26.8.2 / npm 11.19.1 (23 bootstrap files, 19-file module boundary check, 14 test files / 81 tests, build). The JS bundle is 688.94 kB, above the 500 kB advisory. This is automated verification of a disposable local candidate only.
+- Latest PR #7 body now reflects the post-B audit. There are no PR comments, reviews, inline threads, or commit statuses. No final PR to `main` exists; `integration/v1` is 33 ahead / 3 behind `main`.
+- Still open: iPhone Safari integrated validation, actual WebGL context-loss recovery, B's 60 fps shortfall and initial GPU failure, stored-item damage continuity, and approval/coordination for the proposed contract 1.1.0 migration. Do not merge the final integration into `main` until these requirements are addressed or explicitly accepted.
