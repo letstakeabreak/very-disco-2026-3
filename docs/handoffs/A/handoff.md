@@ -19,6 +19,7 @@ Contribution base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41
 - Targeted: `PATH='/opt/homebrew/bin':$PATH npx vitest run tests/core/game.test.ts tests/core/content.test.ts` — 2 files, 14 tests passed.
 - Full: `PATH='/opt/homebrew/bin':$PATH npm run check` — bootstrap (23 frozen files), TypeScript, module boundaries, 9 files / 34 tests and Vite build passed.
 - A-only ownership check in a clean temporary checkout — `node scripts/check-ownership.mjs --role A --base HEAD^` passed for five A-owned paths. The normal mixed local worktree contains C changes, so this isolated run excludes them without altering either role's files.
+- Browser smoke on `http://127.0.0.1:4173/` with the A core and local C app: start/select, discard to the remaining lot list, select another lot, cash out with 0 score, restart, pause, and explicit resume all worked. The locally checked renderer is the neutral placeholder, so this is app/core flow evidence rather than B visual integration. A brief press-button click immediately released at 0%; it did not verify a sustained hold or rendered pressure response. The sustained pressure/settling rules remain covered by core tests.
 - Build reports a 548.03 kB minified JavaScript chunk, above Vite's 500 kB advisory threshold.
 - `git diff --check` passed. The local C-owned changes were left intact and are not part of the A contribution.
 - Checks used Node 25.8.1 / npm 11.11.0; the pinned Node 26.8.2 / npm 11.19.1 was unavailable.
