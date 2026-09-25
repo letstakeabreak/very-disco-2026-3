@@ -1,0 +1,333 @@
+{
+  "baseline": "b0c9da296c13ed29c3b961795f3938bb70583299",
+  "initialBaseline": "346e6e78184fa1c7663f2571e261ca288db9b346",
+  "authorization": "Explicit user request to adopt and vary B-owned characters and implement C-owned story, tutorial and English wordmark. No shared contract/dependency changes.",
+  "check": "Bounded B+C path allowlist; repository single-role checker cannot express this explicitly requested combined scope.",
+  "passed": true,
+  "changes": [
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/README.md",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/dohyeon-explaining.png",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/dohyeon-resolved.png",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/prompts.json",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/provenance.json",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/yunseo-concerned.png",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-story-v1/yunseo-relieved.png",
+      "role": "B"
+    },
+    {
+      "file": "assets/source/characters/korean-salvagers-v1/README.md",
+      "role": "B"
+    },
+    {
+      "file": "docs/handoffs/C/design-consistency/README.md",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/README.md",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/1440-story-1.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/1440-story-2.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/1440-story-3.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/1440-title.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/1440-tutorial.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/320-story-1.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/320-story-2.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/320-story-3.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/320-title.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/320-tutorial.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-outro-damaged.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-outro-last-lot.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-outro-parts.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-story-1.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-story-2.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-story-3.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-title.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/390-tutorial.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/768-story-1.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/768-story-2.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/768-story-3.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/768-title.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/768-tutorial.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/844-story-1.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/844-story-2.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/844-story-3.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/844-title.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/844-tutorial.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/failure.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/after/package-story.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/check.mjs",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/font.json",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/1440-game.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/1440-start.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/320-game.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/320-start.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-complete.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-empty.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-failed.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-game.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-outro-cassette.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-outro-empty.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-paused.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-retry.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-settled.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-start.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/390-strain.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/768-game.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/768-start.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/844-game.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/after/844-start.png",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/gameplay/report.json",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/package-report.json",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/pr-description.md",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/report.json",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/retry-timeout.json",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/scope.json",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/story-onboarding/story.md",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/workshop-ui/README.md",
+      "role": "C"
+    },
+    {
+      "file": "docs/handoffs/C/workshop-ui/check.mjs",
+      "role": "C"
+    },
+    {
+      "file": "public/assets/characters/dohyeon-explaining.webp",
+      "role": "B"
+    },
+    {
+      "file": "public/assets/characters/dohyeon-resolved.webp",
+      "role": "B"
+    },
+    {
+      "file": "public/assets/characters/yunseo-concerned.webp",
+      "role": "B"
+    },
+    {
+      "file": "public/assets/characters/yunseo-relieved.webp",
+      "role": "B"
+    },
+    {
+      "file": "src/app/fonts/Cafe24PROSlimMax-license.pdf",
+      "role": "C"
+    },
+    {
+      "file": "src/app/fonts/Cafe24PROSlimMax-license.txt",
+      "role": "C"
+    },
+    {
+      "file": "src/app/fonts/Cafe24PROSlimMax.woff2",
+      "role": "C"
+    },
+    {
+      "file": "src/app/index.ts",
+      "role": "C"
+    },
+    {
+      "file": "src/app/story.ts",
+      "role": "C"
+    },
+    {
+      "file": "src/app/style.css",
+      "role": "C"
+    },
+    {
+      "file": "tests/app/story.test.ts",
+      "role": "C"
+    }
+  ]
+}
