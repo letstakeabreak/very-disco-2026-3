@@ -1,1 +1,82 @@
-{"success":true,"data":{"lifecycle":{"effectiveLaunch":{"browserLaunched":true,"engine":"chrome","launchHash":11677035664275010974},"launched":false,"relaunchedBrowser":false,"restartedBackground":false,"restoreStatus":"not_configured","reused":true,"saveStatus":"not_attempted"},"origin":"http://127.0.0.1:4181/package/","result":{"fonts":[{"family":"S-Core Dream","status":"loaded"},{"family":"S-Core Dream","status":"loaded"},{"family":"RIDI Batang","status":"loaded"}],"licenses":[{"status":200,"url":"http://127.0.0.1:4181/package/assets/S-Core-Dream-license-1s6Vy9JG.png"},{"status":200,"url":"http://127.0.0.1:4181/package/assets/RIDIBatang-license-CBqV4IIm.txt"}],"renderer":{"drawCalls":"28","engine":"three.js r186","loadedAssets":"4","renderState":"ready","triangles":"193272","visibleTriangles":"105168"},"requests":["http://127.0.0.1:4181/package/assets/index-BzJwOa_O.css","http://127.0.0.1:4181/package/assets/index-D6c-_c2k.js","http://127.0.0.1:4181/package/assets/models/press-chamber.glb","http://127.0.0.1:4181/package/assets/models/salvage-core.glb","http://127.0.0.1:4181/package/assets/models/salvage-lens.glb","http://127.0.0.1:4181/package/assets/models/salvage-cassette.glb","http://127.0.0.1:4181/package/assets/SCDream4-KpLFo22y.otf","http://127.0.0.1:4181/package/assets/SCDream6-DqcRfF1Y.otf","http://127.0.0.1:4181/package/assets/RIDIBatang-C8ZMPhPn.otf","http://127.0.0.1:4181/package/assets/textures/workshop-v4.webp","http://127.0.0.1:4181/package/assets/textures/pressure-dial.webp","http://127.0.0.1:4181/favicon.ico"]}},"error":null}
+{
+  "checkedAt": "2026-09-25T10:46:45.840Z",
+  "kind": "Built app served under /package/ on a local static server; not a deployment.",
+  "passed": true,
+  "fonts": [
+    {
+      "family": "S-Core Dream",
+      "status": "loaded"
+    },
+    {
+      "family": "S-Core Dream",
+      "status": "loaded"
+    },
+    {
+      "family": "RIDI Batang",
+      "status": "loaded"
+    }
+  ],
+  "licenses": [
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:4181/package/assets/S-Core-Dream-license-1s6Vy9JG.png"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:4181/package/assets/RIDIBatang-license-CBqV4IIm.txt"
+    }
+  ],
+  "renderer": {
+    "drawCalls": "28",
+    "engine": "three.js r186",
+    "loadedAssets": "4",
+    "renderState": "ready",
+    "triangles": "193272",
+    "visibleTriangles": "105168"
+  },
+  "requests": [
+    "http://127.0.0.1:4181/package/assets/index-BzJwOa_O.css",
+    "http://127.0.0.1:4181/package/assets/index-D6c-_c2k.js",
+    "http://127.0.0.1:4181/package/assets/models/press-chamber.glb",
+    "http://127.0.0.1:4181/package/assets/models/salvage-core.glb",
+    "http://127.0.0.1:4181/package/assets/models/salvage-lens.glb",
+    "http://127.0.0.1:4181/package/assets/models/salvage-cassette.glb",
+    "http://127.0.0.1:4181/package/assets/SCDream4-KpLFo22y.otf",
+    "http://127.0.0.1:4181/package/assets/SCDream6-DqcRfF1Y.otf",
+    "http://127.0.0.1:4181/package/assets/RIDIBatang-C8ZMPhPn.otf",
+    "http://127.0.0.1:4181/package/assets/textures/workshop-v4.webp",
+    "http://127.0.0.1:4181/package/assets/textures/pressure-dial.webp",
+    "http://127.0.0.1:4181/favicon.ico"
+  ],
+  "incidentalRequests": [
+    {
+      "url": "http://127.0.0.1:4181/favicon.ico",
+      "status": 404,
+      "note": "Browser favicon probe; not a game/font asset. Local test server has no root favicon."
+    }
+  ],
+  "files": [
+    {
+      "path": "dist/assets/RIDIBatang-C8ZMPhPn.otf",
+      "sha256": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54"
+    },
+    {
+      "path": "dist/assets/RIDIBatang-license-CBqV4IIm.txt",
+      "sha256": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453"
+    },
+    {
+      "path": "dist/assets/S-Core-Dream-license-1s6Vy9JG.png",
+      "sha256": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257"
+    },
+    {
+      "path": "dist/assets/SCDream4-KpLFo22y.otf",
+      "sha256": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4"
+    },
+    {
+      "path": "dist/assets/SCDream6-DqcRfF1Y.otf",
+      "sha256": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a"
+    }
+  ],
+  "screenshot": "after/package-start.png",
+  "screenshotSha256": "e6b2530a799a4682638b9ccb217a23aec04ff6b83aaee3989b025f8c966a9d9d"
+}
