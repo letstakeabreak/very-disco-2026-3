@@ -2,9 +2,11 @@
 
 담당: `letstakeabreak` · 후속 브랜치: `role/b-render-performance` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
-PR #1은 `integration/v1`에 `fa622b70566cdacc37cc419552b20ae62b8d61ed`로 머지했다. 최신 후속 변경은 [정지 자세의 그림자 재사용](performance-study/README.md)이다. 전후 실제 WebGL 9쌍이 동일하고 정지 프레임의 draw 33→27 / 모든 패스 triangles 281,192→193,194를 확인했다. 전체 69테스트 통과. 이 변경의 iPhone 성능은 아직 재측정하지 않았다.
+PR #1은 `integration/v1`에 `fa622b70566cdacc37cc419552b20ae62b8d61ed`로 머지했다. 후속 [정지 자세의 그림자 재사용](performance-study/README.md)은 d9db1df 시점에서 전후 WebGL9쌍 동일과 draw33→27 / 모든 패스 triangles281,192→193,194를 확인했다.
 
-후속 구현 커밋은 `d9db1df9306e6826dcbd41ca04aef865f6457a1a`다. [A+B+C 로컬 연결 검증](performance-study/integration/README.md)은 83테스트와 실제 압착·보관·실패·정산·재시작, 의도적인 GPU 오류 후 점수·용량을 유지하는 재시도를 확인했다. A/C PR을 원격 머지한 기록은 아니며 iPhone, 보관 외형 복원 계약, 작은 화면 HUD 가림은 남아 있다.
+최신 보완은 [압착 형상에 맞는 표면 반사](normal-study/README.md)다. 위치만 변하던 외피·실린더의 normal/tangent를 형상에 맞춰 변환하며 유리·내부 축의 강체 표면은 유지한다. 실제 GPU27조건(4,189표본)과 실행 전후9쌍, 전체69테스트·build를 통과했다. 반사를 의도적으로 고친 변경이므로 직전 그림자 최적화의 “화면 동일” 결과와 구분한다. 이 후속 변경들의 iPhone 성능은 아직 재측정하지 않았다.
+
+직전 그림자 재사용 구현 커밋은 `d9db1df9306e6826dcbd41ca04aef865f6457a1a`다. [A+B+C 로컬 연결 검증](performance-study/integration/README.md)은 83테스트와 실제 압착·보관·실패·정산·재시작, 의도적인 GPU 오류 후 점수·용량을 유지하는 재시도를 확인했다. A/C PR을 원격 머지한 기록은 아니며 iPhone, 보관 외형 복원 계약, 작은 화면 HUD 가림은 남아 있다.
 
 실기기 측정에 사용한 구현 커밋: `285244075ea2e680bd8defa77fe3c55c66f69454`. 실측 당시에는 직전 HEAD 위의 미커밋 변경이었으며, JSON의 소스 해시가 이 구현과 일치한다. 후속 성능 변경 및 문서 커밋과 구분한다.
 

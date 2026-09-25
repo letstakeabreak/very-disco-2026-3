@@ -31,6 +31,36 @@ const VERTEX = `
   transformed.x += sin(position.z * 70.0 + u * 11.0) * pressDamage * shell * h * 0.035 * housing;
 `;
 
+// Inverse-transpose of the authored deformation Jacobian. The existing normal
+// map keeps its fine surface detail; its supporting surface follows the fold.
+const NORMAL = `
+  if (pressGlassSurface < 0.5) {
+    float h = max(pressHeight, 0.001);
+    float u = clamp(position.y / h, 0.0, 1.0);
+    float t = clamp((abs(u-0.5)-0.16)/0.16, 0.0, 1.0);
+    float shell = t*t*(3.0-2.0*t);
+    float shellDerivative = 6.0*t*(1.0-t)*sign(u-0.5)/0.16;
+    float ribs = sin(u*21.991)*sin(u*3.14159);
+    float ribsDerivative = 21.991*cos(u*21.991)*sin(u*3.14159)
+      + 3.14159*sin(u*21.991)*cos(u*3.14159);
+    float crush = pressCompression*mix(0.52,0.12,pressIsGlass);
+    float inside = position.y > 0.0 && position.y < h ? 1.0 : 0.0;
+    float foldDerivative = crush*(ribsDerivative*shell+ribs*shellDerivative)*inside;
+    float wave = position.z*70.0+u*11.0;
+    float dxdy = sign(position.x)*foldDerivative*0.13
+      + pressDamage*0.035*(cos(wave)*11.0*shell+sin(wave)*shellDerivative)*inside;
+    float dxdz = cos(wave)*70.0*pressDamage*shell*h*0.035;
+    float dzdy = sign(position.z)*foldDerivative*0.08;
+    float dydy = mix(1.0-crush, u < 0.3 || u >= 0.7 ? 1.0-crush/0.6 : 1.0, pressIsGlass);
+    float nz = objectNormal.z-dxdz*objectNormal.x;
+    objectNormal = vec3(objectNormal.x,(objectNormal.y-dxdy*objectNormal.x-dzdy*nz)/dydy,nz);
+    #ifdef USE_TANGENT
+      objectTangent = vec3(objectTangent.x+dxdy*objectTangent.y+dxdz*objectTangent.z,
+        dydy*objectTangent.y,objectTangent.z+dzdy*objectTangent.y);
+    #endif
+  }
+`;
+
 // Authored surface fracture on the generated cylinder. It changes appearance
 // only; the core owns damage, failure and salvage value.
 const CASSETTE_FRACTURE = `
@@ -76,6 +106,7 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
       const opticsKey = material.customProgramCacheKey();
       material.onBeforeCompile = (shader, renderer) => {
         patchVertex(shader, rigidSurface);
+        shader.vertexShader = shader.vertexShader.replace('#include <beginnormal_vertex>', '#include <beginnormal_vertex>\n' + NORMAL);
         shader.fragmentShader = 'uniform float pressDamage;\n' + shader.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>\n diffuseColor.rgb *= mix(vec3(1.0), vec3(0.30, 0.24, 0.21), pressDamage * 0.72);`);
         if (glassSurface) {
           shader.vertexShader = 'varying vec2 fracturePosition;\n' + shader.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\nfracturePosition = (position.xy - vec2(${glassCenter.x.toFixed(8)}, ${glassCenter.y.toFixed(8)})) / vec2(${glassSize.x.toFixed(8)}, ${glassSize.y.toFixed(8)});`);
@@ -104,7 +135,7 @@ export function deformSpecimen(root: Object3D, id: SalvageId): Deformation {
               'material.transmission = transmission;', 'material.transmission = transmission * (1.0-pressDamage*0.25) * (1.0-cassetteCrack*0.9);'));
         }
       };
-      material.customProgramCacheKey = () => `deep-press-shell-v5-${id}-${rigidSurface}-${opticsKey}`;
+      material.customProgramCacheKey = () => `deep-press-shell-v6-${id}-${rigidSurface}-${opticsKey}`;
       deformation.materials.push(material);
       return material;
     });
