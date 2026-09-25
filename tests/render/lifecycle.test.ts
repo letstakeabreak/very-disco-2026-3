@@ -522,10 +522,26 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
       expect(aperture.hit === undefined || aperture.hit > aperture.distance + 0.005).toBe(true);
     }
     expect(sample(300, 1137).hit).toBeUndefined();
+    const worktop = scene.getObjectByName('worktop-shadow') as Mesh;
+    const contact = scene.getObjectByName('case-contact-shadow') as Mesh;
+    // The global table plane must not cast a floating shadow across any cavity.
+    for (const x of [534, 616, 694, 855]) {
+      sample(x, 1137);
+      expect(ray.intersectObject(worktop)).toHaveLength(0);
+    }
+    sample(300, 1137); expect(ray.intersectObject(worktop)).toHaveLength(1);
+    // The new receiver stays on the same registered mouth and recessed walls.
+    for (const x of [534, 616, 694, 855]) {
+      const { hit } = sample(x, 1137);
+      expect(ray.intersectObject(contact)[0]?.distance).toBe(hit);
+    }
     const releaseGeometry = vi.spyOn(depth.geometry, 'dispose');
     const releaseMaterial = vi.spyOn(depth.material as MeshBasicMaterial, 'dispose');
+    const releaseShadow = vi.spyOn(contact.material as ShadowMaterial, 'dispose');
+    const releaseWorktop = vi.spyOn(worktop.geometry, 'dispose');
     renderer.dispose(); renderer.dispose();
     expect(releaseGeometry).toHaveBeenCalledTimes(1); expect(releaseMaterial).toHaveBeenCalledTimes(1);
+    expect(releaseShadow).toHaveBeenCalledTimes(1); expect(releaseWorktop).toHaveBeenCalledTimes(1);
   });
 
   it('passes worktop clipping into real Three shadow materials and releases ram and cached frame depth materials', async () => {
@@ -534,7 +550,7 @@ describe('renderer lifecycle and cosmetic continuity (device/IO boundary doubles
     const [scene, camera] = lastStageDraw(); scene.updateMatrixWorld(true);
     const receivers: Mesh[] = [];
     scene.traverse(object => { if (object instanceof Mesh && object.material instanceof ShadowMaterial) receivers.push(object); });
-    expect(receivers).toHaveLength(2);
+    expect(receivers).toHaveLength(3);
     for (const receiver of receivers) expect(receiver.receiveShadow).toBe(true);
     const press = [...models.entries()].find(([url]) => url.includes('press-chamber'))![1];
     const ram = press.mesh; const frame = press.scene.getObjectByName('press-frame-test') as Mesh<BoxGeometry, MeshStandardMaterial>;

@@ -4,13 +4,15 @@
 
 PR #1은 `integration/v1`에 `fa622b70566cdacc37cc419552b20ae62b8d61ed`로 머지했다. 후속 [정지 자세의 그림자 재사용](performance-study/README.md)은 d9db1df 시점에서 전후 WebGL9쌍 동일과 draw33→27 / 모든 패스 triangles281,192→193,194를 확인했다.
 
-최신 보완은 [압착 형상에 맞는 표면 반사](normal-study/README.md)다. 위치만 변하던 외피·실린더의 normal/tangent를 형상에 맞춰 변환하며 유리·내부 축의 강체 표면은 유지한다. 실제 GPU27조건(4,189표본)과 실행 전후9쌍, 전체69테스트·build를 통과했다. 반사를 의도적으로 고친 변경이므로 직전 그림자 최적화의 “화면 동일” 결과와 구분한다. 이 후속 변경들의 iPhone 성능은 아직 재측정하지 않았다.
+최신 보완은 [케이스 접촉 그림자](case-shadow-study/README.md)다. 작업대 그림자 면이 케이스 홈을 가로지르지 않게 하고 폼 입구·안쪽 벽에서 그림자를 받는다. 실제 GPU36조건·전후12장·전체69테스트·build를 통과했다. 정지 자세는 draw28 / 모든 패스 triangles193,272다. 작은 화면의 차이는 미세하며 전체 아트 합격을 뜻하지 않는다.
+
+직전 [압착 형상에 맞는 표면 반사](normal-study/README.md)는 위치만 변하던 외피·실린더의 normal/tangent를 형상에 맞춰 변환하며 유리·내부 축의 강체 표면은 유지한다. 실제 GPU27조건(4,189표본)과 실행 전후9쌍으로 확인했다. 반사를 의도적으로 고친 변경이므로 이전 그림자 최적화의 “화면 동일” 결과와 구분한다. 이 후속 변경들의 iPhone 성능은 아직 재측정하지 않았다.
 
 직전 그림자 재사용 구현 커밋은 `d9db1df9306e6826dcbd41ca04aef865f6457a1a`다. [A+B+C 로컬 연결 검증](performance-study/integration/README.md)은 83테스트와 실제 압착·보관·실패·정산·재시작, 의도적인 GPU 오류 후 점수·용량을 유지하는 재시도를 확인했다. A/C PR을 원격 머지한 기록은 아니며 iPhone, 보관 외형 복원 계약, 작은 화면 HUD 가림은 남아 있다.
 
 실기기 측정에 사용한 구현 커밋: `285244075ea2e680bd8defa77fe3c55c66f69454`. 실측 당시에는 직전 HEAD 위의 미커밋 변경이었으며, JSON의 소스 해시가 이 구현과 일치한다. 후속 성능 변경 및 문서 커밋과 구분한다.
 
-직전 시각 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남은 Draft**다.
+직전 시각 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남음**이다. 사용자의 지시로 후속 PR도 `integration/v1`에 반영하며, 최종 아트·실기기 합격 판정은 별도다.
 
 ## 연결 방법
 
@@ -58,7 +60,7 @@ A는 `integration/v1` 후보에 이 브랜치의 고정 commit을 다른 역할�
 
 ## 현재 배포 산출물 크기
 
-B 반영 후 `npm run build` 산출물은 **12,169,653 bytes**(압축 전 파일 합계)다. 이 중 모델 10,885,424 bytes, 현재 배경 WebP 223,350 bytes(과거 독립 조사용 285,686 bytes 파일도 dist에 보존), 계기판 WebP 90,242 bytes이며 JS는 677,366 bytes(gzip 약174.61kB)다. 20MB 초기 예산 이내다. Vite는 JS 단일 chunk 500kB 초과 경고를 남기지만 빌드는 성공했다. 공유 설정/의존성 변경은 하지 않았다. A/C 최종 통합 후 다시 측정해야 한다.
+B 반영 후 `npm run build` 산출물은 **12,187,776 bytes**(압축 전 파일 합계)다. 이 중 모델 10,885,424 bytes, 현재 배경 WebP 223,350 bytes(과거 독립 조사용 285,686 bytes 파일도 dist에 보존), 계기판 WebP 90,242 bytes이며 JS는 690,279 bytes(gzip 약178.57kB)다. 20MB 초기 예산 이내다. Vite는 JS 단일 chunk 500kB 초과 경고를 남기지만 빌드는 성공했다. 공유 설정/의존성 변경은 하지 않았다. A/C 최종 통합 후 다시 측정해야 한다.
 
 [macOS Safari 관찰](evidence/safari-desktop.md)은 이전 게이지 보완 revision의 기록이며 현재 램/반사 변경 뒤 Safari를 재검사한 결과가 아니다. [데스크톱 3분 측정](evidence/desktop-soak-20260924T164805.json)은 직전27fc244 구현의 이력이며 현재 코드나 실제 iPhone 합격의 근거가 아니다.
 

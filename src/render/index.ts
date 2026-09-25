@@ -14,7 +14,7 @@ import { disposeObjects } from './resources';
 import { finiteFrameDelta, specimenVisuals, SPECIMEN_IDS } from './visual-state';
 import { animateRam, PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from './ram';
 import { ASSET_REGISTRY } from './assets';
-import { createCaseDepth } from './case-depth';
+import { createCaseDepth, createWorktopShadowGeometry } from './case-depth';
 import { prepareCassette } from './cassette';
 
 const STAGE_ASPECT = 2 / 3;
@@ -126,7 +126,8 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   rim.position.set(1.2, 1.7, -1.2); scene.add(rim);
   const fill = new DirectionalLight('#abc5ca', 0.3);
   fill.position.set(0.2, 1.8, 3.5); scene.add(fill);
-  const shadow = new Mesh(new PlaneGeometry(5, 5), new ShadowMaterial({ opacity: 0.52, depthWrite: false }));
+  const shadow = new Mesh(createWorktopShadowGeometry(onTable), new ShadowMaterial({ opacity: 0.52, depthWrite: false }));
+  shadow.name = 'worktop-shadow';
   shadow.rotation.x = -Math.PI / 2; shadow.position.y = WORKTOP_Y + 0.001; shadow.receiveShadow = true;
   scene.add(shadow); roots.push(shadow);
   const bedShadow = new Mesh(new PlaneGeometry(0.30, 0.27), new ShadowMaterial({ opacity: 0.4, depthWrite: false }));
