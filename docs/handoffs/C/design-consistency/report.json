@@ -1,0 +1,1134 @@
+{
+  "checkedAt": "2026-09-25T10:56:42.520Z",
+  "kind": "Actual M1 core + C app + v1 production renderer in desktop Chromium. Real browser pointer actions, no injected snapshots. Not iPhone or touch validation.",
+  "sourcesBefore": {
+    "src/app/index.ts": "7c924c0c404dae3c615b09cb01861348dd878d0cc37333fa28897926e6a07a7a",
+    "src/app/style.css": "73aedda10cb8df14e1ce80f0db7fdfd6661eeeb5fe92d966c947efd81583f064",
+    "src/app/presentation.ts": "484f36fcd8d5c7ef350d9faf33093339b3a893b1c8ebbddac7bfa78a53cfa65b",
+    "src/app/input.ts": "400907c6ca11ab5674242d907c993ccaaaeca54bd294de7b08993761e3e7c148",
+    "src/app/runtime.ts": "2355ed59618d966163797e57f8b297905cbb4b7d260035a4b207009fabbd8ff1",
+    "src/core/index.ts": "72a11f2421fcbc801070edb2c0895104d68318ed8582d719c02ddecca6a15bf5",
+    "src/render/index.ts": "a017af8cb68b8a2a59828e837ab5aa8034cd7d4a831f4eef48c3818b6c0135ed",
+    "src/render/deformation.ts": "fd66bd9d0bdf69225a8c7f8ad88f9a5ffe075564ca048ce20a4ea3d78bcf5068",
+    "src/app/fonts/SCDream4.otf": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4",
+    "src/app/fonts/SCDream6.otf": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a",
+    "src/app/fonts/RIDIBatang.otf": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54",
+    "src/app/fonts/RIDIBatang-license.txt": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453",
+    "src/app/fonts/S-Core-Dream-license.png": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257"
+  },
+  "layouts": [
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 113.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 113.34375
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 113.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 169
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 844,
+        "height": 844,
+        "left": 0,
+        "right": 390,
+        "top": 0,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 832,
+        "height": 122,
+        "left": 16,
+        "right": 374,
+        "top": 710,
+        "width": 358,
+        "x": 16,
+        "y": 710
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 844,
+      "overflow": false,
+      "status": {
+        "bottom": 167.03125,
+        "height": 99.03125,
+        "left": 16,
+        "right": 374,
+        "top": 68,
+        "width": 358,
+        "x": 16,
+        "y": 68
+      },
+      "width": 390,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 99.203125,
+          "left": 16,
+          "right": 247.84375,
+          "selector": ".mission-identity",
+          "top": 24
+        },
+        {
+          "bottom": 443.625,
+          "left": 41,
+          "right": 349,
+          "selector": "#dialog-title",
+          "top": 371.625
+        },
+        {
+          "bottom": 755,
+          "left": 41,
+          "right": 349,
+          "selector": "[data-action=\"start\"]",
+          "top": 707
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 90
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 90
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 90
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 99
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 470.25,
+        "height": 352.234375,
+        "left": 0,
+        "right": 320,
+        "top": 118.015625,
+        "width": 320,
+        "x": 0,
+        "y": 118.015625
+      },
+      "controls": {
+        "bottom": 560,
+        "height": 122,
+        "left": 16,
+        "right": 304,
+        "top": 438,
+        "width": 288,
+        "x": 16,
+        "y": 438
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 568,
+      "overflow": false,
+      "status": {
+        "bottom": 157.34375,
+        "height": 93.34375,
+        "left": 16,
+        "right": 304,
+        "top": 64,
+        "width": 288,
+        "x": 16,
+        "y": 64
+      },
+      "width": 320,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 88,
+          "left": 16,
+          "right": 224.875,
+          "selector": ".mission-identity",
+          "top": 16
+        },
+        {
+          "bottom": 263.625,
+          "left": 33,
+          "right": 287,
+          "selector": "#dialog-title",
+          "top": 200.625
+        },
+        {
+          "bottom": 495,
+          "left": 33,
+          "right": 287,
+          "selector": "[data-action=\"start\"]",
+          "top": 447
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 178
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 178
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 178
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 363
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 1024,
+        "height": 1024,
+        "left": 0,
+        "right": 768,
+        "top": 0,
+        "width": 768,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 1012,
+        "height": 122,
+        "left": 108,
+        "right": 660,
+        "top": 890,
+        "width": 552,
+        "x": 108,
+        "y": 890
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 1024,
+      "overflow": false,
+      "status": {
+        "bottom": 167.03125,
+        "height": 99.03125,
+        "left": 108,
+        "right": 660,
+        "top": 68,
+        "width": 552,
+        "x": 108,
+        "y": 68
+      },
+      "width": 768,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 103,
+          "left": 16,
+          "right": 275.09375,
+          "selector": ".mission-identity",
+          "top": 24
+        },
+        {
+          "bottom": 623.625,
+          "left": 219,
+          "right": 549,
+          "selector": "#dialog-title",
+          "top": 551.625
+        },
+        {
+          "bottom": 935,
+          "left": 219,
+          "right": 549,
+          "selector": "[data-action=\"start\"]",
+          "top": 887
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 372
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 182
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 182
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 372
+        }
+      ],
+      "canvas": {
+        "bottom": 900,
+        "height": 900,
+        "left": 0,
+        "right": 1440,
+        "top": 0,
+        "width": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 888,
+        "height": 259,
+        "left": 1044,
+        "right": 1416,
+        "top": 629,
+        "width": 372,
+        "x": 1044,
+        "y": 629
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 900,
+      "overflow": false,
+      "status": {
+        "bottom": 167.03125,
+        "height": 99.03125,
+        "left": 24,
+        "right": 396,
+        "top": 68,
+        "width": 372,
+        "x": 24,
+        "y": 68
+      },
+      "width": 1440,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 240.8125,
+          "left": 170,
+          "right": 429.09375,
+          "selector": ".mission-identity",
+          "top": 161.8125
+        },
+        {
+          "bottom": 361.8125,
+          "left": 195,
+          "right": 525,
+          "selector": "#dialog-title",
+          "top": 289.8125
+        },
+        {
+          "bottom": 673.1875,
+          "left": 195,
+          "right": 525,
+          "selector": "[data-action=\"start\"]",
+          "top": 625.1875
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    },
+    {
+      "buttons": [
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "Ⅱ",
+          "width": 48
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "✓ 에너지 코어",
+          "width": 75.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "광학 렌즈",
+          "width": 75.34375
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "데이터 카세트",
+          "width": 75.328125
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "꾹 눌러 압축",
+          "width": 244
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "담기",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "버리기",
+          "width": 118
+        },
+        {
+          "height": 48,
+          "overflow": false,
+          "text": "마치기",
+          "width": 244
+        }
+      ],
+      "canvas": {
+        "bottom": 390,
+        "height": 390,
+        "left": 0,
+        "right": 844,
+        "top": 0,
+        "width": 844,
+        "x": 0,
+        "y": 0
+      },
+      "controls": {
+        "bottom": 382,
+        "height": 259,
+        "left": 576,
+        "right": 820,
+        "top": 123,
+        "width": 244,
+        "x": 576,
+        "y": 123
+      },
+      "filter": "blur(8px) saturate(0.8)",
+      "font": "\"S-Core Dream\", \"Apple SD Gothic Neo\", sans-serif",
+      "glass": "radial-gradient(at 14% 0%, rgba(219, 165, 91, 0.15), rgba(0, 0, 0, 0) 68%), linear-gradient(125deg, rgba(125, 180, 174, 0.13), rgba(5, 24, 26, 0.45) 42%, rgba(4, 16, 19, 0.64))",
+      "height": 390,
+      "overflow": false,
+      "status": {
+        "bottom": 157.34375,
+        "height": 93.34375,
+        "left": 24,
+        "right": 268,
+        "top": 64,
+        "width": 244,
+        "x": 24,
+        "y": 64
+      },
+      "width": 844,
+      "fonts": [
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "400"
+        },
+        {
+          "family": "S-Core Dream",
+          "status": "loaded",
+          "weight": "600"
+        },
+        {
+          "family": "RIDI Batang",
+          "status": "loaded",
+          "weight": "400"
+        }
+      ],
+      "intro": [
+        {
+          "bottom": 214.1875,
+          "left": 24,
+          "right": 283.09375,
+          "selector": ".mission-identity",
+          "top": 135.1875
+        },
+        {
+          "bottom": 85,
+          "left": 457,
+          "right": 803,
+          "selector": "#dialog-title",
+          "top": 29
+        },
+        {
+          "bottom": 284.375,
+          "left": 457,
+          "right": 803,
+          "selector": "[data-action=\"start\"]",
+          "top": 236.375
+        }
+      ],
+      "rhythm": {
+        "betweenActionGap": 16,
+        "finishSeparated": true,
+        "groupsInside": true,
+        "sameRadius": true,
+        "selectedDistinct": true,
+        "topAligned": true,
+        "trayGap": 16,
+        "withinActionGap": 8
+      }
+    }
+  ],
+  "flow": [
+    {
+      "step": "inspect",
+      "capacity": "1.00",
+      "cue": "적당히 버틸 것 같아요",
+      "inert": false,
+      "light": "14%",
+      "phase": "살펴보기",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "크기 0.72L · 가치 340",
+      "score": "0",
+      "strained": false
+    },
+    {
+      "step": "release",
+      "capacity": "1.00",
+      "cue": "적당히 버틸 것 같아요",
+      "inert": false,
+      "light": "37.400000000000006%",
+      "phase": "살펴보기",
+      "pressing": false,
+      "pressure": "33%",
+      "renderer": {
+        "drawCalls": "34",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281270",
+        "visibleTriangles": "105168"
+      },
+      "result": "크기 0.56L · 가치 340 · 내구도 100%",
+      "score": "0",
+      "strained": false
+    },
+    {
+      "step": "store",
+      "capacity": "0.44",
+      "cue": "",
+      "inert": false,
+      "light": "14%",
+      "phase": "담았어요",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "아래에서 물건을 하나 골라 주세요",
+      "score": "440",
+      "strained": false
+    },
+    {
+      "step": "complete",
+      "capacity": "0.44",
+      "cue": "",
+      "inert": true,
+      "light": "14%",
+      "note": "연구 기록이 수면 위로 돌아가요. 작은 케이스에 남길 것을 잘 골랐어요.",
+      "phase": "끝",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "아래에서 물건을 하나 골라 주세요",
+      "score": "440",
+      "strained": false
+    },
+    {
+      "step": "strain",
+      "capacity": "1.00",
+      "cue": "삐걱거려요! 곧 부서질 수 있어요",
+      "inert": false,
+      "light": "48.799999999976%",
+      "phase": "압축 중",
+      "pressing": true,
+      "pressure": "48%",
+      "renderer": {
+        "drawCalls": "34",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281270",
+        "visibleTriangles": "105168"
+      },
+      "result": "예상 크기 0.44L · 들어가요",
+      "score": "0",
+      "strained": true
+    },
+    {
+      "step": "failed",
+      "capacity": "1.00",
+      "cue": "",
+      "inert": true,
+      "light": "86%",
+      "phase": "실패",
+      "pressing": false,
+      "pressure": "100%",
+      "renderer": {
+        "drawCalls": "30",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "194232",
+        "visibleTriangles": "105188"
+      },
+      "result": "크기 0.30L · 가치 0 · 내구도 0%",
+      "score": "0",
+      "strained": true
+    },
+    {
+      "step": "empty",
+      "capacity": "1.00",
+      "cue": "",
+      "inert": true,
+      "light": "14%",
+      "note": "이번에는 빈 케이스예요. 다음 작업에서는 물건을 살펴보고, 조금씩 눌러 봐요.",
+      "phase": "끝",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "25",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "172272",
+        "visibleTriangles": "93668"
+      },
+      "result": "아래에서 물건을 하나 골라 주세요",
+      "score": "0",
+      "strained": false
+    },
+    {
+      "step": "retry",
+      "capacity": "1.00",
+      "cue": "",
+      "inert": false,
+      "light": "14%",
+      "phase": "살펴보기",
+      "pressing": false,
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "28",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193272",
+        "visibleTriangles": "105168"
+      },
+      "result": "크기 0.90L · 가치 260",
+      "score": "0",
+      "strained": false
+    }
+  ],
+  "captures": [
+    {
+      "path": "after/390-start.png",
+      "sha256": "7c93a5eb610c5df1c1bc467c9bb0e5556437ee07021b851ecc38dfe93cbea57c"
+    },
+    {
+      "path": "after/390-game.png",
+      "sha256": "97ef7b0cff75054258c257176dae0d99ebc76ba7251b200bc29ba505acfe41c1"
+    },
+    {
+      "path": "after/320-start.png",
+      "sha256": "a5471333945f55d9f671e53886ccb2586644f328e88d73214202ff087b0764f3"
+    },
+    {
+      "path": "after/320-game.png",
+      "sha256": "36543a0bb3d79f5a8dd5e443c7b22dcefac53c78c37bc267399d61eebb854ab7"
+    },
+    {
+      "path": "after/768-start.png",
+      "sha256": "1be9d069ccb2579944692902989fc502420ca8a3d841e64671c7fd143d34568b"
+    },
+    {
+      "path": "after/768-game.png",
+      "sha256": "c7abc65f5f08fc2b368a3d119a6b8056d03fb5b753d77c4b1bd502317a7aa091"
+    },
+    {
+      "path": "after/1440-start.png",
+      "sha256": "aa7e404f17a890baf67ed0ddaa8869904e8f57be953665d6725fb424bfa267a0"
+    },
+    {
+      "path": "after/1440-game.png",
+      "sha256": "2446afa1916a97b3ea2a9f0a4d2b848c7d657c7da88587cdc1937ffcbf75912d"
+    },
+    {
+      "path": "after/844-start.png",
+      "sha256": "cc67f7abd59ce88d9319ef7d20838141dbde7357eefef1b2950ee98b5c6236cd"
+    },
+    {
+      "path": "after/844-game.png",
+      "sha256": "f27b3d89a3c4f084a852fdf4801fda306b51f93ec4a549af07a9cef217804664"
+    },
+    {
+      "path": "after/390-settled.png",
+      "sha256": "2f2e5bac8573bfa45c3a9a670d10555978eb5d8ef2b87d7af2450e153e76a281"
+    },
+    {
+      "path": "after/390-complete.png",
+      "sha256": "3f6e898bae098311a2193d29c298b27aa1ee7813c789459bf6f2ec8429c7c363"
+    },
+    {
+      "path": "after/390-strain.png",
+      "sha256": "b3331885e03b01cad5878fd3fcfdd46026c00177f296fde970c32c4db8da611a"
+    },
+    {
+      "path": "after/390-failed.png",
+      "sha256": "f0e17b7f1e0bf440de4d8dbe1fbe3b8d4ee1a78a6a05033f5e08f83bc65410b5"
+    },
+    {
+      "path": "after/390-empty.png",
+      "sha256": "a354cf3a2d4785e79581fb1272dc4a03169e616c35aee18d4439e35daf4733d2"
+    },
+    {
+      "path": "after/390-paused.png",
+      "sha256": "c31cee1a0a3bf027b1ec4b2f4f5e9d18e984f0977dbf9dbb0e8709b064da4279"
+    },
+    {
+      "path": "after/390-retry.png",
+      "sha256": "dd296a4d5e295558819415a797a47b6968787ad96a05a53656b57119e46f46ea"
+    }
+  ],
+  "dialogButtons": [
+    {
+      "height": 48,
+      "radius": "4px",
+      "text": "버리고 계속하기"
+    },
+    {
+      "height": 48,
+      "radius": "4px",
+      "text": "지금 점수로 마치기"
+    },
+    {
+      "height": 48,
+      "radius": "4px",
+      "text": "처음부터 다시"
+    }
+  ],
+  "errors": [],
+  "console": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.WebGLRenderer: Context Lost."
+          }
+        ],
+        "text": "THREE.WebGLRenderer: Context Lost.",
+        "type": "log"
+      }
+    ]
+  },
+  "sourcesAfter": {
+    "src/app/index.ts": "7c924c0c404dae3c615b09cb01861348dd878d0cc37333fa28897926e6a07a7a",
+    "src/app/style.css": "73aedda10cb8df14e1ce80f0db7fdfd6661eeeb5fe92d966c947efd81583f064",
+    "src/app/presentation.ts": "484f36fcd8d5c7ef350d9faf33093339b3a893b1c8ebbddac7bfa78a53cfa65b",
+    "src/app/input.ts": "400907c6ca11ab5674242d907c993ccaaaeca54bd294de7b08993761e3e7c148",
+    "src/app/runtime.ts": "2355ed59618d966163797e57f8b297905cbb4b7d260035a4b207009fabbd8ff1",
+    "src/core/index.ts": "72a11f2421fcbc801070edb2c0895104d68318ed8582d719c02ddecca6a15bf5",
+    "src/render/index.ts": "a017af8cb68b8a2a59828e837ab5aa8034cd7d4a831f4eef48c3818b6c0135ed",
+    "src/render/deformation.ts": "fd66bd9d0bdf69225a8c7f8ad88f9a5ffe075564ca048ce20a4ea3d78bcf5068",
+    "src/app/fonts/SCDream4.otf": "1dc288e8cfdf96eb083c0b016fb5f107bc83208e748b6a61422404b9e42a95a4",
+    "src/app/fonts/SCDream6.otf": "7dd3e0240002feedd37d0f33033a44e17b1ab11f84a93acf8482184adc33aa1a",
+    "src/app/fonts/RIDIBatang.otf": "f13a49c0815d254ac15e392953a0b056613dec08ceb378e54eeed14c4fda9a54",
+    "src/app/fonts/RIDIBatang-license.txt": "58c16c3cf773edd86cbce4e22eaf6202b27471992fe5929a17cd487f79023453",
+    "src/app/fonts/S-Core-Dream-license.png": "6b706afa8929b2b63b46276ac862da5ab7a3f79da1256b73057cd6f50baf2257"
+  },
+  "passed": true
+}
