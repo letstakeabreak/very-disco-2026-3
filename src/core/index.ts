@@ -75,8 +75,9 @@ export function createGame(input: GameConfig): Game {
       alive();
       if (command.type === 'select' && !initialIds.includes(command.specimenId)) throw new RangeError('Unknown specimen ID');
       if (command.type === 'inspect' && !Number.isFinite(command.yawRad)) throw new RangeError('yawRad must be finite');
-      if (command.type === 'start' || command.type === 'restart') { reset(); return; }
+      if (command.type === 'restart') { reset(); return; }
       if (phase === 'complete') return;
+      if (command.type === 'start') { reset(); return; }
       if (command.type === 'resume') {
         if (phase === 'paused' && resumePhase !== null) {
           const next = resumePhase;
