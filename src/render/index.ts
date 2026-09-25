@@ -51,7 +51,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   let hasSynced = false;
   const roots: Object3D[] = [];
   const props = new Map<SalvageId, Prop>();
-  const storedLooks = new Map<SalvageId, { compression: number; damage: number }>();
+  let cueMs = 0;
   const shadowState: number[] = [];
   const depths: { dispose(): void }[] = [];
   let press: Object3D | null = null;
@@ -251,14 +251,16 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
 
   function sync(snapshot: GameSnapshot, dt: number): void {
     if (previousSeed !== snapshot.seed || snapshot.tick < previousTick || (snapshot.phase === 'idle' && snapshot.storedSpecimenIds.length === 0)) {
-      storedLooks.clear();
       for (const prop of props.values()) prop.initialized = false;
       hasSynced = false;
     }
     previousSeed = snapshot.seed; previousTick = snapshot.tick;
     const phase = snapshot.phase === 'paused' ? snapshot.resumePhase : snapshot.phase;
     const paused = snapshot.phase === 'paused';
-    gauge?.setPressure(snapshot.pressure01);
+    // Stress cues shake only while the lot is under the platen and time runs.
+    const shaking = !paused && hasSynced && (phase === 'compressing' || phase === 'settling');
+    if (shaking) cueMs += dt;
+    gauge?.setPressure(snapshot.pressure01, snapshot.stress01, shaking ? cueMs : null);
     // Pause can cancel an uncommitted stroke: show its authoritative settled state immediately.
     const blend = paused || !hasSynced ? 1 : 1 - Math.exp(-dt / 65);
     const inContact = snapshot.currentSpecimen !== null && (phase === 'compressing' || phase === 'settling' || phase === 'failed');
@@ -276,14 +278,14 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       const prop = props.get(visual.id);
       if (!prop) continue;
       prop.root.visible = visual.location !== 'hidden';
-      let look = { compression: visual.compression, damage: visual.damage };
-      if (visual.location === 'press') storedLooks.set(visual.id, look);
-      if (visual.location === 'case') look = storedLooks.get(visual.id) ?? look;
+      const look = { compression: visual.compression, damage: visual.damage };
       const compressionScale = visual.id === 'salvage-core' ? 0.52 : 0.12;
       prop.root.scale.setScalar(1);
       prop.root.rotation.set(0, visual.yaw, 0);
       if (visual.location === 'press') {
-        prop.root.position.set(PRESS_ANCHORS.x, PRESS_ANCHORS.workbedY + PRESS_ANCHORS.clearance, PRESS_ANCHORS.z);
+        const quake = shaking ? snapshot.stress01 * 0.004 : 0;
+        prop.root.position.set(PRESS_ANCHORS.x + quake * Math.sin(cueMs * 0.19), PRESS_ANCHORS.workbedY + PRESS_ANCHORS.clearance,
+          PRESS_ANCHORS.z + quake * Math.sin(cueMs * 0.23 + 1.3));
         if (press) {
           prop.root.position.applyMatrix4(press.matrixWorld);
           prop.root.rotation.set(press.rotation.x, press.rotation.y + visual.yaw, press.rotation.z);
@@ -422,7 +424,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       disposeObjects(roots, [plate, dial].filter((texture): texture is Texture => texture !== null));
       depths.forEach((material) => material.dispose());
       debris?.mesh.dispose(); environment?.dispose(); key.shadow.dispose();
-      props.clear(); storedLooks.clear(); gpu.dispose();
+      props.clear(); gpu.dispose();
     },
   };
 }

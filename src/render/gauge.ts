@@ -2,10 +2,11 @@ import { CircleGeometry, Group, Mesh, MeshBasicMaterial, PlaneGeometry, Shape, S
 import type { Texture } from 'three';
 
 /** Press-local meters measured against the runtime bezel; the image has no baked needle. */
-export function createGauge(texture: Texture): { root: Group; setPressure(pressure01: number): void } {
+export function createGauge(texture: Texture): { root: Group; setPressure(pressure01: number, stress01?: number, shakeMs?: number | null): void } {
   const root = new Group();
   root.name = 'pressure-gauge';
-  const dial = new Mesh(new PlaneGeometry(0.250, 0.115), new MeshBasicMaterial({ map: texture, toneMapped: false }));
+  const face = new MeshBasicMaterial({ map: texture, toneMapped: false });
+  const dial = new Mesh(new PlaneGeometry(0.250, 0.115), face);
   dial.name = 'pressure-dial';
   dial.position.set(0.015, 0.9635, 0.014);
   root.add(dial);
@@ -34,8 +35,12 @@ export function createGauge(texture: Texture): { root: Group; setPressure(pressu
   hub.name = 'pressure-needle-hub'; hub.position.z = 0.0002;
   needle.add(hub); root.add(needle);
 
-  function setPressure(pressure01: number): void {
-    needle.rotation.z = (80 - 160 * Math.min(1, Math.max(0, pressure01))) * Math.PI / 180;
+  /** Past the safe pressure the dial warms toward red and, while pressing, the needle trembles. */
+  function setPressure(pressure01: number, stress01 = 0, shakeMs: number | null = null): void {
+    const stress = Math.min(1, Math.max(0, stress01));
+    const tremble = shakeMs === null ? 0 : stress * 4 * (0.6 * Math.sin(shakeMs * 0.113) + 0.4 * Math.sin(shakeMs * 0.271));
+    needle.rotation.z = (80 - 160 * Math.min(1, Math.max(0, pressure01)) + tremble) * Math.PI / 180;
+    face.color.setRGB(1, 1 - 0.45 * stress, 1 - 0.55 * stress);
   }
   setPressure(0);
   return { root, setPressure };

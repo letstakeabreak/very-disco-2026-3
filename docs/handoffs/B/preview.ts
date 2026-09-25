@@ -58,11 +58,22 @@ function composeSnapshot(): GameSnapshot {
   const orderedIds = [...salvageIds.filter((id) => id !== controls.specimenId), controls.specimenId];
   const storedIds = orderedIds.slice(0, controls.storedCount);
   const hasSpecimen = ['inspecting', 'compressing', 'settling', 'failed', 'paused'].includes(controls.phase);
+  // QA stand-ins for core-owned 1.1 fields. A full case needs ~90% compression to fit 1 L.
+  const volumeAt = (item: typeof definition, p: number): number => item.initialVolume - (item.initialVolume - item.minimumVolume) * p;
+  const storedSpecimens = storedIds.map((id) => {
+    const item = DEFAULT_GAME_CONFIG.specimens.find((entry) => entry.id === id)!;
+    return { id, material: item.material, currentVolume: volumeAt(item, 0.9), integrity01: 1, value: item.baseValue, compression01: 0.9, tolerance: null };
+  });
   const next: GameSnapshot = {
     ...base,
     pressure01: controls.pressure01,
     inspectionYawRad: controls.yawDeg * Math.PI / 180,
     storedSpecimenIds: storedIds,
+    storedSpecimens,
+    volumeUsed: storedSpecimens.reduce((sum, item) => sum + item.currentVolume, 0),
+    stress01: hasSpecimen && controls.pressure01 > definition.safePressure01
+      ? Math.min(1, (controls.pressure01 - definition.safePressure01) / (1 - definition.safePressure01)) : 0,
+    previewVolume: hasSpecimen ? volumeAt(definition, controls.pressure01) : null,
     remainingSpecimenIds: salvageIds.filter((id) => !storedIds.includes(id)),
     currentSpecimen: hasSpecimen ? {
       id: definition.id, material: definition.material,
@@ -70,6 +81,7 @@ function composeSnapshot(): GameSnapshot {
       value: controls.phase === 'failed' ? 0 : base.currentSpecimen?.id === definition.id ? base.currentSpecimen.value : definition.baseValue,
       integrity01: controls.integrity01,
       compression01: controls.phase === 'compressing' ? 0 : controls.pressure01,
+      tolerance: null,
     } : null,
   };
   assertSnapshot(next);
