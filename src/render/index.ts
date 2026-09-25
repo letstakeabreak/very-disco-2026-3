@@ -51,6 +51,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   const roots: Object3D[] = [];
   const props = new Map<SalvageId, Prop>();
   const storedLooks = new Map<SalvageId, { compression: number; damage: number }>();
+  const shadowState: number[] = [];
   const depths: { dispose(): void }[] = [];
   let press: Object3D | null = null;
   let ram: ReturnType<typeof animateRam> | null = null;
@@ -113,6 +114,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   key.position.set(-1.8, 2.8, 2.0);
   key.target.position.set(0, 0.45, 0);
   key.castShadow = true;
+  key.shadow.autoUpdate = false;
   key.shadow.mapSize.set(1024, 1024);
   key.shadow.camera.left = -1.3; key.shadow.camera.right = 1.3;
   key.shadow.camera.top = 1.8; key.shadow.camera.bottom = -1.0;
@@ -341,6 +343,32 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     hasSynced = true;
   }
 
+  function refreshShadows(): void {
+    let cursor = 0;
+    let changed = false;
+    const track = (value: number): void => {
+      // Compare the values the GPU receives, including custom vertex uniforms.
+      const current = Math.fround(value);
+      if (shadowState[cursor] !== current) { shadowState[cursor] = current; changed = true; }
+      cursor += 1;
+    };
+    const transform = (root: Object3D): void => {
+      root.updateMatrix();
+      track(root.visible ? 1 : 0);
+      for (const value of root.matrix.elements) track(value);
+    };
+    if (press) transform(press);
+    track(ram?.travel.value ?? 0);
+    for (const id of SPECIMEN_IDS) {
+      const prop = props.get(id)!;
+      transform(prop.root);
+      track(prop.compression); track(prop.damage);
+    }
+    // The light, stage parent and internal mesh transforms are fixed. The gauge
+    // does not cast a shadow. Resizing only changes the camera viewport.
+    key.shadow.needsUpdate = changed;
+  }
+
   return {
     resize(size) {
       if (disposed || failed || !Number.isFinite(size.width) || !Number.isFinite(size.height) || size.width <= 0 || size.height <= 0) return;
@@ -362,6 +390,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         if (plate) gpu.render(background, flatCamera);
         if (ready) {
           sync(snapshot, dt);
+          refreshShadows();
           gpu.clearDepth();
           gpu.setViewport((width - stageWidth) / 2, (height - stageHeight) / 2, stageWidth, stageHeight);
           gpu.render(scene, camera);

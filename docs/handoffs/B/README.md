@@ -1,14 +1,16 @@
 # B 작업 인계 — DEEP PRESS 렌더링
 
-담당: `letstakeabreak` · 브랜치: `role/b-render` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
+담당: `letstakeabreak` · 후속 브랜치: `role/b-render-performance` · 기반: `bootstrap-v2` (`c739b527449b2527e46b567bfffbd4a7122f571c`).
 
-현재 검증한 구현 커밋: `285244075ea2e680bd8defa77fe3c55c66f69454`. 실측 당시에는 직전 HEAD 위의 미커밋 변경이었으며, JSON의 소스 해시가 이 구현과 일치한다. 이후 문서만 보완한 커밋과 구분한다.
+PR #1은 `integration/v1`에 `fa622b70566cdacc37cc419552b20ae62b8d61ed`로 머지했다. 최신 후속 변경은 [정지 자세의 그림자 재사용](performance-study/README.md)이다. 전후 실제 WebGL 9쌍이 동일하고 정지 프레임의 draw 33→27 / 모든 패스 triangles 281,192→193,194를 확인했다. 전체 69테스트 통과. 이 변경의 iPhone 성능은 아직 재측정하지 않았다.
 
-최신 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남은 Draft**다.
+실기기 측정에 사용한 구현 커밋: `285244075ea2e680bd8defa77fe3c55c66f69454`. 실측 당시에는 직전 HEAD 위의 미커밋 변경이었으며, JSON의 소스 해시가 이 구현과 일치한다. 후속 성능 변경 및 문서 커밋과 구분한다.
+
+직전 시각 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남은 Draft**다.
 
 ## 연결 방법
 
-외부에서 404가 보이면 [공개 접근 확인과 정확한 브랜치 주소](repository-access.md)를 먼저 확인한다. B 문서는 아직 `main`이 아니라 `role/b-render`에 있다.
+외부에서 404가 보이면 [공개 접근 확인과 정확한 브랜치 주소](repository-access.md)를 먼저 확인한다. PR #1의 B 문서는 `integration/v1`에도 있다. 최신 후속 성능 문서는 `role/b-render-performance`에서 확인한다.
 
 공개 API는 그대로다. C는 자신이 만든 canvas로 `createRenderer({canvas,onFatal})`를 호출하고, 크기 변경 시 `resize`, 매 프레임 immutable `GameSnapshot`과 ms 단위 delta를 `render`에 전달한다. 종료 시 `dispose`한다. B는 DOM·입력·이벤트 큐·점수·부피 규칙을 소유하지 않는다.
 
