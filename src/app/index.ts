@@ -28,7 +28,7 @@ export function mountApp(root: HTMLElement): () => void {
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>`;
 
-  const canvas = root.querySelector('canvas')!;
+  let canvas = root.querySelector('canvas')!;
   const score = root.querySelector<HTMLElement>('#score')!;
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
   const specimenName = root.querySelector<HTMLElement>('#specimen-name')!;
@@ -60,7 +60,9 @@ export function mountApp(root: HTMLElement): () => void {
   let renderedChoices = '';
   let previousTime: number | null = null;
 
-  const renderer = createRenderer({ canvas, onFatal: ({ code }) => { fatalMessage = code; } });
+  let handleRendererFatal = (): void => {};
+  const createAppRenderer = (targetCanvas: HTMLCanvasElement) => createRenderer({ canvas: targetCanvas, onFatal: ({ code }) => { fatalMessage = code; handleRendererFatal(); } });
+  let renderer = createAppRenderer(canvas);
   const runtime = createRuntime(game, renderer, (events) => consumeEvents(events));
   const input = createInputController({
     getSnapshot: () => game.snapshot(),
@@ -69,6 +71,11 @@ export function mountApp(root: HTMLElement): () => void {
       if (!tutorialComplete && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 1);
     },
   });
+  handleRendererFatal = () => {
+    const phase = game.snapshot().phase;
+    if (!input.cancel() && isGameplayPhase(phase)) runtime.dispatch({ type: 'pause' });
+    renderUi(game.snapshot());
+  };
 
   function consumeEvents(events: readonly GameEvent[]): void {
     for (const event of events) {
@@ -127,11 +134,12 @@ export function mountApp(root: HTMLElement): () => void {
         paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">PAUSED</p><h2 id="dialog-title">작업이 멈췄습니다</h2><p>압력은 멈춰 있습니다. 준비되면 이어서 작업하세요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SHIFT ENDED</p><h2 id="dialog-title">회수 작업 종료</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="cash-out" class="dialog-primary" type="button">확보 점수 정산</button><button data-action="restart" class="dialog-secondary" type="button">다시 하기</button></section>`,
         complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">SHIFT COMPLETE</p><h2 id="dialog-title">회수 완료</h2><p>이번 작업 결과</p><p class="dialog-summary" id="dialog-summary"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
-        fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DISPLAY ERROR</p><h2 id="dialog-title">3D 화면을 시작할 수 없습니다</h2><p id="dialog-copy"></p></section>`,
+        fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DISPLAY ERROR</p><h2 id="dialog-title">3D 화면을 시작할 수 없습니다</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
       if (key) overlay.querySelector<HTMLButtonElement>('button[data-action]')?.focus({ preventScroll: true });
       else if (previousKey === 'paused' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
+      else if (previousKey === 'fatal' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
     }
     const summary = overlay.querySelector<HTMLElement>('#dialog-summary');
     if (summary) summary.textContent = resultSummary(snapshot);
@@ -139,7 +147,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (copy && key === 'failed') copy.textContent = failureReason === 'capacity-exceeded'
       ? '케이스 용량을 초과했습니다. 이미 보관한 회수품은 유지됩니다.'
       : '회수물이 한계 압력에 도달했습니다. 이미 확보한 점수만 정산할 수 있습니다.';
-    if (copy && key === 'fatal') copy.textContent = `3D 초기화 오류 (${fatalMessage}). 이 브라우저에서 WebGL을 확인한 뒤 다시 불러와 주세요.`;
+    if (copy && key === 'fatal') copy.textContent = `3D 초기화 오류 (${fatalMessage}). 현재 작업은 일시 정지되었습니다. 그래픽 연결을 다시 시도하거나 페이지를 새로고침해 주세요.`;
   }
 
   function renderChoices(snapshot: GameSnapshot): void {
@@ -188,6 +196,20 @@ export function mountApp(root: HTMLElement): () => void {
     renderer.resize({ width: root.clientWidth, height: root.clientHeight || window.innerHeight, dpr: window.devicePixelRatio });
   }
 
+  function retryRenderer(): void {
+    input.clear();
+    const replacementCanvas = document.createElement('canvas');
+    replacementCanvas.className = canvas.className;
+    replacementCanvas.setAttribute('aria-label', canvas.getAttribute('aria-label') ?? 'DEEP PRESS 작업대');
+    canvas.replaceWith(replacementCanvas);
+    canvas = replacementCanvas;
+    fatalMessage = '';
+    renderer = createAppRenderer(canvas);
+    runtime.replaceRenderer(renderer);
+    resize();
+    renderUi(game.snapshot());
+  }
+
   const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(resize);
   observer?.observe(root);
   window.addEventListener('resize', resize, options);
@@ -199,6 +221,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (action === 'restart') beginRound(true);
     if (action === 'resume') { runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot()); }
     if (action === 'cash-out') { runtime.dispatch({ type: 'cash-out' }); renderUi(game.snapshot()); }
+    if (action === 'retry-renderer') retryRenderer();
   }, options);
   choices.addEventListener('click', (event) => {
     const id = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-specimen]')?.dataset.specimen as SalvageId | undefined;
