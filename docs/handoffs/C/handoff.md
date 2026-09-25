@@ -51,3 +51,11 @@ Current integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec9991
 - The start dialog now states the core trade-off: pressing harder saves space, but each material tolerates a different pressure and breaks when over-pressed.
 - The status card is not an ARIA live region because its pressure text changes every frame. Announcements stay in `#live-status`. DOM IDs used by the app code are unchanged.
 - Verification: `npm run check` (15 files / 91 tests) and C ownership against `origin/integration/v1` passed. Headless Chromium captures at 390×844, 375×812, 320×568 and 1440×900 were compared with the previous layout. A real-game run (keyboard hold, settle result, store with pressure reset, full-pressure failure, discard, last-lot store to completion at 793 points) passed with no browser errors. Actual iPhone Safari safe-area checks remain with the user.
+
+## In-game copy rewrite (2026-09-25)
+
+- Requested by the user: the copy read as machine-written. The old text mixed formal `합니다` and `해요` endings, used work jargon (회수물, 정산, 폐기, 무결성, 확보 점수, 압착), mixed in English eyebrows (SALVAGE LOST, SHIFT COMPLETE, PAUSED, DISPLAY ERROR) and used long explanatory sentences.
+- Reference rules: Toss's writing principles (해요체 throughout, cut words that add no meaning, everyday words over jargon, suggest rather than force) and game onboarding guidance (short, action-first hints shown at the moment they apply).
+- New voice: every sentence uses 해요체. Buttons are short verbs (시작하기, 꾹 눌러서 압축, 담기, 버리기, 마치기, 계속하기, 다시 하기). Stats use everyday words (점수, 남은 공간, 크기, 가치, 내구도). Only the `DEEP PRESS` brand stays in English. The failure title now depends on the reason (부서졌어요 / 케이스에 안 들어가요). The specimen label `금속 보호 하우징` became `에너지 코어`, matching its source prompt. Rule-document terms (store/discard/cash-out) are unchanged in code and contracts; only the player-facing words changed.
+- Korean text now wraps between words (`word-break: keep-all`) instead of inside them.
+- Verification: `npm run check` (91 tests) and C ownership passed. Six 390×844 screens were captured and read, with no overflow. A real-game run reached `작업 끝! 3개 담음 · 0.97L 사용 · 824점` with no browser errors.
