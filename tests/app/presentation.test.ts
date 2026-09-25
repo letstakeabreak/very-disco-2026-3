@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GameSnapshot } from '../../src/contracts';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, remainingCapacity, resultSummary, specimenResult, tutorialText } from '../../src/app/presentation';
+import { canStore, cueText, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, resultSummary, specimenResult, tutorialText } from '../../src/app/presentation';
 
 const snapshot = (patch: Partial<GameSnapshot>): GameSnapshot => ({ ...SNAPSHOT_FIXTURES.inspecting, ...patch });
 
@@ -35,6 +35,35 @@ describe('app presentation rules', () => {
     expect(discardLabel(SNAPSHOT_FIXTURES.failed)).toBe('버리고 계속하기');
     expect(discardLabel(snapshot({ remainingSpecimenIds: ['salvage-core'] }))).toBe('버리고 마치기');
     expect(phaseLabel('failed')).toBe('실패');
+  });
+
+  it('previews size while pressing and flags lots that will not fit', () => {
+    const { compressing, inspecting } = SNAPSHOT_FIXTURES;
+    expect(specimenResult(compressing)).toBe('예상 크기 0.65L · 들어가요');
+    expect(specimenResult({ ...compressing, volumeUsed: 0.6, storedSpecimens: [{ ...SNAPSHOT_FIXTURES.stored.storedSpecimens[0]!, currentVolume: 0.6 }], storedSpecimenIds: ['salvage-lens'] }))
+      .toBe('예상 크기 0.65L · 안 들어가요');
+    const settled = { ...inspecting, currentSpecimen: { ...inspecting.currentSpecimen!, compression01: 0.5, currentVolume: 0.585 }, volumeUsed: 0.6 };
+    expect(specimenResult(settled)).toBe('크기 0.58L · 가치 260 · 내구도 100% · 안 들어가요');
+  });
+
+  it('cues strain while pressing, then the inspected tolerance, then a nudge to inspect', () => {
+    const { compressing, inspecting } = SNAPSHOT_FIXTURES;
+    expect(cueText(inspecting)).toBe('돌려 보면 얼마나 버틸지 보여요');
+    expect(cueText(inspecting, false)).toBeNull();
+    const revealed = { ...inspecting, currentSpecimen: { ...inspecting.currentSpecimen!, tolerance: 'fragile' as const } };
+    expect(cueText(revealed)).toBe('약해 보여요. 살살 누르세요');
+    expect(cueText({ ...compressing, currentSpecimen: revealed.currentSpecimen })).toBe('약해 보여요. 살살 누르세요');
+    expect(cueText({ ...compressing, stress01: 0.2 })).toBe('삐걱거려요! 곧 부서질 수 있어요');
+    expect(cueText(SNAPSHOT_FIXTURES.idle)).toBeNull();
+  });
+
+  it('lists stored lots and reports score per liter and the device best', () => {
+    const { complete } = SNAPSHOT_FIXTURES;
+    expect(resultItems(complete)).toEqual(['에너지 코어 · 0.58L · 가치 260']);
+    expect(recordText(complete, null, false)).toBe('1L당 615점');
+    expect(recordText(complete, 900, false)).toBe('1L당 615점 · 최고 기록 900점');
+    expect(recordText(complete, 360, true)).toBe('1L당 615점 · 새 기록!');
+    expect(recordText({ ...complete, score: 0, volumeUsed: 0, storedSpecimens: [], storedSpecimenIds: [] }, null, false)).toBe('');
   });
 
   it('keeps phase and tutorial language in one display map', () => {

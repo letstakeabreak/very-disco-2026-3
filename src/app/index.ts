@@ -3,10 +3,19 @@ import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, remainingCapacity, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
+import { canStore, cueText, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, resultSummary, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
+const BEST_SCORE_KEY = 'deep-press:best-score';
+
+/** Device-local best only; storage may be unavailable (private mode, blocked site data). */
+function readBestScore(): number | null {
+  try {
+    const value = Number(localStorage.getItem(BEST_SCORE_KEY));
+    return Number.isInteger(value) && value > 0 ? value : null;
+  } catch { return null; }
+}
 
 /** App-owned DOM, pointer lifecycle, HUD, tutorial and result flow. No audio. */
 export function mountApp(root: HTMLElement): () => void {
@@ -18,6 +27,7 @@ export function mountApp(root: HTMLElement): () => void {
         <div class="pressure-row"><span>압력</span><div class="pressure-track"><span id="pressure-bar"></span></div><strong id="pressure-value">0%</strong></div>
         <p id="result-value">아래에서 물건을 하나 골라 주세요</p>
         <p class="tutorial" id="tutorial" hidden></p>
+        <p class="cue" id="cue" hidden></p>
       </section>
       <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
       <footer class="controls" aria-label="조작">
@@ -34,6 +44,8 @@ export function mountApp(root: HTMLElement): () => void {
   const specimenName = root.querySelector<HTMLElement>('#specimen-name')!;
   const phaseElement = root.querySelector<HTMLElement>('#phase')!;
   const tutorial = root.querySelector<HTMLElement>('#tutorial')!;
+  const cue = root.querySelector<HTMLElement>('#cue')!;
+  const statusCard = root.querySelector<HTMLElement>('.status-card')!;
   const workbenchInput = root.querySelector<HTMLElement>('#workbench-input')!;
   const pressureValue = root.querySelector<HTMLElement>('#pressure-value')!;
   const pressureBar = root.querySelector<HTMLElement>('#pressure-bar')!;
@@ -55,6 +67,8 @@ export function mountApp(root: HTMLElement): () => void {
   let tutorialSpecimenId: SalvageId | null = null;
   let tutorialComplete = false;
   let failureReason: 'specimen-broken' | 'capacity-exceeded' | null = null;
+  let bestScore = readBestScore();
+  let newBest = false;
   let fatalMessage = '';
   let overlayKey = '';
   let renderedChoices = '';
@@ -82,6 +96,10 @@ export function mountApp(root: HTMLElement): () => void {
       if (event.type === 'press-released' && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 2);
       if (event.type === 'stored' && event.specimenId === tutorialSpecimenId) tutorialComplete = true;
       if (event.type === 'failed') failureReason = event.reason;
+      if (event.type === 'completed' && event.score > (bestScore ?? 0)) {
+        bestScore = event.score; newBest = true;
+        try { localStorage.setItem(BEST_SCORE_KEY, String(event.score)); } catch { /* keep the in-memory best */ }
+      }
       if (event.type === 'phase-changed' && event.to === 'idle') failureReason = null;
     }
   }
@@ -97,6 +115,7 @@ export function mountApp(root: HTMLElement): () => void {
     tutorialStep = 0;
     tutorialComplete = false;
     failureReason = null;
+    newBest = false;
     runtime.dispatch({ type: reset ? 'restart' : 'start' });
     const firstId = game.snapshot().remainingSpecimenIds[0];
     if (firstId) {
@@ -134,7 +153,7 @@ export function mountApp(root: HTMLElement): () => void {
         start: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">케이스는 딱 1L</h2><p>건져 올린 물건을 눌러서 작게 만들고, 케이스에 담아요.</p><p>세게 누를수록 작아지지만, 물건마다 버티는 힘이 달라요. 너무 누르면 부서져요!</p><button data-action="start" class="dialog-primary" type="button">시작하기</button></section>`,
         paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><p>준비되면 이어서 해요.</p><button data-action="resume" class="dialog-primary" type="button">계속하기</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><p class="dialog-summary" id="dialog-summary"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">지금 점수로 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터 다시</button></section>`,
-        complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">작업 끝!</h2><p class="dialog-summary" id="dialog-summary"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        complete: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><p class="eyebrow">DEEP PRESS</p><h2 id="dialog-title">작업 끝!</h2><p class="dialog-summary" id="dialog-summary"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
@@ -148,6 +167,10 @@ export function mountApp(root: HTMLElement): () => void {
     const title = overlay.querySelector<HTMLElement>('#dialog-title');
     if (title && key === 'failed') title.textContent = failureTitle(failureReason);
     if (copy && key === 'failed') copy.textContent = failureText(failureReason);
+    const items = overlay.querySelector<HTMLElement>('#dialog-items');
+    if (items) items.innerHTML = resultItems(snapshot).map((line) => `<li>${line}</li>`).join('');
+    const record = overlay.querySelector<HTMLElement>('#dialog-record');
+    if (record) record.textContent = recordText(snapshot, bestScore, newBest);
     const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
     if (discardChoice) discardChoice.textContent = discardLabel(snapshot);
     if (copy && key === 'fatal') copy.textContent = `게임은 멈춰 뒀어요. 다시 시도해 보고, 계속 안 되면 새로고침해 주세요. (오류: ${fatalMessage})`;
@@ -179,6 +202,11 @@ export function mountApp(root: HTMLElement): () => void {
     resultValue.textContent = specimenResult(snapshot);
     tutorial.hidden = !started || tutorialComplete || snapshot.currentSpecimen?.id !== tutorialSpecimenId || snapshot.phase === 'complete' || snapshot.phase === 'failed';
     tutorial.textContent = tutorialText(tutorialStep);
+    // The first-lot tutorial already asks to rotate; hints and strain still show beside it.
+    const cueLine = cueText(snapshot, tutorial.hidden);
+    cue.hidden = cueLine === null;
+    cue.textContent = cueLine ?? '';
+    statusCard.classList.toggle('strained', snapshot.stress01 > 0);
     // Stay enabled while held: disabling the pressed button blurs it and drops capture.
     hold.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'compressing';
     store.disabled = !canStore(snapshot);

@@ -64,6 +64,8 @@ h2 { font-size: 15px; line-height: 1.25; }
 .pressure-track span { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #83b89b, #f0bc65 62%, #e76e54); transform: scaleX(0); transform-origin: left center; transition: transform 80ms linear; }
 .status-card > p { color: var(--muted); font-size: 11px; line-height: 1.35; }
 .status-card > .tutorial { color: #ffe1a8; font-size: 12px; font-weight: 650; }
+.status-card > .cue { color: #bfe3d0; font-size: 12px; font-weight: 600; }
+.status-card.strained .pressure-row strong, .status-card.strained > .cue { color: #ff9a7a; }
 .work-area { display: flex; min-height: 0; pointer-events: none; }
 .workbench-input { flex: 1 1 auto; min-height: 24px; touch-action: none; pointer-events: auto; }
 .specimen-choices { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -101,6 +103,8 @@ h2 { font-size: 15px; line-height: 1.25; }
 .dialog-card h2 { margin-top: 8px; font-size: clamp(23px, 7vw, 30px); }
 .dialog-card > p:not(.eyebrow) { margin-top: 10px; color: #c2d1c8; font-size: 14px; line-height: 1.6; }
 .dialog-card .dialog-summary { color: #f5d49b; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dialog-items { margin: 10px 0 0; padding: 0; list-style: none; color: #c2d1c8; font-size: 13px; line-height: 1.7; font-variant-numeric: tabular-nums; }
+.dialog-card .dialog-record { color: var(--amber); font-size: 13px; font-weight: 700; }
 .dialog-primary, .dialog-secondary { width: 100%; margin-top: 16px; }
 .dialog-secondary { min-height: 48px; background: transparent; font-size: 14px; }
 
