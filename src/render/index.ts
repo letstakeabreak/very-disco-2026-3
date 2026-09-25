@@ -16,6 +16,7 @@ import { animateRam, PRESS_ANCHORS, RAM_RETRACTED_TRAVEL } from './ram';
 import { ASSET_REGISTRY } from './assets';
 import { createCaseDepth, createWorktopShadowGeometry } from './case-depth';
 import { prepareCassette } from './cassette';
+import { createDebris, type Debris } from './debris';
 
 const STAGE_ASPECT = 2 / 3;
 const WORKTOP_Y = 0.22;
@@ -56,6 +57,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
   let press: Object3D | null = null;
   let ram: ReturnType<typeof animateRam> | null = null;
   let gauge: ReturnType<typeof createGauge> | null = null;
+  let debris: Debris | null = null;
   let plate: Texture | null = null;
   let dial: Texture | null = null;
   let environment: WebGLRenderTarget | null = null;
@@ -221,6 +223,8 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         }
       });
       press.add(bedShadow);
+      debris = createDebris({ x: PRESS_ANCHORS.x, y: PRESS_ANCHORS.workbedY + 0.002, z: PRESS_ANCHORS.z });
+      press.add(debris.mesh);
     } else {
       const deformation = deformSpecimen(root, id);
       depths.push(...deformation.depthMaterials);
@@ -260,6 +264,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     const inContact = snapshot.currentSpecimen !== null && (phase === 'compressing' || phase === 'settling' || phase === 'failed');
     let contactReached = paused || !hasSynced;
     let currentTop: number = PRESS_ANCHORS.workbedY;
+    let spill: { id: SalvageId; damage: number; radius: number } | null = null;
     if (press) {
       const entity = snapshot.entities.find((item) => item.assetId === 'press-chamber');
       press.position.set(entity?.position.x ?? 0, entity?.position.y ?? 0, entity?.position.z ?? 0);
@@ -325,6 +330,10 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         if (material instanceof MeshPhysicalMaterial) material.transmission = 0.72 * (1 - prop.damage * 0.85);
       }
       if (toPress) currentTop = surfaceTop(prop.bounds, renderedHeight, toPress);
+      if (visual.location === 'press') {
+        const halfWidth = Math.max(prop.bounds.max.x - prop.bounds.min.x, prop.bounds.max.z - prop.bounds.min.z) / 2;
+        spill = { id: visual.id, damage: prop.damage, radius: halfWidth * 1.1 };
+      }
       if (visual.location === 'case' && !entity) {
         // The front (+Z) faces up; recenter after lying down and after deformation.
         const slot = slots[visual.index]!;
@@ -334,6 +343,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
         prop.root.position.y -= 0.018;
       }
     }
+    debris?.update(spill?.id ?? null, spill?.damage ?? 0, spill?.radius ?? 0);
     if (ram) {
       const target = inContact ? Math.min(PRESS_ANCHORS.travel, Math.max(0, PRESS_ANCHORS.platenY - currentTop)) : RAM_RETRACTED_TRAVEL;
       // After approach, follow the deformed surface without a second easing lag.
@@ -411,7 +421,7 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
       canvas.removeEventListener('webglcontextlost', contextLost);
       disposeObjects(roots, [plate, dial].filter((texture): texture is Texture => texture !== null));
       depths.forEach((material) => material.dispose());
-      environment?.dispose(); key.shadow.dispose();
+      debris?.mesh.dispose(); environment?.dispose(); key.shadow.dispose();
       props.clear(); storedLooks.clear(); gpu.dispose();
     },
   };
