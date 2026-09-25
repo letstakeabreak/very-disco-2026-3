@@ -3,10 +3,9 @@ import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
-import { INTRO_STORY, endingStory } from './story';
-import type { StoryLine } from './story';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult, tutorialText } from './presentation';
-import scoreLicenseUrl from './fonts/S-Core-Dream-license.png?url';
+import { INTRO_STORY, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine } from './story';
+import type { CommsLine, StoryLine } from './story';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import logoLicenseUrl from './fonts/Cafe24PROSlimMax-license.pdf?url';
 import logoOflUrl from './fonts/Cafe24PROSlimMax-license.txt?url';
@@ -37,11 +36,11 @@ export function mountApp(root: HTMLElement): () => void {
       <section class="status-card" aria-label="지금 물건과 압력">
         <div class="status-head"><button class="swap" id="swap" type="button" disabled></button><strong class="pressure-value" id="pressure-value" aria-label="압력">0%</strong></div>
         <p class="facts" id="result-value"></p>
-        <p class="cue" id="cue" hidden></p>
         <div class="pressure-track" aria-hidden="true"><span id="pressure-bar"></span></div>
       </section>
       <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
       <footer class="controls" aria-label="조작">
+        <p class="comms" id="comms" hidden><b id="comms-name"></b><span id="comms-text" aria-hidden="true"></span><span class="visually-hidden" id="comms-line" aria-live="polite"></span></p>
         <div class="operation-row" role="group" aria-label="현재 물건 처리"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러 압축</button><button class="secondary" id="store" type="button">담기</button><button class="ghost" id="discard" type="button">버리기</button></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
@@ -53,7 +52,10 @@ export function mountApp(root: HTMLElement): () => void {
   const score = root.querySelector<HTMLElement>('#score')!;
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
   const swap = root.querySelector<HTMLButtonElement>('#swap')!;
-  const cue = root.querySelector<HTMLElement>('#cue')!;
+  const comms = root.querySelector<HTMLElement>('#comms')!;
+  const commsName = root.querySelector<HTMLElement>('#comms-name')!;
+  const commsText = root.querySelector<HTMLElement>('#comms-text')!;
+  const commsLine = root.querySelector<HTMLElement>('#comms-line')!;
   const statusCard = root.querySelector<HTMLElement>('.status-card')!;
   const workbenchInput = root.querySelector<HTMLElement>('#workbench-input')!;
   const pressureValue = root.querySelector<HTMLElement>('#pressure-value')!;
@@ -91,6 +93,10 @@ export function mountApp(root: HTMLElement): () => void {
   let hudHidden = true;
   let transitionTimer = 0;
   let autoSelectAt = 0;
+  let voice: CommsLine | null = null;
+  let toleranceVoiced: SalvageId | null = null;
+  let voiceKey = '';
+  let voiceStartedAt = 0;
   let previousTime: number | null = null;
 
   let handleRendererFatal = (): void => {};
@@ -121,7 +127,10 @@ export function mountApp(root: HTMLElement): () => void {
       }
       if (event.type === 'phase-changed' && event.to === 'idle') failureReason = null;
       // Put the next lot in the press once the banked or discarded one has cleared.
-      if (event.type === 'stored' || event.type === 'discarded') autoSelectAt = performance.now() + 700;
+      if (event.type === 'stored' || event.type === 'discarded') autoSelectAt = performance.now() + 1000;
+      const snapshot = game.snapshot();
+      if (event.type === 'specimen-selected') toleranceVoiced = snapshot.currentSpecimen?.tolerance ? event.specimenId : null;
+      voice = reactionLine(event, snapshot) ?? voice;
     }
   }
 
@@ -141,6 +150,8 @@ export function mountApp(root: HTMLElement): () => void {
     failureReason = null;
     newBest = false;
     autoSelectAt = 0;
+    voice = null;
+    toleranceVoiced = null;
     runtime.dispatch({ type: reset ? 'restart' : 'start' });
     const firstId = game.snapshot().remainingSpecimenIds[0];
     if (firstId) {
@@ -287,7 +298,7 @@ export function mountApp(root: HTMLElement): () => void {
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
           <h2 id="dialog-title">남길 것을,<br>골라 주세요.</h2>
           <button data-action="story-open" class="dialog-primary" type="button">시작하기</button>
-          <details class="font-credits"><summary>글꼴 출처</summary><p>에스코어드림 (S-Core)<br>리디바탕 (리디주식회사)<br>Cafe24 PRO SLIM Max (카페24)</p><a href="${scoreLicenseUrl}" target="_blank" rel="noopener">에스코어드림 이용 조건</a><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 이용 조건</a><a href="${logoOflUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
+          <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Cafe24 PRO SLIM Max (카페24)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 이용 조건</a><a href="${logoOflUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
@@ -342,8 +353,22 @@ export function mountApp(root: HTMLElement): () => void {
     const facts = specimenResult(snapshot).map((fact) => `<span${fact.warn ? ' class="warn"' : ''}>${fact.text}</span>`).join('');
     if (resultValue.innerHTML !== facts) resultValue.innerHTML = facts;
     const tutorialActive = started && !tutorialComplete && snapshot.currentSpecimen?.id === tutorialSpecimenId && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
-    cue.hidden = !tutorialActive;
-    cue.textContent = tutorialActive ? tutorialText(tutorialStep) : '';
+    const lot = snapshot.currentSpecimen;
+    if (lot?.tolerance && toleranceVoiced !== lot.id) { toleranceVoiced = lot.id; voice = toleranceLine(lot.tolerance); }
+    // Live strain, then the first-lot tutorial, then the latest reaction.
+    const line = snapshot.phase === 'compressing' && snapshot.stress01 > 0 ? STRAIN_LINE : tutorialActive ? tutorialLine(tutorialStep) : voice;
+    comms.hidden = line === null;
+    comms.classList.toggle('strained', line === STRAIN_LINE);
+    const key = line ? `${line.speaker}:${line.text}` : '';
+    if (key !== voiceKey) {
+      voiceKey = key;
+      voiceStartedAt = performance.now();
+      commsName.textContent = line?.speaker ?? '';
+      commsLine.textContent = line ? `${line.speaker}: ${line.text}` : '';
+    }
+    // The same typed delivery as the story, a little quicker at the bench.
+    const typed = line ? line.text.slice(0, reducedMotion.matches ? undefined : Math.floor((performance.now() - voiceStartedAt) / 24)) : '';
+    if (commsText.textContent !== typed) commsText.textContent = typed;
     statusCard.classList.toggle('strained', snapshot.stress01 > 0);
     // Stay enabled while held: disabling the pressed button blurs it and drops capture.
     hold.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'compressing';

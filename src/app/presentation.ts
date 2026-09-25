@@ -1,4 +1,4 @@
-import type { GamePhase, GameSnapshot, SalvageId, Tolerance } from '../contracts';
+import type { GamePhase, GameSnapshot, SalvageId } from '../contracts';
 
 export const SPECIMEN_LABELS: Readonly<Record<SalvageId, string>> = {
   'salvage-core': '에너지 코어',
@@ -17,18 +17,8 @@ const PHASE_LABELS: Readonly<Record<GamePhase, string>> = {
   paused: '일시정지',
 };
 
-const TUTORIAL_STEPS = [
-  '좌우로 끌어서 물건을 돌려 보세요',
-  '버튼을 꾹 누르다가, 원하는 만큼 줄면 떼세요',
-  '크기와 가치를 보고 담아 보세요',
-] as const;
-
 export function phaseLabel(phase: GamePhase): string {
   return PHASE_LABELS[phase];
-}
-
-export function tutorialText(step: number): string {
-  return TUTORIAL_STEPS[Math.min(TUTORIAL_STEPS.length - 1, Math.max(0, step))] ?? '';
 }
 
 /** Mirrors only the documented action prerequisites; score and outcome remain core-owned. */
@@ -45,28 +35,19 @@ export function remainingCapacity(snapshot: GameSnapshot): number {
   return Math.max(0, snapshot.capacity - snapshot.volumeUsed);
 }
 
-const TOLERANCE_LABELS: Readonly<Record<Tolerance, string>> = {
-  fragile: '약해요',
-  normal: '보통이에요',
-  sturdy: '튼튼해요',
-};
-
 export interface Fact { readonly text: string; readonly warn?: boolean }
 
-/** Short facts for the lot in the press, shown as separate chips. While pressing: the core's size preview, fit and strain. */
+/** Short facts for the lot in the press, shown as separate chips. While pressing: the core's size preview and fit. */
 export function specimenResult(snapshot: GameSnapshot): readonly Fact[] {
   const specimen = snapshot.currentSpecimen;
   if (specimen === null) return [{ text: '다음 물건을 올려요' }];
   const room = remainingCapacity(snapshot) + 1e-9;
   if (snapshot.phase === 'compressing' && snapshot.previewVolume !== null) {
     const fits = snapshot.previewVolume <= room;
-    const facts: Fact[] = [{ text: `예상 ${snapshot.previewVolume.toFixed(2)}L` }, fits ? { text: '들어가요' } : { text: '안 들어가요', warn: true }];
-    if (snapshot.stress01 > 0) facts.push({ text: '삐걱거려요!', warn: true });
-    return facts;
+    return [{ text: `예상 ${snapshot.previewVolume.toFixed(2)}L` }, fits ? { text: '들어가요' } : { text: '안 들어가요', warn: true }];
   }
   const facts: Fact[] = [{ text: `${specimen.currentVolume.toFixed(2)}L` }, { text: `가치 ${specimen.value}` }];
   if (specimen.compression01 > 0) facts.push({ text: `내구도 ${Math.round(specimen.integrity01 * 100)}%` });
-  if (specimen.tolerance !== null) facts.push({ text: TOLERANCE_LABELS[specimen.tolerance] });
   if (specimen.compression01 > 0 && specimen.currentVolume > room) facts.push({ text: '안 들어가요', warn: true });
   return facts;
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GameSnapshot } from '../../src/contracts';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult, tutorialText } from '../../src/app/presentation';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult } from '../../src/app/presentation';
 
 const snapshot = (patch: Partial<GameSnapshot>): GameSnapshot => ({ ...SNAPSHOT_FIXTURES.inspecting, ...patch });
 const facts = (state: GameSnapshot): string[] => specimenResult(state).map((fact) => fact.warn ? `!${fact.text}` : fact.text);
@@ -46,11 +46,11 @@ describe('app presentation rules', () => {
     expect(facts(settled)).toEqual(['0.58L', '가치 260', '내구도 100%', '!안 들어가요']);
   });
 
-  it('shows the inspected tolerance and live strain as facts', () => {
+  it('leaves tolerance and strain to the characters instead of repeating them as facts', () => {
     const { compressing, inspecting } = SNAPSHOT_FIXTURES;
     const revealed = { ...inspecting, currentSpecimen: { ...inspecting.currentSpecimen!, tolerance: 'fragile' as const } };
-    expect(facts(revealed)).toEqual(['0.90L', '가치 260', '약해요']);
-    expect(facts({ ...compressing, stress01: 0.2 })).toEqual(['예상 0.65L', '들어가요', '!삐걱거려요!']);
+    expect(facts(revealed)).toEqual(['0.90L', '가치 260']);
+    expect(facts({ ...compressing, stress01: 0.2 })).toEqual(['예상 0.65L', '들어가요']);
   });
 
   it('lists stored lots and reports the device best', () => {
@@ -60,10 +60,7 @@ describe('app presentation rules', () => {
     expect(recordText(360, true)).toBe('새 기록이에요');
   });
 
-  it('keeps phase and tutorial language in one display map', () => {
+  it('keeps phase language in one display map', () => {
     expect(phaseLabel('settling')).toBe('확인 중');
-    expect(tutorialText(0)).toContain('좌우로 끌어');
-    expect(tutorialText(2)).toContain('담아 보세요');
-    expect(tutorialText(99)).toBe(tutorialText(2));
   });
 });

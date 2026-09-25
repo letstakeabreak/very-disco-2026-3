@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { INTRO_STORY, endingStory } from '../../src/app/story';
+import { INTRO_STORY, endingStory, reactionLine, toleranceLine, tutorialLine } from '../../src/app/story';
 
 const text = (lines: readonly { text: string }[]) => lines.map(line => line.text).join(' ');
 
@@ -25,5 +25,28 @@ describe('recovery story follows committed cargo', () => {
     const damaged = text(endingStory({ ...recovered, storedSpecimens: [{ ...cassette, integrity01: .6 }] }));
     expect(damaged).toContain('조금 상했지만');
     expect(damaged).not.toContain('무사해요');
+  });
+});
+
+describe('the characters keep talking during the round', () => {
+  it('names why each lot matters when it goes into the press', () => {
+    const { inspecting } = SNAPSHOT_FIXTURES;
+    expect(reactionLine({ type: 'specimen-selected', tick: 1, specimenId: 'salvage-cassette' }, inspecting)).toEqual({ speaker: '윤서', text: expect.stringContaining('기록') });
+    expect(reactionLine({ type: 'press-released', tick: 1, pressure01: .3 }, inspecting)).toBeNull();
+  });
+
+  it('reacts to banking, breaking and overflow from the committed state', () => {
+    const { stored, failed } = SNAPSHOT_FIXTURES;
+    const room = (stored.capacity - stored.volumeUsed).toFixed(2);
+    expect(reactionLine({ type: 'stored', tick: 1, specimenId: 'salvage-lens', scoreDelta: 1 }, stored)!.text).toContain(`${room}L`);
+    expect(reactionLine({ type: 'failed', tick: 1, reason: 'capacity-exceeded' }, failed)!.speaker).toBe('도현');
+    const brokenCassette = { ...failed, currentSpecimen: { ...failed.currentSpecimen!, id: 'salvage-cassette' as const } };
+    expect(reactionLine({ type: 'failed', tick: 1, reason: 'specimen-broken' }, brokenCassette)!.text).toContain('기록');
+  });
+
+  it('keeps the tutorial and tolerance advice in 도현\'s voice', () => {
+    expect(tutorialLine(0).text).toContain('좌우로 끌어서');
+    expect(tutorialLine(99)).toEqual(tutorialLine(2));
+    expect(toleranceLine('fragile')).toEqual({ speaker: '도현', text: '약해요. 살살 눌러요.' });
   });
 });

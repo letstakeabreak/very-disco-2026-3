@@ -24,15 +24,15 @@ try {
   console.log('transition', tr);
   shot('06-video-1s');
   js(`await wait(3400); return 1`); shot('07-video-4.6s');
-  const after = js(`for (let i=0;i<50 && !q('#transition').hidden;i++) await wait(200); await wait(800); return { hidden: q('#transition').hidden, hud: getComputedStyle(q('.screen')).visibility, facts: q('#result-value').textContent, cue: q('#cue').textContent };`);
+  const after = js(`for (let i=0;i<50 && !q('#transition').hidden;i++) await wait(200); await wait(800); return { hidden: q('#transition').hidden, hud: getComputedStyle(q('.screen')).visibility, facts: q('#result-value').textContent, cue: q('#comms-line').textContent };`);
   console.log('after', after);
   shot('08-game');
   const box = js(`const r=q('#hold').getBoundingClientRect(); return [Math.round(r.x+r.width/2), Math.round(r.y+r.height/2)];`);
   run('mouse', 'move', String(box[0]), String(box[1])); run('mouse', 'down');
-  const mid = js(`await wait(250); return { facts: q('#result-value').textContent, cue: q('#cue').textContent, lot: q('#swap').textContent };`);
+  const mid = js(`await wait(250); return { facts: q('#result-value').textContent, cue: q('#comms-line').textContent, lot: q('#swap').textContent };`);
   shot('08b-pressing');
   run('mouse', 'up');
-  const played = js(`await wait(1000); const before={facts:q('#result-value').textContent, cue:q('#cue').textContent}; q('#store').click(); await wait(1200); const next=q('#swap').textContent; q('#swap').click(); await wait(300); const swapped=q('#swap').textContent;
+  const played = js(`await wait(1000); const before={facts:q('#result-value').textContent, cue:q('#comms-line').textContent}; q('#store').click(); await wait(1200); const next=q('#swap').textContent; q('#swap').click(); await wait(300); const swapped=q('#swap').textContent;
     q('#pause').click(); await wait(300); q('[data-action=finish]').click(); await wait(900); before.next=next; before.swapped=swapped; return { before, overlay: q('#overlay').className, line: q('.vn-line')?.textContent };`);
   console.log('played', mid, played);
   js(`await wait(1500); return 1`); shot('09-outro');
