@@ -116,3 +116,15 @@ Integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41`
   - types, validator, the 8 fixtures, authored content, contract tests, PRD, `docs/contracts.md`, and the `docs/bootstrap.json` hashes. Exactly six frozen files changed; the manifest diff was checked for no other hash changes.
   - B's `tests/render/lifecycle.test.ts` needed `tolerance: null` on two hand-built `SpecimenState` literals. This is the only edit outside A/shared paths. It is a mechanical consumer migration required by the contract-change rule, and the reason the A ownership check flags that one B path.
 - Tests: 5 new core cases cover tolerance reveal, persistence and restart, the stress curve, preview vs committed volume, and stored-state order and volume sum. A new whole-shift test asserts every snapshot against the 1.1 validator. The new contract case rejects bad stress, preview, stored-state and tolerance values.
+
+
+## Final integration candidate `release/v2` (2026-09-25)
+
+- Assigned by the user to this session (authenticated GitHub account `letstakeabreak`) as integration owner.
+- Contents: `integration/v2` `b0c9da2` (A #14, B #15, C #16, C #17 on top of v1 `main` `1a1aff2`), fast-forwarded to the story branch `feat/salvage-story` `b22013a` (PR #18: wordmark, briefing, character poses, outcome-based return message).
+- Release polish changes shared, non-frozen files only: the README status sentence and `docs/validation.md`. The frozen hashes still match (PRD/contract 1.1.0).
+- Verification:
+  - Node 26.8.2 `npm run check` passed (16 files / 103 tests, build).
+  - Headless Chromium played title, three-scene briefing, shift, damaged-cassette return message and results with the record line.
+  - The v2 release ZIP loaded and played from a nested path.
+- Open items: story-time GPU recovery reload stall (C record), iPhone Safari checks and the jam submission (both by the user). The merge to `main` is the repository owner's decision.
