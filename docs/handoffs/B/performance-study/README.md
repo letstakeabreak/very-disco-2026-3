@@ -24,6 +24,8 @@
 
 전후 18장 모두 생성 이미지가 아닌 실제 WebGL canvas 출력이다. 동일한 카메라/상태의 시각 보존 검사이며 콘셉트 대비 아트 합격이나 실제 게임 판정 증거는 아니다. [기존 아트 미달 항목](../art-review.md)과 [실기기 결과/남은 항목](../device-acceptance.md)은 별도로 남는다.
 
+추가로 A PR #7 + C PR #6와 별도 로컬 후보를 만들어 [실제 게임과 강제 GPU 오류 재시도](integration/README.md)를 확인했다. 83테스트와 시작·압착·보관·GPU 재시도·실패·정산·재시작 흐름은 통과했다. 실제 iPhone, 보관물 외형 복원 계약 및 작은 화면에서 HUD가 작업대를 가리는 문제는 남아 있다.
+
 ## 재현
 
 기준 커밋의 별도 checkout을 4176, 변경본을 4177에서 실행한 뒤 저장소 루트에서 `node docs/handoffs/B/performance-study/capture.mjs <baseline-checkout>`를 실행한다. 다른 포트는 그 뒤 baseline URL, candidate URL 순으로 전달한다. 촬영 중 소스를 수정하지 않는다. 정확한 입력 소스·에셋 해시는 비교 JSON에 기록했다.

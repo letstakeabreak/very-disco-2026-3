@@ -4,6 +4,8 @@
 
 PR #1은 `integration/v1`에 `fa622b70566cdacc37cc419552b20ae62b8d61ed`로 머지했다. 최신 후속 변경은 [정지 자세의 그림자 재사용](performance-study/README.md)이다. 전후 실제 WebGL 9쌍이 동일하고 정지 프레임의 draw 33→27 / 모든 패스 triangles 281,192→193,194를 확인했다. 전체 69테스트 통과. 이 변경의 iPhone 성능은 아직 재측정하지 않았다.
 
+후속 구현 커밋은 `d9db1df9306e6826dcbd41ca04aef865f6457a1a`다. [A+B+C 로컬 연결 검증](performance-study/integration/README.md)은 83테스트와 실제 압착·보관·실패·정산·재시작, 의도적인 GPU 오류 후 점수·용량을 유지하는 재시도를 확인했다. A/C PR을 원격 머지한 기록은 아니며 iPhone, 보관 외형 복원 계약, 작은 화면 HUD 가림은 남아 있다.
+
 실기기 측정에 사용한 구현 커밋: `285244075ea2e680bd8defa77fe3c55c66f69454`. 실측 당시에는 직전 HEAD 위의 미커밋 변경이었으며, JSON의 소스 해시가 이 구현과 일치한다. 후속 성능 변경 및 문서 커밋과 구분한다.
 
 직전 시각 보완은 [카세트 유리 파손과 투명도 회귀 수정](damage-study/README.md)이다. 무결성에 따라 균열·깨진 구멍이 생기며, 렌즈용 투명도가 카세트 광학 설정을 덮어쓰던 오류를 수정했다. 이번 출발 HEAD는 `27fc24446bb13e1aceb29d1b1b9cb3a4c770f3bb`다. [아트 캡처 보고서](art-review/capture-report.json)와 [손상 전후 비교](damage-study/after-report.json)의 source SHA로 현재 구현을 재현한다. 직전 [내부 축·투명 깊이](cassette-insert-study/README.md) 및 케이스 깊이 가림도 포함한다. 상태는 **검증 가능한 B 구현 / 아트 미달 항목 및 실기기 성능·안정성 보완이 남은 Draft**다.
