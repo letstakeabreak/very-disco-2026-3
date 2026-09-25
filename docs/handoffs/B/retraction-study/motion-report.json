@@ -1,0 +1,1189 @@
+{
+  "checkedAt": "2026-09-24T15:07:18.375Z",
+  "kind": "Actual desktop Chromium WebGL production renderer. Deterministic stepped fixtures, shader uniforms and CPU evaluation of actual GLB vertices; not integrated gameplay, physics collision certification or iPhone validation.",
+  "sourcesBefore": {
+    "src/render/index.ts": "bd0c8eeae3a552e55ff893d037cf61e8562c36b9dd6a3c55b1f9eb71d5f4a42b",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "docs/handoffs/B/retraction-study/motion.ts": "7f3a066745bc8e6c87a0d438add284a08c3a79761fb6d9bc50fc4505f779db82"
+  },
+  "sequences": [
+    {
+      "errors": [],
+      "id": "salvage-cassette",
+      "samples": [
+        {
+          "compression": 0,
+          "elapsedMs": 0,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.6410312914848327,
+          "ramTravel": -0.09,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.115121148455143
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 16,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.6298312914848327,
+          "ramTravel": -0.0788,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.103921148455143
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 32,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.6186312914848328,
+          "ramTravel": -0.0676,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.092721148455143
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 48,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.6074312914848328,
+          "ramTravel": -0.05639999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.08152114845514302
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 64,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5962312914848328,
+          "ramTravel": -0.04519999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.07032114845514303
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 80,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5850312914848328,
+          "ramTravel": -0.03399999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.05912114845514305
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 96,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5738312914848327,
+          "ramTravel": -0.022799999999999987,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.04792114845514295
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 112,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5626312914848327,
+          "ramTravel": -0.011599999999999989,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.03672114845514296
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 128,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5514312914848327,
+          "ramTravel": -0.0003999999999999872,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.025521148455142972
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 144,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5402312914848327,
+          "ramTravel": 0.010800000000000013,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.014321148455142985
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 160,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5290312914848327,
+          "ramTravel": 0.022000000000000013,
+          "renderState": "ready",
+          "specimenTopY": 0.5259101430296897,
+          "vertexGapM": 0.003121148455142997
+        },
+        {
+          "compression": 0.0650747507705297,
+          "elapsedMs": 176,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5209117986428429,
+          "ramTravel": 0.030119492841989892,
+          "renderState": "ready",
+          "specimenTopY": 0.5209117986428429,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.138154790916012,
+          "elapsedMs": 192,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5152985737879404,
+          "ramTravel": 0.03573271769689235,
+          "renderState": "ready",
+          "specimenTopY": 0.5152985737879404,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.1952889079638714,
+          "elapsedMs": 208,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.510910143715413,
+          "ramTravel": 0.040121147769419774,
+          "renderState": "ready",
+          "specimenTopY": 0.510910143715413,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.239956471423609,
+          "elapsedMs": 224,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5074792605779517,
+          "ramTravel": 0.04355203090688109,
+          "renderState": "ready",
+          "specimenTopY": 0.5074792605779517,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.27487765912234213,
+          "elapsedMs": 240,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5047969894904835,
+          "ramTravel": 0.0462343019943493,
+          "renderState": "ready",
+          "specimenTopY": 0.5047969894904835,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.30217911135824416,
+          "elapsedMs": 256,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5026999847548481,
+          "ramTravel": 0.04833130672998465,
+          "renderState": "ready",
+          "specimenTopY": 0.5026999847548481,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.32352343963881636,
+          "elapsedMs": 272,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.5010605423875862,
+          "ramTravel": 0.049970749097246525,
+          "renderState": "ready",
+          "specimenTopY": 0.5010605423875862,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3402104768635152,
+          "elapsedMs": 288,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4997788231668812,
+          "ramTravel": 0.05125246831795155,
+          "renderState": "ready",
+          "specimenTopY": 0.4997788231668812,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3532564349127989,
+          "elapsedMs": 304,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4987767725955833,
+          "ramTravel": 0.05225451888924948,
+          "renderState": "ready",
+          "specimenTopY": 0.4987767725955833,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.36345579020468727,
+          "elapsedMs": 320,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4979933675165161,
+          "ramTravel": 0.05303792396831669,
+          "renderState": "ready",
+          "specimenTopY": 0.4979933675165161,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3714296659428422,
+          "elapsedMs": 336,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4973808999071084,
+          "ramTravel": 0.05365039157772433,
+          "renderState": "ready",
+          "specimenTopY": 0.4973808999071084,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.37766365745190406,
+          "elapsedMs": 352,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4969020715428348,
+          "ramTravel": 0.054129219941997986,
+          "renderState": "ready",
+          "specimenTopY": 0.4969020715428348,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3825374040979794,
+          "elapsedMs": 368,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.49652772259946,
+          "ramTravel": 0.05450356888537272,
+          "renderState": "ready",
+          "specimenTopY": 0.49652772259946,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3863477086734032,
+          "elapsedMs": 384,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.49623505586987227,
+          "ramTravel": 0.0547962356149605,
+          "renderState": "ready",
+          "specimenTopY": 0.49623505586987227,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3893266121765605,
+          "elapsedMs": 400,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.49600624845336033,
+          "ramTravel": 0.05502504303147243,
+          "renderState": "ready",
+          "specimenTopY": 0.49600624845336033,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3916555247097892,
+          "elapsedMs": 416,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4958273663715992,
+          "ramTravel": 0.055203925113233576,
+          "renderState": "ready",
+          "specimenTopY": 0.4958273663715992,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3934762730427517,
+          "elapsedMs": 432,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.49568751601332406,
+          "ramTravel": 0.055343775471508705,
+          "renderState": "ready",
+          "specimenTopY": 0.49568751601332406,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.39489973761889424,
+          "elapsedMs": 448,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4955781807321314,
+          "ramTravel": 0.05545311075270137,
+          "renderState": "ready",
+          "specimenTopY": 0.4955781807321314,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3960126049838397,
+          "elapsedMs": 464,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4954927021973538,
+          "ramTravel": 0.05553858928747896,
+          "renderState": "ready",
+          "specimenTopY": 0.4954927021973538,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3968826468469936,
+          "elapsedMs": 480,
+          "id": "salvage-cassette",
+          "loadedAssets": "4",
+          "platenY": 0.4954258749131687,
+          "ramTravel": 0.05560541657166407,
+          "renderState": "ready",
+          "specimenTopY": 0.4954258749131687,
+          "vertexGapM": 0
+        }
+      ],
+      "firstContactMs": 176
+    },
+    {
+      "errors": [],
+      "id": "salvage-core",
+      "samples": [
+        {
+          "compression": 0,
+          "elapsedMs": 0,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.6410312914848327,
+          "ramTravel": -0.09,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.09783128492832184
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 16,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.6298312914848327,
+          "ramTravel": -0.0788,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.08663128492832184
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 32,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.6186312914848328,
+          "ramTravel": -0.0676,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.07543128492832185
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 48,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.6074312914848328,
+          "ramTravel": -0.05639999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.06423128492832186
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 64,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5962312914848328,
+          "ramTravel": -0.04519999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.05303128492832187
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 80,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5850312914848328,
+          "ramTravel": -0.03399999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.04183128492832189
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 96,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5738312914848327,
+          "ramTravel": -0.022799999999999987,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.03063128492832179
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 112,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5626312914848327,
+          "ramTravel": -0.011599999999999989,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.0194312849283218
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 128,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5514312914848327,
+          "ramTravel": -0.0003999999999999872,
+          "renderState": "ready",
+          "specimenTopY": 0.5432000065565109,
+          "vertexGapM": 0.008231284928321814
+        },
+        {
+          "compression": 0.02526539252758968,
+          "elapsedMs": 144,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5410322357915043,
+          "ramTravel": 0.009999055693328485,
+          "renderState": "ready",
+          "specimenTopY": 0.5410322357915043,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.10703175747316696,
+          "elapsedMs": 160,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5340166814004006,
+          "ramTravel": 0.01701461008443217,
+          "renderState": "ready",
+          "specimenTopY": 0.5340166814004006,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.17095686008776093,
+          "elapsedMs": 176,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5285319073781232,
+          "ramTravel": 0.022499384106709597,
+          "renderState": "ready",
+          "specimenTopY": 0.5285319073781232,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.22093362922756848,
+          "elapsedMs": 192,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5242439004155376,
+          "ramTravel": 0.026787391069295174,
+          "renderState": "ready",
+          "specimenTopY": 0.5242439004155376,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.2600055642186186,
+          "elapsedMs": 208,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5208915282600942,
+          "ramTravel": 0.030139763224738547,
+          "renderState": "ready",
+          "specimenTopY": 0.5208915282600942,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.2905520787336768,
+          "elapsedMs": 224,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5182706372105573,
+          "ramTravel": 0.032760654274275436,
+          "renderState": "ready",
+          "specimenTopY": 0.5182706372105573,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.31443340299448946,
+          "elapsedMs": 240,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.516221619507559,
+          "ramTravel": 0.034809671977273804,
+          "renderState": "ready",
+          "specimenTopY": 0.516221619507559,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.33310386859438423,
+          "elapsedMs": 256,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5146196934954332,
+          "ramTravel": 0.03641159798939953,
+          "renderState": "ready",
+          "specimenTopY": 0.5146196934954332,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3477004747921761,
+          "elapsedMs": 272,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5133673046338972,
+          "ramTravel": 0.03766398685093553,
+          "renderState": "ready",
+          "specimenTopY": 0.5133673046338972,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3591121298124245,
+          "elapsedMs": 288,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5123881845942532,
+          "ramTravel": 0.03864310689057959,
+          "renderState": "ready",
+          "specimenTopY": 0.5123881845942532,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.36803378382819574,
+          "elapsedMs": 304,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5116227066492827,
+          "ramTravel": 0.0394085848355501,
+          "renderState": "ready",
+          "specimenTopY": 0.5116227066492827,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.37500875023192026,
+          "elapsedMs": 320,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5110242545080627,
+          "ramTravel": 0.040007036976770105,
+          "renderState": "ready",
+          "specimenTopY": 0.5110242545080627,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.38046179248698697,
+          "elapsedMs": 336,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5105563834639865,
+          "ramTravel": 0.0404749080208463,
+          "renderState": "ready",
+          "specimenTopY": 0.5105563834639865,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.38472499149245665,
+          "elapsedMs": 352,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5101906009747823,
+          "ramTravel": 0.04084069051005046,
+          "renderState": "ready",
+          "specimenTopY": 0.5101906009747823,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3880579687389378,
+          "elapsedMs": 368,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5099046315156708,
+          "ramTravel": 0.04112665996916198,
+          "renderState": "ready",
+          "specimenTopY": 0.5099046315156708,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.39066369681105184,
+          "elapsedMs": 384,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5096810600381995,
+          "ramTravel": 0.0413502314466333,
+          "renderState": "ready",
+          "specimenTopY": 0.5096810600381995,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3927008600689084,
+          "elapsedMs": 400,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.50950627142373,
+          "ramTravel": 0.04152502006110281,
+          "renderState": "ready",
+          "specimenTopY": 0.50950627142373,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3942935182528431,
+          "elapsedMs": 416,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5093696213461183,
+          "ramTravel": 0.04166167013871447,
+          "renderState": "ready",
+          "specimenTopY": 0.5093696213461183,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.395538661508334,
+          "elapsedMs": 432,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.509262788050552,
+          "ramTravel": 0.041768503434280735,
+          "renderState": "ready",
+          "specimenTopY": 0.509262788050552,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.39651211691912674,
+          "elapsedMs": 448,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5091792655729871,
+          "ramTravel": 0.04185202591184567,
+          "renderState": "ready",
+          "specimenTopY": 0.5091792655729871,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.39727316624628073,
+          "elapsedMs": 464,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5091139675381225,
+          "ramTravel": 0.04191732394671022,
+          "renderState": "ready",
+          "specimenTopY": 0.5091139675381225,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.397868156085507,
+          "elapsedMs": 480,
+          "id": "salvage-core",
+          "loadedAssets": "4",
+          "platenY": 0.5090629174078884,
+          "ramTravel": 0.041968374076944315,
+          "renderState": "ready",
+          "specimenTopY": 0.5090629174078884,
+          "vertexGapM": 0
+        }
+      ],
+      "firstContactMs": 144
+    },
+    {
+      "errors": [],
+      "id": "salvage-lens",
+      "samples": [
+        {
+          "compression": 0,
+          "elapsedMs": 0,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.6410312914848327,
+          "ramTravel": -0.09,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.09783130131959916
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 16,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.6298312914848327,
+          "ramTravel": -0.0788,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.08663130131959917
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 32,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.6186312914848328,
+          "ramTravel": -0.0676,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.07543130131959919
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 48,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.6074312914848328,
+          "ramTravel": -0.05639999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.0642313013195992
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 64,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5962312914848328,
+          "ramTravel": -0.04519999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.05303130131959921
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 80,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5850312914848328,
+          "ramTravel": -0.03399999999999999,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.04183130131959922
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 96,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5738312914848327,
+          "ramTravel": -0.022799999999999987,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.030631301319599125
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 112,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5626312914848327,
+          "ramTravel": -0.011599999999999989,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.019431301319599137
+        },
+        {
+          "compression": 0,
+          "elapsedMs": 128,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5514312914848327,
+          "ramTravel": -0.0003999999999999872,
+          "renderState": "ready",
+          "specimenTopY": 0.5431999901652336,
+          "vertexGapM": 0.008231301319599149
+        },
+        {
+          "compression": 0.02526525753022737,
+          "elapsedMs": 144,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5426997380959524,
+          "ramTravel": 0.008331553388880364,
+          "renderState": "ready",
+          "specimenTopY": 0.5426997380959524,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.10703165193196744,
+          "elapsedMs": 160,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5410807635832964,
+          "ramTravel": 0.009950527901536388,
+          "renderState": "ready",
+          "specimenTopY": 0.5410807635832964,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.17095677757544656,
+          "elapsedMs": 176,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5398150461709982,
+          "ramTravel": 0.011216245313834585,
+          "renderState": "ready",
+          "specimenTopY": 0.5398150461709982,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.22093356471928116,
+          "elapsedMs": 192,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5388255058445315,
+          "ramTravel": 0.01220578564030128,
+          "renderState": "ready",
+          "specimenTopY": 0.5388255058445315,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.2600055137859145,
+          "elapsedMs": 208,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5380518812991237,
+          "ramTravel": 0.012979410185709028,
+          "renderState": "ready",
+          "specimenTopY": 0.5380518812991237,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.290552039305291,
+          "elapsedMs": 224,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5374470601298902,
+          "ramTravel": 0.013584231354942576,
+          "renderState": "ready",
+          "specimenTopY": 0.5374470601298902,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.31443337216930106,
+          "elapsedMs": 240,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5369742097673669,
+          "ramTravel": 0.014057081717465891,
+          "renderState": "ready",
+          "specimenTopY": 0.5369742097673669,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3331038444951922,
+          "elapsedMs": 256,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5366045344373487,
+          "ramTravel": 0.014426757047484084,
+          "renderState": "ready",
+          "specimenTopY": 0.5366045344373486,
+          "vertexGapM": 1.1102230246251563e-16
+        },
+        {
+          "compression": 0.347700455951381,
+          "elapsedMs": 272,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5363155215477426,
+          "ramTravel": 0.014715769937090116,
+          "renderState": "ready",
+          "specimenTopY": 0.5363155215477426,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3591121150826544,
+          "elapsedMs": 288,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5360895707104111,
+          "ramTravel": 0.014941720774421683,
+          "renderState": "ready",
+          "specimenTopY": 0.5360895707104111,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3680337723124329,
+          "elapsedMs": 304,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5359129219077906,
+          "ramTravel": 0.015118369577042157,
+          "renderState": "ready",
+          "specimenTopY": 0.5359129219077906,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.37500874122887456,
+          "elapsedMs": 320,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5357748175314767,
+          "ramTravel": 0.015256473953356052,
+          "renderState": "ready",
+          "specimenTopY": 0.5357748175314767,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3804617854483884,
+          "elapsedMs": 336,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5356668472623658,
+          "ramTravel": 0.015364444222466966,
+          "renderState": "ready",
+          "specimenTopY": 0.5356668472623658,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3847249859896666,
+          "elapsedMs": 352,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5355824358966799,
+          "ramTravel": 0.0154488555881529,
+          "renderState": "ready",
+          "specimenTopY": 0.5355824358966799,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3880579644368458,
+          "elapsedMs": 368,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5355164429273591,
+          "ramTravel": 0.015514848557473648,
+          "renderState": "ready",
+          "specimenTopY": 0.5355164429273591,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3906636934476681,
+          "elapsedMs": 384,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5354648494960201,
+          "ramTravel": 0.01556644198881263,
+          "renderState": "ready",
+          "specimenTopY": 0.5354648494960201,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3927008574394084,
+          "elapsedMs": 400,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5354245136513879,
+          "ramTravel": 0.015606777833444885,
+          "renderState": "ready",
+          "specimenTopY": 0.5354245136513879,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3942935161970949,
+          "elapsedMs": 416,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5353929790098653,
+          "ramTravel": 0.015638312474967497,
+          "renderState": "ready",
+          "specimenTopY": 0.5353929790098653,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.39553865990114606,
+          "elapsedMs": 432,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5353683251659945,
+          "ramTravel": 0.015662966318838234,
+          "renderState": "ready",
+          "specimenTopY": 0.5353683251659945,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3965121156626241,
+          "elapsedMs": 448,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5353490507430662,
+          "ramTravel": 0.015682240741766607,
+          "renderState": "ready",
+          "specimenTopY": 0.5353490507430662,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3972731652639445,
+          "elapsedMs": 464,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5353339819618581,
+          "ramTravel": 0.015697309522974656,
+          "renderState": "ready",
+          "specimenTopY": 0.5353339819618581,
+          "vertexGapM": 0
+        },
+        {
+          "compression": 0.3978681553175146,
+          "elapsedMs": 480,
+          "id": "salvage-lens",
+          "loadedAssets": "4",
+          "platenY": 0.5353222011594997,
+          "ramTravel": 0.015709090325333075,
+          "renderState": "ready",
+          "specimenTopY": 0.5353222011594997,
+          "vertexGapM": 0
+        }
+      ],
+      "firstContactMs": 144
+    }
+  ],
+  "captures": [
+    {
+      "compression": 0,
+      "elapsedMs": 0,
+      "id": "salvage-cassette",
+      "loadedAssets": "4",
+      "platenY": 0.6410312914848327,
+      "ramTravel": -0.09,
+      "renderState": "ready",
+      "specimenTopY": 0.5259101430296897,
+      "vertexGapM": 0.115121148455143,
+      "screenshot": "captures/motion-0ms.png",
+      "sha256": "e23873bde6d9c123251a0ed4912e6e0063bbadfac552b50d2558f7c7a2accd63"
+    },
+    {
+      "compression": 0,
+      "elapsedMs": 48,
+      "id": "salvage-cassette",
+      "loadedAssets": "4",
+      "platenY": 0.6074312914848328,
+      "ramTravel": -0.05639999999999999,
+      "renderState": "ready",
+      "specimenTopY": 0.5259101430296897,
+      "vertexGapM": 0.08152114845514302,
+      "screenshot": "captures/motion-48ms.png",
+      "sha256": "6bb16b10195545ae7711afeafd448c371774f1fa51e91b0a6c0bb2997b8970d7"
+    },
+    {
+      "compression": 0,
+      "elapsedMs": 96,
+      "id": "salvage-cassette",
+      "loadedAssets": "4",
+      "platenY": 0.5738312914848327,
+      "ramTravel": -0.022799999999999987,
+      "renderState": "ready",
+      "specimenTopY": 0.5259101430296897,
+      "vertexGapM": 0.04792114845514295,
+      "screenshot": "captures/motion-96ms.png",
+      "sha256": "59b8edd17b66cf4f83da6b95ad9282496dff4df3d29dbb6582f09bfedb259bfb"
+    },
+    {
+      "compression": 0,
+      "elapsedMs": 144,
+      "id": "salvage-cassette",
+      "loadedAssets": "4",
+      "platenY": 0.5402312914848327,
+      "ramTravel": 0.010800000000000013,
+      "renderState": "ready",
+      "specimenTopY": 0.5259101430296897,
+      "vertexGapM": 0.014321148455142985,
+      "screenshot": "captures/motion-144ms.png",
+      "sha256": "52fccab20087995446857750007410a55c9a6e75261c27761b0e22f207929cc0"
+    },
+    {
+      "compression": 0.138154790916012,
+      "elapsedMs": 192,
+      "id": "salvage-cassette",
+      "loadedAssets": "4",
+      "platenY": 0.5152985737879404,
+      "ramTravel": 0.03573271769689235,
+      "renderState": "ready",
+      "specimenTopY": 0.5152985737879404,
+      "vertexGapM": 0,
+      "screenshot": "captures/motion-192ms.png",
+      "sha256": "c84693aaef905b8523bdb2a31c252892399d97c751797bd394c66b1efd48c87a"
+    },
+    {
+      "compression": 0.36345579020468727,
+      "elapsedMs": 320,
+      "id": "salvage-cassette",
+      "loadedAssets": "4",
+      "platenY": 0.4979933675165161,
+      "ramTravel": 0.05303792396831669,
+      "renderState": "ready",
+      "specimenTopY": 0.4979933675165161,
+      "vertexGapM": 0,
+      "screenshot": "captures/motion-320ms.png",
+      "sha256": "002a9af80d985223bb452a2e3ce092fc131bd759f9d68cff30cc3ca23648c093"
+    }
+  ],
+  "console": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      }
+    ]
+  },
+  "errors": [],
+  "sourcesAfter": {
+    "src/render/index.ts": "bd0c8eeae3a552e55ff893d037cf61e8562c36b9dd6a3c55b1f9eb71d5f4a42b",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "docs/handoffs/B/retraction-study/motion.ts": "7f3a066745bc8e6c87a0d438add284a08c3a79761fb6d9bc50fc4505f779db82"
+  },
+  "passed": true
+}

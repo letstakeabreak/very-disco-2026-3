@@ -1,0 +1,25 @@
+{
+  "tool": "built-in ImageGen",
+  "generatedAt": "2026-09-24T13:09:25.184257+00:00",
+  "reference": "docs/art/concepts/04-press-chamber-reference.png",
+  "original": {
+    "path": "assets/source/gauge/needle-free-dial.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "sha256": "e44c90bbf6e24363803d943af91c86b57efbea3bb926a2360e4d823a5a7e21a7"
+  },
+  "runtime": {
+    "path": "public/assets/textures/pressure-dial.webp",
+    "dimensions": [
+      1024,
+      512
+    ],
+    "bytes": 90242,
+    "sha256": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+  },
+  "processing": "Delivery resize to max 1024x512 and WebP q92 only; no semantic post-edit.",
+  "purpose": "Needle-free face mounted behind existing Meshy gauge bezel; functional needle is code UI driven only by snapshot pressure01.",
+  "generatedAtBasis": "Generated output file mtime recorded after tool completion."
+}

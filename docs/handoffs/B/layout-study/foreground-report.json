@@ -1,0 +1,3501 @@
+{
+  "checkedAt": "2026-09-24T16:54:04.135Z",
+  "kind": "Actual WebGL production renderer with synthetic stored-history fixtures. CPU projection of actual deformed GLB vertices plus synchronous GPU pixel comparison with depth on/off and empty case. Not physical containment, C HUD, gameplay or iPhone validation.",
+  "sourceHashesBefore": {
+    "src/render/index.ts": "876a9aff68bcf7739e52815fff279ca92b180e4ad1eb32ce0ecdc0e871f9f895",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/deformation.ts": "85dbf6c6b786ceb0ce8c179d4b71bce875806ed246400f322b0e87970429b24b",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "docs/handoffs/B/layout-study/foreground.ts": "7e3d7923274ec3eac10774d4252cbf308d0635b0dbd03b65b6fc618adf9e5886"
+  },
+  "layouts": [
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.892800206365,
+          "compression": 0,
+          "height": 62.68000984970388,
+          "id": "salvage-core",
+          "maxX": 348.6936119117708,
+          "maxY": 601.107199793635,
+          "minX": 302.56693584731977,
+          "minY": 538.4271899439311,
+          "vertices": 14581,
+          "width": 46.12667606445103
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.13720999581494,
+          "compression": 0,
+          "height": 48.92722127086392,
+          "id": "salvage-lens",
+          "maxX": 285.41164666563316,
+          "maxY": 593.8627900041851,
+          "minX": 242.9947513848424,
+          "minY": 544.9355687333211,
+          "vertices": 20038,
+          "width": 42.416895280790754
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.6196777588591,
+          "compression": 0,
+          "height": 65.6053745223171,
+          "id": "salvage-cassette",
+          "maxX": 222.84896762458249,
+          "maxY": 602.3803222411409,
+          "minX": 182.50215561471012,
+          "minY": 536.7749477188238,
+          "vertices": 53327,
+          "width": 40.34681200987234
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1555,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 503,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1328,
+          1558,
+          1545
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-lens",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 17.155289181686612
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.71469706808034,
+          "compression": 0.55,
+          "height": 63.02578603089296,
+          "id": "salvage-core",
+          "maxX": 342.6301961032807,
+          "maxY": 601.2853029319197,
+          "minX": 308.30162716408904,
+          "minY": 538.2595169010267,
+          "vertices": 14581,
+          "width": 34.328568939191655
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.07692399788787,
+          "compression": 0.55,
+          "height": 48.986365128166426,
+          "id": "salvage-lens",
+          "maxX": 284.0163798372629,
+          "maxY": 593.9230760021121,
+          "minX": 244.39029662100896,
+          "minY": 544.9367108739457,
+          "vertices": 20038,
+          "width": 39.62608321625393
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.6196777588591,
+          "compression": 0.55,
+          "height": 65.6053745223171,
+          "id": "salvage-cassette",
+          "maxX": 222.84896762458249,
+          "maxY": 602.3803222411409,
+          "minX": 182.50215561471012,
+          "minY": 536.7749477188238,
+          "vertices": 53327,
+          "width": 40.34681200987234
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1284,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 396,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1299,
+          1488,
+          1370
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-lens",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 21.541328996426472
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.29254224947704,
+          "compression": 1,
+          "height": 63.62077882473636,
+          "id": "salvage-core",
+          "maxX": 337.82390286242185,
+          "maxY": 601.707457750523,
+          "minX": 312.99640619719383,
+          "minY": 538.0866789257866,
+          "vertices": 14581,
+          "width": 24.82749666522801
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.02759878751874,
+          "compression": 1,
+          "height": 49.059450359898506,
+          "id": "salvage-lens",
+          "maxX": 282.8750010927035,
+          "maxY": 593.9724012124813,
+          "minX": 245.53231076849,
+          "minY": 544.9129508525828,
+          "vertices": 20038,
+          "width": 37.34269032421349
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.6196777588591,
+          "compression": 1,
+          "height": 65.6053745223171,
+          "id": "salvage-cassette",
+          "maxX": 222.84896762458249,
+          "maxY": 602.3803222411409,
+          "minX": 182.50215561471012,
+          "minY": 536.7749477188238,
+          "vertices": 53327,
+          "width": 40.34681200987234
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1102,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 330,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1275,
+          1429,
+          1034
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-lens",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 22.683343143907507
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.25280730290932,
+          "compression": 0,
+          "height": 62.731480418191495,
+          "id": "salvage-core",
+          "maxX": 285.4129866460162,
+          "maxY": 600.7471926970907,
+          "minX": 242.25581206659515,
+          "minY": 538.0157122788992,
+          "vertices": 14581,
+          "width": 43.157174579421024
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 119.82843165612246,
+          "compression": 0,
+          "height": 48.80670469269285,
+          "id": "salvage-lens",
+          "maxX": 348.6207243034431,
+          "maxY": 594.1715683438775,
+          "minX": 303.84670671757436,
+          "minY": 545.3648636511847,
+          "vertices": 20038,
+          "width": 44.77401758586876
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.6196777588591,
+          "compression": 0,
+          "height": 65.6053745223171,
+          "id": "salvage-cassette",
+          "maxX": 222.84896762458249,
+          "maxY": 602.3803222411409,
+          "minX": 182.50215561471012,
+          "minY": 536.7749477188238,
+          "vertices": 53327,
+          "width": 40.34681200987234
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1533,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 476,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1328,
+          1685,
+          1418
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-core",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 18.433720071558184
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.24124333947977,
+          "compression": 0.55,
+          "height": 62.918119113393345,
+          "id": "salvage-core",
+          "maxX": 279.36685953656865,
+          "maxY": 600.7587566605202,
+          "minX": 248.30541890355144,
+          "minY": 537.8406375471269,
+          "vertices": 14581,
+          "width": 31.061440633017213
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 119.76887047308831,
+          "compression": 0.55,
+          "height": 48.83361506525853,
+          "id": "salvage-lens",
+          "maxX": 347.2361823733662,
+          "maxY": 594.2311295269117,
+          "minX": 305.11617013173867,
+          "minY": 545.3975144616531,
+          "vertices": 20038,
+          "width": 42.120012241627535
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.6196777588591,
+          "compression": 0.55,
+          "height": 65.6053745223171,
+          "id": "salvage-cassette",
+          "maxX": 222.84896762458249,
+          "maxY": 602.3803222411409,
+          "minX": 182.50215561471012,
+          "minY": 536.7749477188238,
+          "vertices": 53327,
+          "width": 40.34681200987234
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1302,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 392,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1299,
+          1340,
+          1404
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-core",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 25.456451278968956
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.78917895846872,
+          "compression": 1,
+          "height": 63.51711499283306,
+          "id": "salvage-core",
+          "maxX": 274.42381008363196,
+          "maxY": 601.2108210415313,
+          "minX": 253.25893948137417,
+          "minY": 537.6937060486982,
+          "vertices": 14581,
+          "width": 21.16487060225782
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 119.71413545378893,
+          "compression": 1,
+          "height": 48.91781423087093,
+          "id": "salvage-lens",
+          "maxX": 346.10353320342546,
+          "maxY": 594.2858645462111,
+          "minX": 306.15494151512934,
+          "minY": 545.3680503153402,
+          "vertices": 20038,
+          "width": 39.94859168829612
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.6196777588591,
+          "compression": 1,
+          "height": 65.6053745223171,
+          "id": "salvage-cassette",
+          "maxX": 222.84896762458249,
+          "maxY": 602.3803222411409,
+          "minX": 182.50215561471012,
+          "minY": 536.7749477188238,
+          "vertices": 53327,
+          "width": 40.34681200987234
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1114,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 328,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1275,
+          948,
+          1361
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-core",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 30.409971856791685
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.892800206365,
+          "compression": 0,
+          "height": 62.68000984970388,
+          "id": "salvage-core",
+          "maxX": 348.6936119117708,
+          "maxY": 601.107199793635,
+          "minX": 302.56693584731977,
+          "minY": 538.4271899439311,
+          "vertices": 14581,
+          "width": 46.12667606445103
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.19637179462006,
+          "compression": 0,
+          "height": 49.20270715900995,
+          "id": "salvage-lens",
+          "maxX": 225.3929680389149,
+          "maxY": 593.8036282053799,
+          "minX": 180.7078983532143,
+          "minY": 544.60092104637,
+          "vertices": 20038,
+          "width": 44.68506968570057
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.49226653101825,
+          "compression": 0,
+          "height": 65.4815446875873,
+          "id": "salvage-cassette",
+          "maxX": 282.31597161652957,
+          "maxY": 602.5077334689818,
+          "minX": 245.4105372719092,
+          "minY": 537.0261887813945,
+          "vertices": 53327,
+          "width": 36.905434344620346
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1600,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-cassette",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 525,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1249,
+          1485,
+          1545
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-cassette",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 20.017569232994305
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.71469706808034,
+          "compression": 0.55,
+          "height": 63.02578603089296,
+          "id": "salvage-core",
+          "maxX": 342.6301961032807,
+          "maxY": 601.2853029319197,
+          "minX": 308.30162716408904,
+          "minY": 538.2595169010267,
+          "vertices": 14581,
+          "width": 34.328568939191655
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.14509856241092,
+          "compression": 0.55,
+          "height": 49.23254440537539,
+          "id": "salvage-lens",
+          "maxX": 224.042962059565,
+          "maxY": 593.8549014375891,
+          "minX": 182.0936462062813,
+          "minY": 544.6223570322137,
+          "vertices": 20038,
+          "width": 41.94931585328368
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.49226653101812,
+          "compression": 0.55,
+          "height": 65.48154468758742,
+          "id": "salvage-cassette",
+          "maxX": 282.31597161652957,
+          "maxY": 602.5077334689819,
+          "minX": 245.4105372719092,
+          "minY": 537.0261887813945,
+          "vertices": 53327,
+          "width": 36.905434344620346
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1295,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-cassette",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 412,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1257,
+          1397,
+          1370
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-cassette",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 21.36757521234418
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.29254224947704,
+          "compression": 1,
+          "height": 63.62077882473636,
+          "id": "salvage-core",
+          "maxX": 337.82390286242185,
+          "maxY": 601.707457750523,
+          "minX": 312.99640619719383,
+          "minY": 538.0866789257866,
+          "vertices": 14581,
+          "width": 24.82749666522801
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.10314881069483,
+          "compression": 1,
+          "height": 49.29046874297342,
+          "id": "salvage-lens",
+          "maxX": 222.9386543587729,
+          "maxY": 593.8968511893052,
+          "minX": 183.227696770976,
+          "minY": 544.6063824463317,
+          "vertices": 20038,
+          "width": 39.71095758779691
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.49226653101825,
+          "compression": 1,
+          "height": 65.4815446875873,
+          "id": "salvage-cassette",
+          "maxX": 282.31597161652957,
+          "maxY": 602.5077334689818,
+          "minX": 245.4105372719092,
+          "minY": 537.0261887813945,
+          "vertices": 53327,
+          "width": 36.905434344620346
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1110,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-cassette",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 343,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1250,
+          1339,
+          1034
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-cassette",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 22.471882913136284
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.25280730290932,
+          "compression": 0,
+          "height": 62.731480418191495,
+          "id": "salvage-core",
+          "maxX": 285.4129866460162,
+          "maxY": 600.7471926970907,
+          "minX": 242.25581206659515,
+          "minY": 538.0157122788992,
+          "vertices": 14581,
+          "width": 43.157174579421024
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.19637179462006,
+          "compression": 0,
+          "height": 49.20270715900995,
+          "id": "salvage-lens",
+          "maxX": 225.3929680389149,
+          "maxY": 593.8036282053799,
+          "minX": 180.7078983532143,
+          "minY": 544.60092104637,
+          "vertices": 20038,
+          "width": 44.68506968570057
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.13510310113224,
+          "compression": 0,
+          "height": 65.42932875934366,
+          "id": "salvage-cassette",
+          "maxX": 345.4479874726914,
+          "maxY": 602.8648968988678,
+          "minX": 305.45716484880995,
+          "minY": 537.4355681395241,
+          "vertices": 53327,
+          "width": 39.990822623881456
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1580,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-core",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 514,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1249,
+          1685,
+          1480
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-core",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 16.862844027680268
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.24124333947977,
+          "compression": 0.55,
+          "height": 62.918119113393345,
+          "id": "salvage-core",
+          "maxX": 279.36685953656865,
+          "maxY": 600.7587566605202,
+          "minX": 248.30541890355144,
+          "minY": 537.8406375471269,
+          "vertices": 14581,
+          "width": 31.061440633017213
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.14509856241092,
+          "compression": 0.55,
+          "height": 49.23254440537539,
+          "id": "salvage-lens",
+          "maxX": 224.042962059565,
+          "maxY": 593.8549014375891,
+          "minX": 182.0936462062813,
+          "minY": 544.6223570322137,
+          "vertices": 20038,
+          "width": 41.94931585328368
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.13510310113224,
+          "compression": 0.55,
+          "height": 65.42932875934366,
+          "id": "salvage-cassette",
+          "maxX": 345.44798747269147,
+          "maxY": 602.8648968988678,
+          "minX": 305.45716484881007,
+          "minY": 537.4355681395241,
+          "vertices": 53327,
+          "width": 39.9908226238814
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1307,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-core",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 418,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1257,
+          1340,
+          1422
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-core",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 24.262456843986428
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 112.78917895846872,
+          "compression": 1,
+          "height": 63.51711499283306,
+          "id": "salvage-core",
+          "maxX": 274.42381008363196,
+          "maxY": 601.2108210415313,
+          "minX": 253.25893948137417,
+          "minY": 537.6937060486982,
+          "vertices": 14581,
+          "width": 21.16487060225782
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.10314881069483,
+          "compression": 1,
+          "height": 49.29046874297342,
+          "id": "salvage-lens",
+          "maxX": 222.9386543587729,
+          "maxY": 593.8968511893052,
+          "minX": 183.227696770976,
+          "minY": 544.6063824463317,
+          "vertices": 20038,
+          "width": 39.71095758779691
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.13510310113224,
+          "compression": 1,
+          "height": 65.42932875934366,
+          "id": "salvage-cassette",
+          "maxX": 345.4479874726914,
+          "maxY": 602.8648968988678,
+          "minX": 305.45716484880995,
+          "minY": 537.4355681395241,
+          "vertices": 53327,
+          "width": 39.990822623881456
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1115,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-core",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 348,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1250,
+          948,
+          1369
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-core",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 30.320285122601263
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.3688840773491,
+          "compression": 0,
+          "height": 62.91705795117582,
+          "id": "salvage-core",
+          "maxX": 225.26787788679752,
+          "maxY": 600.6311159226509,
+          "minX": 179.75239674151155,
+          "minY": 537.7140579714751,
+          "vertices": 14581,
+          "width": 45.515481145285946
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 119.82843165612246,
+          "compression": 0,
+          "height": 48.80670469269285,
+          "id": "salvage-lens",
+          "maxX": 348.6207243034431,
+          "maxY": 594.1715683438775,
+          "minX": 303.84670671757436,
+          "minY": 545.3648636511847,
+          "vertices": 20038,
+          "width": 44.77401758586876
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.49226653101825,
+          "compression": 0,
+          "height": 65.4815446875873,
+          "id": "salvage-cassette",
+          "maxX": 282.31597161652957,
+          "maxY": 602.5077334689818,
+          "minX": 245.4105372719092,
+          "minY": 537.0261887813945,
+          "vertices": 53327,
+          "width": 36.905434344620346
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1575,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-cassette",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 484,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1330,
+          1485,
+          1418
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-cassette",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 20.14265938511167
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.60281395913124,
+          "compression": 0.55,
+          "height": 62.81946470584717,
+          "id": "salvage-core",
+          "maxX": 219.44200201579656,
+          "maxY": 600.3971860408687,
+          "minX": 185.8090799284006,
+          "minY": 537.5777213350216,
+          "vertices": 14581,
+          "width": 33.63292208739597
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 119.76887047308831,
+          "compression": 0.55,
+          "height": 48.83361506525853,
+          "id": "salvage-lens",
+          "maxX": 347.2361823733662,
+          "maxY": 594.2311295269117,
+          "minX": 305.11617013173867,
+          "minY": 545.3975144616531,
+          "vertices": 20038,
+          "width": 42.120012241627535
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.49226653101812,
+          "compression": 0.55,
+          "height": 65.48154468758742,
+          "id": "salvage-cassette",
+          "maxX": 282.31597161652957,
+          "maxY": 602.5077334689819,
+          "minX": 245.4105372719092,
+          "minY": 537.0261887813945,
+          "vertices": 53327,
+          "width": 36.905434344620346
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1317,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-cassette",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 401,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1258,
+          1397,
+          1404
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-cassette",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 22.800198515209104
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.1094705298442,
+          "compression": 1,
+          "height": 63.42439389784067,
+          "id": "salvage-core",
+          "maxX": 214.7985758953941,
+          "maxY": 600.8905294701558,
+          "minX": 190.76946917599636,
+          "minY": 537.4661355723151,
+          "vertices": 14581,
+          "width": 24.02910671939773
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 119.71413545378893,
+          "compression": 1,
+          "height": 48.91781423087093,
+          "id": "salvage-lens",
+          "maxX": 346.10353320342546,
+          "maxY": 594.2858645462111,
+          "minX": 306.15494151512934,
+          "minY": 545.3680503153402,
+          "vertices": 20038,
+          "width": 39.94859168829612
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.49226653101825,
+          "compression": 1,
+          "height": 65.4815446875873,
+          "id": "salvage-cassette",
+          "maxX": 282.31597161652957,
+          "maxY": 602.5077334689818,
+          "minX": 245.4105372719092,
+          "minY": 537.0261887813945,
+          "vertices": 53327,
+          "width": 36.905434344620346
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1122,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-cassette",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 334,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          979,
+          1339,
+          1361
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-cassette",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 23.83896989859977
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.3688840773491,
+          "compression": 0,
+          "height": 62.91705795117582,
+          "id": "salvage-core",
+          "maxX": 225.26787788679752,
+          "maxY": 600.6311159226509,
+          "minX": 179.75239674151155,
+          "minY": 537.7140579714751,
+          "vertices": 14581,
+          "width": 45.515481145285946
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.13720999581494,
+          "compression": 0,
+          "height": 48.92722127086392,
+          "id": "salvage-lens",
+          "maxX": 285.41164666563316,
+          "maxY": 593.8627900041851,
+          "minX": 242.9947513848424,
+          "minY": 544.9355687333211,
+          "vertices": 20038,
+          "width": 42.416895280790754
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.13510310113224,
+          "compression": 0,
+          "height": 65.42932875934366,
+          "id": "salvage-cassette",
+          "maxX": 345.4479874726914,
+          "maxY": 602.8648968988678,
+          "minX": 305.45716484880995,
+          "minY": 537.4355681395241,
+          "vertices": 53327,
+          "width": 39.990822623881456
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1577,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 500,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1330,
+          1558,
+          1480
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-lens",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 17.72687349804488
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.60281395913124,
+          "compression": 0.55,
+          "height": 62.81946470584717,
+          "id": "salvage-core",
+          "maxX": 219.44200201579656,
+          "maxY": 600.3971860408687,
+          "minX": 185.8090799284006,
+          "minY": 537.5777213350216,
+          "vertices": 14581,
+          "width": 33.63292208739597
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.07692399788787,
+          "compression": 0.55,
+          "height": 48.986365128166426,
+          "id": "salvage-lens",
+          "maxX": 284.0163798372629,
+          "maxY": 593.9230760021121,
+          "minX": 244.39029662100896,
+          "minY": 544.9367108739457,
+          "vertices": 20038,
+          "width": 39.62608321625393
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.13510310113224,
+          "compression": 0.55,
+          "height": 65.42932875934366,
+          "id": "salvage-cassette",
+          "maxX": 345.44798747269147,
+          "maxY": 602.8648968988678,
+          "minX": 305.45716484881007,
+          "minY": 537.4355681395241,
+          "vertices": 53327,
+          "width": 39.9908226238814
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1311,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 411,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          1258,
+          1488,
+          1422
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-lens",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 21.440785011547177
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 113.1094705298442,
+          "compression": 1,
+          "height": 63.42439389784067,
+          "id": "salvage-core",
+          "maxX": 214.7985758953941,
+          "maxY": 600.8905294701558,
+          "minX": 190.76946917599636,
+          "minY": 537.4661355723151,
+          "vertices": 14581,
+          "width": 24.02910671939773
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 120.02759878751874,
+          "compression": 1,
+          "height": 49.059450359898506,
+          "id": "salvage-lens",
+          "maxX": 282.8750010927035,
+          "maxY": 593.9724012124813,
+          "minX": 245.53231076849,
+          "minY": 544.9129508525828,
+          "vertices": 20038,
+          "width": 37.34269032421349
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 111.13510310113224,
+          "compression": 1,
+          "height": 65.42932875934366,
+          "id": "salvage-cassette",
+          "maxX": 345.4479874726914,
+          "maxY": 602.8648968988678,
+          "minX": 305.45716484880995,
+          "minY": 537.4355681395241,
+          "vertices": 53327,
+          "width": 39.990822623881456
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1115,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 341,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "visiblePixelsInApertures": [
+          979,
+          1429,
+          1369
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-lens",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 844,
+        "width": 390
+      },
+      "horizontalClearancePx": 22.582163756106468
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.984377432463532,
+          "compression": 0,
+          "height": 40.14541232481139,
+          "id": "salvage-lens",
+          "maxX": 234.18391521282723,
+          "maxY": 425.01562256753647,
+          "minX": 199.38030882858865,
+          "minY": 384.8702102427251,
+          "vertices": 20038,
+          "width": 34.80360638423858
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.040246323171289,
+          "compression": 0,
+          "height": 51.429751671551855,
+          "id": "salvage-core",
+          "maxX": 286.1075790045299,
+          "maxY": 430.9597536768287,
+          "minX": 248.26004992600593,
+          "minY": 379.53000200527686,
+          "vertices": 14581,
+          "width": 37.84752907852396
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.995633032910064,
+          "compression": 0,
+          "height": 53.83005089010624,
+          "id": "salvage-cassette",
+          "maxX": 182.85043497401637,
+          "maxY": 432.00436696708994,
+          "minX": 149.7453584530955,
+          "minY": 378.1743160769837,
+          "vertices": 53327,
+          "width": 33.105076520920875
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1052,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 308,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          877,
+          1060,
+          986
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-lens",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 14.076134713178703
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.934911998267069,
+          "compression": 0.55,
+          "height": 40.19394061798266,
+          "id": "salvage-lens",
+          "maxX": 233.03908089211316,
+          "maxY": 425.065088001733,
+          "minX": 200.52537158646888,
+          "minY": 384.8711473837502,
+          "vertices": 20038,
+          "width": 32.513709305644284
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 6.894110414835154,
+          "compression": 0.55,
+          "height": 51.71346546124556,
+          "id": "salvage-core",
+          "maxX": 281.1324685975637,
+          "maxY": 431.1058895851649,
+          "minX": 252.9654376730987,
+          "minY": 379.3924241239193,
+          "vertices": 14581,
+          "width": 28.167030924464967
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.995633032910064,
+          "compression": 0.55,
+          "height": 53.83005089010629,
+          "id": "salvage-cassette",
+          "maxX": 182.85043497401637,
+          "maxY": 432.00436696708994,
+          "minX": 149.7453584530955,
+          "minY": 378.1743160769837,
+          "vertices": 53327,
+          "width": 33.105076520920875
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 895,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 255,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          859,
+          1011,
+          901
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-lens",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 17.674936612452512
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.894440030784608,
+          "compression": 1,
+          "height": 40.25390798760907,
+          "id": "salvage-lens",
+          "maxX": 232.1025649991413,
+          "maxY": 425.1055599692154,
+          "minX": 201.4624088356841,
+          "minY": 384.8516519816063,
+          "vertices": 20038,
+          "width": 30.640156163457192
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 6.547726973929912,
+          "compression": 1,
+          "height": 52.201664676706685,
+          "id": "salvage-core",
+          "maxX": 277.18884337429483,
+          "maxY": 431.4522730260701,
+          "minX": 256.81756405923596,
+          "minY": 379.2506083493634,
+          "vertices": 14581,
+          "width": 20.37127931505887
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.99563303290995,
+          "compression": 1,
+          "height": 53.83005089010635,
+          "id": "salvage-cassette",
+          "maxX": 182.85043497401637,
+          "maxY": 432.0043669670901,
+          "minX": 149.7453584530955,
+          "minY": 378.1743160769837,
+          "vertices": 53327,
+          "width": 33.105076520920875
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 766,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 207,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          846,
+          977,
+          686
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-lens",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 18.611973861667735
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.731020846049203,
+          "compression": 0,
+          "height": 40.04652692733771,
+          "id": "salvage-lens",
+          "maxX": 286.0477737874405,
+          "maxY": 425.2689791539508,
+          "minX": 249.31011833236877,
+          "minY": 385.2224522266131,
+          "vertices": 20038,
+          "width": 36.737655455071774
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.335636761361457,
+          "compression": 0,
+          "height": 51.471983932875105,
+          "id": "salvage-core",
+          "maxX": 234.1850146839107,
+          "maxY": 430.66436323863854,
+          "minX": 198.77399964438575,
+          "minY": 379.19237930576344,
+          "vertices": 14581,
+          "width": 35.411015039524926
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.995633032910064,
+          "compression": 0,
+          "height": 53.83005089010624,
+          "id": "salvage-cassette",
+          "maxX": 182.85043497401637,
+          "maxY": 432.00436696708994,
+          "minX": 149.7453584530955,
+          "minY": 378.1743160769837,
+          "vertices": 53327,
+          "width": 33.105076520920875
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1059,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 307,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          877,
+          1103,
+          938
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-core",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 15.125103648458065
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.682150131764844,
+          "compression": 0.55,
+          "height": 40.068607233032594,
+          "id": "salvage-lens",
+          "maxX": 284.91173938327483,
+          "maxY": 425.3178498682352,
+          "minX": 250.35172933886247,
+          "minY": 385.24924263520256,
+          "vertices": 20038,
+          "width": 34.560010044412365
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.326148381111636,
+          "compression": 0.55,
+          "height": 51.6251233750919,
+          "id": "salvage-core",
+          "maxX": 229.22408987615887,
+          "maxY": 430.6738516188883,
+          "minX": 203.73777961317043,
+          "minY": 379.04872824379646,
+          "vertices": 14581,
+          "width": 25.48631026298844
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.995633032910064,
+          "compression": 0.55,
+          "height": 53.83005089010629,
+          "id": "salvage-cassette",
+          "maxX": 182.85043497401637,
+          "maxY": 432.00436696708994,
+          "minX": 149.7453584530955,
+          "minY": 378.1743160769837,
+          "vertices": 53327,
+          "width": 33.105076520920875
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 886,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 239,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          859,
+          892,
+          940
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-core",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 20.887344639154065
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.637239346698609,
+          "compression": 1,
+          "height": 40.13769372789409,
+          "id": "salvage-lens",
+          "maxX": 283.98238621819524,
+          "maxY": 425.3627606533014,
+          "minX": 251.2040545765164,
+          "minY": 385.2250669254073,
+          "vertices": 20038,
+          "width": 32.77833164167885
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 6.9552237607948655,
+          "compression": 1,
+          "height": 52.11660717360655,
+          "id": "salvage-core",
+          "maxX": 225.16825442759543,
+          "maxY": 431.04477623920513,
+          "minX": 207.802206753948,
+          "minY": 378.9281690655986,
+          "vertices": 14581,
+          "width": 17.366047673647415
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.99563303290995,
+          "compression": 1,
+          "height": 53.83005089010635,
+          "id": "salvage-cassette",
+          "maxX": 182.85043497401637,
+          "maxY": 432.0043669670901,
+          "minX": 149.7453584530955,
+          "minY": 378.1743160769837,
+          "vertices": 53327,
+          "width": 33.105076520920875
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 760,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 198,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          846,
+          624,
+          926
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-cassette",
+        "salvage-core",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 24.951771779931647
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 13.032920446867706,
+          "compression": 0,
+          "height": 40.37145202790566,
+          "id": "salvage-lens",
+          "maxX": 184.93781992936604,
+          "maxY": 424.9670795531323,
+          "minX": 148.27314736673995,
+          "minY": 384.59562752522663,
+          "vertices": 20038,
+          "width": 36.664672562626095
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.040246323171289,
+          "compression": 0,
+          "height": 51.429751671551855,
+          "id": "salvage-core",
+          "maxX": 286.1075790045299,
+          "maxY": 430.9597536768287,
+          "minX": 248.26004992600593,
+          "minY": 379.53000200527686,
+          "vertices": 14581,
+          "width": 37.84752907852396
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.891090486989242,
+          "compression": 0,
+          "height": 53.728446923148624,
+          "id": "salvage-cassette",
+          "maxX": 231.643874146896,
+          "maxY": 432.1089095130107,
+          "minX": 201.36249212054088,
+          "minY": 378.38046258986213,
+          "vertices": 53327,
+          "width": 30.281382026355143
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1081,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-cassette",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 317,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          864,
+          983,
+          986
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-cassette",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 16.424672191174835
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.990850102491038,
+          "compression": 0.55,
+          "height": 40.3959338710772,
+          "id": "salvage-lens",
+          "maxX": 183.8301227155405,
+          "maxY": 425.00914989750896,
+          "minX": 149.41017124617954,
+          "minY": 384.61321602643176,
+          "vertices": 20038,
+          "width": 34.41995146936097
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 6.894110414835154,
+          "compression": 0.55,
+          "height": 51.71346546124556,
+          "id": "salvage-core",
+          "maxX": 281.1324685975637,
+          "maxY": 431.1058895851649,
+          "minX": 252.9654376730987,
+          "minY": 379.3924241239193,
+          "vertices": 14581,
+          "width": 28.167030924464967
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.891090486989185,
+          "compression": 0.55,
+          "height": 53.72844692314868,
+          "id": "salvage-cassette",
+          "maxX": 231.643874146896,
+          "maxY": 432.1089095130108,
+          "minX": 201.36249212054088,
+          "minY": 378.38046258986213,
+          "vertices": 53327,
+          "width": 30.281382026355143
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 898,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-cassette",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 265,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          865,
+          920,
+          901
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-cassette",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 17.532369405000367
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.956429793390612,
+          "compression": 1,
+          "height": 40.443461532696176,
+          "id": "salvage-lens",
+          "maxX": 182.92402408924957,
+          "maxY": 425.0435702066094,
+          "minX": 150.34067427362135,
+          "minY": 384.6001086739132,
+          "vertices": 20038,
+          "width": 32.583349815628225
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 6.547726973929912,
+          "compression": 1,
+          "height": 52.201664676706685,
+          "id": "salvage-core",
+          "maxX": 277.18884337429483,
+          "maxY": 431.4522730260701,
+          "minX": 256.81756405923596,
+          "minY": 379.2506083493634,
+          "vertices": 14581,
+          "width": 20.37127931505887
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.891090486989242,
+          "compression": 1,
+          "height": 53.728446923148624,
+          "id": "salvage-cassette",
+          "maxX": 231.643874146896,
+          "maxY": 432.1089095130107,
+          "minX": 201.36249212054088,
+          "minY": 378.38046258986213,
+          "vertices": 53327,
+          "width": 30.281382026355143
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 760,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-cassette",
+          "salvage-core"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 215,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          856,
+          878,
+          686
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-cassette",
+        "salvage-core"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 18.438468031291308
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 13.032920446867706,
+          "compression": 0,
+          "height": 40.37145202790566,
+          "id": "salvage-lens",
+          "maxX": 184.93781992936604,
+          "maxY": 424.9670795531323,
+          "minX": 148.27314736673995,
+          "minY": 384.59562752522663,
+          "vertices": 20038,
+          "width": 36.664672562626095
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.335636761361457,
+          "compression": 0,
+          "height": 51.471983932875105,
+          "id": "salvage-core",
+          "maxX": 234.1850146839107,
+          "maxY": 430.66436323863854,
+          "minX": 198.77399964438575,
+          "minY": 379.19237930576344,
+          "vertices": 14581,
+          "width": 35.411015039524926
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.5980333137496245,
+          "compression": 0,
+          "height": 53.685603084589616,
+          "id": "salvage-cassette",
+          "maxX": 283.4445025416955,
+          "maxY": 432.4019666862504,
+          "minX": 250.63151987594665,
+          "minY": 378.7163636016608,
+          "vertices": 53327,
+          "width": 32.81298266574885
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1083,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-core",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 324,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          864,
+          1103,
+          973
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-core",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 13.83617971501971
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.990850102491038,
+          "compression": 0.55,
+          "height": 40.3959338710772,
+          "id": "salvage-lens",
+          "maxX": 183.8301227155405,
+          "maxY": 425.00914989750896,
+          "minX": 149.41017124617954,
+          "minY": 384.61321602643176,
+          "vertices": 20038,
+          "width": 34.41995146936097
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.326148381111636,
+          "compression": 0.55,
+          "height": 51.6251233750919,
+          "id": "salvage-core",
+          "maxX": 229.22408987615887,
+          "maxY": 430.6738516188883,
+          "minX": 203.73777961317043,
+          "minY": 379.04872824379646,
+          "vertices": 14581,
+          "width": 25.48631026298844
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.5980333137496245,
+          "compression": 0.55,
+          "height": 53.685603084589616,
+          "id": "salvage-cassette",
+          "maxX": 283.44450254169556,
+          "maxY": 432.4019666862504,
+          "minX": 250.6315198759467,
+          "minY": 378.7163636016608,
+          "vertices": 53327,
+          "width": 32.81298266574885
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 894,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-core",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 257,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          865,
+          892,
+          937
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-core",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 19.90765689762992
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.956429793390612,
+          "compression": 1,
+          "height": 40.443461532696176,
+          "id": "salvage-lens",
+          "maxX": 182.92402408924957,
+          "maxY": 425.0435702066094,
+          "minX": 150.34067427362135,
+          "minY": 384.6001086739132,
+          "vertices": 20038,
+          "width": 32.583349815628225
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 6.9552237607948655,
+          "compression": 1,
+          "height": 52.11660717360655,
+          "id": "salvage-core",
+          "maxX": 225.16825442759543,
+          "maxY": 431.04477623920513,
+          "minX": 207.802206753948,
+          "minY": 378.9281690655986,
+          "vertices": 14581,
+          "width": 17.366047673647415
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.5980333137496245,
+          "compression": 1,
+          "height": 53.685603084589616,
+          "id": "salvage-cassette",
+          "maxX": 283.4445025416955,
+          "maxY": 432.4019666862504,
+          "minX": 250.63151987594665,
+          "minY": 378.7163636016608,
+          "vertices": 53327,
+          "width": 32.81298266574885
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 763,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-lens",
+          "salvage-core",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 217,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          856,
+          624,
+          905
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-lens",
+        "salvage-core",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 24.878182664698443
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.731020846049203,
+          "compression": 0,
+          "height": 40.04652692733771,
+          "id": "salvage-lens",
+          "maxX": 286.0477737874405,
+          "maxY": 425.2689791539508,
+          "minX": 249.31011833236877,
+          "minY": 385.2224522266131,
+          "vertices": 20038,
+          "width": 36.737655455071774
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.43087924295304,
+          "compression": 0,
+          "height": 51.62425267788785,
+          "id": "salvage-core",
+          "maxX": 184.83518185583387,
+          "maxY": 430.56912075704696,
+          "minX": 147.48914604431718,
+          "minY": 378.9448680791591,
+          "vertices": 14581,
+          "width": 37.346035811516685
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.891090486989242,
+          "compression": 0,
+          "height": 53.728446923148624,
+          "id": "salvage-cassette",
+          "maxX": 231.643874146896,
+          "maxY": 432.1089095130107,
+          "minX": 201.36249212054088,
+          "minY": 378.38046258986213,
+          "vertices": 53327,
+          "width": 30.281382026355143
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1089,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-cassette",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 301,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          879,
+          983,
+          938
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-cassette",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 16.527310264707012
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.682150131764844,
+          "compression": 0.55,
+          "height": 40.068607233032594,
+          "id": "salvage-lens",
+          "maxX": 284.91173938327483,
+          "maxY": 425.3178498682352,
+          "minX": 250.35172933886247,
+          "minY": 385.24924263520256,
+          "vertices": 20038,
+          "width": 34.560010044412365
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.622821710056371,
+          "compression": 0.55,
+          "height": 51.54417616890032,
+          "id": "salvage-core",
+          "maxX": 180.05497601296128,
+          "maxY": 430.3771782899436,
+          "minX": 152.45873224894407,
+          "minY": 378.8330021210433,
+          "vertices": 14581,
+          "width": 27.596243764017203
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.891090486989185,
+          "compression": 0.55,
+          "height": 53.72844692314868,
+          "id": "salvage-cassette",
+          "maxX": 231.643874146896,
+          "maxY": 432.1089095130108,
+          "minX": 201.36249212054088,
+          "minY": 378.38046258986213,
+          "vertices": 53327,
+          "width": 30.281382026355143
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 891,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-cassette",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 242,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          827,
+          920,
+          940
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-cassette",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 18.707855191966473
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.637239346698609,
+          "compression": 1,
+          "height": 40.13769372789409,
+          "id": "salvage-lens",
+          "maxX": 283.98238621819524,
+          "maxY": 425.3627606533014,
+          "minX": 251.2040545765164,
+          "minY": 385.2250669254073,
+          "vertices": 20038,
+          "width": 32.77833164167885
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.218027101410655,
+          "compression": 1,
+          "height": 52.04052832643333,
+          "id": "salvage-core",
+          "maxX": 176.24498535006694,
+          "maxY": 430.78197289858934,
+          "minX": 156.52879522133034,
+          "minY": 378.741444572156,
+          "vertices": 14581,
+          "width": 19.7161901287366
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.891090486989242,
+          "compression": 1,
+          "height": 53.728446923148624,
+          "id": "salvage-cassette",
+          "maxX": 231.643874146896,
+          "maxY": 432.1089095130107,
+          "minX": 201.36249212054088,
+          "minY": 378.38046258986213,
+          "vertices": 53327,
+          "width": 30.281382026355143
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 766,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-cassette",
+          "salvage-lens"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 205,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          647,
+          878,
+          926
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-cassette",
+        "salvage-lens"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 19.560180429620402
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.984377432463532,
+          "compression": 0,
+          "height": 40.14541232481139,
+          "id": "salvage-lens",
+          "maxX": 234.18391521282723,
+          "maxY": 425.01562256753647,
+          "minX": 199.38030882858865,
+          "minY": 384.8702102427251,
+          "vertices": 20038,
+          "width": 34.80360638423858
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.43087924295304,
+          "compression": 0,
+          "height": 51.62425267788785,
+          "id": "salvage-core",
+          "maxX": 184.83518185583387,
+          "maxY": 430.56912075704696,
+          "minX": 147.48914604431718,
+          "minY": 378.9448680791591,
+          "vertices": 14581,
+          "width": 37.346035811516685
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.5980333137496245,
+          "compression": 0,
+          "height": 53.685603084589616,
+          "id": "salvage-cassette",
+          "maxX": 283.4445025416955,
+          "maxY": 432.4019666862504,
+          "minX": 250.63151987594665,
+          "minY": 378.7163636016608,
+          "vertices": 53327,
+          "width": 32.81298266574885
+        }
+      ],
+      "compression": 0,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 1086,
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 309,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          879,
+          1060,
+          973
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-lens",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 14.545126972754787
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.934911998267069,
+          "compression": 0.55,
+          "height": 40.19394061798266,
+          "id": "salvage-lens",
+          "maxX": 233.03908089211316,
+          "maxY": 425.065088001733,
+          "minX": 200.52537158646888,
+          "minY": 384.8711473837502,
+          "vertices": 20038,
+          "width": 32.513709305644284
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.622821710056371,
+          "compression": 0.55,
+          "height": 51.54417616890032,
+          "id": "salvage-core",
+          "maxX": 180.05497601296128,
+          "maxY": 430.3771782899436,
+          "minX": 152.45873224894407,
+          "minY": 378.8330021210433,
+          "vertices": 14581,
+          "width": 27.596243764017203
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.5980333137496245,
+          "compression": 0.55,
+          "height": 53.685603084589616,
+          "id": "salvage-cassette",
+          "maxX": 283.44450254169556,
+          "maxY": 432.4019666862504,
+          "minX": 250.6315198759467,
+          "minY": 378.7163636016608,
+          "vertices": 53327,
+          "width": 32.81298266574885
+        }
+      ],
+      "compression": 0.55,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 896,
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 250,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          827,
+          1011,
+          937
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-lens",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 17.592438983833546
+    },
+    {
+      "bounds": [
+        {
+          "bottomMarginTo130pxStudyDock": 12.894440030784608,
+          "compression": 1,
+          "height": 40.25390798760907,
+          "id": "salvage-lens",
+          "maxX": 232.1025649991413,
+          "maxY": 425.1055599692154,
+          "minX": 201.4624088356841,
+          "minY": 384.8516519816063,
+          "vertices": 20038,
+          "width": 30.640156163457192
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 7.218027101410655,
+          "compression": 1,
+          "height": 52.04052832643333,
+          "id": "salvage-core",
+          "maxX": 176.24498535006694,
+          "maxY": 430.78197289858934,
+          "minX": 156.52879522133034,
+          "minY": 378.741444572156,
+          "vertices": 14581,
+          "width": 19.7161901287366
+        },
+        {
+          "bottomMarginTo130pxStudyDock": 5.5980333137496245,
+          "compression": 1,
+          "height": 53.685603084589616,
+          "id": "salvage-cassette",
+          "maxX": 283.4445025416955,
+          "maxY": 432.4019666862504,
+          "minX": 250.63151987594665,
+          "minY": 378.7163636016608,
+          "vertices": 53327,
+          "width": 32.81298266574885
+        }
+      ],
+      "compression": 1,
+      "depth": {
+        "changedOutsideCase": 0,
+        "changedPixels": 776,
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "readback": "Synchronous default-framebuffer WebGL2 RGBA readPixels. RGB difference threshold >3/255. No screenshot inference.",
+        "specimenPixelsOnFrontAfter": 0,
+        "specimenPixelsOnFrontBefore": 216,
+        "viewport": {
+          "height": 568,
+          "width": 320
+        },
+        "visiblePixelsInApertures": [
+          647,
+          977,
+          905
+        ]
+      },
+      "errors": [],
+      "order": [
+        "salvage-core",
+        "salvage-lens",
+        "salvage-cassette"
+      ],
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": {
+        "dpr": 1,
+        "height": 568,
+        "width": 320
+      },
+      "horizontalClearancePx": 18.528954876805358
+    }
+  ],
+  "captures": [
+    {
+      "state": {
+        "bounds": [
+          {
+            "bottomMarginTo130pxStudyDock": 112.892800206365,
+            "compression": 0,
+            "height": 62.68000984970388,
+            "id": "salvage-core",
+            "maxX": 348.6936119117708,
+            "maxY": 601.107199793635,
+            "minX": 302.56693584731977,
+            "minY": 538.4271899439311,
+            "vertices": 14581,
+            "width": 46.12667606445103
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 120.13720999581494,
+            "compression": 0,
+            "height": 48.92722127086392,
+            "id": "salvage-lens",
+            "maxX": 285.41164666563316,
+            "maxY": 593.8627900041851,
+            "minX": 242.9947513848424,
+            "minY": 544.9355687333211,
+            "vertices": 20038,
+            "width": 42.416895280790754
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 111.6196777588591,
+            "compression": 0,
+            "height": 65.6053745223171,
+            "id": "salvage-cassette",
+            "maxX": 222.84896762458249,
+            "maxY": 602.3803222411409,
+            "minX": 182.50215561471012,
+            "minY": 536.7749477188238,
+            "vertices": 53327,
+            "width": 40.34681200987234
+          }
+        ],
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "status": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "screenshot": "foreground-captures/390-compression-0.png",
+      "sha256": "868bd29fb9eabff947e160730a540716052ac49e3c28255cbb083b036524df9f"
+    },
+    {
+      "state": {
+        "bounds": [
+          {
+            "bottomMarginTo130pxStudyDock": 112.71469706808034,
+            "compression": 0.55,
+            "height": 63.02578603089296,
+            "id": "salvage-core",
+            "maxX": 342.6301961032807,
+            "maxY": 601.2853029319197,
+            "minX": 308.30162716408904,
+            "minY": 538.2595169010267,
+            "vertices": 14581,
+            "width": 34.328568939191655
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 120.07692399788787,
+            "compression": 0.55,
+            "height": 48.986365128166426,
+            "id": "salvage-lens",
+            "maxX": 284.0163798372629,
+            "maxY": 593.9230760021121,
+            "minX": 244.39029662100896,
+            "minY": 544.9367108739457,
+            "vertices": 20038,
+            "width": 39.62608321625393
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 111.6196777588591,
+            "compression": 0.55,
+            "height": 65.6053745223171,
+            "id": "salvage-cassette",
+            "maxX": 222.84896762458249,
+            "maxY": 602.3803222411409,
+            "minX": 182.50215561471012,
+            "minY": 536.7749477188238,
+            "vertices": 53327,
+            "width": 40.34681200987234
+          }
+        ],
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "status": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "screenshot": "foreground-captures/390-compression-0.55.png",
+      "sha256": "2902830a72aba27dcef9d9b3ec0060540c441c3348d42c355d09e825b310ba24"
+    },
+    {
+      "state": {
+        "bounds": [
+          {
+            "bottomMarginTo130pxStudyDock": 112.29254224947704,
+            "compression": 1,
+            "height": 63.62077882473636,
+            "id": "salvage-core",
+            "maxX": 337.82390286242185,
+            "maxY": 601.707457750523,
+            "minX": 312.99640619719383,
+            "minY": 538.0866789257866,
+            "vertices": 14581,
+            "width": 24.82749666522801
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 120.02759878751874,
+            "compression": 1,
+            "height": 49.059450359898506,
+            "id": "salvage-lens",
+            "maxX": 282.8750010927035,
+            "maxY": 593.9724012124813,
+            "minX": 245.53231076849,
+            "minY": 544.9129508525828,
+            "vertices": 20038,
+            "width": 37.34269032421349
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 111.6196777588591,
+            "compression": 1,
+            "height": 65.6053745223171,
+            "id": "salvage-cassette",
+            "maxX": 222.84896762458249,
+            "maxY": 602.3803222411409,
+            "minX": 182.50215561471012,
+            "minY": 536.7749477188238,
+            "vertices": 53327,
+            "width": 40.34681200987234
+          }
+        ],
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "status": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "screenshot": "foreground-captures/390-compression-1.png",
+      "sha256": "5f185a3f9124f27de64e2a450ebf73b37dfb5ae1d62bf482b158336681415fa6"
+    },
+    {
+      "state": {
+        "bounds": [
+          {
+            "bottomMarginTo130pxStudyDock": 12.984377432463532,
+            "compression": 0,
+            "height": 40.14541232481139,
+            "id": "salvage-lens",
+            "maxX": 234.18391521282723,
+            "maxY": 425.01562256753647,
+            "minX": 199.38030882858865,
+            "minY": 384.8702102427251,
+            "vertices": 20038,
+            "width": 34.80360638423858
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 7.040246323171289,
+            "compression": 0,
+            "height": 51.429751671551855,
+            "id": "salvage-core",
+            "maxX": 286.1075790045299,
+            "maxY": 430.9597536768287,
+            "minX": 248.26004992600593,
+            "minY": 379.53000200527686,
+            "vertices": 14581,
+            "width": 37.84752907852396
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 5.995633032910064,
+            "compression": 0,
+            "height": 53.83005089010624,
+            "id": "salvage-cassette",
+            "maxX": 182.85043497401637,
+            "maxY": 432.00436696708994,
+            "minX": 149.7453584530955,
+            "minY": 378.1743160769837,
+            "vertices": 53327,
+            "width": 33.105076520920875
+          }
+        ],
+        "compression": 0,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "status": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "viewport": {
+          "dpr": 1,
+          "height": 568,
+          "width": 320
+        }
+      },
+      "screenshot": "foreground-captures/320-compression-0.png",
+      "sha256": "5e5ae50ff6f0dfd77b17e2d94ddd7ae4599cbb96258be15f0bad65c0625294ff"
+    },
+    {
+      "state": {
+        "bounds": [
+          {
+            "bottomMarginTo130pxStudyDock": 12.934911998267069,
+            "compression": 0.55,
+            "height": 40.19394061798266,
+            "id": "salvage-lens",
+            "maxX": 233.03908089211316,
+            "maxY": 425.065088001733,
+            "minX": 200.52537158646888,
+            "minY": 384.8711473837502,
+            "vertices": 20038,
+            "width": 32.513709305644284
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 6.894110414835154,
+            "compression": 0.55,
+            "height": 51.71346546124556,
+            "id": "salvage-core",
+            "maxX": 281.1324685975637,
+            "maxY": 431.1058895851649,
+            "minX": 252.9654376730987,
+            "minY": 379.3924241239193,
+            "vertices": 14581,
+            "width": 28.167030924464967
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 5.995633032910064,
+            "compression": 0.55,
+            "height": 53.83005089010629,
+            "id": "salvage-cassette",
+            "maxX": 182.85043497401637,
+            "maxY": 432.00436696708994,
+            "minX": 149.7453584530955,
+            "minY": 378.1743160769837,
+            "vertices": 53327,
+            "width": 33.105076520920875
+          }
+        ],
+        "compression": 0.55,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "status": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "viewport": {
+          "dpr": 1,
+          "height": 568,
+          "width": 320
+        }
+      },
+      "screenshot": "foreground-captures/320-compression-0.55.png",
+      "sha256": "2c2f78966453387c810461eb28f2023a10250481527c0b52fec5fa2b31d0569e"
+    },
+    {
+      "state": {
+        "bounds": [
+          {
+            "bottomMarginTo130pxStudyDock": 12.894440030784608,
+            "compression": 1,
+            "height": 40.25390798760907,
+            "id": "salvage-lens",
+            "maxX": 232.1025649991413,
+            "maxY": 425.1055599692154,
+            "minX": 201.4624088356841,
+            "minY": 384.8516519816063,
+            "vertices": 20038,
+            "width": 30.640156163457192
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 6.547726973929912,
+            "compression": 1,
+            "height": 52.201664676706685,
+            "id": "salvage-core",
+            "maxX": 277.18884337429483,
+            "maxY": 431.4522730260701,
+            "minX": 256.81756405923596,
+            "minY": 379.2506083493634,
+            "vertices": 14581,
+            "width": 20.37127931505887
+          },
+          {
+            "bottomMarginTo130pxStudyDock": 5.99563303290995,
+            "compression": 1,
+            "height": 53.83005089010635,
+            "id": "salvage-cassette",
+            "maxX": 182.85043497401637,
+            "maxY": 432.0043669670901,
+            "minX": 149.7453584530955,
+            "minY": 378.1743160769837,
+            "vertices": 53327,
+            "width": 33.105076520920875
+          }
+        ],
+        "compression": 1,
+        "errors": [],
+        "order": [
+          "salvage-cassette",
+          "salvage-lens",
+          "salvage-core"
+        ],
+        "status": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "viewport": {
+          "dpr": 1,
+          "height": 568,
+          "width": 320
+        }
+      },
+      "screenshot": "foreground-captures/320-compression-1.png",
+      "sha256": "afad62cffefaf20a5e2c5e6375c850d9a65814dd6aa86a7581338d741f4724fc"
+    }
+  ],
+  "errors": [],
+  "console": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "text": "[vite] connecting...",
+        "type": "debug"
+      },
+      {
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "text": "[vite] connected.",
+        "type": "debug"
+      }
+    ]
+  },
+  "sourceHashesAfter": {
+    "src/render/index.ts": "876a9aff68bcf7739e52815fff279ca92b180e4ad1eb32ce0ecdc0e871f9f895",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/deformation.ts": "85dbf6c6b786ceb0ce8c179d4b71bce875806ed246400f322b0e87970429b24b",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "docs/handoffs/B/layout-study/foreground.ts": "7e3d7923274ec3eac10774d4252cbf308d0635b0dbd03b65b6fc618adf9e5886"
+  },
+  "passed": true
+}

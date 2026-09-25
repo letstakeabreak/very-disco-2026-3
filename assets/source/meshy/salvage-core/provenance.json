@@ -1,0 +1,153 @@
+{
+  "assetId": "salvage-core",
+  "status": "generated-unverified",
+  "sourceImage": "assets/source/meshy/salvage-core/input.png",
+  "sourceSha256": "80f65318c670552e0d08e6b30fff47cfcb55286ea9b71e617e8c493d773a0c7f",
+  "promptFile": "assets/source/meshy/salvage-core/prompt.md",
+  "imagegen": {
+    "generator": "built-in ImageGen",
+    "calls": 1,
+    "referenceInspected": true,
+    "referenceObservation": "Single complete object; worn ivory steel and blackened metal consistent with prior cassette/press. Copper cylindrical core visible within protective metal housing.",
+    "sourceFileModifiedAt": "2026-09-24T12:16:37.206041+00:00",
+    "sourceFileModifiedAtNote": "Timestamp of original ImageGen output file preserved during copy, not a service-reported generation timestamp.",
+    "promptSha256": "6800570272342367374749325bbedfd5106834414bc6bbdaf66b79cf71cf50b4"
+  },
+  "generator": "Meshy image-to-3d",
+  "cliVersion": "0.4.0",
+  "requestedModel": "meshy-7",
+  "modelEvidence": "CLI standard explicitly documents Meshy7; request payload explicitly ai_model=meshy-7. Completed service task does not echo model identifier.",
+  "settings": {
+    "model_type": "standard",
+    "should_texture": true,
+    "enable_pbr": true,
+    "texture_resolution": "4k",
+    "ultra_mode": false,
+    "target_formats": [
+      "glb"
+    ]
+  },
+  "taskId": "01a0d359-b859-70d0-8dd8-e97a946baad3",
+  "resource": "image-to-3d",
+  "statusFromService": "SUCCEEDED",
+  "consumedCredits": 30,
+  "createdAtUnixMs": 1790252269287,
+  "finishedAtUnixMs": 1790252435951,
+  "createdAt": "2026-09-24T12:17:49.287000+00:00",
+  "finishedAt": "2026-09-24T12:20:35.951000+00:00",
+  "masterFile": "salvage-core-master.glb",
+  "bytes": 70216656,
+  "sha256": "f09d4af4d18441bd77f8a1557b67878b4a3839f0bdcc3ad3b14365f177b2dd3a",
+  "previewFile": "preview.png",
+  "previewSha256": "4c684c815273f50b6b00f0de44aaa3e02e2746ab071b47df89d5f2b2ab6014a5",
+  "geometry": {
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "triangleCount": 1398932,
+    "nodeCount": 1,
+    "positionAccessorBounds": [
+      {
+        "min": [
+          -0.9523019790649414,
+          -0.64301598072052,
+          -0.6204929947853088
+        ],
+        "max": [
+          0.9510179758071899,
+          0.6418190002441406,
+          0.6209390163421631
+        ]
+      }
+    ],
+    "riggingVerified": false,
+    "axisPivotScaleVerified": false
+  },
+  "embeddedImages": [
+    {
+      "imageIndex": 0,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    },
+    {
+      "imageIndex": 1,
+      "mimeType": "image/jpeg",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "imageIndex": 2,
+      "mimeType": "image/jpeg",
+      "width": 4096,
+      "height": 4096
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metallicFactor": 1.0,
+        "roughnessFactor": 1.0,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 2,
+        "texCoord": 0
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 1,
+      "source": 1
+    },
+    {
+      "sampler": 2,
+      "source": 2
+    }
+  ],
+  "gameplayVolumeL": 0.9,
+  "gameplayVolumeNote": "PRD initial volume is game-state data, not measured mesh volume.",
+  "verification": {
+    "binaryParsed": true,
+    "runtimeOptimized": false,
+    "iPhoneTested": false,
+    "visualFidelityPassed": false,
+    "servicePreviewInspected": true,
+    "previewObservation": "Recognizable copper cylinder and worn ivory/dark steel housing. Intact single-view service render; no deformation inspected."
+  },
+  "remaining": [
+    "Author compression/deformation states.",
+    "Optimize mesh/textures to PRD mobile budget.",
+    "Measure scale/pivot/axes.",
+    "Real renderer and actual iPhone fidelity/performance test."
+  ],
+  "cost": {
+    "estimateCredits": 30,
+    "estimateSource": "Meshy CLI0.4.0 make image --dry-run",
+    "consumedCredits": 30,
+    "batchBalanceBefore": 1050,
+    "batchBalanceAfter": 990,
+    "batchTaskCount": 2,
+    "batchConsumedCredits": 60
+  },
+  "projectFolderRelativeToRepository": "../very-disco-2026-3-meshy-work/salvage-core/20260924_211809_salvage-core_01a0d359"
+}

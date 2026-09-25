@@ -1,0 +1,16 @@
+{
+  "generator": "OpenAI ImageGen",
+  "generatedAt": "2026-09-24",
+  "source": "workshop.png",
+  "prompt": "prompt.md",
+  "sourceSha256": "e5815af7e246f76511a0bd681b826d375d2127f5685baefa55ee51c055497716",
+  "runtime": "public/assets/textures/workshop.webp",
+  "runtimeSha256": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+  "resolution": [
+    1024,
+    1536
+  ],
+  "runtimeBytes": 285686,
+  "processing": "lossy delivery encoding only; no semantic image edits",
+  "sceneRole": "fixed camera environment plate; foreground geometry is real 3D"
+}

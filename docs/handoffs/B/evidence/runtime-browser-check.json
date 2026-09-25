@@ -1,0 +1,643 @@
+{
+  "checkedAt": "2026-09-24T17:25:12.915Z",
+  "kind": "Actual WebGL render fixture QA in desktop Chromium; not iPhone or gameplay validation",
+  "url": "http://127.0.0.1:5173/docs/handoffs/B/preview.html",
+  "viewports": [
+    {
+      "dockHeight": 130,
+      "headerHeight": 50,
+      "height": 568,
+      "horizontalOverflow": false,
+      "metrics": {
+        "elapsedMs": 2000.0999999940395,
+        "fps": 60.00100842030961,
+        "maxFrameMs": 16.80000000000109,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 119,
+        "totalFrames": 120,
+        "viewport": {
+          "dpr": 1,
+          "height": 568,
+          "width": 320
+        }
+      },
+      "probeErrors": [],
+      "width": 320
+    },
+    {
+      "dockHeight": 130,
+      "headerHeight": 50,
+      "height": 844,
+      "horizontalOverflow": false,
+      "metrics": {
+        "elapsedMs": 1985.9000000059605,
+        "fps": 60.00403388463088,
+        "maxFrameMs": 16.80000000000109,
+        "p95FrameMs": 16.700000000000728,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 119,
+        "totalFrames": 120,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "probeErrors": [],
+      "width": 390
+    },
+    {
+      "dockHeight": 130,
+      "headerHeight": 50,
+      "height": 900,
+      "horizontalOverflow": false,
+      "metrics": {
+        "elapsedMs": 1990.5,
+        "fps": 60.004033884630985,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 119,
+        "totalFrames": 120,
+        "viewport": {
+          "dpr": 1,
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "probeErrors": [],
+      "width": 1440
+    }
+  ],
+  "phases": [
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 3856.8999999910593,
+        "fps": 60.003117045041314,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 231,
+        "totalFrames": 232,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "idle",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-idle.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 5486.70000000298,
+        "fps": 60.00292697204744,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 328,
+        "totalFrames": 329,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "inspecting",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-inspecting.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 6986.29999999702,
+        "fps": 60.00315806095058,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 418,
+        "totalFrames": 419,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "compressing",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-compressing.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 8690.29999999702,
+        "fps": 60.002303351376256,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 521,
+        "totalFrames": 522,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "settling",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-settling.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 10165.5,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 610,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "stored",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-stored.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 11635.79999999702,
+        "fps": 60.0030001500075,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 698,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "failed",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-failed.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 13183.70000000298,
+        "fps": 60.0030001500075,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 791,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "complete",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-complete.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 14713.70000000298,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 883,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "paused",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-phase-paused.png"
+    }
+  ],
+  "specimens": [
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 16644.79999999702,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 999,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "inspecting",
+      "specimenId": "salvage-core",
+      "screenshot": "runtime-salvage-core-inspecting.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 18088.09999999404,
+        "fps": 60.002400096003825,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1085,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "compressing",
+      "specimenId": "salvage-core",
+      "screenshot": "runtime-salvage-core-compressing.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 19586.5,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999999272,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1175,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "failed",
+      "specimenId": "salvage-core",
+      "screenshot": "runtime-salvage-core-failed.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 20990.20000000298,
+        "fps": 60.002400096003825,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999995634,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1260,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "inspecting",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-salvage-lens-inspecting.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 22463.09999999404,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999995634,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1348,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "compressing",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-salvage-lens-compressing.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 24041.89999999106,
+        "fps": 60.00180005400159,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.700000000004366,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1443,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "failed",
+      "specimenId": "salvage-lens",
+      "screenshot": "runtime-salvage-lens-failed.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 25465.79999999702,
+        "fps": 60.002400096003825,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.700000000004366,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1528,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "inspecting",
+      "specimenId": "salvage-cassette",
+      "screenshot": "runtime-salvage-cassette-inspecting.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 26900.29999999702,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.700000000004366,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1614,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "compressing",
+      "specimenId": "salvage-cassette",
+      "screenshot": "runtime-salvage-cassette-compressing.png"
+    },
+    {
+      "errors": [],
+      "immutable": true,
+      "metrics": {
+        "elapsedMs": 28362.20000000298,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.700000000004366,
+        "rendererStatus": {
+          "drawCalls": "33",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "281192",
+          "visibleTriangles": "105096"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1702,
+        "viewport": {
+          "dpr": 1,
+          "height": 844,
+          "width": 390
+        }
+      },
+      "phase": "failed",
+      "specimenId": "salvage-cassette",
+      "screenshot": "runtime-salvage-cassette-failed.png"
+    }
+  ],
+  "errors": [],
+  "fileHashesBefore": {
+    "src/render/index.ts": "2622f9903511949008cb9f9ba55c2002c7f92716366d6dec064660bf096ebd54",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+  },
+  "initialReady": {
+    "errors": [],
+    "metrics": {
+      "elapsedMs": 2314.5,
+      "fps": 31.112410918500597,
+      "maxFrameMs": 1033.3,
+      "p95FrameMs": 16.800000000000182,
+      "rendererStatus": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "sampleFrames": 70,
+      "totalFrames": 71,
+      "viewport": {
+        "dpr": 1,
+        "height": 633,
+        "width": 1280
+      }
+    },
+    "state": "ready"
+  },
+  "controls": {
+    "integrity01": 0.01,
+    "phase": "compressing",
+    "pressure01": 0.01,
+    "specimenId": "salvage-lens",
+    "storedCount": 1,
+    "yawDeg": -179
+  },
+  "fileHashesAfter": {
+    "src/render/index.ts": "2622f9903511949008cb9f9ba55c2002c7f92716366d6dec064660bf096ebd54",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+  },
+  "passed": true
+}

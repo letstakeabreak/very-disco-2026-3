@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-24T13:52:25.178217+00:00",
+  "scope": "anchor-only recalculation of the existing final GLB; no bake, decimation, export, browser or device validation",
+  "blenderVersion": "5.1.1",
+  "sourceCodeSha256": {
+    "press_anchors.py": "6c224e7c1fa658b52a6e7d7421f564e576245066c13ccd2c38e7c8c8402d44d0",
+    "recalculate_anchors.py": "fb2fb59e55f07d469c720007783f6ba7fe8fed56ea7fab85eddebe17759dfeea",
+    "mobile-models.json": "733532a8f6b8082251d360b051923b6cbea7f0db4eb5f5d08079a47077a1d32e"
+  },
+  "historicalLineageReport": "mobile-model-report.json",
+  "historicalLineageReportSha256": "0505024241784984d479716ecca582cfd79a3fb3c25a44eacc9f6595f635ee69",
+  "runtimeHashesBefore": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc"
+  },
+  "runtimeHashesAfter": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc"
+  },
+  "anchors": {
+    "coordinateSpace": "asset root, meters, glTF +Y up +Z front",
+    "workbedMethod": "downward-ray-at-ram-center",
+    "workbedTopY": 0.37636804580688477,
+    "workbedPoint": [
+      0.021474093198776245,
+      0.37636804580688477,
+      -0.09367392212152481
+    ],
+    "specimenBase": [
+      0.021474093198776245,
+      0.3782,
+      -0.09367392398416996
+    ],
+    "platenRestBottomY": 0.5510312914848328,
+    "ramTopConnectionY": 0.824894937955354,
+    "ramLowerFlangeTopY": 0.636993173426317,
+    "ramCenterXZ": [
+      0.021474093198776245,
+      -0.09367392398416996
+    ],
+    "floorClearance": 0.001831954193115215,
+    "maxDownwardTravel": 0.17283129148483278,
+    "translationRangeY": [
+      -0.17283129148483278,
+      0
+    ],
+    "contactFormula": "ramTravel = clamp(platenRestBottomY - (specimenBase[1] + specimenRenderedHeight), 0, maxDownwardTravel)",
+    "connectionNote": "Keep upper attachment fixed and extend the cylinder body; do not stretch the lower flange.",
+    "workbedRay": {
+      "origin": [
+        0.021474093198776245,
+        0.5410313010215759,
+        -0.09367392212152481
+      ],
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "normal": [
+        -0.0002864664129447192,
+        0.9997966289520264,
+        0.020163752138614655
+      ],
+      "faceIndex": 19497,
+      "distance": 0.16466324031352997,
+      "method": "Blender BVHTree over actual frame polygons in world coordinates; no height-clipped vertex sample"
+    }
+  },
+  "validation": "passed"
+}

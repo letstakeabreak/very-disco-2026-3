@@ -1,0 +1,695 @@
+{
+  "checkedAt": "2026-09-24T17:30:22.028Z",
+  "kind": "Static image gallery verification; does not open a WebGL view.",
+  "url": "http://127.0.0.1:5173/docs/handoffs/B/art-review/index.html",
+  "checks": [
+    {
+      "content": {
+        "articles": 5,
+        "canvases": 0,
+        "images": [
+          {
+            "complete": true,
+            "height": 1536,
+            "path": "/docs/art/concepts/01-workbench.png",
+            "width": 1024
+          },
+          {
+            "complete": true,
+            "height": 1536,
+            "path": "/docs/handoffs/B/art-review/captures/01-canonical.png",
+            "width": 1024
+          },
+          {
+            "complete": true,
+            "height": 844,
+            "path": "/docs/handoffs/B/art-review/captures/01-390.png",
+            "width": 390
+          },
+          {
+            "complete": true,
+            "height": 568,
+            "path": "/docs/handoffs/B/art-review/captures/01-320.png",
+            "width": 320
+          },
+          {
+            "complete": true,
+            "height": 1536,
+            "path": "/docs/art/concepts/02-pressure-state.png",
+            "width": 1024
+          },
+          {
+            "complete": true,
+            "height": 1536,
+            "path": "/docs/handoffs/B/art-review/captures/02-canonical.png",
+            "width": 1024
+          },
+          {
+            "complete": true,
+            "height": 844,
+            "path": "/docs/handoffs/B/art-review/captures/02-390.png",
+            "width": 390
+          },
+          {
+            "complete": true,
+            "height": 568,
+            "path": "/docs/handoffs/B/art-review/captures/02-320.png",
+            "width": 320
+          },
+          {
+            "complete": true,
+            "height": 1254,
+            "path": "/docs/art/concepts/03-salvage-cassette-reference.png",
+            "width": 1254
+          },
+          {
+            "complete": true,
+            "height": 1254,
+            "path": "/docs/handoffs/B/art-review/captures/03-canonical.png",
+            "width": 1254
+          },
+          {
+            "complete": true,
+            "height": 1254,
+            "path": "/docs/art/concepts/04-press-chamber-reference.png",
+            "width": 1254
+          },
+          {
+            "complete": true,
+            "height": 1254,
+            "path": "/docs/handoffs/B/art-review/captures/04-canonical.png",
+            "width": 1254
+          },
+          {
+            "complete": true,
+            "height": 1536,
+            "path": "/docs/art/concepts/05-success-state.png",
+            "width": 1024
+          },
+          {
+            "complete": true,
+            "height": 1536,
+            "path": "/docs/handoffs/B/art-review/captures/05-canonical.png",
+            "width": 1024
+          },
+          {
+            "complete": true,
+            "height": 844,
+            "path": "/docs/handoffs/B/art-review/captures/05-390.png",
+            "width": 390
+          },
+          {
+            "complete": true,
+            "height": 568,
+            "path": "/docs/handoffs/B/art-review/captures/05-320.png",
+            "width": 320
+          }
+        ],
+        "pendingText": false,
+        "rows": 35,
+        "selectors": 5
+      }
+    },
+    {
+      "toggle": "실제만",
+      "figures": [
+        "none",
+        "block"
+      ]
+    },
+    {
+      "toggle": "목표만",
+      "figures": [
+        "block",
+        "none"
+      ]
+    },
+    {
+      "toggle": "나란히",
+      "figures": [
+        "block",
+        "block"
+      ]
+    },
+    {
+      "layout": {
+        "bodyWidth": 390,
+        "canvases": 0,
+        "documentWidth": 390,
+        "openDetails": 3,
+        "width": 390
+      }
+    },
+    {
+      "layout": {
+        "bodyWidth": 320,
+        "canvases": 0,
+        "documentWidth": 320,
+        "openDetails": 3,
+        "width": 320
+      }
+    }
+  ],
+  "errors": [],
+  "interactiveSnapshot": {
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    },
+    "origin": "http://127.0.0.1:5173/docs/handoffs/B/art-review/index.html",
+    "refs": {
+      "e1": {
+        "name": "목표와 실행 화면 사이",
+        "role": "heading"
+      },
+      "e10": {
+        "name": "실제 WebGL 뷰어 열기 ↗",
+        "role": "link"
+      },
+      "e100": {
+        "name": "변형 설득력",
+        "role": "rowheader"
+      },
+      "e101": {
+        "name": "미검증",
+        "role": "cell"
+      },
+      "e102": {
+        "name": "작은 화면 가독성",
+        "role": "rowheader"
+      },
+      "e103": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e104": {
+        "name": "나란히",
+        "role": "option"
+      },
+      "e105": {
+        "name": "목표만",
+        "role": "option"
+      },
+      "e106": {
+        "name": "실제만",
+        "role": "option"
+      },
+      "e107": {
+        "name": "검토 항목",
+        "role": "columnheader"
+      },
+      "e108": {
+        "name": "판정",
+        "role": "columnheader"
+      },
+      "e109": {
+        "name": "나란히",
+        "role": "option"
+      },
+      "e11": {
+        "name": "압력 적용 / 60%",
+        "role": "heading"
+      },
+      "e110": {
+        "name": "목표만",
+        "role": "option"
+      },
+      "e111": {
+        "name": "실제만",
+        "role": "option"
+      },
+      "e112": {
+        "name": "검토 항목",
+        "role": "columnheader"
+      },
+      "e113": {
+        "name": "판정",
+        "role": "columnheader"
+      },
+      "e114": {
+        "name": "나란히",
+        "role": "option"
+      },
+      "e115": {
+        "name": "목표만",
+        "role": "option"
+      },
+      "e116": {
+        "name": "실제만",
+        "role": "option"
+      },
+      "e117": {
+        "name": "검토 항목",
+        "role": "columnheader"
+      },
+      "e118": {
+        "name": "판정",
+        "role": "columnheader"
+      },
+      "e119": {
+        "name": "나란히",
+        "role": "option"
+      },
+      "e12": {
+        "name": "실제 WebGL 뷰어 열기 ↗",
+        "role": "link"
+      },
+      "e120": {
+        "name": "목표만",
+        "role": "option"
+      },
+      "e121": {
+        "name": "실제만",
+        "role": "option"
+      },
+      "e122": {
+        "name": "검토 항목",
+        "role": "columnheader"
+      },
+      "e123": {
+        "name": "판정",
+        "role": "columnheader"
+      },
+      "e124": {
+        "name": "나란히",
+        "role": "option"
+      },
+      "e125": {
+        "name": "목표만",
+        "role": "option"
+      },
+      "e126": {
+        "name": "실제만",
+        "role": "option"
+      },
+      "e127": {
+        "name": "검토 항목",
+        "role": "columnheader"
+      },
+      "e128": {
+        "name": "판정",
+        "role": "columnheader"
+      },
+      "e13": {
+        "name": "카세트 / 독립 에셋",
+        "role": "heading"
+      },
+      "e14": {
+        "name": "실제 WebGL 뷰어 열기 ↗",
+        "role": "link"
+      },
+      "e15": {
+        "name": "프레스 / 독립 에셋",
+        "role": "heading"
+      },
+      "e16": {
+        "name": "실제 WebGL 뷰어 열기 ↗",
+        "role": "link"
+      },
+      "e17": {
+        "name": "회수 성공 / 3개 보관",
+        "role": "heading"
+      },
+      "e18": {
+        "name": "실제 WebGL 뷰어 열기 ↗",
+        "role": "link"
+      },
+      "e19": {
+        "name": "01 비교 보기",
+        "role": "combobox"
+      },
+      "e2": {
+        "name": "아트 목표",
+        "role": "navigation"
+      },
+      "e20": {
+        "name": "02 비교 보기",
+        "role": "combobox"
+      },
+      "e21": {
+        "name": "03 비교 보기",
+        "role": "combobox"
+      },
+      "e22": {
+        "name": "04 비교 보기",
+        "role": "combobox"
+      },
+      "e23": {
+        "name": "05 비교 보기",
+        "role": "combobox"
+      },
+      "e24": {
+        "name": "원본 열기",
+        "role": "link"
+      },
+      "e25": {
+        "name": "캡처 열기",
+        "role": "link"
+      },
+      "e26": {
+        "name": "실루엣·상대 크기",
+        "role": "rowheader"
+      },
+      "e27": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e28": {
+        "name": "카메라 구도",
+        "role": "rowheader"
+      },
+      "e29": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e3": {
+        "name": "01 작업대",
+        "role": "link"
+      },
+      "e30": {
+        "name": "재질 구별",
+        "role": "rowheader"
+      },
+      "e31": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e32": {
+        "name": "환경광·호박색 포인트",
+        "role": "rowheader"
+      },
+      "e33": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e34": {
+        "name": "접촉·그림자",
+        "role": "rowheader"
+      },
+      "e35": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e36": {
+        "name": "변형 설득력",
+        "role": "rowheader"
+      },
+      "e37": {
+        "name": "미검증",
+        "role": "cell"
+      },
+      "e38": {
+        "name": "작은 화면 가독성",
+        "role": "rowheader"
+      },
+      "e39": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e4": {
+        "name": "02 압착",
+        "role": "link"
+      },
+      "e40": {
+        "name": "원본 열기",
+        "role": "link"
+      },
+      "e41": {
+        "name": "캡처 열기",
+        "role": "link"
+      },
+      "e42": {
+        "name": "실루엣·상대 크기",
+        "role": "rowheader"
+      },
+      "e43": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e44": {
+        "name": "카메라 구도",
+        "role": "rowheader"
+      },
+      "e45": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e46": {
+        "name": "재질 구별",
+        "role": "rowheader"
+      },
+      "e47": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e48": {
+        "name": "환경광·호박색 포인트",
+        "role": "rowheader"
+      },
+      "e49": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e5": {
+        "name": "03 카세트",
+        "role": "link"
+      },
+      "e50": {
+        "name": "접촉·그림자",
+        "role": "rowheader"
+      },
+      "e51": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e52": {
+        "name": "변형 설득력",
+        "role": "rowheader"
+      },
+      "e53": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e54": {
+        "name": "작은 화면 가독성",
+        "role": "rowheader"
+      },
+      "e55": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e56": {
+        "name": "원본 열기",
+        "role": "link"
+      },
+      "e57": {
+        "name": "캡처 열기",
+        "role": "link"
+      },
+      "e58": {
+        "name": "실루엣·상대 크기",
+        "role": "rowheader"
+      },
+      "e59": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e6": {
+        "name": "04 프레스",
+        "role": "link"
+      },
+      "e60": {
+        "name": "카메라 구도",
+        "role": "rowheader"
+      },
+      "e61": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e62": {
+        "name": "재질 구별",
+        "role": "rowheader"
+      },
+      "e63": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e64": {
+        "name": "환경광·호박색 포인트",
+        "role": "rowheader"
+      },
+      "e65": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e66": {
+        "name": "접촉·그림자",
+        "role": "rowheader"
+      },
+      "e67": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e68": {
+        "name": "변형 설득력",
+        "role": "rowheader"
+      },
+      "e69": {
+        "name": "미검증",
+        "role": "cell"
+      },
+      "e7": {
+        "name": "05 보관",
+        "role": "link"
+      },
+      "e70": {
+        "name": "작은 화면 가독성",
+        "role": "rowheader"
+      },
+      "e71": {
+        "name": "미검증",
+        "role": "cell"
+      },
+      "e72": {
+        "name": "원본 열기",
+        "role": "link"
+      },
+      "e73": {
+        "name": "캡처 열기",
+        "role": "link"
+      },
+      "e74": {
+        "name": "실루엣·상대 크기",
+        "role": "rowheader"
+      },
+      "e75": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e76": {
+        "name": "카메라 구도",
+        "role": "rowheader"
+      },
+      "e77": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e78": {
+        "name": "재질 구별",
+        "role": "rowheader"
+      },
+      "e79": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e8": {
+        "name": "촬영 기록·SHA",
+        "role": "link"
+      },
+      "e80": {
+        "name": "환경광·호박색 포인트",
+        "role": "rowheader"
+      },
+      "e81": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e82": {
+        "name": "접촉·그림자",
+        "role": "rowheader"
+      },
+      "e83": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e84": {
+        "name": "변형 설득력",
+        "role": "rowheader"
+      },
+      "e85": {
+        "name": "미검증",
+        "role": "cell"
+      },
+      "e86": {
+        "name": "작은 화면 가독성",
+        "role": "rowheader"
+      },
+      "e87": {
+        "name": "미검증",
+        "role": "cell"
+      },
+      "e88": {
+        "name": "원본 열기",
+        "role": "link"
+      },
+      "e89": {
+        "name": "캡처 열기",
+        "role": "link"
+      },
+      "e9": {
+        "name": "작업대 / 검사 전",
+        "role": "heading"
+      },
+      "e90": {
+        "name": "실루엣·상대 크기",
+        "role": "rowheader"
+      },
+      "e91": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e92": {
+        "name": "카메라 구도",
+        "role": "rowheader"
+      },
+      "e93": {
+        "name": "미달",
+        "role": "cell"
+      },
+      "e94": {
+        "name": "재질 구별",
+        "role": "rowheader"
+      },
+      "e95": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e96": {
+        "name": "환경광·호박색 포인트",
+        "role": "rowheader"
+      },
+      "e97": {
+        "name": "통과",
+        "role": "cell"
+      },
+      "e98": {
+        "name": "접촉·그림자",
+        "role": "rowheader"
+      },
+      "e99": {
+        "name": "미달",
+        "role": "cell"
+      }
+    },
+    "removedRefs": [],
+    "snapshot": "- heading \"목표와 실행 화면 사이\" [level=1, ref=e1]\n- navigation \"아트 목표\" [ref=e2]\n  - link \"01 작업대\" [ref=e3]\n  - link \"02 압착\" [ref=e4]\n  - link \"03 카세트\" [ref=e5]\n  - link \"04 프레스\" [ref=e6]\n  - link \"05 보관\" [ref=e7]\n  - link \"촬영 기록·SHA\" [ref=e8]\n- heading \"작업대 / 검사 전\" [level=2, ref=e9]\n- link \"실제 WebGL 뷰어 열기 ↗\" [ref=e10]\n- combobox \"01 비교 보기\" [expanded=false, ref=e19]: 나란히\n  - option \"나란히\" [selected, ref=e104]\n  - option \"목표만\" [ref=e105]\n  - option \"실제만\" [ref=e106]\n- link \"원본 열기\" [ref=e24]\n- link \"캡처 열기\" [ref=e25]\n- columnheader \"검토 항목\" [ref=e107]\n- columnheader \"판정\" [ref=e108]\n- rowheader \"실루엣·상대 크기\" [ref=e26]\n- cell \"미달\" [ref=e27]\n- rowheader \"카메라 구도\" [ref=e28]\n- cell \"미달\" [ref=e29]\n- rowheader \"재질 구별\" [ref=e30]\n- cell \"통과\" [ref=e31]\n- rowheader \"환경광·호박색 포인트\" [ref=e32]\n- cell \"통과\" [ref=e33]\n- rowheader \"접촉·그림자\" [ref=e34]\n- cell \"통과\" [ref=e35]\n- rowheader \"변형 설득력\" [ref=e36]\n- cell \"미검증\" [ref=e37]\n- rowheader \"작은 화면 가독성\" [ref=e38]\n- cell \"미달\" [ref=e39]\n- heading \"압력 적용 / 60%\" [level=2, ref=e11]\n- link \"실제 WebGL 뷰어 열기 ↗\" [ref=e12]\n- combobox \"02 비교 보기\" [expanded=false, ref=e20]: 나란히\n  - option \"나란히\" [selected, ref=e109]\n  - option \"목표만\" [ref=e110]\n  - option \"실제만\" [ref=e111]\n- link \"원본 열기\" [ref=e40]\n- link \"캡처 열기\" [ref=e41]\n- columnheader \"검토 항목\" [ref=e112]\n- columnheader \"판정\" [ref=e113]\n- rowheader \"실루엣·상대 크기\" [ref=e42]\n- cell \"미달\" [ref=e43]\n- rowheader \"카메라 구도\" [ref=e44]\n- cell \"미달\" [ref=e45]\n- rowheader \"재질 구별\" [ref=e46]\n- cell \"통과\" [ref=e47]\n- rowheader \"환경광·호박색 포인트\" [ref=e48]\n- cell \"통과\" [ref=e49]\n- rowheader \"접촉·그림자\" [ref=e50]\n- cell \"통과\" [ref=e51]\n- rowheader \"변형 설득력\" [ref=e52]\n- cell \"미달\" [ref=e53]\n- rowheader \"작은 화면 가독성\" [ref=e54]\n- cell \"미달\" [ref=e55]\n- heading \"카세트 / 독립 에셋\" [level=2, ref=e13]\n- link \"실제 WebGL 뷰어 열기 ↗\" [ref=e14]\n- combobox \"03 비교 보기\" [expanded=false, ref=e21]: 나란히\n  - option \"나란히\" [selected, ref=e114]\n  - option \"목표만\" [ref=e115]\n  - option \"실제만\" [ref=e116]\n- link \"원본 열기\" [ref=e56]\n- link \"캡처 열기\" [ref=e57]\n- columnheader \"검토 항목\" [ref=e117]\n- columnheader \"판정\" [ref=e118]\n- rowheader \"실루엣·상대 크기\" [ref=e58]\n- cell \"통과\" [ref=e59]\n- rowheader \"카메라 구도\" [ref=e60]\n- cell \"통과\" [ref=e61]\n- rowheader \"재질 구별\" [ref=e62]\n- cell \"통과\" [ref=e63]\n- rowheader \"환경광·호박색 포인트\" [ref=e64]\n- cell \"미달\" [ref=e65]\n- rowheader \"접촉·그림자\" [ref=e66]\n- cell \"통과\" [ref=e67]\n- rowheader \"변형 설득력\" [ref=e68]\n- cell \"미검증\" [ref=e69]\n- rowheader \"작은 화면 가독성\" [ref=e70]\n- cell \"미검증\" [ref=e71]\n- heading \"프레스 / 독립 에셋\" [level=2, ref=e15]\n- link \"실제 WebGL 뷰어 열기 ↗\" [ref=e16]\n- combobox \"04 비교 보기\" [expanded=false, ref=e22]: 나란히\n  - option \"나란히\" [selected, ref=e119]\n  - option \"목표만\" [ref=e120]\n  - option \"실제만\" [ref=e121]\n- link \"원본 열기\" [ref=e72]\n- link \"캡처 열기\" [ref=e73]\n- columnheader \"검토 항목\" [ref=e122]\n- columnheader \"판정\" [ref=e123]\n- rowheader \"실루엣·상대 크기\" [ref=e74]\n- cell \"통과\" [ref=e75]\n- rowheader \"카메라 구도\" [ref=e76]\n- cell \"통과\" [ref=e77]\n- rowheader \"재질 구별\" [ref=e78]\n- cell \"통과\" [ref=e79]\n- rowheader \"환경광·호박색 포인트\" [ref=e80]\n- cell \"미달\" [ref=e81]\n- rowheader \"접촉·그림자\" [ref=e82]\n- cell \"통과\" [ref=e83]\n- rowheader \"변형 설득력\" [ref=e84]\n- cell \"미검증\" [ref=e85]\n- rowheader \"작은 화면 가독성\" [ref=e86]\n- cell \"미검증\" [ref=e87]\n- heading \"회수 성공 / 3개 보관\" [level=2, ref=e17]\n- link \"실제 WebGL 뷰어 열기 ↗\" [ref=e18]\n- combobox \"05 비교 보기\" [expanded=false, ref=e23]: 나란히\n  - option \"나란히\" [selected, ref=e124]\n  - option \"목표만\" [ref=e125]\n  - option \"실제만\" [ref=e126]\n- link \"원본 열기\" [ref=e88]\n- link \"캡처 열기\" [ref=e89]\n- columnheader \"검토 항목\" [ref=e127]\n- columnheader \"판정\" [ref=e128]\n- rowheader \"실루엣·상대 크기\" [ref=e90]\n- cell \"미달\" [ref=e91]\n- rowheader \"카메라 구도\" [ref=e92]\n- cell \"미달\" [ref=e93]\n- rowheader \"재질 구별\" [ref=e94]\n- cell \"통과\" [ref=e95]\n- rowheader \"환경광·호박색 포인트\" [ref=e96]\n- cell \"통과\" [ref=e97]\n- rowheader \"접촉·그림자\" [ref=e98]\n- cell \"미달\" [ref=e99]\n- rowheader \"변형 설득력\" [ref=e100]\n- cell \"미검증\" [ref=e101]\n- rowheader \"작은 화면 가독성\" [ref=e102]\n- cell \"미달\" [ref=e103]"
+  },
+  "sources": {
+    "index.html": "d05bfdbdb763c2d0725acb75d21c1a795265867a8adfbb15f21380fab3fc2ca8",
+    "gallery.ts": "2d5eed07a76798413c865c3364ad0a6037ea4d511ef98ed323a4177171e5f6aa",
+    "gallery.css": "cb412ef7290257d2d81b9424700838bf81140f20fda49ec5534d5cfb446bc5f7",
+    "review-data.ts": "1525153a788723964b218a0e364e95ec2b27da44cdad774c6b41a840622a1783",
+    "gallery-check.mjs": "788a21a2dbf003061bc64a66674581ff32973093367ca1b1c79f73642c0fdca5",
+    "capture-report.json": "7909795659f9e9c1fe399a12ceea230136d4aa0c7b7e16b5f85a2485ab98a311"
+  },
+  "passed": true
+}
