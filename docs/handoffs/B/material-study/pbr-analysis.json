@@ -1,0 +1,978 @@
+{
+  "press-chamber": {
+    "source": {
+      "path": "assets/source/meshy/press-chamber/press-chamber-master.glb",
+      "sha256": "704e35da19ae42305994bdbcc456c5049523074ffe4bc8f73b57ac53d13fbf46",
+      "bytes": 47883172,
+      "materials": [
+        {
+          "index": 0,
+          "name": null,
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorFactor": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "metallicFactor": 1.0,
+            "roughnessFactor": 1.0,
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicRoughnessTexture": {
+              "index": 1,
+              "texCoord": 0
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.3718192941176471,
+        "p10": 0.34901960784313724,
+        "median": 0.3686274509803922,
+        "p90": 0.396078431372549,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          10.552524258412227,
+          1.095935957334543,
+          0.015396290588352457,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 11.663856506347656
+      },
+      "metalness": {
+        "mean": 0.6962055686274509,
+        "p10": 0.6549019607843137,
+        "median": 0.6901960784313725,
+        "p90": 0.7529411764705882,
+        "histogramBins0to1": [
+          0.0,
+          0.025193930053711008,
+          0.017262507629394654,
+          0.011897133636474697,
+          0.028226532745361528,
+          0.2104159713745033,
+          7.156242520899254,
+          3.540680281060813,
+          0.6296149742115649,
+          0.04432265472404495
+        ],
+        "histogramWeightTotal": 11.663856506347656
+      },
+      "amberAreaFractionByTextureHue": 4e-05,
+      "amberRoughness": {
+        "mean": 0.396078431372549,
+        "p10": 0.38823529411764707,
+        "median": 0.38823529411764707,
+        "p90": 0.403921568627451,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          0.00023327713012695313,
+          0.00023327713012695313,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.00046655426025390625
+      },
+      "amberMetalness": {
+        "mean": 0.19411764705882353,
+        "p10": 0.1803921568627451,
+        "median": 0.1803921568627451,
+        "p90": 0.20784313725490197,
+        "histogramBins0to1": [
+          0.0,
+          0.00023327713012695313,
+          0.00023327713012695313,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.00046655426025390625
+      },
+      "baseColorLinearMean": [
+        0.047980502952665254,
+        0.04710863982935985,
+        0.044982028287891974
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "imageIndex": 0,
+          "width": 4096,
+          "height": 4096
+        }
+      ]
+    },
+    "runtime": {
+      "path": "public/assets/models/press-chamber.glb",
+      "sha256": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+      "bytes": 2872664,
+      "materials": [
+        {
+          "index": 0,
+          "name": "press-chamber-rebaked-PBR.001",
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.37004185103009557,
+        "p10": 0.35294117647058826,
+        "median": 0.37254901960784315,
+        "p90": 0.39215686274509803,
+        "histogramBins0to1": [
+          0.022397101635932826,
+          0.00014270466804504334,
+          0.00025448222637176193,
+          3.640129084129977,
+          0.23885207143785792,
+          0.002718126230241147,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 3.9044935703277597
+      },
+      "metalness": {
+        "mean": 0.692564750374991,
+        "p10": 0.6588235294117647,
+        "median": 0.6941176470588235,
+        "p90": 0.7333333333333333,
+        "histogramBins0to1": [
+          0.022234184355735688,
+          0.0065644147300719935,
+          0.007226798348426787,
+          0.004151910448074322,
+          0.00915925519466386,
+          0.03939281165599762,
+          2.317810267944659,
+          1.2975965737149715,
+          0.19150966451654128,
+          0.008847689418796989
+        ],
+        "histogramWeightTotal": 3.9044935703277597
+      },
+      "amberAreaFractionByTextureHue": 0.00042031153412303983,
+      "amberRoughness": {
+        "mean": 0.39113384484228503,
+        "p10": 0.3764705882352941,
+        "median": 0.396078431372549,
+        "p90": 0.403921568627451,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          0.0012843420124053952,
+          0.0003567616701126094,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.0016411036825180047
+      },
+      "amberMetalness": {
+        "mean": 0.20358056265984664,
+        "p10": 0.1607843137254902,
+        "median": 0.21176470588235294,
+        "p90": 0.24313725490196078,
+        "histogramBins0to1": [
+          0.0,
+          0.0006421710062026978,
+          0.0009989326763153068,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.0016411036825180047
+      },
+      "baseColorLinearMean": [
+        0.045874087302415385,
+        0.045376444215624756,
+        0.043307718828137824
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 2,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        }
+      ]
+    }
+  },
+  "salvage-cassette": {
+    "source": {
+      "path": "assets/source/meshy/salvage-cassette/salvage-cassette-master.glb",
+      "sha256": "80ef1c8ab4cd8ef2ca1b25b26ce8aed83e6da1aea8b75791bbadcee826a1a960",
+      "bytes": 63499220,
+      "materials": [
+        {
+          "index": 0,
+          "name": null,
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorFactor": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "metallicFactor": 1.0,
+            "roughnessFactor": 1.0,
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicRoughnessTexture": {
+              "index": 1,
+              "texCoord": 0
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.45533607843137247,
+        "p10": 0.24705882352941178,
+        "median": 0.47058823529411764,
+        "p90": 0.5882352941176471,
+        "histogramBins0to1": [
+          0.0,
+          0.15805317993164122,
+          0.9243358856201994,
+          1.2270745635984095,
+          3.6965572082481586,
+          3.111524542233135,
+          0.6882390335075943,
+          0.02339344329831583,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 9.829177856445312
+      },
+      "metalness": {
+        "mean": 0.3125863529411765,
+        "p10": 0.0,
+        "median": 0.23529411764705882,
+        "p90": 0.6941176470588235,
+        "histogramBins0to1": [
+          2.791289927672705,
+          1.6005833221419117,
+          1.101457670592131,
+          0.6029217697137366,
+          0.6876492828362082,
+          0.7859410614005604,
+          1.3745122314439024,
+          0.8510102188101616,
+          0.02870119934079085,
+          0.005111172485346316
+        ],
+        "histogramWeightTotal": 9.829177856445312
+      },
+      "amberAreaFractionByTextureHue": 0.11546,
+      "amberRoughness": {
+        "mean": 0.24776121430730608,
+        "p10": 0.2,
+        "median": 0.21568627450980393,
+        "p90": 0.36470588235294116,
+        "histogramBins0to1": [
+          0.0,
+          0.09868494567871196,
+          0.8808909194947001,
+          0.05406047821045479,
+          0.04029962921142993,
+          0.057009231567388685,
+          0.0037350875854496035,
+          0.0001965835571289265,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 1.1348768753051761
+      },
+      "amberMetalness": {
+        "mean": 0.6792166372871683,
+        "p10": 0.5607843137254902,
+        "median": 0.7215686274509804,
+        "p90": 0.7568627450980392,
+        "histogramBins0to1": [
+          0.01494035034179686,
+          0.0053077560424804535,
+          0.007666758728027322,
+          0.008846260070800756,
+          0.029290950012207072,
+          0.1020268661499026,
+          0.29900359039308566,
+          0.6351614730835615,
+          0.02752169799804971,
+          0.005111172485352089
+        ],
+        "histogramWeightTotal": 1.1348768753051761
+      },
+      "baseColorLinearMean": [
+        0.1560773238579312,
+        0.11534787188217381,
+        0.08804717092516598
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "imageIndex": 0,
+          "width": 4096,
+          "height": 4096
+        }
+      ]
+    },
+    "runtime": {
+      "path": "public/assets/models/salvage-cassette.glb",
+      "sha256": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+      "bytes": 2109280,
+      "materials": [
+        {
+          "index": 0,
+          "name": "salvage-cassette-rebaked-PBR.001",
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.4507444705882353,
+        "p10": 0.24705882352941178,
+        "median": 0.47058823529411764,
+        "p90": 0.5764705882352941,
+        "histogramBins0to1": [
+          0.0010920841217041033,
+          0.002969103705883086,
+          0.02011823717951845,
+          0.026657944048926144,
+          0.08200442606064207,
+          0.0712200953586177,
+          0.009150470472850253,
+          8.531907200792777e-05,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.21329768002033234
+      },
+      "metalness": {
+        "mean": 0.31458086274509806,
+        "p10": 0.0196078431372549,
+        "median": 0.25098039215686274,
+        "p90": 0.6862745098039216,
+        "histogramBins0to1": [
+          0.04953625320790877,
+          0.03823147616685572,
+          0.03228047089430448,
+          0.01873606821295705,
+          0.015327571286224223,
+          0.017166197287995066,
+          0.024682807531893503,
+          0.017038218679983175,
+          0.0002986167520277472,
+          0.0
+        ],
+        "histogramWeightTotal": 0.21329768002033234
+      },
+      "amberAreaFractionByTextureHue": 0.1183,
+      "amberRoughness": {
+        "mean": 0.25041154923507863,
+        "p10": 0.2,
+        "median": 0.21568627450980393,
+        "p90": 0.36470588235294116,
+        "histogramBins0to1": [
+          3.4127628803253173e-05,
+          0.0018898174449801333,
+          0.019299174088240344,
+          0.0019026153057814313,
+          0.0009342438384890885,
+          0.001173137240111869,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.025233115546405317
+      },
+      "amberMetalness": {
+        "mean": 0.672191338073691,
+        "p10": 0.5333333333333333,
+        "median": 0.7019607843137254,
+        "p90": 0.7607843137254902,
+        "histogramBins0to1": [
+          7.2521211206913e-05,
+          4.692548960447312e-05,
+          8.531907200813269e-05,
+          0.00040526559203863175,
+          0.0011560734257101924,
+          0.003114146128296952,
+          0.007115610605478536,
+          0.012951435130835033,
+          0.00028581889122725537,
+          0.0
+        ],
+        "histogramWeightTotal": 0.025233115546405317
+      },
+      "baseColorLinearMean": [
+        0.15646249109989827,
+        0.11606266496709368,
+        0.08834273713624667
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 2,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        }
+      ]
+    }
+  },
+  "salvage-core": {
+    "source": {
+      "path": "assets/source/meshy/salvage-core/salvage-core-master.glb",
+      "sha256": "f09d4af4d18441bd77f8a1557b67878b4a3839f0bdcc3ad3b14365f177b2dd3a",
+      "bytes": 70216656,
+      "materials": [
+        {
+          "index": 0,
+          "name": null,
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorFactor": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "metallicFactor": 1.0,
+            "roughnessFactor": 1.0,
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicRoughnessTexture": {
+              "index": 1,
+              "texCoord": 0
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.49225396078431377,
+        "p10": 0.4470588235294118,
+        "median": 0.4980392156862745,
+        "p90": 0.5333333333333333,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          0.8813014345932259,
+          9.217624493940571,
+          9.798255985885914,
+          0.014734818382326154,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 19.911916732788086
+      },
+      "metalness": {
+        "mean": 0.2335294901960785,
+        "p10": 0.011764705882352941,
+        "median": 0.1568627450980392,
+        "p90": 0.5529411764705883,
+        "histogramBins0to1": [
+          6.136852737044364,
+          5.7218883923329145,
+          2.5590795384974463,
+          1.7104336473467505,
+          1.3301160377559285,
+          0.804043197673419,
+          0.4894349132940228,
+          0.3687686978928113,
+          0.40421190967732556,
+          0.38708766128705463
+        ],
+        "histogramWeightTotal": 19.911916732788086
+      },
+      "amberAreaFractionByTextureHue": 0.030440000000000002,
+      "amberRoughness": {
+        "mean": 0.3700780706500734,
+        "p10": 0.33725490196078434,
+        "median": 0.3607843137254902,
+        "p90": 0.41568627450980394,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          0.5085503533553987,
+          0.08761243362427562,
+          0.009955958366394957,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.6061187453460695
+      },
+      "amberMetalness": {
+        "mean": 0.8383473757439899,
+        "p10": 0.7098039215686275,
+        "median": 0.8784313725490196,
+        "p90": 0.9411764705882353,
+        "histogramBins0to1": [
+          0.007566528358459474,
+          0.0019911916732788084,
+          0.0019911916732788092,
+          0.0035841450119018566,
+          0.007168290023803684,
+          0.013141865043640118,
+          0.02230134674072276,
+          0.0844265269470211,
+          0.21385398571014136,
+          0.2500936741638213
+        ],
+        "histogramWeightTotal": 0.6061187453460695
+      },
+      "baseColorLinearMean": [
+        0.10335989613234702,
+        0.08861688904525909,
+        0.07578614774415506
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "imageIndex": 0,
+          "width": 4096,
+          "height": 4096
+        }
+      ]
+    },
+    "runtime": {
+      "path": "public/assets/models/salvage-core.glb",
+      "sha256": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+      "bytes": 1901316,
+      "materials": [
+        {
+          "index": 0,
+          "name": "salvage-core-rebaked-PBR.001",
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.48989309803921566,
+        "p10": 0.45098039215686275,
+        "median": 0.4980392156862745,
+        "p90": 0.5254901960784314,
+        "histogramBins0to1": [
+          0.001237673306465149,
+          0.0,
+          1.0856783390045168e-05,
+          0.01079164268970447,
+          0.12477701150181143,
+          0.13458611529453016,
+          1.6285175085117842e-05,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.27141958475112915
+      },
+      "metalness": {
+        "mean": 0.2319181960784314,
+        "p10": 0.03529411764705882,
+        "median": 0.16862745098039217,
+        "p90": 0.5019607843137255,
+        "histogramBins0to1": [
+          0.06868544011713747,
+          0.08604000836607666,
+          0.04505565106859566,
+          0.029302458369672213,
+          0.01502035982009689,
+          0.008994845038649918,
+          0.005466390436904556,
+          0.004158148038400089,
+          0.005080974626556767,
+          0.003615308868896161
+        ],
+        "histogramWeightTotal": 0.27141958475112915
+      },
+      "amberAreaFractionByTextureHue": 0.02414,
+      "amberRoughness": {
+        "mean": 0.3650112903487825,
+        "p10": 0.33725490196078434,
+        "median": 0.3607843137254902,
+        "p90": 0.396078431372549,
+        "histogramBins0to1": [
+          1.0856783390045166e-05,
+          0.0,
+          0.0,
+          0.005911518555879597,
+          0.0006296934366226449,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.006552068775892258
+      },
+      "amberMetalness": {
+        "mean": 0.852507432136069,
+        "p10": 0.7333333333333333,
+        "median": 0.8784313725490196,
+        "p90": 0.9490196078431372,
+        "histogramBins0to1": [
+          1.0856783390045166e-05,
+          0.0,
+          0.0,
+          3.25703501701355e-05,
+          2.7141958475112913e-05,
+          0.0001682801425457001,
+          0.000298561543226242,
+          0.0008848278462886811,
+          0.0029041895568370215,
+          0.0022256405949593484
+        ],
+        "histogramWeightTotal": 0.006552068775892258
+      },
+      "baseColorLinearMean": [
+        0.10111602518381227,
+        0.08717180925391982,
+        0.07515212996702685
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 2,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        }
+      ]
+    }
+  },
+  "salvage-lens": {
+    "source": {
+      "path": "assets/source/meshy/salvage-lens/salvage-lens-master.glb",
+      "sha256": "6c1804a11b44a4a54411f6e980af7329ae4ef345bbf2aaaac5051875f67f6397",
+      "bytes": 144142508,
+      "materials": [
+        {
+          "index": 0,
+          "name": null,
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorFactor": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "metallicFactor": 1.0,
+            "roughnessFactor": 1.0,
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicRoughnessTexture": {
+              "index": 1,
+              "texCoord": 0
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.4440097254901961,
+        "p10": 0.3843137254901961,
+        "median": 0.4549019607843137,
+        "p90": 0.4980392156862745,
+        "histogramBins0to1": [
+          0.0,
+          0.56548291488647,
+          0.5463464372253319,
+          6.671932936553421,
+          35.50773430027372,
+          4.54682709229246,
+          0.002870471649174533,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 47.84119415283203
+      },
+      "metalness": {
+        "mean": 0.08958196078431373,
+        "p10": 0.0,
+        "median": 0.00784313725490196,
+        "p90": 0.3803921568627451,
+        "histogramBins0to1": [
+          35.87898196688724,
+          3.9870851207034264,
+          2.0485599336275584,
+          1.5069976158166298,
+          2.6293520306438722,
+          1.1893320866413148,
+          0.5578283238229176,
+          0.043057074737617995,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 47.84119415283203
+      },
+      "amberAreaFractionByTextureHue": 0.00048000000000000007,
+      "amberRoughness": {
+        "mean": 0.44983660130718955,
+        "p10": 0.38823529411764707,
+        "median": 0.4588235294117647,
+        "p90": 0.4823529411764706,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          0.0028704716491699217,
+          0.01913647766113281,
+          0.0009568238830566407,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.022963773193359373
+      },
+      "amberMetalness": {
+        "mean": 0.1803921568627451,
+        "p10": 0.00392156862745098,
+        "median": 0.06274509803921569,
+        "p90": 0.5803921568627451,
+        "histogramBins0to1": [
+          0.014352358245849609,
+          0.0019136477661132797,
+          0.0,
+          0.0019136477661132814,
+          0.0009568238830566407,
+          0.002870471649169922,
+          0.0009568238830566407,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.022963773193359373
+      },
+      "baseColorLinearMean": [
+        0.14628521685179274,
+        0.13131366205893286,
+        0.10835420884163421
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "imageIndex": 0,
+          "width": 4096,
+          "height": 4096
+        }
+      ]
+    },
+    "runtime": {
+      "path": "public/assets/models/salvage-lens.glb",
+      "sha256": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+      "bytes": 2073588,
+      "materials": [
+        {
+          "index": 0,
+          "name": "salvage-lens-rebaked-PBR",
+          "alphaMode": "OPAQUE",
+          "pbr": {
+            "baseColorTexture": {
+              "index": 1
+            },
+            "metallicRoughnessTexture": {
+              "index": 2
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "sampleMethod": "50,000 triangle-area-weighted barycentric surface samples per primitive, weighted by primitive area; image UV V sampled as GLB image origin, nearest texel; deterministic seed426. BC sRGB decoded to linear; MR left linear. Histogram weights are surface areas, not a black-atlas texel count.",
+      "roughness": {
+        "mean": 0.44076939788701663,
+        "p10": 0.39215686274509803,
+        "median": 0.4549019607843137,
+        "p90": 0.49019607843137253,
+        "histogramBins0to1": [
+          0.0022507908031344356,
+          0.0045708037801067075,
+          0.0039943907778705046,
+          0.0415594566073386,
+          0.317251969576363,
+          0.020914942890014,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.39054235443472846
+      },
+      "metalness": {
+        "mean": 0.08878419336853478,
+        "p10": 0.0,
+        "median": 0.03529411764705882,
+        "p90": 0.27450980392156865,
+        "histogramBins0to1": [
+          0.2928905961453957,
+          0.04889414587024443,
+          0.011385372781761771,
+          0.008328540515905647,
+          0.019334653711317207,
+          0.009367711782444443,
+          0.0003413336277003909,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 0.39054235443472846
+      },
+      "amberAreaFractionByTextureHue": 3.884440005316906e-05,
+      "amberRoughness": {
+        "mean": 0.4372549019607843,
+        "p10": 0.4235294117647059,
+        "median": 0.4235294117647059,
+        "p90": 0.45098039215686275,
+        "histogramBins0to1": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.517038345336914e-05,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 1.517038345336914e-05
+      },
+      "amberMetalness": {
+        "mean": 0.10196078431372549,
+        "p10": 0.058823529411764705,
+        "median": 0.058823529411764705,
+        "p90": 0.1450980392156863,
+        "histogramBins0to1": [
+          7.58519172668457e-06,
+          7.58519172668457e-06,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "histogramWeightTotal": 1.517038345336914e-05
+      },
+      "baseColorLinearMean": [
+        0.14536126515433498,
+        0.1305917398245135,
+        0.10841670407023703
+      ],
+      "embeddedImages": [
+        {
+          "imageIndex": 2,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "imageIndex": 1,
+          "width": 2048,
+          "height": 2048
+        }
+      ]
+    }
+  }
+}

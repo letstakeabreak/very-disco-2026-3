@@ -1,0 +1,123 @@
+{
+  "kind": "Desktop Chromium WebGL fixture workload, 390x844 with DPR 2; NOT a physical iPhone or gameplay test",
+  "checkedAt": "2026-09-24T14:06:34.651Z",
+  "startHashes": {
+    "src/render/index.ts": "08bcd3d408a245d3c6619924981303f9433d45e852c8a980799257fe76e523f2",
+    "src/render/deformation.ts": "c8d8a3cf6c7e0a1d5e59b2f35af3f65de3569e09e5a47c61b52582ca1081e177",
+    "src/render/ram.ts": "79c8f11c12163b6190aac1a3c133297735721aecf5c9a66e42a27f94e0800a18",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/render/assets.ts": "86c2e628b32300775b4032326ee730caa9b758f4e5c5d8240522426d5f61f57d",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "public/assets/textures/workshop.webp": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+  },
+  "samples": [
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 30329.10000000894,
+        "fps": 60.002400096003825,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999995634,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 1819,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 61051.20000000298,
+        "fps": 60.002400096003846,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.799999999995634,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 3663,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 91473.60000000894,
+        "fps": 60.0030001500075,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.79999999998836,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 5488,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "done": false,
+      "errors": [],
+      "metrics": {
+        "elapsedMs": 121919.60000000894,
+        "fps": 60.00240009600381,
+        "maxFrameMs": 16.80000000000291,
+        "p95FrameMs": 16.70000000001164,
+        "rendererStatus": {
+          "drawCalls": "27",
+          "engine": "three.js r186",
+          "loadedAssets": "4",
+          "renderState": "ready",
+          "triangles": "239048",
+          "visibleTriangles": "81024"
+        },
+        "sampleFrames": 600,
+        "totalFrames": 7315,
+        "viewport": {
+          "dpr": 2,
+          "height": 844,
+          "width": 390
+        }
+      }
+    }
+  ],
+  "passed": false,
+  "failure": "Error: {\"command\":\"eval\",\"status\":1,\"signal\":null,\"stdout\":\"{\\\"success\\\":false,\\\"data\\\":null,\\\"error\\\":\\\"Evaluation error: TypeError: Cannot read properties of undefined (reading 'done')\\\\n    at <anonymous>:1:22\\\"}\\n\",\"stderr\":\"\"}"
+}

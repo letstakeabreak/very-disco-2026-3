@@ -1,0 +1,1580 @@
+{
+  "checkedAt": "2026-09-24T17:32:05.526Z",
+  "label": "after",
+  "kind": "Actual production renderer, fixed pose and compression .55; synthetic integrity, not gameplay or iPhone recognition proof.",
+  "captures": [
+    {
+      "width": 320,
+      "height": 568,
+      "bounds": null,
+      "changedPixels": 0,
+      "damage": 0,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 3,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-inspect-0.png",
+      "sha256": "ab6e4f16309a12a58cb126c56f89c8a53543e69df4058035c5ddebd450e459f3"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "bounds": [
+        124,
+        240,
+        206,
+        289
+      ],
+      "changedPixels": 2886,
+      "damage": 0.5,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0.5,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 6,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-inspect-0.5.png",
+      "sha256": "b49a254802d83ce284193d2083fdbd1d96695d3bc39dea2afec8c4e503a3e8d8"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "bounds": [
+        124,
+        240,
+        207,
+        290
+      ],
+      "changedPixels": 3140,
+      "damage": 1,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 9,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-inspect-1.png",
+      "sha256": "9075bb196b7a3b341b9aae7ad087664147c2a4184fdfc7c2f4db9f4653589397"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "bounds": null,
+      "changedPixels": 0,
+      "damage": 0,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "failed",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "failed",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 12,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-failed-0.png",
+      "sha256": "fbcb6f9e7d67c45e9979fcd6bfe0e4c8f7d1657f30b4d1b7845c631f48a9e763"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "bounds": [
+        124,
+        248,
+        206,
+        289
+      ],
+      "changedPixels": 2181,
+      "damage": 0.5,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "failed",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0.5,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "failed",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 15,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-failed-0.5.png",
+      "sha256": "aadc50a029a6b8204f54387313fc3ce7364b718ace15aa1e68d7374164162b65"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "bounds": [
+        124,
+        248,
+        207,
+        290
+      ],
+      "changedPixels": 2420,
+      "damage": 1,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "failed",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "failed",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 18,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-failed-1.png",
+      "sha256": "f1b7d9d753462f81e98a47716b89d2b52f2583d0b21f8c56af2ff44e88dd038b"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "boundary": "Visual history from the preceding current specimen, not damage restored from stored snapshot fields.",
+      "damage": 0,
+      "errors": [],
+      "pose": "stored",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "paused",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "resumePhase": "stored",
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette"
+        ],
+        "tick": 20,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-stored-0.png",
+      "sha256": "ac4dd56c3b1736900e95765aeeb4e5120438ff14a94b37c6fbefaeeb247d5050"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "boundary": "Visual history from the preceding current specimen, not damage restored from stored snapshot fields.",
+      "damage": 0.5,
+      "errors": [],
+      "pose": "stored",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "paused",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "resumePhase": "stored",
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette"
+        ],
+        "tick": 22,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-stored-0.5.png",
+      "sha256": "a6f78bd51738ba9b747c7bfc986b8024c601a39b3380f155bcc5c07cf3eadca2"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "boundary": "Visual history from the preceding current specimen, not damage restored from stored snapshot fields.",
+      "damage": 1,
+      "errors": [],
+      "pose": "stored",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "paused",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "resumePhase": "stored",
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette"
+        ],
+        "tick": 24,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "captures/after-320-stored-1.png",
+      "sha256": "902cea96ad5c9e988cfe4923674acfd08303d3d859c3e56a2c443ab57dd59315"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "bounds": null,
+      "changedPixels": 0,
+      "damage": 0,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 3,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-inspect-0.png",
+      "sha256": "cb9d53bf8e748f23006ed131065019c795787fb348996e4bcd66bd0e5c17a2e5"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "bounds": [
+        151,
+        369,
+        252,
+        429
+      ],
+      "changedPixels": 4230,
+      "damage": 0.5,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0.5,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 6,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-inspect-0.5.png",
+      "sha256": "b618fa600ac377a8babe894cd4e61033c44c98eb9ad1524b063af2387b9d74a1"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "bounds": [
+        151,
+        369,
+        252,
+        430
+      ],
+      "changedPixels": 4638,
+      "damage": 1,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 9,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-inspect-1.png",
+      "sha256": "0b051b2f9582921be249744a9f4d59d3573e61cad125dc1367a191780541934f"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "bounds": null,
+      "changedPixels": 0,
+      "damage": 0,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "failed",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "failed",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 12,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-failed-0.png",
+      "sha256": "50517c6f220269286d76495330f6f3a46b1784820ede928839b2149402823b51"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "bounds": [
+        151,
+        379,
+        252,
+        429
+      ],
+      "changedPixels": 3203,
+      "damage": 0.5,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "failed",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0.5,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "failed",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 15,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-failed-0.5.png",
+      "sha256": "9791a1b6ba68a6c25f23f353b7681e8df104bfc1c04bd5206cd55cb618b1ee63"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "bounds": [
+        151,
+        378,
+        252,
+        430
+      ],
+      "changedPixels": 3571,
+      "damage": 1,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "failed",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "failed",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 18,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-failed-1.png",
+      "sha256": "728182e19f420a6adb3be5adcceaafc1a04da5ca4597c9b9fc972f9e15b57c81"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "boundary": "Visual history from the preceding current specimen, not damage restored from stored snapshot fields.",
+      "damage": 0,
+      "errors": [],
+      "pose": "stored",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "paused",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "resumePhase": "stored",
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette"
+        ],
+        "tick": 20,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-stored-0.png",
+      "sha256": "cf460c3a7acef264999a74868622be0c082403517628f2b7f502578bc21ea7bd"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "boundary": "Visual history from the preceding current specimen, not damage restored from stored snapshot fields.",
+      "damage": 0.5,
+      "errors": [],
+      "pose": "stored",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "paused",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "resumePhase": "stored",
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette"
+        ],
+        "tick": 22,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-stored-0.5.png",
+      "sha256": "bb39465e31ddbc9be299fdc338e50adf9e2d5fbd0f1eac15c3df432086d0aa66"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "boundary": "Visual history from the preceding current specimen, not damage restored from stored snapshot fields.",
+      "damage": 1,
+      "errors": [],
+      "pose": "stored",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": null,
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0,
+        "phase": "paused",
+        "pressure01": 0,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens"
+        ],
+        "resumePhase": "stored",
+        "score": 360,
+        "seed": 260903,
+        "storedSpecimenIds": [
+          "salvage-cassette"
+        ],
+        "tick": 24,
+        "volumeUsed": 0.585
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "captures/after-390-stored-1.png",
+      "sha256": "14eefa3303c8e39652be22f3eb0bed7325ac188e6f5fc0a1ff636ac8892d6684"
+    },
+    {
+      "width": 1024,
+      "height": 1536,
+      "bounds": null,
+      "changedPixels": 0,
+      "damage": 0,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 1,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 3,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        1024,
+        1536
+      ],
+      "screenshot": "captures/after-1024-inspect-0.png",
+      "sha256": "f3674f024faa82ea686e8ccf03db412493cd1cb9dcca226aa5eb1bd6499f8004"
+    },
+    {
+      "width": 1024,
+      "height": 1536,
+      "bounds": [
+        398,
+        627,
+        662,
+        788
+      ],
+      "changedPixels": 27914,
+      "damage": 0.5,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0.5,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 6,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        1024,
+        1536
+      ],
+      "screenshot": "captures/after-1024-inspect-0.5.png",
+      "sha256": "325489d486978bedfcae03fdbd8b329b8585b2f8c995c826aec7db46e21257ff"
+    },
+    {
+      "width": 1024,
+      "height": 1536,
+      "bounds": [
+        396,
+        627,
+        675,
+        788
+      ],
+      "changedPixels": 31185,
+      "damage": 1,
+      "errors": [],
+      "method": "Synchronous WebGL2 readPixels; RGB difference >3/255; same snapshot except integrity. Not a human recognition score.",
+      "pose": "inspect",
+      "snapshot": {
+        "capacity": 1,
+        "contractVersion": "1.0.0",
+        "currentSpecimen": {
+          "compression01": 0.55,
+          "currentVolume": 0.72,
+          "id": "salvage-cassette",
+          "integrity01": 0,
+          "material": "composite",
+          "value": 340
+        },
+        "elapsedMs": 0,
+        "entities": [
+          {
+            "assetId": null,
+            "id": "dev-placeholder",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotationRad": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        ],
+        "implementation": "scaffold",
+        "inspectionYawRad": 0.45,
+        "phase": "paused",
+        "pressure01": 0.55,
+        "remainingSpecimenIds": [
+          "salvage-core",
+          "salvage-lens",
+          "salvage-cassette"
+        ],
+        "resumePhase": "inspecting",
+        "score": 0,
+        "seed": 260903,
+        "storedSpecimenIds": [],
+        "tick": 9,
+        "volumeUsed": 0
+      },
+      "status": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "viewport": [
+        1024,
+        1536
+      ],
+      "screenshot": "captures/after-1024-inspect-1.png",
+      "sha256": "0ab7288395224613572f2bf3802b53774d676cbcc03f99512392db5b62099918"
+    }
+  ],
+  "sourceHashesBefore": {
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/index.ts": "2622f9903511949008cb9f9ba55c2002c7f92716366d6dec064660bf096ebd54",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+    "docs/handoffs/B/damage-study/viewer.ts": "d4f41026ec512030983433f9d43b949337f6721ce1a420ac185cfe111a42b374"
+  },
+  "browserErrors": [],
+  "sourceHashesAfter": {
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/index.ts": "2622f9903511949008cb9f9ba55c2002c7f92716366d6dec064660bf096ebd54",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+    "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+    "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+    "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6",
+    "docs/handoffs/B/damage-study/viewer.ts": "d4f41026ec512030983433f9d43b949337f6721ce1a420ac185cfe111a42b374"
+  },
+  "passed": true
+}

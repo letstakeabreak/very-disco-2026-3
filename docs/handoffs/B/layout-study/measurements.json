@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-24T13:46:33.500Z",
+  "status": "independent-layout-proposal-visually-verified-production-not-edited",
+  "source": {
+    "path": "public/assets/textures/workshop.webp",
+    "sha256": "a848ded1b325f07077ff22887e0c4fcae812db5a73c25432d98a3692a9fe647c",
+    "width": 1024,
+    "height": 1536
+  },
+  "measurements": {
+    "origin": "top-left",
+    "unit": "pixels",
+    "method": "Manual visual aperture quadrilaterals, confirmed by projected Three.js outlines over the actual generated texture; not photogrammetry or physical measurements",
+    "estimatedBoundaryTolerancePx": 3,
+    "cornerOrder": [
+      "rear-left",
+      "rear-right",
+      "front-right",
+      "front-left"
+    ],
+    "quadrilaterals": [
+      [
+        [
+          882,
+          780
+        ],
+        [
+          923,
+          791
+        ],
+        [
+          892,
+          867
+        ],
+        [
+          851,
+          856
+        ]
+      ],
+      [
+        [
+          940,
+          793
+        ],
+        [
+          980,
+          804
+        ],
+        [
+          951,
+          881
+        ],
+        [
+          910,
+          870
+        ]
+      ],
+      [
+        [
+          997,
+          806
+        ],
+        [
+          1037,
+          817
+        ],
+        [
+          1010,
+          895
+        ],
+        [
+          970,
+          884
+        ]
+      ]
+    ],
+    "normalizedQuadrilaterals": [
+      [
+        [
+          0.861328125,
+          0.5078125
+        ],
+        [
+          0.9013671875,
+          0.5149739583333334
+        ],
+        [
+          0.87109375,
+          0.564453125
+        ],
+        [
+          0.8310546875,
+          0.5572916666666666
+        ]
+      ],
+      [
+        [
+          0.91796875,
+          0.5162760416666666
+        ],
+        [
+          0.95703125,
+          0.5234375
+        ],
+        [
+          0.9287109375,
+          0.5735677083333334
+        ],
+        [
+          0.888671875,
+          0.56640625
+        ]
+      ],
+      [
+        [
+          0.9736328125,
+          0.5247395833333334
+        ],
+        [
+          1.0126953125,
+          0.5319010416666666
+        ],
+        [
+          0.986328125,
+          0.5826822916666666
+        ],
+        [
+          0.947265625,
+          0.5755208333333334
+        ]
+      ]
+    ],
+    "thirdRearRight": "extrapolated from visible side boundaries because x=1037 lies beyond the 1024px image"
+  },
+  "camera": {
+    "fovDegrees": 34,
+    "aspect": 0.6666666666666666,
+    "position": [
+      0,
+      1.37,
+      2.7
+    ],
+    "lookAt": [
+      0,
+      0.4,
+      0
+    ],
+    "tableY": 0.22
+  },
+  "recommendedPose": {
+    "scale": 0.52,
+    "localAxes": {
+      "X": "along slot rear to front",
+      "Z": "upward +worldY",
+      "Y": "cross-slot"
+    },
+    "rotationFormula": "qYawY(atan2(-axis.z,axis.x)) * qX(-pi/2)",
+    "axisFormula": "normalize(onTable(frontUV) - onTable(rearUV))",
+    "positionFormula": "onTable(centerUV) - quaternion * [0, renderedHeight/2, 0] * scale",
+    "transformsAtFixtureCompression055": [
+      {
+        "id": "salvage-cassette",
+        "centerUV": [
+          0.8662109375,
+          0.5361328125
+        ],
+        "rearUV": [
+          0.88134765625,
+          0.5113932291666666
+        ],
+        "frontUV": [
+          0.85107421875,
+          0.5608723958333334
+        ],
+        "yawRadians": -1.8501757744502414,
+        "faceUp": true,
+        "quaternion": [
+          -0.42551168897382596,
+          -0.5647475564769112,
+          -0.5647475564769111,
+          0.4255116889738261
+        ],
+        "scale": 0.52,
+        "position": [
+          0.4543815879429515,
+          0.21999999999999997,
+          -0.29851640147867964
+        ],
+        "renderedHeight": 0.09587731102108955
+      },
+      {
+        "id": "salvage-lens",
+        "centerUV": [
+          0.923095703125,
+          0.544921875
+        ],
+        "rearUV": [
+          0.9375,
+          0.5198567708333334
+        ],
+        "frontUV": [
+          0.90869140625,
+          0.5699869791666666
+        ],
+        "yawRadians": -1.8638583900519727,
+        "faceUp": true,
+        "quaternion": [
+          -0.42163814957081347,
+          -0.5676453741787212,
+          -0.5676453741787211,
+          0.4216381495708135
+        ],
+        "scale": 0.52,
+        "position": [
+          0.5100929832166957,
+          0.21999999999999997,
+          -0.2548503569327928
+        ],
+        "renderedHeight": 0.14009999164938927
+      },
+      {
+        "id": "salvage-core",
+        "centerUV": [
+          0.97998046875,
+          0.5537109375
+        ],
+        "rearUV": [
+          0.9931640625,
+          0.5283203125
+        ],
+        "frontUV": [
+          0.966796875,
+          0.5791015625
+        ],
+        "yawRadians": -1.8731085075298661,
+        "faceUp": true,
+        "quaternion": [
+          -0.41900825607409464,
+          -0.5695893971465287,
+          -0.5695893971465286,
+          0.4190082560740947
+        ],
+        "scale": 0.52,
+        "position": [
+          0.5831792068705779,
+          0.21999999999999997,
+          -0.2066001552923983
+        ],
+        "renderedHeight": 0.10710000425577164
+      }
+    ]
+  },
+  "validation": {
+    "viewer": "index.html",
+    "source": "viewer.ts",
+    "runtimeGLB": true,
+    "compressionFixture": 0.55,
+    "sceneIsGameplay": false,
+    "productionRendererChanged": false,
+    "sourceGLBChanged": false,
+    "cameraAndFloorMatchesRootProposal": true,
+    "browserErrors": [],
+    "typecheck": "npx tsc -p docs/handoffs/B/layout-study/tsconfig.json --noEmit: passed",
+    "evidence": [
+      "aligned-new-camera.png",
+      "measured-apertures.png",
+      "old-placement-new-camera.png"
+    ]
+  },
+  "limitations": [
+    "Uniform scale .52 was visually checked with this camera and compression .55 only. Recompute scale from projected extents if camera/distance or compressed height changes.",
+    "No real case geometry, occlusion or case shadows exist in this independent viewer. Homogeneous slot directions are fixed; physical enclosure is not demonstrated.",
+    "The rightmost cavity is partly outside the background image.",
+    "The target success concept has larger cavities and different salvage geometry. Better placement is not full concept parity.",
+    "The lens front faces upward and becomes foreshortened. Visible material quality or species recognition has not been certified."
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "checkedAt": "2026-09-24T14:51:02.848313+00:00",
+  "scope": "Anonymous GET of all public outgoing links in the proposed main document catalog; invitation acceptance excluded.",
+  "documentSha256": "adde874c4078c9eb4c2a9e628e7481ff726127c49a254dcca76863af819ece1e",
+  "results": [
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/goal.md",
+      "status": 200,
+      "bytes": 319400
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/instruction.md",
+      "status": 200,
+      "bytes": 323183
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/main/prd.md",
+      "status": 200,
+      "bytes": 305938
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/README.md",
+      "status": 200,
+      "bytes": 293259
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/art-review.md",
+      "status": 200,
+      "bytes": 296464
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/asset-pipeline.md",
+      "status": 200,
+      "bytes": 283300
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/calibration.md",
+      "status": 200,
+      "bytes": 267100
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/cassette-structure-study/README.md",
+      "status": 200,
+      "bytes": 246827
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/contact-study/README.md",
+      "status": 200,
+      "bytes": 290452
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/device-acceptance.md",
+      "status": 200,
+      "bytes": 251144
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/preview-harness.md",
+      "status": 200,
+      "bytes": 273141
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/renderer-validation.md",
+      "status": 200,
+      "bytes": 300702
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/evidence/safari-desktop.md",
+      "status": 200,
+      "bytes": 257343
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/layout-study/README.md",
+      "status": 200,
+      "bytes": 258388
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/material-study/README.md",
+      "status": 200,
+      "bytes": 287121
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/pr-description.md",
+      "status": 200,
+      "bytes": 249834
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/reflection-study/README.md",
+      "status": 200,
+      "bytes": 245364
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/repository-access.md",
+      "status": 200,
+      "bytes": 262135
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/retraction-study/README.md",
+      "status": 200,
+      "bytes": 247414
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/blob/role/b-render/docs/handoffs/B/shadow-study/README.md",
+      "status": 200,
+      "bytes": 263521
+    },
+    {
+      "url": "https://github.com/letstakeabreak/very-disco-2026-3/pull/1",
+      "status": 200,
+      "bytes": 335320
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/README.md",
+      "status": 200,
+      "bytes": 10320
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/art-review.md",
+      "status": 200,
+      "bytes": 11945
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/asset-pipeline.md",
+      "status": 200,
+      "bytes": 7767
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/calibration.md",
+      "status": 200,
+      "bytes": 4845
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/cassette-structure-study/README.md",
+      "status": 200,
+      "bytes": 2250
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/contact-study/README.md",
+      "status": 200,
+      "bytes": 7864
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/device-acceptance.md",
+      "status": 200,
+      "bytes": 2450
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/evidence/preview-harness.md",
+      "status": 200,
+      "bytes": 4413
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/evidence/renderer-validation.md",
+      "status": 200,
+      "bytes": 11840
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/evidence/safari-desktop.md",
+      "status": 200,
+      "bytes": 3525
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/layout-study/README.md",
+      "status": 200,
+      "bytes": 4423
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/material-study/README.md",
+      "status": 200,
+      "bytes": 8889
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/pr-description.md",
+      "status": 200,
+      "bytes": 4788
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/reflection-study/README.md",
+      "status": 200,
+      "bytes": 2016
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/repository-access.md",
+      "status": 200,
+      "bytes": 4231
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/retraction-study/README.md",
+      "status": 200,
+      "bytes": 2627
+    },
+    {
+      "url": "https://raw.githubusercontent.com/letstakeabreak/very-disco-2026-3/role/b-render/docs/handoffs/B/shadow-study/README.md",
+      "status": 200,
+      "bytes": 4320
+    }
+  ],
+  "passed": true
+}

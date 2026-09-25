@@ -1,0 +1,116 @@
+{
+  "createdAt": "2026-09-24T16:39:01.841390+00:00",
+  "status": "candidate-device-unverified",
+  "assets": [
+    {
+      "assetId": "cassette-interior",
+      "sourcePath": "assets/source/meshy/salvage-cassette/insert-v1/insert-master.glb",
+      "sourceSha256": "d827e2e8017a948101ddf251a1dc019fa1e3a8c70c8a00f4073915119c96afcf",
+      "sourceBytes": 76046332,
+      "sourceTriangles": 1620068,
+      "sourceTextures": [
+        {
+          "name": "Image_0",
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "Image_1",
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "Image_2",
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "sourceBoundsBlender": [
+        [
+          -0.9518240094184875,
+          -0.34447500109672546,
+          -0.34381699562072754
+        ],
+        [
+          0.9515119791030884,
+          0.3452329933643341,
+          0.34274399280548096
+        ]
+      ],
+      "sourceToMetersScale": 0.09457079626798616,
+      "sourceBaseCenterBlender": [
+        -0.00015601515769958496,
+        0.0003789961338043213,
+        -0.7830191254615784
+      ],
+      "runtimePath": "assets/source/meshy/salvage-cassette/insert-v1/insert-mobile.glb",
+      "runtimeSha256": "1a467e1ef5a386a0ea30241c4e2466da65afe8fa499a8245d4120065079e3c6e",
+      "runtimeBytes": 1928852,
+      "triangles": 9000,
+      "requestedDecimationTarget": 9000,
+      "maxTriangles": 9000,
+      "axisExtentRetention": [
+        1.0023491921864744,
+        0.9936278991788361,
+        1.0003456154585695
+      ],
+      "decimationNote": "Measured output is authoritative; Blender collapse can stop above its requested ratio.",
+      "boundsBlender": [
+        [
+          -0.09021440148353577,
+          -0.03225835785269737,
+          0.04164525121450424
+        ],
+        [
+          0.09020844846963882,
+          0.03255224600434303,
+          0.10659630596637726
+        ]
+      ],
+      "placement": "Source target X length .18m, center Y=.074m, Z=0. Final measured extent is in boundsBlender; designed insert, not recovered hidden geometry.",
+      "textures": [
+        {
+          "name": "cassette-interior-baseColor",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": "cassette-interior-metallicRoughness",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "cassette-interior-normal",
+          "dimensions": [
+            2048,
+            2048
+          ]
+        }
+      ],
+      "pbrRebake": {
+        "method": "Cycles selected-to-active; master -> new shared smart UV atlas",
+        "baseColor": "2048 sRGB",
+        "metallicRoughness": "1024 Non-Color; original G roughness/B metallic",
+        "normal": "2048 tangent-space Non-Color",
+        "cageExtrusionM": 0.003,
+        "maxRayDistanceM": 0.025,
+        "marginPx": 12,
+        "bakeImagePolicy": "Textures embedded in runtime GLB; intermediate PNGs retained only with --keep-bake-images",
+        "atlasDirectory": null,
+        "normals": "45 degree sharp edges + area weighted normals",
+        "runtimeTangents": "omitted; Three.js derives tangent frame"
+      }
+    }
+  ],
+  "combinedRuntimeBytes": 1928852
+}

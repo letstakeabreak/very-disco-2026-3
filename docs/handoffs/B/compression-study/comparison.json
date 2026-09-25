@@ -1,0 +1,1335 @@
+{
+  "at": "2026-09-25T07:26:50.629Z",
+  "baselineCommit": "bbe18c46fc4e019070ae71527db692841ba82192",
+  "kind": "Desktop Chromium WebGL: compression bulge and damage debris. Actual canvas captures plus the GPU normal derivative check. Not gameplay or iPhone evidence.",
+  "variants": [
+    {
+      "label": "before",
+      "sourceHashesBefore": {
+        "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
+        "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
+        "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
+        "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
+        "docs/handoffs/B/normal-study/probe.ts": "d43b3672494df30b5505b9163c32f0bd72c8c55a86060a2b6f2dcf78af5a5c59",
+        "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+        "src/render/case-depth.ts": "ce0a157145917b3cfeff5d17dd6d804d8cac0b49e53e02c7d3b9fa9d32dd3630",
+        "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+        "src/render/debris.ts": null,
+        "src/render/deformation.ts": "b836bef6ad467a54602646935a8fa0c5339ca0d892f79e39095c3b1573e03e86",
+        "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+        "src/render/index.ts": "9f0dad6b172a530288d4cdad923d32ea7d370d5a586fce3bf69a12a317a92a02",
+        "src/render/ram.ts": "8455f503aacaebc3f34c58aa9e405dee03facd8d73854cd7bb2191a815b718b4",
+        "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+        "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+        "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+        "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+        "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
+        "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+        "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+        "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+        "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+        "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+        "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+      },
+      "captures": [
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.35,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/01-390x844-compressing-salvage-core.png",
+          "sha256": "0e6289862330b56beab422c7c9b6d3208346c73811914af0deddbff453a9b7b9"
+        },
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.7,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/02-390x844-compressing-salvage-core.png",
+          "sha256": "c941b49cc380f650617580c789de8bb1df2cb19ec1c417f23f21b3495d21f00d"
+        },
+        {
+          "controls": {
+            "integrity01": 0.6,
+            "phase": "inspecting",
+            "pressure01": 0.9,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/03-390x844-inspecting-salvage-core.png",
+          "sha256": "e737f8f204e769da9f16dac8758267b8977a241aac15c1cec1d618d347f2d979"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/04-390x844-failed-salvage-core.png",
+          "sha256": "627c093ded11c1464b7924f4d1805e9a000e57a8830cd210f600eca50c232b5f"
+        },
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.6,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/05-390x844-compressing-salvage-cassette.png",
+          "sha256": "a8631ddf9a57580f574bdab0c23edc69c2eb4fa3efbc7282f73b3104b35154c3"
+        },
+        {
+          "controls": {
+            "integrity01": 0.6,
+            "phase": "inspecting",
+            "pressure01": 0.8,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/06-390x844-inspecting-salvage-cassette.png",
+          "sha256": "9a640aff7cbad1c2b75b3e4caf2946caa00fd0fac6f0e010ac914828466a1576"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/07-390x844-failed-salvage-cassette.png",
+          "sha256": "ed39392e9f83337fe688b17674b325ec8dd2c9ab5466c0374ebca84d7948e895"
+        },
+        {
+          "controls": {
+            "integrity01": 0.7,
+            "phase": "inspecting",
+            "pressure01": 0.6,
+            "specimenId": "salvage-lens",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/08-390x844-inspecting-salvage-lens.png",
+          "sha256": "79b5d8d007ac6e3f74cf76f58116dc8a92d0177607eea224fd61b985aab4457f"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-lens",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "before/09-390x844-failed-salvage-lens.png",
+          "sha256": "2518eee48f899059d2fd7b3cabb59c7aaa76c443e8b0621586bf8624c4255cb9"
+        },
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.6,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 1536,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 1024,
+          "file": "before/10-1024x1536-compressing-salvage-cassette.png",
+          "sha256": "6090bea176de4c66018d6586d5f737884cba971fd394a306c7b84934eb1bd68e"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 1536,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 1024,
+          "file": "before/11-1024x1536-failed-salvage-cassette.png",
+          "sha256": "3e96884ca66cd940173c72e7668b51f4a20640b69947984edb77e3c3a145343e"
+        }
+      ],
+      "browserErrors": [],
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      },
+      "sourceHashesAfter": {
+        "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
+        "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
+        "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
+        "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
+        "docs/handoffs/B/normal-study/probe.ts": "d43b3672494df30b5505b9163c32f0bd72c8c55a86060a2b6f2dcf78af5a5c59",
+        "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+        "src/render/case-depth.ts": "ce0a157145917b3cfeff5d17dd6d804d8cac0b49e53e02c7d3b9fa9d32dd3630",
+        "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+        "src/render/debris.ts": null,
+        "src/render/deformation.ts": "b836bef6ad467a54602646935a8fa0c5339ca0d892f79e39095c3b1573e03e86",
+        "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+        "src/render/index.ts": "9f0dad6b172a530288d4cdad923d32ea7d370d5a586fce3bf69a12a317a92a02",
+        "src/render/ram.ts": "8455f503aacaebc3f34c58aa9e405dee03facd8d73854cd7bb2191a815b718b4",
+        "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+        "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+        "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+        "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+        "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
+        "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+        "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+        "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+        "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+        "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+        "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+      }
+    },
+    {
+      "label": "after",
+      "sourceHashesBefore": {
+        "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
+        "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
+        "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
+        "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
+        "docs/handoffs/B/normal-study/probe.ts": "d43b3672494df30b5505b9163c32f0bd72c8c55a86060a2b6f2dcf78af5a5c59",
+        "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+        "src/render/case-depth.ts": "ce0a157145917b3cfeff5d17dd6d804d8cac0b49e53e02c7d3b9fa9d32dd3630",
+        "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+        "src/render/debris.ts": "48fcfa4f0c4affb0bf90af40e0fa34e04d1a2bdcbb60fef171ecfac6be39c526",
+        "src/render/deformation.ts": "fd66bd9d0bdf69225a8c7f8ad88f9a5ffe075564ca048ce20a4ea3d78bcf5068",
+        "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+        "src/render/index.ts": "a017af8cb68b8a2a59828e837ab5aa8034cd7d4a831f4eef48c3818b6c0135ed",
+        "src/render/ram.ts": "8455f503aacaebc3f34c58aa9e405dee03facd8d73854cd7bb2191a815b718b4",
+        "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+        "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+        "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+        "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+        "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
+        "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+        "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+        "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+        "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+        "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+        "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+      },
+      "captures": [
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.35,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "after/01-390x844-compressing-salvage-core.png",
+          "sha256": "bee6dd88ac6c5a8445f151fbfd0c0f14cf9b52d22347eb6e83fb0aa10538a97f"
+        },
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.7,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "after/02-390x844-compressing-salvage-core.png",
+          "sha256": "7eaf8dfcff005440585e01938491a0ce4110d5fee8caa90894cf270ce4d24aae"
+        },
+        {
+          "controls": {
+            "integrity01": 0.6,
+            "phase": "inspecting",
+            "pressure01": 0.9,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193712",
+            "visibleTriangles": "105188"
+          },
+          "width": 390,
+          "file": "after/03-390x844-inspecting-salvage-core.png",
+          "sha256": "460dbabf8d76cf9d585085b6d502a16a57aa65cb239e960d0ec85f5bbdbec0f9"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-core",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "194232",
+            "visibleTriangles": "105188"
+          },
+          "width": 390,
+          "file": "after/04-390x844-failed-salvage-core.png",
+          "sha256": "32da15181d798a76b6a11860839146286777eed6b92b9a0e1a14f07c3d05bccc"
+        },
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.6,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 390,
+          "file": "after/05-390x844-compressing-salvage-cassette.png",
+          "sha256": "55d2bbe76ea0e897b6b5901d59c4e8cb5ca8b293305b0eeef9dc9e9a32e8660c"
+        },
+        {
+          "controls": {
+            "integrity01": 0.6,
+            "phase": "inspecting",
+            "pressure01": 0.8,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193712",
+            "visibleTriangles": "105188"
+          },
+          "width": 390,
+          "file": "after/06-390x844-inspecting-salvage-cassette.png",
+          "sha256": "212308a7873aeaa38479893804a57a23c87675b0a72b55747fa09c672686ba12"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "194232",
+            "visibleTriangles": "105188"
+          },
+          "width": 390,
+          "file": "after/07-390x844-failed-salvage-cassette.png",
+          "sha256": "81c8a198f043c88cfdaedced97cb44e111c95c4b532f7aa275cea8aec852dcb3"
+        },
+        {
+          "controls": {
+            "integrity01": 0.7,
+            "phase": "inspecting",
+            "pressure01": 0.6,
+            "specimenId": "salvage-lens",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193592",
+            "visibleTriangles": "105188"
+          },
+          "width": 390,
+          "file": "after/08-390x844-inspecting-salvage-lens.png",
+          "sha256": "358f5819b37af3208c182772505510910130cdc0ce41a5558b51df1134b22ab2"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-lens",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 844,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "194232",
+            "visibleTriangles": "105188"
+          },
+          "width": 390,
+          "file": "after/09-390x844-failed-salvage-lens.png",
+          "sha256": "2721f3d36483fee0942b886269e6386263d8c26c3363396e2cf49b5dd27f5ab5"
+        },
+        {
+          "controls": {
+            "integrity01": 1,
+            "phase": "compressing",
+            "pressure01": 0.6,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 1536,
+          "status": {
+            "drawCalls": "28",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "193272",
+            "visibleTriangles": "105168"
+          },
+          "width": 1024,
+          "file": "after/10-1024x1536-compressing-salvage-cassette.png",
+          "sha256": "14843a4f54b6e72ceeed94ccbb1dd5abaf4a0ca3b26bfc6bda18928eeaf90591"
+        },
+        {
+          "controls": {
+            "integrity01": 0,
+            "phase": "failed",
+            "pressure01": 1,
+            "specimenId": "salvage-cassette",
+            "storedCount": 0,
+            "yawDeg": 26
+          },
+          "errors": [],
+          "height": 1536,
+          "status": {
+            "drawCalls": "30",
+            "engine": "three.js r186",
+            "loadedAssets": "4",
+            "renderState": "ready",
+            "triangles": "194232",
+            "visibleTriangles": "105188"
+          },
+          "width": 1024,
+          "file": "after/11-1024x1536-failed-salvage-cassette.png",
+          "sha256": "ac81215fe8f9940fc92b1ec28a212ce6c1373fb14ac185a73342696d867082c9"
+        }
+      ],
+      "numeric": {
+        "cases": [
+          {
+            "asset": "salvage-core",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.004810280287588201,
+            "maxOrthogonalityError": 7.585315831004635e-8,
+            "maxTangentDegrees": 0.004702449070035547,
+            "mesh": "salvage-core",
+            "passed": true,
+            "samples": 152,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-core",
+            "compression": 0.6,
+            "damage": 0,
+            "maxNormalDegrees": 0.0066793958565854634,
+            "maxOrthogonalityError": 9.885285501276544e-8,
+            "maxTangentDegrees": 0.005352157588038145,
+            "mesh": "salvage-core",
+            "passed": true,
+            "samples": 152,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-core",
+            "compression": 0.6,
+            "damage": 0.5,
+            "maxNormalDegrees": 0.006596882510468657,
+            "maxOrthogonalityError": 9.885285501276544e-8,
+            "maxTangentDegrees": 0.0053816163563444415,
+            "mesh": "salvage-core",
+            "passed": true,
+            "samples": 152,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-core",
+            "compression": 1,
+            "damage": 1,
+            "maxNormalDegrees": 0.00944166034384983,
+            "maxOrthogonalityError": 1.0452725085485781e-7,
+            "maxTangentDegrees": 0.006955375050907597,
+            "mesh": "salvage-core",
+            "passed": true,
+            "samples": 152,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.002349987728444066,
+            "maxOrthogonalityError": 3.69176970660412e-8,
+            "maxTangentDegrees": 0.0025715879071242422,
+            "mesh": "lens-glass",
+            "passed": true,
+            "samples": 144,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.005118298242933757,
+            "maxOrthogonalityError": 4.005608000845484e-8,
+            "maxTangentDegrees": 0.004841160831745456,
+            "mesh": "lens-housing",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 0.6,
+            "damage": 0,
+            "maxNormalDegrees": 0.002349987728444066,
+            "maxOrthogonalityError": 3.69176970660412e-8,
+            "maxTangentDegrees": 0.0025715879071242422,
+            "mesh": "lens-glass",
+            "passed": true,
+            "samples": 144,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 0.6,
+            "damage": 0,
+            "maxNormalDegrees": 0.006758331382553878,
+            "maxOrthogonalityError": 5.3227973861869073e-8,
+            "maxTangentDegrees": 0.005101414921633477,
+            "mesh": "lens-housing",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 0.6,
+            "damage": 0.5,
+            "maxNormalDegrees": 0.002349987728444066,
+            "maxOrthogonalityError": 3.69176970660412e-8,
+            "maxTangentDegrees": 0.0025715879071242422,
+            "mesh": "lens-glass",
+            "passed": true,
+            "samples": 144,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 0.6,
+            "damage": 0.5,
+            "maxNormalDegrees": 0.0061507663185092175,
+            "maxOrthogonalityError": 7.775319976754957e-8,
+            "maxTangentDegrees": 0.005108167183591691,
+            "mesh": "lens-housing",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 1,
+            "damage": 1,
+            "maxNormalDegrees": 0.002349987728444066,
+            "maxOrthogonalityError": 3.69176970660412e-8,
+            "maxTangentDegrees": 0.0025715879071242422,
+            "mesh": "lens-glass",
+            "passed": true,
+            "samples": 144,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-lens",
+            "compression": 1,
+            "damage": 1,
+            "maxNormalDegrees": 0.006636501290238816,
+            "maxOrthogonalityError": 1.0804432226674265e-7,
+            "maxTangentDegrees": 0.004520021214175038,
+            "mesh": "lens-housing",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.008404033801415384,
+            "maxOrthogonalityError": 6.008031461224307e-8,
+            "maxTangentDegrees": 0.005804376478927674,
+            "mesh": "salvage-cassette",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.004158567369415454,
+            "maxOrthogonalityError": 5.98520062400354e-8,
+            "maxTangentDegrees": 0.0031031062968039317,
+            "mesh": "cassette-interior",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.008404033801415384,
+            "maxOrthogonalityError": 6.008031461224307e-8,
+            "maxTangentDegrees": 0.005804376478927674,
+            "mesh": "cassette-window",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0.6,
+            "damage": 0,
+            "maxNormalDegrees": 0.024386412122060015,
+            "maxOrthogonalityError": 9.508936765767473e-8,
+            "maxTangentDegrees": 0.027688962345998512,
+            "mesh": "salvage-cassette",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0.6,
+            "damage": 0,
+            "maxNormalDegrees": 0.004158567369415454,
+            "maxOrthogonalityError": 5.98520062400354e-8,
+            "maxTangentDegrees": 0.0031031062968039317,
+            "mesh": "cassette-interior",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0.6,
+            "damage": 0,
+            "maxNormalDegrees": 0.008404033801415384,
+            "maxOrthogonalityError": 6.008031461224307e-8,
+            "maxTangentDegrees": 0.005804376478927674,
+            "mesh": "cassette-window",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0.6,
+            "damage": 0.5,
+            "maxNormalDegrees": 0.02386097596140653,
+            "maxOrthogonalityError": 9.808859763316137e-8,
+            "maxTangentDegrees": 0.03504974804925198,
+            "mesh": "salvage-cassette",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0.6,
+            "damage": 0.5,
+            "maxNormalDegrees": 0.004158567369415454,
+            "maxOrthogonalityError": 5.98520062400354e-8,
+            "maxTangentDegrees": 0.0031031062968039317,
+            "mesh": "cassette-interior",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 0.6,
+            "damage": 0.5,
+            "maxNormalDegrees": 0.008404033801415384,
+            "maxOrthogonalityError": 6.008031461224307e-8,
+            "maxTangentDegrees": 0.005804376478927674,
+            "mesh": "cassette-window",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 1,
+            "damage": 1,
+            "maxNormalDegrees": 0.03919415357359935,
+            "maxOrthogonalityError": 9.13800458079983e-8,
+            "maxTangentDegrees": 0.06037137822949239,
+            "mesh": "salvage-cassette",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 1,
+            "damage": 1,
+            "maxNormalDegrees": 0.004158567369415454,
+            "maxOrthogonalityError": 5.98520062400354e-8,
+            "maxTangentDegrees": 0.0031031062968039317,
+            "mesh": "cassette-interior",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "salvage-cassette",
+            "compression": 1,
+            "damage": 1,
+            "maxNormalDegrees": 0.008404033801415384,
+            "maxOrthogonalityError": 6.008031461224307e-8,
+            "maxTangentDegrees": 0.005804376478927674,
+            "mesh": "cassette-window",
+            "passed": true,
+            "samples": 158,
+            "travel": 0
+          },
+          {
+            "asset": "press-chamber",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.03370855339658477,
+            "maxOrthogonalityError": 4.22185983950385e-8,
+            "maxTangentDegrees": 0.034408164643060506,
+            "mesh": "press-ram",
+            "passed": true,
+            "samples": 159,
+            "travel": -0.09
+          },
+          {
+            "asset": "press-chamber",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.003892398530886576,
+            "maxOrthogonalityError": 2.8656956585493276e-8,
+            "maxTangentDegrees": 0.0028212418871153655,
+            "mesh": "press-ram",
+            "passed": true,
+            "samples": 159,
+            "travel": 0
+          },
+          {
+            "asset": "press-chamber",
+            "compression": 0,
+            "damage": 0,
+            "maxNormalDegrees": 0.06489304282908867,
+            "maxOrthogonalityError": 4.9845677307924774e-8,
+            "maxTangentDegrees": 0.06624125402403477,
+            "mesh": "press-ram",
+            "passed": true,
+            "samples": 159,
+            "travel": 0.17283129148483278
+          }
+        ],
+        "error": "",
+        "kind": "Actual GLSL transform feedback, numerical surface derivatives from the same GPU position output, sampled real GLB vertices. Not gameplay or iPhone performance.",
+        "passed": true
+      },
+      "browserErrors": [],
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      },
+      "sourceHashesAfter": {
+        "package.json": "8a887e13944657a1152b20ac1d6ea5ee7ca50e18bf0503d68df4a012c1350972",
+        "package-lock.json": "674646118538ce88272b93ca044631fad478bf0ecad0c5240c8852a7c5ce8f9b",
+        "docs/handoffs/B/preview.ts": "1e7b70888ad580f9d93f073bf410ba237f7a31fb73984bff6f74f47ee35dbf2d",
+        "docs/handoffs/B/preview.css": "ab178cbb50038078a8b2bd3859e82153bd8081fd45b4d06ac2bc96c150fd9197",
+        "docs/handoffs/B/normal-study/probe.ts": "d43b3672494df30b5505b9163c32f0bd72c8c55a86060a2b6f2dcf78af5a5c59",
+        "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+        "src/render/case-depth.ts": "ce0a157145917b3cfeff5d17dd6d804d8cac0b49e53e02c7d3b9fa9d32dd3630",
+        "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+        "src/render/debris.ts": "48fcfa4f0c4affb0bf90af40e0fa34e04d1a2bdcbb60fef171ecfac6be39c526",
+        "src/render/deformation.ts": "fd66bd9d0bdf69225a8c7f8ad88f9a5ffe075564ca048ce20a4ea3d78bcf5068",
+        "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+        "src/render/index.ts": "a017af8cb68b8a2a59828e837ab5aa8034cd7d4a831f4eef48c3818b6c0135ed",
+        "src/render/ram.ts": "8455f503aacaebc3f34c58aa9e405dee03facd8d73854cd7bb2191a815b718b4",
+        "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+        "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+        "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+        "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+        "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e",
+        "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+        "public/assets/models/salvage-cassette.glb": "0290ffbcb3752c267a36c1ced51477e0020e1d6f6314491ea1a89eebdbba410c",
+        "public/assets/models/salvage-core.glb": "9ff9d91f2238651993f6dc4ee8d5d340927792b5a5774406ae7ff5138ae136fd",
+        "public/assets/models/salvage-lens.glb": "1608a856b1bbb0c659c47fa2aec22dfbedbd13e398fbbf9db4473e4617e468bc",
+        "public/assets/textures/workshop-v4.webp": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+        "public/assets/textures/pressure-dial.webp": "4a65d7022666d3ee344a5f45058ca409bd84775922783e644111ebd2ae4b6ea6"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "compressing",
+          "specimenId": "salvage-core",
+          "pressure01": 0.35,
+          "integrity01": 1,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/01-390x844-compressing-salvage-core.png",
+      "after": "after/01-390x844-compressing-salvage-core.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 28
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "compressing",
+          "specimenId": "salvage-core",
+          "pressure01": 0.7,
+          "integrity01": 1,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/02-390x844-compressing-salvage-core.png",
+      "after": "after/02-390x844-compressing-salvage-core.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 28
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "inspecting",
+          "specimenId": "salvage-core",
+          "pressure01": 0.9,
+          "integrity01": 0.6,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/03-390x844-inspecting-salvage-core.png",
+      "after": "after/03-390x844-inspecting-salvage-core.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "failed",
+          "specimenId": "salvage-core",
+          "pressure01": 1,
+          "integrity01": 0,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/04-390x844-failed-salvage-core.png",
+      "after": "after/04-390x844-failed-salvage-core.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "compressing",
+          "specimenId": "salvage-cassette",
+          "pressure01": 0.6,
+          "integrity01": 1,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/05-390x844-compressing-salvage-cassette.png",
+      "after": "after/05-390x844-compressing-salvage-cassette.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 28
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "inspecting",
+          "specimenId": "salvage-cassette",
+          "pressure01": 0.8,
+          "integrity01": 0.6,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/06-390x844-inspecting-salvage-cassette.png",
+      "after": "after/06-390x844-inspecting-salvage-cassette.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "failed",
+          "specimenId": "salvage-cassette",
+          "pressure01": 1,
+          "integrity01": 0,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/07-390x844-failed-salvage-cassette.png",
+      "after": "after/07-390x844-failed-salvage-cassette.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "inspecting",
+          "specimenId": "salvage-lens",
+          "pressure01": 0.6,
+          "integrity01": 0.7,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/08-390x844-inspecting-salvage-lens.png",
+      "after": "after/08-390x844-inspecting-salvage-lens.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    },
+    {
+      "state": {
+        "viewport": "390x844",
+        "controls": {
+          "phase": "failed",
+          "specimenId": "salvage-lens",
+          "pressure01": 1,
+          "integrity01": 0,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/09-390x844-failed-salvage-lens.png",
+      "after": "after/09-390x844-failed-salvage-lens.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    },
+    {
+      "state": {
+        "viewport": "1024x1536",
+        "controls": {
+          "phase": "compressing",
+          "specimenId": "salvage-cassette",
+          "pressure01": 0.6,
+          "integrity01": 1,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/10-1024x1536-compressing-salvage-cassette.png",
+      "after": "after/10-1024x1536-compressing-salvage-cassette.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 28
+    },
+    {
+      "state": {
+        "viewport": "1024x1536",
+        "controls": {
+          "phase": "failed",
+          "specimenId": "salvage-cassette",
+          "pressure01": 1,
+          "integrity01": 0,
+          "yawDeg": 26,
+          "storedCount": 0
+        }
+      },
+      "before": "before/11-1024x1536-failed-salvage-cassette.png",
+      "after": "after/11-1024x1536-failed-salvage-cassette.png",
+      "identicalPng": false,
+      "beforeDrawCalls": 28,
+      "afterDrawCalls": 30
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,1106 @@
+{
+  "checkedAt": "2026-09-24T14:38:45.776Z",
+  "kind": "Actual desktop Chromium WebGL static inspection. Not mobile or gameplay performance evidence.",
+  "captures": [
+    {
+      "asset": "reflection",
+      "variant": "baseline",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/reflection-study/capture.html?variant=baseline",
+      "screenshot": "captures/reflection-baseline.png",
+      "sha256": "603239aeb13ace5a1381da3c730587b94435729f654db05209f8ddeb62aa82f2",
+      "errors": [],
+      "materials": [
+        {
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            -0.757,
+            13.219,
+            0.717
+          ],
+          "scale": [
+            31.713,
+            28.305,
+            28.591
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.76052450467022,
+            0.4910208498384856
+          ],
+          "position": [
+            -16.116,
+            14.37,
+            8.208
+          ],
+          "scale": [
+            0.1,
+            2.428,
+            1.23255
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.76052450467022,
+            0.4910208498384856
+          ],
+          "position": [
+            -16.109,
+            18.021,
+            -8.207
+          ],
+          "scale": [
+            0.1,
+            2.425,
+            1.23795
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            14.904,
+            12.198,
+            -1.832
+          ],
+          "scale": [
+            0.15,
+            4.265,
+            2.8489500000000003
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            -0.462,
+            8.89,
+            14.52
+          ],
+          "scale": [
+            1.971,
+            5.441,
+            0.088
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            3.235,
+            11.486,
+            -12.541
+          ],
+          "scale": [
+            1.125,
+            2,
+            0.1
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            0,
+            20,
+            0
+          ],
+          "scale": [
+            1,
+            0.1,
+            1
+          ],
+          "type": "MeshLambertMaterial"
+        }
+      ],
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "reflection",
+      "variant": "dark-walls",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/reflection-study/capture.html?variant=dark-walls",
+      "screenshot": "captures/reflection-dark-walls.png",
+      "sha256": "814beae7b515a541032156958629ff96dcd2ccf9e90f660be2fee2cffafc3ca7",
+      "errors": [],
+      "materials": [
+        {
+          "color": [
+            0.15,
+            0.15,
+            0.15
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            -0.757,
+            13.219,
+            0.717
+          ],
+          "scale": [
+            31.713,
+            28.305,
+            28.591
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0.15,
+            0.15,
+            0.15
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.6307571363387763,
+            0.2874408377161099
+          ],
+          "position": [
+            -16.116,
+            14.37,
+            8.208
+          ],
+          "scale": [
+            0.1,
+            2.428,
+            1.23255
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.6307571363387763,
+            0.2874408377161099
+          ],
+          "position": [
+            -16.109,
+            18.021,
+            -8.207
+          ],
+          "scale": [
+            0.1,
+            2.425,
+            1.23795
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            14.904,
+            12.198,
+            -1.832
+          ],
+          "scale": [
+            0.15,
+            4.265,
+            2.8489500000000003
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            -0.462,
+            8.89,
+            14.52
+          ],
+          "scale": [
+            1.971,
+            5.441,
+            0.088
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            3.235,
+            11.486,
+            -12.541
+          ],
+          "scale": [
+            1.125,
+            2,
+            0.1
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            0,
+            20,
+            0
+          ],
+          "scale": [
+            1,
+            0.1,
+            1
+          ],
+          "type": "MeshLambertMaterial"
+        }
+      ],
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "reflection",
+      "variant": "warm-card",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/reflection-study/capture.html?variant=warm-card",
+      "screenshot": "captures/reflection-warm-card.png",
+      "sha256": "c22f4bb8b1c402221000496da382e13468dbde924f7ba10c58265155a68ef0d0",
+      "errors": [],
+      "materials": [
+        {
+          "color": [
+            0.15,
+            0.15,
+            0.15
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            -0.757,
+            13.219,
+            0.717
+          ],
+          "scale": [
+            31.713,
+            28.305,
+            28.591
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0.15,
+            0.15,
+            0.15
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.6307571363387763,
+            0.2874408377161099
+          ],
+          "position": [
+            -16.116,
+            14.37,
+            8.208
+          ],
+          "scale": [
+            0.1,
+            2.428,
+            1.23255
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.6307571363387763,
+            0.2874408377161099
+          ],
+          "position": [
+            -16.109,
+            18.021,
+            -8.207
+          ],
+          "scale": [
+            0.1,
+            2.425,
+            1.23795
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            14.904,
+            12.198,
+            -1.832
+          ],
+          "scale": [
+            0.15,
+            4.265,
+            2.8489500000000003
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.6307571363387763,
+            0.2874408377161099
+          ],
+          "position": [
+            -0.462,
+            8.89,
+            14.52
+          ],
+          "scale": [
+            1.971,
+            5.441,
+            0.088
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            3.235,
+            11.486,
+            -12.541
+          ],
+          "scale": [
+            1.125,
+            2,
+            0.1
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            0,
+            20,
+            0
+          ],
+          "scale": [
+            1,
+            0.1,
+            1
+          ],
+          "type": "MeshLambertMaterial"
+        }
+      ],
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "reflection",
+      "variant": "balanced",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/reflection-study/capture.html?variant=balanced",
+      "screenshot": "captures/reflection-balanced.png",
+      "sha256": "0aee0e47cd9a6ad574bb9a89b95af64ff0f8b354e34ef6d43ebb06a598bfd50e",
+      "errors": [],
+      "materials": [
+        {
+          "color": [
+            0.35,
+            0.35,
+            0.35
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            -0.757,
+            13.219,
+            0.717
+          ],
+          "scale": [
+            31.713,
+            28.305,
+            28.591
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0.35,
+            0.35,
+            0.35
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "type": "MeshStandardMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.76052450467022,
+            0.4910208498384856
+          ],
+          "position": [
+            -16.116,
+            14.37,
+            8.208
+          ],
+          "scale": [
+            0.1,
+            2.428,
+            1.23255
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.76052450467022,
+            0.4910208498384856
+          ],
+          "position": [
+            -16.109,
+            18.021,
+            -8.207
+          ],
+          "scale": [
+            0.1,
+            2.425,
+            1.23795
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            14.904,
+            12.198,
+            -1.832
+          ],
+          "scale": [
+            0.15,
+            4.265,
+            2.8489500000000003
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            1,
+            0.76052450467022,
+            0.4910208498384856
+          ],
+          "position": [
+            -0.462,
+            8.89,
+            14.52
+          ],
+          "scale": [
+            1.971,
+            5.441,
+            0.088
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            3.235,
+            11.486,
+            -12.541
+          ],
+          "scale": [
+            1.125,
+            2,
+            0.1
+          ],
+          "type": "MeshLambertMaterial"
+        },
+        {
+          "color": [
+            0,
+            0,
+            0
+          ],
+          "emissive": [
+            0.8468732315065057,
+            0.8962693533719567,
+            1
+          ],
+          "position": [
+            0,
+            20,
+            0
+          ],
+          "scale": [
+            1,
+            0.1,
+            1
+          ],
+          "type": "MeshLambertMaterial"
+        }
+      ],
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "239048",
+        "visibleTriangles": "81024"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "hashesBefore": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "docs/handoffs/B/reflection-study/capture.ts": "fdac8e45fdffe671fa137bd1b03969bba037a8a4e162bcdd0206676046987007"
+  },
+  "hashesAfter": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "src/render/index.ts": "c696e329cb0fec66a7d56159c1a6e9cff7114a95ce6401de35dfa80dab8cdf20",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "docs/handoffs/B/reflection-study/capture.ts": "fdac8e45fdffe671fa137bd1b03969bba037a8a4e162bcdd0206676046987007"
+  },
+  "passed": true
+}

@@ -1,0 +1,288 @@
+{
+  "at": "2026-09-25T04:33:38.638Z",
+  "kind": "Desktop Chromium connected A+B+C UI using real mouse press/release; explicit synthetic WebGL context loss. Not iPhone, touch, or spontaneous GPU stability evidence.",
+  "candidateCommit": "80f2d8e204095fa5e3c1b213e0bb197c627f7959",
+  "roleCommits": {
+    "A": "0c7634b7600f8831b1feca968d0dfad05a4e7986",
+    "B": "d9db1df",
+    "C": "f42f919b1284d7604d2aac217c43702338563bac"
+  },
+  "states": [
+    {
+      "label": "01-start",
+      "capacity": "1.00",
+      "dialog": "SALVAGE SHIFT 01공간은 1L회수물을 살펴보고, 눌러 담아 케이스에 보관하세요.작업 시작",
+      "horizontalOverflow": false,
+      "phase": "대기 중",
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "0",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "01-start.png"
+    },
+    {
+      "label": "02-pressed",
+      "capacity": "1.00",
+      "dialog": null,
+      "horizontalOverflow": false,
+      "phase": "회수물 검사",
+      "pressure": "48%",
+      "renderer": {
+        "drawCalls": "33",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "281192",
+        "visibleTriangles": "105096"
+      },
+      "score": "0",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "02-pressed.png"
+    },
+    {
+      "label": "03-stored",
+      "capacity": "0.40",
+      "dialog": null,
+      "horizontalOverflow": false,
+      "phase": "보관 완료",
+      "pressure": "48%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "360",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "03-stored.png"
+    },
+    {
+      "label": "04-context-lost",
+      "capacity": "0.40",
+      "dialog": "DISPLAY ERROR3D 화면을 시작할 수 없습니다3D 초기화 오류 (render-failed). 현재 작업은 일시 정지되었습니다. 그래픽 연결을 다시 시도하거나 페이지를 새로고침해 주세요.다시 시도",
+      "horizontalOverflow": false,
+      "phase": "일시 정지",
+      "pressure": "48%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "error",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "360",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "04-context-lost.png"
+    },
+    {
+      "label": "05-recovered-paused",
+      "capacity": "0.40",
+      "dialog": "PAUSED작업이 멈췄습니다압력은 멈춰 있습니다. 준비되면 이어서 작업하세요.계속하기",
+      "horizontalOverflow": false,
+      "phase": "일시 정지",
+      "pressure": "48%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "360",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "05-recovered-paused.png"
+    },
+    {
+      "label": "06-resumed",
+      "capacity": "0.40",
+      "dialog": null,
+      "horizontalOverflow": false,
+      "phase": "보관 완료",
+      "pressure": "48%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "360",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "06-resumed.png"
+    },
+    {
+      "label": "07-failed",
+      "capacity": "0.40",
+      "dialog": "SHIFT ENDED회수 작업 종료회수물이 한계 압력에 도달했습니다. 이미 확보한 점수만 정산할 수 있습니다.1개 보관 · 0.60L 사용 · 360점 확보확보 점수 정산다시 하기",
+      "horizontalOverflow": false,
+      "phase": "작업 종료",
+      "pressure": "100%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "360",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "07-failed.png"
+    },
+    {
+      "label": "08-complete",
+      "capacity": "0.40",
+      "dialog": "SHIFT COMPLETE회수 완료이번 작업 결과1개 보관 · 0.60L 사용 · 360점 확보다시 하기",
+      "horizontalOverflow": false,
+      "phase": "정산 완료",
+      "pressure": "100%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "360",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "08-complete.png"
+    },
+    {
+      "label": "09-restarted",
+      "capacity": "1.00",
+      "dialog": null,
+      "horizontalOverflow": false,
+      "phase": "회수물 검사",
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "0",
+      "verticalOverflow": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "screenshot": "09-restarted.png"
+    },
+    {
+      "label": "10-small",
+      "capacity": "1.00",
+      "dialog": null,
+      "horizontalOverflow": false,
+      "phase": "회수물 검사",
+      "pressure": "0%",
+      "renderer": {
+        "drawCalls": "27",
+        "engine": "three.js r186",
+        "loadedAssets": "4",
+        "renderState": "ready",
+        "triangles": "193194",
+        "visibleTriangles": "105096"
+      },
+      "score": "0",
+      "verticalOverflow": false,
+      "viewport": [
+        320,
+        568
+      ],
+      "screenshot": "10-small.png"
+    }
+  ],
+  "sourceHashesBefore": {
+    "src/main.ts": "2b47be18dd0337c59d6a5a8c8994c914ee5016eb7de4a2106b296e4ab742d915",
+    "src/app/index.ts": "7672adb653ad7545d82fdbaf9e7b2ed71469a175d96a2a68f981a604e969b4a3",
+    "src/app/input.ts": "9ce82c486ceeb7c0a91e9a2af1ac823f5485fe1d89429d0864bfdb7439ad0ef4",
+    "src/app/presentation.ts": "f95136d68c4635006c9aefebeb4c5bb562063ffdee535133c6f8f8ad549b608d",
+    "src/app/runtime.ts": "2355ed59618d966163797e57f8b297905cbb4b7d260035a4b207009fabbd8ff1",
+    "src/app/style.css": "dd7655fe3cbab5ec51946897cef60a21bf2e026f2a8e6904b90afdb952d07976",
+    "src/core/index.ts": "bffc71c59d99d8403c4bff33f17b282418d30d125102eab4f8f6b6a983a0ce1c",
+    "src/content/index.ts": "c64eed4173c07eb1484ad5615b151b1859b80e23bc6626b5ef7c126ff7de64d3",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/index.ts": "347d167c40a327053ed4568aae1a53c38e6743635c883f881f5f47fc1223e789",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+    "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+    "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e"
+  },
+  "browserErrors": [],
+  "sourceHashesAfter": {
+    "src/main.ts": "2b47be18dd0337c59d6a5a8c8994c914ee5016eb7de4a2106b296e4ab742d915",
+    "src/app/index.ts": "7672adb653ad7545d82fdbaf9e7b2ed71469a175d96a2a68f981a604e969b4a3",
+    "src/app/input.ts": "9ce82c486ceeb7c0a91e9a2af1ac823f5485fe1d89429d0864bfdb7439ad0ef4",
+    "src/app/presentation.ts": "f95136d68c4635006c9aefebeb4c5bb562063ffdee535133c6f8f8ad549b608d",
+    "src/app/runtime.ts": "2355ed59618d966163797e57f8b297905cbb4b7d260035a4b207009fabbd8ff1",
+    "src/app/style.css": "dd7655fe3cbab5ec51946897cef60a21bf2e026f2a8e6904b90afdb952d07976",
+    "src/core/index.ts": "bffc71c59d99d8403c4bff33f17b282418d30d125102eab4f8f6b6a983a0ce1c",
+    "src/content/index.ts": "c64eed4173c07eb1484ad5615b151b1859b80e23bc6626b5ef7c126ff7de64d3",
+    "src/render/assets.ts": "fcf37a276f93a09c3970847742be89823d47f870bc5d6d8d5c47e31a67237c90",
+    "src/render/case-depth.ts": "51b79a57c7e203051cf6fdf7dcf87c9b77499c4cbfbd67b58af18e49351d6835",
+    "src/render/cassette.ts": "17af3bd0465b8eeeb8b60e49277d559add12d56c9673dddc756f49f4e8fe4a81",
+    "src/render/deformation.ts": "ef9cee4f0d5a7288b2ef3b04d3771007dcb47d8ed76cd500b0c6c14703c2a90b",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "src/render/index.ts": "347d167c40a327053ed4568aae1a53c38e6743635c883f881f5f47fc1223e789",
+    "src/render/ram.ts": "82fecf7ce8bd82276bffd0936781313a5a0982bd6c5a000a2814da529bfea65a",
+    "src/render/resources.ts": "73aebdbd2c23190918adf7e2d2aae4a3d01d214e76535d0380fcafe718934dce",
+    "src/render/visual-state.ts": "f3974ab390d4cfe924be478064f29942f8fa3ddb4a23df932deaf123c6ec1d18",
+    "src/contracts/fixtures.ts": "1b47947d06efa252e0062941c45f89fda1718f6f96184e75e57e05c857af2a0f",
+    "src/contracts/index.ts": "776b5da190b39936859805a699ecff8fe67889f360a5d27292a237d1d7aa1980",
+    "src/contracts/validate.ts": "afc0525dec10870fe139db72d492165f335811205847d7a438124ae9a6856d2e"
+  },
+  "passed": true
+}

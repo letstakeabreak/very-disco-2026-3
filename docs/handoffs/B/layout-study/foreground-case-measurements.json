@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-24T15:24:17.272Z",
+  "status": "adopted-in-production-renderer-device-unverified",
+  "source": {
+    "path": "public/assets/textures/workshop-v4.webp",
+    "sha256": "a06f8a02e645521b6bb7b12d11ad77366dfacbb9d347d78934177e013715c013",
+    "width": 1024,
+    "height": 1536
+  },
+  "measurements": {
+    "origin": "top-left",
+    "unit": "pixels",
+    "method": "Manual visual aperture corners on the exact ImageGen plate; perspective layout measurement, not photogrammetry",
+    "estimatedBoundaryTolerancePx": 4,
+    "cornerOrder": [
+      "rear-left",
+      "rear-right",
+      "front-right",
+      "front-left"
+    ],
+    "quadrilaterals": [
+      [
+        [
+          492,
+          1076
+        ],
+        [
+          597,
+          1077
+        ],
+        [
+          582,
+          1197
+        ],
+        [
+          465,
+          1197
+        ]
+      ],
+      [
+        [
+          638,
+          1076
+        ],
+        [
+          750,
+          1077
+        ],
+        [
+          756,
+          1198
+        ],
+        [
+          630,
+          1198
+        ]
+      ],
+      [
+        [
+          790,
+          1077
+        ],
+        [
+          902,
+          1078
+        ],
+        [
+          928,
+          1199
+        ],
+        [
+          800,
+          1199
+        ]
+      ]
+    ],
+    "normalizedQuadrilaterals": [
+      [
+        [
+          0.48046875,
+          0.7005208333333334
+        ],
+        [
+          0.5830078125,
+          0.701171875
+        ],
+        [
+          0.568359375,
+          0.779296875
+        ],
+        [
+          0.4541015625,
+          0.779296875
+        ]
+      ],
+      [
+        [
+          0.623046875,
+          0.7005208333333334
+        ],
+        [
+          0.732421875,
+          0.701171875
+        ],
+        [
+          0.73828125,
+          0.7799479166666666
+        ],
+        [
+          0.615234375,
+          0.7799479166666666
+        ]
+      ],
+      [
+        [
+          0.771484375,
+          0.701171875
+        ],
+        [
+          0.880859375,
+          0.7018229166666666
+        ],
+        [
+          0.90625,
+          0.7805989583333334
+        ],
+        [
+          0.78125,
+          0.7805989583333334
+        ]
+      ]
+    ]
+  },
+  "verification": {
+    "report": "foreground-report.json",
+    "layouts": 36,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "orders": 6,
+    "compressions": [
+      0,
+      0.55,
+      1
+    ],
+    "runtimeScale": 0.7,
+    "oldRuntimeScale": 0.52,
+    "minimumHorizontalClearancePx": 13.83617971501971,
+    "minimumMarginTo130pxStudyDock": 5.5980333137496245,
+    "boundsNote": "Conservative CPU bounds include vertices hidden by the depth mask.",
+    "gpuDepth": {
+      "layouts": 36,
+      "frontLeakPixelsBefore": 10446,
+      "frontLeakPixelsAfter": 0,
+      "changedOutsideCase": 0,
+      "minPixelsVisibleInAnAperture": 514
+    }
+  },
+  "depthProxy": {
+    "checkedAt": "2026-09-24T16:05:45.586Z",
+    "type": "Invisible depth-only extruded foam mask, derived from the ImageGen plate. Not a visible 3D case asset or a physical fit model.",
+    "outerPixels": [
+      [
+        443,
+        1065
+      ],
+      [
+        920,
+        1065
+      ],
+      [
+        962,
+        1212
+      ],
+      [
+        406,
+        1212
+      ]
+    ],
+    "mouthWorldY": 0.22,
+    "artDirectedExtrusionM": 0.16,
+    "artDirectedSeatingOffsetM": 0.018,
+    "triangles": 72,
+    "source": "src/render/case-depth.ts"
+  }
+}

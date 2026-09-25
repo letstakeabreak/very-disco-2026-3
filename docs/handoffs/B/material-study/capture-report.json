@@ -1,0 +1,700 @@
+{
+  "checkedAt": "2026-09-24T13:49:44.950Z",
+  "kind": "Actual desktop Chromium WebGL static inspection. Not mobile or gameplay performance evidence.",
+  "captures": [
+    {
+      "asset": "press",
+      "variant": "baseline",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/material-study/capture.html?asset=press&variant=baseline",
+      "screenshot": "captures/press-baseline.png",
+      "sha256": "013178b6bff661fedb318626cfb8fe3c0a4e771a1d2816d732d1f100c4575ed0",
+      "errors": [],
+      "frames": 127,
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "assetId": "press-chamber",
+        "cameraDirection": "-0.335914446766792,0.2911258538645531,0.8957718580447787",
+        "drawCalls": "9",
+        "engine": "three.js r186",
+        "gauge": "production createGauge / pressure 0",
+        "gpuTriangles": "86022",
+        "materialCount": "2",
+        "materials": "[{\"name\":\"press-chamber-rebaked-PBR.001\",\"type\":\"MeshStandardMaterial\",\"roughness\":1,\"metalness\":1,\"mapColorSpace\":\"srgb\",\"mrColorSpace\":\"\",\"envMapIntensity\":0.75,\"transmission\":0}]",
+        "renderState": "ready",
+        "runtimePath": "assets/models/press-chamber.glb",
+        "textures": "8",
+        "triangles": "42998",
+        "variant": "baseline",
+        "viewer": "independent-static-asset"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "press",
+      "variant": "reflection",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/material-study/capture.html?asset=press&variant=reflection",
+      "screenshot": "captures/press-reflection.png",
+      "sha256": "cda99e07a0805314ae69cdf17376b7519d788e23dfaba4a6b379dab0562f5e70",
+      "errors": [],
+      "frames": 130,
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "assetId": "press-chamber",
+        "cameraDirection": "-0.335914446766792,0.2911258538645531,0.8957718580447787",
+        "drawCalls": "9",
+        "engine": "three.js r186",
+        "gauge": "production createGauge / pressure 0",
+        "gpuTriangles": "86022",
+        "materialCount": "2",
+        "materials": "[{\"name\":\"press-chamber-rebaked-PBR.001\",\"type\":\"MeshStandardMaterial\",\"roughness\":0.72,\"metalness\":1,\"mapColorSpace\":\"srgb\",\"mrColorSpace\":\"\",\"envMapIntensity\":1.35,\"transmission\":0}]",
+        "renderState": "ready",
+        "runtimePath": "assets/models/press-chamber.glb",
+        "textures": "8",
+        "triangles": "42998",
+        "variant": "reflection",
+        "viewer": "independent-static-asset"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "cassette",
+      "variant": "baseline",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/material-study/capture.html?asset=cassette&variant=baseline",
+      "screenshot": "captures/cassette-baseline.png",
+      "sha256": "9416c744d13dcf8a66be9180db5eae6fb3c82805bf9cc673116bac5b6552a9e1",
+      "errors": [],
+      "frames": 130,
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "assetId": "salvage-cassette",
+        "cameraDirection": "-0.42107596053325946,0.3368607684266076,0.8421519210665189",
+        "drawCalls": "3",
+        "engine": "three.js r186",
+        "gpuTriangles": "30002",
+        "materialCount": "1",
+        "materials": "[{\"name\":\"salvage-cassette-rebaked-PBR.001\",\"type\":\"MeshStandardMaterial\",\"roughness\":1,\"metalness\":1,\"mapColorSpace\":\"srgb\",\"mrColorSpace\":\"\",\"envMapIntensity\":0.75,\"transmission\":0}]",
+        "renderState": "ready",
+        "runtimePath": "assets/models/salvage-cassette.glb",
+        "textures": "7",
+        "triangles": "15000",
+        "variant": "baseline",
+        "viewer": "independent-static-asset"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "cassette",
+      "variant": "reflection",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/material-study/capture.html?asset=cassette&variant=reflection",
+      "screenshot": "captures/cassette-reflection.png",
+      "sha256": "7c4392cc8dcfb42277051080435674028b6f38a8e6f2d5921d17354a8c860924",
+      "errors": [],
+      "frames": 146,
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "assetId": "salvage-cassette",
+        "cameraDirection": "-0.42107596053325946,0.3368607684266076,0.8421519210665189",
+        "drawCalls": "3",
+        "engine": "three.js r186",
+        "gpuTriangles": "30002",
+        "materialCount": "1",
+        "materials": "[{\"name\":\"salvage-cassette-rebaked-PBR.001\",\"type\":\"MeshStandardMaterial\",\"roughness\":1,\"metalness\":1,\"mapColorSpace\":\"srgb\",\"mrColorSpace\":\"\",\"envMapIntensity\":1.35,\"transmission\":0}]",
+        "renderState": "ready",
+        "runtimePath": "assets/models/salvage-cassette.glb",
+        "textures": "7",
+        "triangles": "15000",
+        "variant": "reflection",
+        "viewer": "independent-static-asset"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "cassette",
+      "variant": "amber",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/material-study/capture.html?asset=cassette&variant=amber",
+      "screenshot": "captures/cassette-amber.png",
+      "sha256": "eb83b5a5c3088e3ee1344e1f520e05622794690c761f0d3eafea652f21725077",
+      "errors": [],
+      "frames": 127,
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "assetId": "salvage-cassette",
+        "cameraDirection": "-0.42107596053325946,0.3368607684266076,0.8421519210665189",
+        "drawCalls": "4",
+        "engine": "three.js r186",
+        "gpuTriangles": "45002",
+        "materialCount": "1",
+        "materials": "[{\"name\":\"study-amber-dielectric\",\"type\":\"MeshPhysicalMaterial\",\"roughness\":1,\"metalness\":1,\"mapColorSpace\":\"srgb\",\"mrColorSpace\":\"\",\"envMapIntensity\":1.35,\"transmission\":0.45}]",
+        "renderState": "ready",
+        "runtimePath": "assets/models/salvage-cassette.glb",
+        "textures": "8",
+        "triangles": "15000",
+        "variant": "amber",
+        "viewer": "independent-static-asset"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "cassette",
+      "variant": "amber-opaque",
+      "url": "http://127.0.0.1:5173/docs/handoffs/B/material-study/capture.html?asset=cassette&variant=amber-opaque",
+      "screenshot": "captures/cassette-amber-opaque.png",
+      "sha256": "86fbc6ae0a495683d9d6a0b16039cd09d7ffbcbaa529e6a0ceac5a1e24b264f6",
+      "errors": [],
+      "frames": 116,
+      "ready": true,
+      "renderer": "WebKit WebGL",
+      "status": {
+        "assetId": "salvage-cassette",
+        "cameraDirection": "-0.42107596053325946,0.3368607684266076,0.8421519210665189",
+        "drawCalls": "3",
+        "engine": "three.js r186",
+        "gpuTriangles": "30002",
+        "materialCount": "1",
+        "materials": "[{\"name\":\"study-amber-dielectric\",\"type\":\"MeshPhysicalMaterial\",\"roughness\":1,\"metalness\":1,\"mapColorSpace\":\"srgb\",\"mrColorSpace\":\"\",\"envMapIntensity\":1.35,\"transmission\":0}]",
+        "renderState": "ready",
+        "runtimePath": "assets/models/salvage-cassette.glb",
+        "textures": "7",
+        "triangles": "15000",
+        "variant": "amber-opaque",
+        "viewer": "independent-static-asset"
+      },
+      "console": {
+        "lifecycle": {
+          "effectiveLaunch": {
+            "browserLaunched": true,
+            "engine": "chrome",
+            "launchHash": 11677035664275012000
+          },
+          "launched": false,
+          "relaunchedBrowser": false,
+          "restartedBackground": false,
+          "restoreStatus": "not_configured",
+          "reused": true,
+          "saveStatus": "not_attempted"
+        },
+        "messages": [
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connecting..."
+              }
+            ],
+            "text": "[vite] connecting...",
+            "type": "debug"
+          },
+          {
+            "args": [
+              {
+                "type": "string",
+                "value": "[vite] connected."
+              }
+            ],
+            "text": "[vite] connected.",
+            "type": "debug"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "hashesBefore": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "docs/handoffs/B/material-study/inspector.ts": "c2d9ea86cf7fcb1f47a14209a1e0fae527d843c0c32cbf9085e45769aed64894"
+  },
+  "hashesAfter": {
+    "public/assets/models/press-chamber.glb": "fae32ad1874c35a03682135303922f33d35a60d9bb8c5648f8921634ec07cc75",
+    "public/assets/models/salvage-cassette.glb": "5ef39a75ca73bf6de45605d32b09099ff66710fa0e009eacca1da9d55c704aee",
+    "src/render/gauge.ts": "32efce024fe6aa86dbb7d45fb56d57715823fd3807d2cc75283801ab420b10ca",
+    "docs/handoffs/B/material-study/inspector.ts": "c2d9ea86cf7fcb1f47a14209a1e0fae527d843c0c32cbf9085e45769aed64894"
+  },
+  "passed": true
+}

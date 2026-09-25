@@ -20,4 +20,40 @@ describe('app consumer integration', () => {
     expect(game.snapshot().tick).toBe(0); expect(renderer.render).toHaveBeenCalledTimes(8);
     runtime.dispose(); runtime.dispose(); runtime.frame(30); expect(renderer.dispose).toHaveBeenCalledOnce();
   });
+
+  it('replaces a failed renderer and disposes the previous and current instances once', () => {
+    const game = createGame(DEFAULT_GAME_CONFIG); const previous = fakeRenderer(); const replacement = fakeRenderer();
+    const runtime = createRuntime(game, previous, vi.fn());
+    runtime.replaceRenderer(replacement);
+    expect(previous.dispose).toHaveBeenCalledOnce();
+    runtime.frame(16.7);
+    expect(previous.render).not.toHaveBeenCalled();
+    expect(replacement.render).toHaveBeenCalledOnce();
+    runtime.dispose(); runtime.dispose();
+    expect(replacement.dispose).toHaveBeenCalledOnce();
+  });
+
+  it('disposes a renderer offered after runtime cleanup', () => {
+    const runtime = createRuntime(createGame(DEFAULT_GAME_CONFIG), fakeRenderer(), vi.fn());
+    const replacement = fakeRenderer();
+    runtime.dispose();
+    runtime.replaceRenderer(replacement);
+    expect(replacement.dispose).toHaveBeenCalledOnce();
+  });
+
+  it('keeps paused time stopped and resumes only after an explicit command', () => {
+    const game = createGame(DEFAULT_GAME_CONFIG); const renderer = fakeRenderer();
+    const runtime = createRuntime(game, renderer, vi.fn());
+    runtime.dispatch({ type: 'select', specimenId: 'salvage-core' });
+    runtime.dispatch({ type: 'press-start' });
+    runtime.frame(33.4);
+    const beforePause = game.snapshot();
+    runtime.dispatch({ type: 'pause' });
+    runtime.frame(100);
+    expect(game.snapshot().tick).toBe(beforePause.tick);
+    runtime.dispatch({ type: 'resume' });
+    runtime.frame(16.7);
+    expect(game.snapshot().tick).toBe(beforePause.tick + 1);
+    runtime.dispose();
+  });
 });

@@ -1,0 +1,33 @@
+:root { color-scheme: dark; font-family: "SF Pro Text", "Helvetica Neue", system-ui, sans-serif; color: #dce5e2; background: #071719; font-synthesis: none; }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+button, select, input { font: inherit; }
+.study { position: relative; width: 100%; height: 100%; min-height: 100svh; overflow: hidden; }
+#study-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.study-header { position: absolute; z-index: 2; top: 0; left: 0; right: 0; height: calc(50px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) max(18px, env(safe-area-inset-right)) 0 max(18px, env(safe-area-inset-left)); display: flex; justify-content: space-between; align-items: center; gap: 10px; background: linear-gradient(#081719ec, #081719a8); border-bottom: 1px solid #88a6a31a; }
+.wordmark { display: flex; align-items: center; font-size: 13px; font-weight: 750; letter-spacing: 0.12em; white-space: nowrap; }
+.wordmark > span:first-child { color: #e0aa60; }
+.study-label { margin-left: 17px; color: #9caeaa; font-size: 9px; letter-spacing: 0.13em; font-weight: 500; }
+.status { display: flex; align-items: center; gap: 6px; font-size: 8px; letter-spacing: 0.12em; white-space: nowrap; color: #a6b8b1; }
+.status-light { width: 4px; height: 4px; border-radius: 50%; background: #c99958; }
+.status-light[data-state="active"] { background: #8cb6a3; box-shadow: 0 0 9px #86b29870; }
+.status-light[data-state="error"] { background: #ff956e; }
+.scene-note { position: absolute; top: calc(66px + env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); display: grid; gap: 4px; color: #afc2bc80; font-size: 8px; letter-spacing: 0.2em; pointer-events: none; }
+.scene-note span:last-child { font-size: 7px; color: #afc2bc4f; }
+.control-dock { position: absolute; z-index: 2; bottom: 0; left: 0; right: 0; height: calc(130px + env(safe-area-inset-bottom)); padding: 8px max(18px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left)); display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #88a6a330; background: linear-gradient(0deg, #061315fa, #0a1b1ce8); backdrop-filter: blur(12px); }
+.select-row, .range-row, .study-footer { width: min(100%, 760px); align-self: center; }
+.select-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.select-control { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px; min-width: 0; }
+.select-control > span, .range-control > span { font-size: 8px; letter-spacing: 0.12em; color: #849e97; }
+select { width: 100%; min-width: 0; height: 34px; border: 0; border-bottom: 1px solid #617c713d; border-radius: 0; background: transparent; color: #dce5e2; font-size: 12px; cursor: pointer; padding: 0 2px; }
+select option { background: #102527; color: #dce5e2; }
+.range-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.range-control { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.range-control > span { display: flex; justify-content: space-between; gap: 4px; letter-spacing: 0.06em; }
+output { color: #c4d1c9; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+input[type="range"] { width: 100%; height: 29px; margin: 0; padding: 0; cursor: ew-resize; accent-color: #d0a66c; background: transparent; touch-action: pan-y; }
+.study-footer { margin-top: auto; display: flex; justify-content: space-between; gap: 12px; color: #58756a; font-size: 7px; letter-spacing: 0.1em; font-variant-numeric: tabular-nums; }
+.fatal-message { position: absolute; z-index: 3; left: 20px; right: 20px; bottom: calc(145px + env(safe-area-inset-bottom)); margin: 0; padding: 12px 14px; color: #ffc6a6; background: #2c1611ed; border: 1px solid #936b4c70; font-size: 12px; line-height: 1.5; }
+select:focus-visible, input:focus-visible { outline: 2px solid #dfb67b; outline-offset: 3px; }
+@media (max-width: 480px) { .study-label { margin-left: 10px; font-size: 7px; } .status { font-size: 7px; } .select-row { gap: 18px; } .select-control { gap: 8px; } .select-control > span { font-size: 7px; } select { font-size: 11px; } .range-row { gap: 10px; } .range-control > span { flex-direction: column; gap: 2px; font-size: 7px; } output { font-size: 9px; } input[type="range"] { height: 23px; } .study-footer { font-size: 6px; letter-spacing: 0.05em; } }
+@media (max-width: 350px) { .wordmark { font-size: 11px; } .study-label { font-size: 6px; margin-left: 7px; } .status { font-size: 6px; gap: 4px; } .control-dock { padding-left: 12px; padding-right: 12px; } }
