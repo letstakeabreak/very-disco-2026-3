@@ -1,26 +1,26 @@
 import type { GamePhase, GameSnapshot, SalvageId } from '../contracts';
 
 export const SPECIMEN_LABELS: Readonly<Record<SalvageId, string>> = {
-  'salvage-core': '금속 보호 하우징',
+  'salvage-core': '에너지 코어',
   'salvage-lens': '광학 렌즈',
   'salvage-cassette': '데이터 카세트',
 };
 
 const PHASE_LABELS: Readonly<Record<GamePhase, string>> = {
-  idle: '대기 중',
-  inspecting: '회수물 검사',
-  compressing: '압착 중',
-  settling: '결과 확인 중',
-  stored: '보관 완료',
-  failed: '회수 실패',
-  complete: '정산 완료',
-  paused: '일시 정지',
+  idle: '대기',
+  inspecting: '살펴보기',
+  compressing: '압축 중',
+  settling: '확인 중',
+  stored: '담았어요',
+  failed: '실패',
+  complete: '끝',
+  paused: '일시정지',
 };
 
 const TUTORIAL_STEPS = [
-  '회수물을 좌우로 끌어 살펴보세요.',
-  '압착 버튼을 누르고 있다가 원하는 순간 떼세요.',
-  '결과와 남은 공간을 확인하고 보관하세요.',
+  '좌우로 끌어서 물건을 돌려 보세요',
+  '버튼을 꾹 누르다가, 원하는 만큼 줄면 떼세요',
+  '크기와 가치를 보고 담아 보세요',
 ] as const;
 
 export function phaseLabel(phase: GamePhase): string {
@@ -48,23 +48,27 @@ export function remainingCapacity(snapshot: GameSnapshot): number {
 /** Core-committed volume, value and integrity of the lot in the press; never predicted. */
 export function specimenResult(snapshot: GameSnapshot): string {
   const specimen = snapshot.currentSpecimen;
-  if (specimen === null) return '물건을 검사해 압착을 시작하세요.';
-  const outcome = `${specimen.currentVolume.toFixed(2)}L · 가치 ${specimen.value}`;
-  if (specimen.compression01 === 0) return `${outcome} · 압착 전`;
-  return `압축 ${Math.round(specimen.compression01 * 100)}% · ${outcome} · 무결성 ${Math.round(specimen.integrity01 * 100)}%`;
+  if (specimen === null) return '아래에서 물건을 하나 골라 주세요';
+  const outcome = `크기 ${specimen.currentVolume.toFixed(2)}L · 가치 ${specimen.value}`;
+  if (specimen.compression01 === 0) return outcome;
+  return `${outcome} · 내구도 ${Math.round(specimen.integrity01 * 100)}%`;
+}
+
+export function failureTitle(reason: 'specimen-broken' | 'capacity-exceeded' | null): string {
+  return reason === 'capacity-exceeded' ? '케이스에 안 들어가요' : '부서졌어요';
 }
 
 export function failureText(reason: 'specimen-broken' | 'capacity-exceeded' | null): string {
   return reason === 'capacity-exceeded'
-    ? '케이스 용량을 초과했습니다. 이미 보관한 회수품은 유지됩니다. 이 회수물을 폐기하고 계속하거나, 확보한 점수로 정산하세요.'
-    : '회수물이 한계 압력에 도달해 가치를 잃었습니다. 폐기하고 남은 회수물로 계속하거나, 확보한 점수로 정산하세요.';
+    ? '남은 공간보다 커요. 담아 둔 물건은 그대로예요. 이건 버리고 계속하거나, 지금 점수로 마칠 수 있어요.'
+    : '이 물건은 이제 가치가 없어요. 버리고 다른 물건을 이어서 하거나, 지금 점수로 마칠 수 있어요.';
 }
 
 /** Discarding the last unprocessed lot completes the shift. */
 export function discardLabel(snapshot: GameSnapshot): string {
-  return snapshot.remainingSpecimenIds.length > 1 ? '폐기하고 계속' : '폐기하고 마치기';
+  return snapshot.remainingSpecimenIds.length > 1 ? '버리고 계속하기' : '버리고 마치기';
 }
 
 export function resultSummary(snapshot: GameSnapshot): string {
-  return `${snapshot.storedSpecimenIds.length}개 보관 · ${snapshot.volumeUsed.toFixed(2)}L 사용 · ${snapshot.score}점 확보`;
+  return `${snapshot.storedSpecimenIds.length}개 담음 · ${snapshot.volumeUsed.toFixed(2)}L 사용 · ${snapshot.score}점`;
 }
