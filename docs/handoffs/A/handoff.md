@@ -33,6 +33,7 @@ Contribution base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41
 
 ## Remaining work
 
+- Stored-damage continuity is missing from contract v1. `GameSnapshot` contains only `storedSpecimenIds`, so B's `visual-state.ts` renders every stored item with fixed compression `0.55` and damage `0`, and the core discards the exact stored `SpecimenState`. This conflicts with the PRD's stated connection between visible damage and calculated integrity. The direct fix is an approved snapshot-schema addition carrying each stored specimen's committed state, with updated fixtures, validators and B consumer tests. No shared contract change has been made pending explicit approval.
 - Integrate B and C contributions with A, run the connected game/render/app loop, and prepare the final integration candidate only after role contributions are reviewable.
 - Verify the actual press, storage and failure presentation against core snapshots; exercise input cancel/resume and renderer recovery in an integrated browser and on an iPhone Safari device.
 - Resolve or explicitly accept B's GPU startup failure and 60 fps gap; rerun the pinned Node/npm toolchain when available.
