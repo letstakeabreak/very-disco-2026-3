@@ -59,3 +59,15 @@ Current integration base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec9991
 - New voice: every sentence uses 해요체. Buttons are short verbs (시작하기, 꾹 눌러서 압축, 담기, 버리기, 마치기, 계속하기, 다시 하기). Stats use everyday words (점수, 남은 공간, 크기, 가치, 내구도). Only the `DEEP PRESS` brand stays in English. The failure title now depends on the reason (부서졌어요 / 케이스에 안 들어가요). The specimen label `금속 보호 하우징` became `에너지 코어`, matching its source prompt. Rule-document terms (store/discard/cash-out) are unchanged in code and contracts; only the player-facing words changed.
 - Korean text now wraps between words (`word-break: keep-all`) instead of inside them.
 - Verification: `npm run check` (91 tests) and C ownership passed. Six 390×844 screens were captured and read, with no overflow. A real-game run reached `작업 끝! 3개 담음 · 0.97L 사용 · 824점` with no browser errors.
+
+## M1 judgment cues and shift records (2026-09-25)
+
+- Assigned by the user to this session (authenticated GitHub account `letstakeabreak`, working in C's paths). Branch `role/c-app-m1` on A's contract 1.1.0 branch `role/a-core-m1`. Target `integration/v2`.
+- Status card cue line (mint; red while strained). It shows the core-revealed tolerance (`약해 보여요. 살살 누르세요` / `적당히 버틸 것 같아요` / `튼튼해 보여요. 세게 눌러도 돼요`), or `삐걱거려요! 곧 부서질 수 있어요` while pressing with `stress01 > 0`. Otherwise it nudges `돌려 보면 얼마나 버틸지 보여요`. The nudge is suppressed while the first-lot tutorial already asks to rotate.
+- While pressing, the result line shows the core's `previewVolume` and whether it fits the remaining space (`예상 크기 0.39L · 들어가요`). After settling it shows the committed size, value and durability, plus `안 들어가요` when it cannot be stored. No value is predicted and no rule is recomputed. The fit check is the same space prerequisite `canStore` already mirrors.
+- The completion dialog lists each stored lot (`에너지 코어 · 0.52L · 가치 260`), the score per liter, and a device-local best (`새 기록!` or `최고 기록 360점`). The best is kept in `localStorage` under `deep-press:best-score`, read and written in try/catch, so blocked storage keeps an in-memory best only.
+- Verification:
+  - `npm run check` (100 tests on the C branch; 101 with B merged) and C ownership against `role/a-core-m1` passed. New presentation tests cover the preview/fit text, cue priority and nudge suppression, and the result/record text.
+  - Headless Chromium with a real mouse drag and hold on the A+B+C candidate: tolerance revealed on drag, strain cue and red pressure while pressing, the committed result after release, the failure path.
+  - Completion with the breakdown and `새 기록!`, a later `최고 기록 360점`, and the best kept after reload. No browser errors.
+- Known limit: on the first lot, the tutorial and cue lines together make the status card about 16px taller. At 390×844 it then ends just above the gauge. Actual iPhone Safari remains with the user.
