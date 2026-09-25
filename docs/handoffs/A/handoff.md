@@ -12,12 +12,12 @@ Contribution base: `integration/v1` at `a1671d7d9d9b6596edb56fc4458ec99914de8d41
 - The complete-phase command gate accepts `restart` only, matching the PRD; `start` remains available in other non-complete phases and while paused.
 - Commands with unknown specimen IDs or non-finite inspection angles throw; valid commands issued in unsupported phases remain no-ops. Returned snapshots/configuration are deep-frozen, and each game clones its input.
 - `src/content/index.ts` now owns the PRD 1.0.1 seed/config and a `press-chamber` entity instead of returning the shared fixture. Each call validates and returns an isolated frozen copy.
-- Added tests for authored config, damage and volume formulas, settling, automatic breakage, pause during compression and settling, capacity failure and its 1e-9 boundary, discard/cash-out/restart, command validation and phase boundaries, stored/completed event immutability, last-item completion by store or discard, deterministic replay and step partitioning.
+- Added tests for authored config, damage and volume formulas, settling, automatic breakage, pause during compression and settling, capacity failure and its 1e-9 boundary, discard/cash-out/restart (including repeated restarts across active phases without leaking prior-round state or events), command validation and phase boundaries, stored/completed event immutability, last-item completion by store or discard, deterministic replay and step partitioning.
 
 ## Verification
 
-- Targeted: `PATH='/opt/homebrew/bin':$PATH npx vitest run tests/core/game.test.ts tests/core/content.test.ts` — 2 files, 14 tests passed.
-- Full: `PATH='/opt/homebrew/bin':$PATH npm run check` — bootstrap (23 frozen files), TypeScript, module boundaries, 9 files / 34 tests and Vite build passed.
+- Targeted: `PATH='/opt/homebrew/bin':$PATH npx vitest run tests/core/game.test.ts tests/core/content.test.ts` — 2 files, 15 tests passed.
+- Full: `PATH='/opt/homebrew/bin':$PATH npm run check` — bootstrap (23 frozen files), TypeScript, module boundaries, 9 files / 35 tests and Vite build passed.
 - A-only ownership check in a clean temporary checkout — `node scripts/check-ownership.mjs --role A --base HEAD^` passed for five A-owned paths. The normal mixed local worktree contains C changes, so this isolated run excludes them without altering either role's files.
 - Browser smoke on `http://127.0.0.1:4173/` with the A core and local C app: start/select, discard to the remaining lot list, select another lot, cash out with 0 score, restart, pause, and explicit resume all worked. The locally checked renderer is the neutral placeholder, so this is app/core flow evidence rather than B visual integration. A brief press-button click immediately released at 0%; it did not verify a sustained hold or rendered pressure response. The sustained pressure/settling rules remain covered by core tests.
 - Build reports a 548.03 kB minified JavaScript chunk, above Vite's 500 kB advisory threshold.
