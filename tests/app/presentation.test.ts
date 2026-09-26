@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GameSnapshot } from '../../src/contracts';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult, splitSentences, bindWords } from '../../src/app/presentation';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult, splitSentences, bindWords, kstDaySeed } from '../../src/app/presentation';
 
 const snapshot = (patch: Partial<GameSnapshot>): GameSnapshot => ({ ...SNAPSHOT_FIXTURES.inspecting, ...patch });
 const facts = (state: GameSnapshot): string[] => specimenResult(state).map((fact) => fact.warn ? `!${fact.text}` : fact.text);
@@ -77,5 +77,10 @@ describe('app presentation rules', () => {
     expect(bindWords('캡슐에 실을 수 있는 게 1리터짜리 하나뿐이거든요.')).toBe(`캡슐에 실을${nb}수 있는${nb}게 1리터짜리${nb}하나뿐이거든요.`);
     expect(bindWords('그럼')).toBe('그럼');
     expect(bindWords('손 떼요!').length).toBe('손 떼요!'.length);
+  });
+
+  it('keys today\'s salvage to the Korean calendar date', () => {
+    expect(kstDaySeed(new Date('2026-09-26T14:59:59Z'))).toBe(20260926);
+    expect(kstDaySeed(new Date('2026-09-26T15:00:00Z'))).toBe(20260927);
   });
 });

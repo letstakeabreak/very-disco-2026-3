@@ -108,3 +108,9 @@ export function bindWords(sentence: string): string {
     return out + (glue ? '\u00A0' : ' ') + word;
   }, '');
 }
+
+/** Today's salvage seed: the KST calendar date as YYYYMMDD, so every player on the same Korean day shares a lot. */
+export function kstDaySeed(now: Date): number {
+  const kst = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  return kst.getUTCFullYear() * 10000 + (kst.getUTCMonth() + 1) * 100 + kst.getUTCDate();
+}

@@ -39,4 +39,4 @@ Meshy 구독 소유자는 **letstakeabreak(역할 B)**다. 실제 생성·텍스
 
 압축 표현은 초기/중간/강한 압축의 2–3개 authored state 또는 morph로 준비한다. 실시간 범용 soft-body 시뮬레이션은 범위가 아니다. 압축·파손 정도는 snapshot의 pressure01/compression01/integrity01에서 읽으며 B가 판정을 새로 만들지 않는다. 별도 변형 GLB가 필요하면 `assets/models/<id>-compressed.glb`처럼 파생 파일을 두고 registry.sourcePath가 가리키는 manifest에 대응표를 기록한다. 새 공개 타입이 필요하면 공유 변경 절차를 따른다.
 
-오디오 에셋·합성음·재생 모듈은 범위에서 제외한다. loader 실패 시 개발 중에는 명시적인 placeholder와 오류 상태를 제공하고, 최종 제출에서는 누락을 성공으로 숨기지 않는다.
+오디오 에셋 파일은 쓰지 않는다. 효과음과 배경음은 PRD 1.2.0에 따라 C가 Web Audio로 합성한다. loader 실패 시 개발 중에는 명시적인 placeholder와 오류 상태를 제공하고, 최종 제출에서는 누락을 성공으로 숨기지 않는다.

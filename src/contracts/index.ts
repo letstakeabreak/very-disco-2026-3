@@ -1,5 +1,5 @@
-/** DEEP PRESS contract v1.1. Integration owner A controls approved shared changes. */
-export const CONTRACT_VERSION = '1.1.0' as const;
+/** DEEP PRESS contract v1.2. Integration owner A controls approved shared changes. */
+export const CONTRACT_VERSION = '1.2.0' as const;
 export const FIXED_STEP_MS = 1000 / 60;
 export const MAX_STEP_MS = 100;
 export type Vec3 = Readonly<{ x: number; y: number; z: number }>;
@@ -40,9 +40,9 @@ export type GameSnapshot = Readonly<{
   storedSpecimenIds: readonly SalvageId[];
   /** Committed state of each stored lot, in `storedSpecimenIds` order. */
   storedSpecimens: readonly SpecimenState[];
-  /** 0 at or below the current lot's safe pressure, rising to 1 at full pressure. Cue input only. */
+  /** 0 until 0.08 below the current lot's safe pressure, rising to 1 at full pressure. Cue input only. */
   stress01: number;
-  /** Liters the current lot would occupy at `pressure01`; null without a current lot. */
+  /** Liters the current lot would commit if released now, including the ram's lag; null without a current lot. */
   previewVolume: number | null;
   inspectionYawRad: number;
   entities: readonly SceneEntity[];

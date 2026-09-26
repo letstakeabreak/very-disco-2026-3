@@ -5,7 +5,7 @@ import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
 import { INTRO_STORY, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine } from './story';
 import type { CommsLine, StoryLine } from './story';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords } from './presentation';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords, kstDaySeed } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import logoLicenseUrl from './fonts/AlfaSlabOne-OFL.txt?url';
 import './style.css';
@@ -98,7 +98,7 @@ export function mountApp(root: HTMLElement): () => void {
   const transition = root.querySelector<HTMLElement>('#transition')!;
   const video = transition.querySelector('video')!;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const game = createGame(getGameConfig());
+  const game = createGame(getGameConfig(kstDaySeed(new Date())));
   const abort = new AbortController();
   const options = { signal: abort.signal };
   let started = false;
