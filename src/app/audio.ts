@@ -6,14 +6,14 @@ export type AudioCue = 'tap' | 'type' | 'hull' | 'alarm';
 /**
  * Game sound (G11) from CC0 recordings: see assets/source/audio (sources, cuts, make-audio.py).
  * Continuous layers follow the snapshot, one-shots follow core events and app cues. Silent until
- * the first user gesture unlocks it (iOS), while muted, and wherever Web Audio is missing.
+ * the first user gesture unlocks it (iOS), at zero volume, and wherever Web Audio is missing.
  */
 export interface GameAudio {
-  readonly muted: boolean;
   /** 'off' before the first gesture, then the context state (for diagnostics, like renderState). */
   readonly state: string;
   unlock(): void;
-  setMuted(muted: boolean): void;
+  /** Background bed and effect volumes, 0–1 each (settings menu). */
+  setVolumes(music: number, effects: number): void;
   setSuspended(suspended: boolean): void;
   update(snapshot: GameSnapshot): void;
   event(event: GameEvent, snapshot: GameSnapshot): void;
@@ -41,40 +41,40 @@ export function creakVoice(snapshot: GameSnapshot): number {
 }
 
 const silent: GameAudio = {
-  muted: true,
   state: 'off',
-  unlock() {}, setMuted() {}, setSuspended() {}, update() {}, event() {}, cue() {}, dispose() {},
+  unlock() {}, setVolumes() {}, setSuspended() {}, update() {}, event() {}, cue() {}, dispose() {},
 };
 
-export function createAudio(startMuted: boolean): GameAudio {
+export function createAudio(startMusic: number, startEffects: number): GameAudio {
   const AudioContextClass = typeof window === 'undefined' ? undefined : window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-  if (!AudioContextClass || typeof fetch === 'undefined') return { ...silent, muted: startMuted };
+  if (!AudioContextClass || typeof fetch === 'undefined') return silent;
   // Start the downloads at once; decoding waits for the context the first gesture creates.
   const files = new Map(SOUNDS.map((name) => [name, fetch(`${import.meta.env.BASE_URL}assets/audio/${name}.mp3`).then((response) => response.arrayBuffer()).catch(() => null)]));
   const buffers = new Map<Sound, AudioBuffer>();
   let context: AudioContext | null = null;
-  let master: GainNode | null = null;
-  let muted = startMuted;
+  let music: GainNode | null = null;
+  let effects: GainNode | null = null;
+  let volumes = { music: startMusic, effects: startEffects };
   let suspended = false;
   let press: { source: AudioBufferSourceNode; gain: GainNode } | null = null;
   let creak: { gain: GainNode } | null = null;
 
-  const loop = (name: Sound, level: number): { source: AudioBufferSourceNode; gain: GainNode } | null => {
+  const loop = (name: Sound, level: number, bus: GainNode | null): { source: AudioBufferSourceNode; gain: GainNode } | null => {
     const buffer = buffers.get(name);
-    if (!context || !master || !buffer) return null;
+    if (!context || !bus || !buffer) return null;
     const source = context.createBufferSource();
     const gain = context.createGain();
     source.buffer = buffer; source.loop = true;
     [source.loopStart, source.loopEnd] = LOOPS[name]!;
     gain.gain.value = level;
-    source.connect(gain).connect(master);
+    source.connect(gain).connect(bus);
     source.start(0, source.loopStart);
     return { source, gain };
   };
 
   const play = (name: Sound, level: number, options: { rate?: number; delay?: number; lowpass?: number } = {}): void => {
     const buffer = buffers.get(name);
-    if (!context || !master || !buffer) return;
+    if (!context || !effects || !buffer) return;
     const source = context.createBufferSource();
     const gain = context.createGain();
     source.buffer = buffer;
@@ -86,7 +86,7 @@ export function createAudio(startMuted: boolean): GameAudio {
       filter.type = 'lowpass'; filter.frequency.value = options.lowpass;
       tail = tail.connect(filter);
     }
-    tail.connect(gain).connect(master);
+    tail.connect(gain).connect(effects);
     source.start(context.currentTime + (options.delay ?? 0));
   };
 
@@ -94,9 +94,9 @@ export function createAudio(startMuted: boolean): GameAudio {
     const ctx = new AudioContextClass!();
     context = ctx;
     const compressor = ctx.createDynamicsCompressor();
-    master = ctx.createGain();
-    master.gain.value = muted ? 0 : 0.9;
-    master.connect(compressor).connect(ctx.destination);
+    compressor.connect(ctx.destination);
+    music = ctx.createGain(); music.gain.value = volumes.music; music.connect(compressor);
+    effects = ctx.createGain(); effects.gain.value = volumes.effects; effects.connect(compressor);
     void Promise.all(SOUNDS.map(async (name) => {
       const data = await files.get(name);
       if (!data || context !== ctx) return;
@@ -104,23 +104,24 @@ export function createAudio(startMuted: boolean): GameAudio {
     })).then(() => {
       if (context !== ctx) return;
       // The deep-sea bed runs for the whole session; the ram and the creak idle at zero gain.
-      loop('bed-sea', 0.6); loop('bed-hull', 0.4);
-      press = loop('press', 0);
-      const creakLayer = loop('creak', 0);
+      loop('bed-sea', 0.6, music); loop('bed-hull', 0.4, music);
+      press = loop('press', 0, effects);
+      const creakLayer = loop('creak', 0, effects);
       creak = creakLayer && { gain: creakLayer.gain };
     });
   }
 
   return {
-    get muted() { return muted; },
     get state() { return context?.state ?? 'off'; },
     unlock() {
       if (!context) { try { build(); } catch { return; } }
       if (!suspended) void context!.resume().catch(() => {});
     },
-    setMuted(next) {
-      muted = next;
-      if (context && master) master.gain.setTargetAtTime(next ? 0 : 0.9, context.currentTime, 0.05);
+    setVolumes(nextMusic, nextEffects) {
+      volumes = { music: nextMusic, effects: nextEffects };
+      if (!context) return;
+      music?.gain.setTargetAtTime(nextMusic, context.currentTime, 0.05);
+      effects?.gain.setTargetAtTime(nextEffects, context.currentTime, 0.05);
     },
     setSuspended(next) {
       suspended = next;

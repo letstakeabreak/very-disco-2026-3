@@ -3,6 +3,8 @@ import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createAudio } from './audio';
+import { parseSettings, typingDelay } from './settings';
+import type { Settings, TextSpeed } from './settings';
 import { createInputController, isGameplayPhase } from './input';
 import { CASE_CLOSING_LINE, HULL_LINES, INTRO_STORY, ROUND_START_LINE, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from './story';
 import type { CommsLine, StoryLine } from './story';
@@ -15,6 +17,7 @@ const KEYBOARD_POINTER_ID = -1;
 const INTRO_SEEN_KEY = 'deep-press:intro-seen';
 const TUTORIAL_DONE_KEY = 'deep-press:tutorial-done';
 const MUTED_KEY = 'deep-press:muted';
+const SETTINGS_KEY = 'deep-press:settings';
 const TYPE_MS_PER_CHAR = 38;
 const asset = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
 /** Today's device best lives under the day seed, so each day's salvage keeps its own record. */
@@ -113,7 +116,10 @@ export function mountApp(root: HTMLElement): () => void {
   const dayConfig = getGameConfig(kstDaySeed(new Date()));
   const dayBest = bestPlan(dayConfig).score;
   const game = createGame(dayConfig);
-  const audio = createAudio(readStored(MUTED_KEY) === '1');
+  let settings: Settings = parseSettings(readStored(SETTINGS_KEY), readStored(MUTED_KEY) === '1');
+  let settingsOpen = false;
+  const audio = createAudio(settings.music / 100, settings.effects / 100);
+  root.classList.toggle('no-shake', !settings.shake);
   const abort = new AbortController();
   const options = { signal: abort.signal };
   let started = false;
@@ -236,6 +242,14 @@ export function mountApp(root: HTMLElement): () => void {
     renderUi(game.snapshot());
   }
 
+  function saveSettings(next: Settings): void {
+    settings = next;
+    writeStored(SETTINGS_KEY, JSON.stringify(next));
+    audio.setVolumes(next.music / 100, next.effects / 100);
+    root.classList.toggle('no-shake', !next.shake);
+    renderUi(game.snapshot());
+  }
+
   function requestPause(): void {
     // A cancelled gesture may already have paused; otherwise pause here.
     input.cancel();
@@ -245,6 +259,7 @@ export function mountApp(root: HTMLElement): () => void {
 
   function overlayState(snapshot: GameSnapshot): string {
     if (fatalMessage) return 'fatal';
+    if (settingsOpen) return 'settings';
     if (storyPage !== null) return 'story';
     if (!started && !assetsReady) return 'loading';
     if (!started && snapshot.phase === 'idle') return 'start';
@@ -262,7 +277,8 @@ export function mountApp(root: HTMLElement): () => void {
 
   function visibleCharacters(line: StoryLine): number {
     if (lineRevealed || reducedMotion.matches) return line.text.length;
-    return Math.min(line.text.length, Math.floor((performance.now() - lineStartedAt) / TYPE_MS_PER_CHAR));
+    const delay = typingDelay(TYPE_MS_PER_CHAR, settings.textSpeed);
+    return delay ? Math.min(line.text.length, Math.floor((performance.now() - lineStartedAt) / delay)) : line.text.length;
   }
 
   /** Visual-novel stage: full-bleed scene, one standing speaker, a name plate and a typed line. */
@@ -374,7 +390,7 @@ export function mountApp(root: HTMLElement): () => void {
       overlay.className = `overlay overlay-${key}`;
       screen.inert = Boolean(key);
       const content: Record<string, string> = {
-        start: `<div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
+        start: `<button class="icon-button title-settings" data-action="settings-open" type="button" aria-label="설정"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.7 7.7 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.7 7.7 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg></button><div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
           <h2 id="dialog-title">눌러서 줄이고<br>1리터에 담아요.</h2>
           ${introSeen ? '<button data-action="quick-start" class="dialog-primary" type="button">시작하기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 보기</button>'
@@ -384,9 +400,16 @@ export function mountApp(root: HTMLElement): () => void {
         loading: '<div class="loading" role="status" aria-label="불러오는 중"><span class="loading-ring"></span></div>',
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
-        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="sound" class="dialog-secondary" type="button" id="sound-toggle"></button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
+        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="settings-open" class="dialog-secondary" type="button">설정</button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button" id="dialog-cash-out">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
         complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><div class="result-head"><p class="result-score"><strong id="result-score"></strong>점</p><p class="grade" id="result-grade"></p></div><p class="result-par" id="result-par"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        settings: `<section class="dialog-card settings-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">설정</h2>
+          <label class="setting"><span>배경음</span><input type="range" min="0" max="100" step="5" data-setting="music"><output data-for="music"></output></label>
+          <label class="setting"><span>효과음</span><input type="range" min="0" max="100" step="5" data-setting="effects"><output data-for="effects"></output></label>
+          <div class="setting"><span id="speed-label">대사 속도</span><div class="segmented" role="group" aria-labelledby="speed-label"><button type="button" data-action="speed" data-value="normal">보통</button><button type="button" data-action="speed" data-value="fast">빠르게</button><button type="button" data-action="speed" data-value="instant">바로</button></div></div>
+          <div class="setting"><span id="shake-label">화면 흔들림</span><button type="button" class="switch" role="switch" data-action="shake" aria-labelledby="shake-label"></button></div>
+          <button data-action="tutorial-reset" class="dialog-secondary" type="button" id="tutorial-reset">튜토리얼 다시 보기</button>
+          <button data-action="settings-close" class="dialog-primary" type="button">닫기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
@@ -420,8 +443,20 @@ export function mountApp(root: HTMLElement): () => void {
     }
     const record = overlay.querySelector<HTMLElement>('#dialog-record');
     if (record) { record.textContent = recordText(bestScore, newBest); record.hidden = !record.textContent; }
-    const soundToggle = overlay.querySelector<HTMLElement>('#sound-toggle');
-    if (soundToggle) soundToggle.textContent = audio.muted ? '소리 켜기' : '소리 끄기';
+    if (key === 'settings') {
+      for (const input of overlay.querySelectorAll<HTMLInputElement>('input[data-setting]')) {
+        const name = input.dataset.setting as 'music' | 'effects';
+        if (document.activeElement !== input) input.value = String(settings[name]);
+        overlay.querySelector<HTMLElement>(`output[data-for="${name}"]`)!.textContent = settings[name] ? String(settings[name]) : '끔';
+      }
+      for (const button of overlay.querySelectorAll<HTMLElement>('[data-action="speed"]')) button.setAttribute('aria-pressed', String(button.dataset.value === settings.textSpeed));
+      const shakeSwitch = overlay.querySelector<HTMLElement>('.switch')!;
+      shakeSwitch.setAttribute('aria-checked', String(settings.shake));
+      shakeSwitch.textContent = settings.shake ? '켜짐' : '꺼짐';
+      const replay = overlay.querySelector<HTMLButtonElement>('#tutorial-reset')!;
+      replay.disabled = !tutorialDone;
+      replay.textContent = tutorialDone ? '튜토리얼 다시 보기' : '다음 판에 튜토리얼이 나와요';
+    }
     const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
     if (discardChoice) discardChoice.textContent = discardLabel(snapshot);
     // G19: with no other lot left, finishing here is the same as discarding: offer one button.
@@ -490,14 +525,15 @@ export function mountApp(root: HTMLElement): () => void {
       voiceKey = key;
       // A line that was already read (for example, back from a strain warning) shows at once.
       voiceStartedAt = readLines.has(key) ? -Infinity : performance.now();
-      voiceHoldUntil = line ? performance.now() + line.text.length * 24 + 1500 : 0;
+      voiceHoldUntil = line ? performance.now() + line.text.length * typingDelay(24, settings.textSpeed) + 1500 : 0;
       commsName.textContent = line?.speaker ?? '';
       comms.dataset.speaker = line?.speaker ?? '';
       commsLine.textContent = line ? `${line.speaker}: ${line.text}` : '';
     }
-    if (line && performance.now() - voiceStartedAt >= line.text.length * 24) readLines.add(key);
+    const benchDelay = typingDelay(24, settings.textSpeed);
+    if (line && performance.now() - voiceStartedAt >= line.text.length * benchDelay) readLines.add(key);
     // The same typed delivery as the story, a little quicker at the bench.
-    if (line) typeLine(commsText, line.text, reducedMotion.matches ? line.text.length : Math.floor((performance.now() - voiceStartedAt) / 24));
+    if (line) typeLine(commsText, line.text, reducedMotion.matches || !benchDelay ? line.text.length : Math.floor((performance.now() - voiceStartedAt) / benchDelay));
     statusCard.classList.toggle('strained', snapshot.stress01 > 0);
     // Stay enabled while held: disabling the pressed button blurs it and drops capture.
     hold.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'compressing';
@@ -580,7 +616,11 @@ export function mountApp(root: HTMLElement): () => void {
     const target = event.target as HTMLElement;
     const action = target.closest<HTMLButtonElement>('button[data-action]')?.dataset.action ?? (target.closest('.vn') ? 'story-next' : undefined);
     if (action && action !== 'story-next') audio.cue('tap');
-    if (action === 'sound') { audio.setMuted(!audio.muted); writeStored(MUTED_KEY, audio.muted ? '1' : '0'); renderUi(game.snapshot()); }
+    if (action === 'settings-open') { settingsOpen = true; renderUi(game.snapshot()); }
+    if (action === 'settings-close') { settingsOpen = false; renderUi(game.snapshot()); }
+    if (action === 'speed') saveSettings({ ...settings, textSpeed: (target.closest<HTMLElement>('[data-value]')!.dataset.value as TextSpeed) });
+    if (action === 'shake') saveSettings({ ...settings, shake: !settings.shake });
+    if (action === 'tutorial-reset') { tutorialDone = false; writeStored(TUTORIAL_DONE_KEY, '0'); renderUi(game.snapshot()); }
     if (action === 'restart') beginRound(true);
     if (action === 'title') returnToTitle();
     if (action === 'resume') { runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot()); }
@@ -599,7 +639,12 @@ export function mountApp(root: HTMLElement): () => void {
   video.addEventListener('error', finishTransition, options);
   screen.addEventListener('animationend', () => screen.classList.remove('entering'), options);
   overlay.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && settingsOpen) { settingsOpen = false; renderUi(game.snapshot()); return; }
     if (event.key === 'Escape' && storyPage !== null && !fatalMessage) { storyPage = null; renderUi(game.snapshot()); }
+  }, options);
+  overlay.addEventListener('input', (event) => {
+    const input = (event.target as HTMLElement).closest<HTMLInputElement>('input[data-setting]');
+    if (input) saveSettings({ ...settings, [input.dataset.setting as 'music' | 'effects']: Number(input.value) });
   }, options);
   transition.addEventListener('keydown', (event) => { if (event.key === 'Escape') finishTransition(); }, options);
   manifest.addEventListener('click', (event) => {
