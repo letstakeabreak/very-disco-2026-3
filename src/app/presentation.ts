@@ -1,4 +1,4 @@
-import type { GamePhase, GameSnapshot, SalvageId } from '../contracts';
+import type { GameConfig, GamePhase, GameSnapshot, SalvageId, SpecimenDefinition } from '../contracts';
 
 export const SPECIMEN_LABELS: Readonly<Record<SalvageId, string>> = {
   'salvage-core': '에너지 코어',
@@ -40,7 +40,7 @@ export interface Fact { readonly text: string; readonly warn?: boolean }
 /** Short facts for the lot in the press, shown as separate chips. While pressing: the core's size preview and fit. */
 export function specimenResult(snapshot: GameSnapshot): readonly Fact[] {
   const specimen = snapshot.currentSpecimen;
-  if (specimen === null) return [{ text: '다음 물건을 올려요' }];
+  if (specimen === null) return [{ text: '담을 물건을 골라요' }];
   const room = remainingCapacity(snapshot) + 1e-9;
   if (snapshot.phase === 'compressing' && snapshot.previewVolume !== null) {
     const fits = snapshot.previewVolume <= room;
@@ -52,14 +52,51 @@ export function specimenResult(snapshot: GameSnapshot): readonly Fact[] {
   return facts;
 }
 
-/** Stored lots as [name, volume, value] rows. */
-export function resultItems(snapshot: GameSnapshot): string[][] {
-  return snapshot.storedSpecimens.map((item) => [SPECIMEN_LABELS[item.id], `${item.currentVolume.toFixed(2)}L`, `가치 ${item.value}`]);
+/** What happened to each lot this round. `pending` lots can still be pressed; `blocked` ones can no longer fit at all. */
+export type LotOutcome = 'pending' | 'blocked' | 'stored' | 'damaged' | 'broken' | 'left';
+
+/** True while even the lot's smallest possible size still fits the room left in the case. */
+export function canStillFit(snapshot: GameSnapshot, definition: SpecimenDefinition): boolean {
+  return definition.minimumVolume <= remainingCapacity(snapshot) + 1e-9;
 }
 
-/** The device best: a new best replaces the old line. */
+/**
+ * Outcomes from the committed state; `broken` holds lots that reached full pressure this round. With
+ * `config`, a pending lot whose smallest size no longer fits is `blocked`.
+ */
+export function lotOutcomes(snapshot: GameSnapshot, broken: ReadonlySet<SalvageId>, config?: GameConfig): Record<SalvageId, LotOutcome> {
+  const outcome = (id: SalvageId): LotOutcome => {
+    const stored = snapshot.storedSpecimens.find((item) => item.id === id);
+    if (stored) return stored.integrity01 < 1 ? 'damaged' : 'stored';
+    if (broken.has(id)) return 'broken';
+    if (!snapshot.remainingSpecimenIds.includes(id) || snapshot.phase === 'complete') return 'left';
+    const definition = config?.specimens.find((item) => item.id === id);
+    return definition && snapshot.currentSpecimen?.id !== id && !canStillFit(snapshot, definition) ? 'blocked' : 'pending';
+  };
+  return { 'salvage-core': outcome('salvage-core'), 'salvage-lens': outcome('salvage-lens'), 'salvage-cassette': outcome('salvage-cassette') };
+}
+
+/** Result rows [name, state, points] in manifest order; points add up to the score (value + recovery bonus). */
+export function resultRows(snapshot: GameSnapshot, config: GameConfig, outcomes: Record<SalvageId, LotOutcome>): string[][] {
+  return config.specimens.map(({ id }) => {
+    const stored = snapshot.storedSpecimens.find((item) => item.id === id);
+    if (stored) return [SPECIMEN_LABELS[id], `${stored.currentVolume.toFixed(2)}L${outcomes[id] === 'damaged' ? ' 손상' : ''}`, `${stored.value} + ${config.collectionBonus}`];
+    return [SPECIMEN_LABELS[id], outcomes[id] === 'broken' ? '부서짐' : '두고 옴', '0'];
+  });
+}
+
+export type Grade = 'S' | 'A' | 'B' | 'C';
+
+/** Share of the day's best score and its grade (PRD v1.2: S 98%, A 90%, B 75%). */
+export function gradeFor(score: number, best: number): { percent: number; grade: Grade } {
+  const percent = best > 0 ? Math.min(100, Math.floor(score / best * 100)) : 0;
+  const grade: Grade = percent >= 98 ? 'S' : percent >= 90 ? 'A' : percent >= 75 ? 'B' : 'C';
+  return { percent, grade };
+}
+
+/** Today's device best: a new best replaces the old line. */
 export function recordText(best: number | null, isNewBest: boolean): string {
-  return isNewBest ? '새 기록이에요' : best !== null ? `최고 기록 ${best}점` : '';
+  return isNewBest ? '오늘 새 기록이에요' : best !== null ? `오늘 최고 기록 ${best.toLocaleString('ko-KR')}점` : '';
 }
 
 export function failureTitle(reason: 'specimen-broken' | 'capacity-exceeded' | null): string {

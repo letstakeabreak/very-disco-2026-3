@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { INTRO_STORY, endingStory, reactionLine, toleranceLine, tutorialLine } from '../../src/app/story';
+import { CASE_CLOSING_LINE, INTRO_STORY, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from '../../src/app/story';
+import { authoredGameConfig } from '../../src/core';
 
 const text = (lines: readonly { text: string }[]) => lines.map(line => line.text).join(' ');
 
@@ -8,6 +9,7 @@ describe('recovery story follows committed cargo', () => {
   it('opens on narration and hands off to the workbench', () => {
     expect(INTRO_STORY[0]).toMatchObject({ speaker: null, pose: null, scene: 'sea' });
     expect(INTRO_STORY.at(-1)).toMatchObject({ speaker: '도현', scene: 'room' });
+    expect(INTRO_STORY.length).toBeLessThanOrEqual(6);
     for (const line of INTRO_STORY) expect(line.speaker === null).toBe(line.pose === null);
   });
 
@@ -44,9 +46,28 @@ describe('the characters keep talking during the round', () => {
     expect(reactionLine({ type: 'failed', tick: 1, reason: 'specimen-broken' }, brokenCassette)!.text).toContain('기록');
   });
 
-  it('keeps the tutorial and tolerance advice in 도현\'s voice', () => {
-    expect(tutorialLine(0).text).toContain('좌우로 끌어서');
-    expect(tutorialLine(99)).toEqual(tutorialLine(2));
+  it('reads the tutorial stage from the round and names the tolerance before pressing', () => {
+    const { idle, inspecting } = SNAPSHOT_FIXTURES;
+    const revealed = { ...inspecting, currentSpecimen: { ...inspecting.currentSpecimen!, tolerance: 'sturdy' as const } };
+    const pressed = { ...revealed, currentSpecimen: { ...revealed.currentSpecimen, compression01: 0.4 } };
+    expect(tutorialStage(idle)).toBe('plan');
+    expect(tutorialStage(inspecting)).toBe('rotate');
+    expect(tutorialStage(revealed)).toBe('press');
+    expect(tutorialStage(pressed)).toBe('store');
+    expect(tutorialLine('plan', null).text).toContain('골라');
+    expect(tutorialLine('rotate', null).text).toContain('좌우로 끌어서');
+    expect(tutorialLine('press', 'sturdy').text).toBe('튼튼하네요. 압축하기를 누르다 삐걱대면 떼요.');
     expect(toleranceLine('fragile')).toEqual({ speaker: '도현', text: '약해 보여요. 살살 눌러요.' });
+  });
+
+  it('names a lot that can no longer fit instead of asking for it, and closes the case when nothing fits', () => {
+    const config = authoredGameConfig();
+    const { stored } = SNAPSHOT_FIXTURES;
+    const event = { type: 'stored', tick: 1, specimenId: 'salvage-core', scoreDelta: 360 } as const;
+    const tight = { ...stored, volumeUsed: 0.9, remainingSpecimenIds: ['salvage-lens', 'salvage-cassette'] as const };
+    expect(reactionLine(event, tight, config)).toEqual(CASE_CLOSING_LINE);
+    const oneLeft = { ...stored, volumeUsed: 0.8, remainingSpecimenIds: ['salvage-lens', 'salvage-cassette'] as const };
+    expect(reactionLine(event, oneLeft, config)).toEqual({ speaker: '도현', text: '광학 렌즈는 이제 어떻게 눌러도 안 들어가요.' });
+    expect(reactionLine(event, { ...stored, volumeUsed: 0.4 }, config)!.text).toContain('남았어요');
   });
 });

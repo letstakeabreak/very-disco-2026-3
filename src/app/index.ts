@@ -1,26 +1,33 @@
-import { createGame, getGameConfig } from '../core';
+import { bestPlan, createGame, getGameConfig } from '../core';
 import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
-import { INTRO_STORY, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine } from './story';
+import { CASE_CLOSING_LINE, INTRO_STORY, ROUND_START_LINE, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from './story';
 import type { CommsLine, StoryLine } from './story';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords, kstDaySeed } from './presentation';
+import { canStore, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords, kstDaySeed } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import logoLicenseUrl from './fonts/AlfaSlabOne-OFL.txt?url';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
-const BEST_SCORE_KEY = 'deep-press:best-score';
+const INTRO_SEEN_KEY = 'deep-press:intro-seen';
+const TUTORIAL_DONE_KEY = 'deep-press:tutorial-done';
 const TYPE_MS_PER_CHAR = 38;
 const asset = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
+/** Today's device best lives under the day seed, so each day's salvage keeps its own record. */
+const bestScoreKey = (seed: number): string => `deep-press:best:${seed}`;
 
-/** Device-local best only; storage may be unavailable (private mode, blocked site data). */
-function readBestScore(): number | null {
-  try {
-    const value = Number(localStorage.getItem(BEST_SCORE_KEY));
-    return Number.isInteger(value) && value > 0 ? value : null;
-  } catch { return null; }
+/** Device-local memory only; storage may be unavailable (private mode, blocked site data). */
+function readStored(key: string): string | null {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+function writeStored(key: string, value: string): void {
+  try { localStorage.setItem(key, value); } catch { /* keep the in-memory value */ }
+}
+function readBestScore(seed: number): number | null {
+  const value = Number(readStored(bestScoreKey(seed)));
+  return Number.isInteger(value) && value > 0 ? value : null;
 }
 
 /**
@@ -60,8 +67,8 @@ export function mountApp(root: HTMLElement): () => void {
   root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 끌어서 물건을 돌려 볼 수 있어요."></canvas>
     <div class="screen hud-hidden">
       <header class="topbar" aria-label="현황"><div class="metrics"><p><span>점수</span><strong id="score">0</strong></p><p><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></p></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
-      <section class="status-card" aria-label="지금 물건과 압력">
-        <div class="status-head"><button class="swap" id="swap" type="button" disabled></button><strong class="pressure-value" id="pressure-value" aria-label="압력">0%</strong></div>
+      <section class="status-card" aria-label="오늘 건진 물건과 지금 물건">
+        <div class="manifest" id="manifest" role="group" aria-label="오늘 건진 물건"></div>
         <p class="facts" id="result-value"></p>
         <div class="pressure-track" aria-hidden="true"><span id="pressure-bar"></span></div>
       </section>
@@ -78,14 +85,13 @@ export function mountApp(root: HTMLElement): () => void {
   const screen = root.querySelector<HTMLElement>('.screen')!;
   const score = root.querySelector<HTMLElement>('#score')!;
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
-  const swap = root.querySelector<HTMLButtonElement>('#swap')!;
+  const manifest = root.querySelector<HTMLElement>('#manifest')!;
   const comms = root.querySelector<HTMLElement>('#comms')!;
   const commsName = root.querySelector<HTMLElement>('#comms-name')!;
   const commsText = root.querySelector<HTMLElement>('#comms-text')!;
   const commsLine = root.querySelector<HTMLElement>('#comms-line')!;
   const statusCard = root.querySelector<HTMLElement>('.status-card')!;
   const workbenchInput = root.querySelector<HTMLElement>('#workbench-input')!;
-  const pressureValue = root.querySelector<HTMLElement>('#pressure-value')!;
   const pressureBar = root.querySelector<HTMLElement>('#pressure-bar')!;
   const resultValue = root.querySelector<HTMLElement>('#result-value')!;
   const hold = root.querySelector<HTMLButtonElement>('#hold')!;
@@ -98,15 +104,18 @@ export function mountApp(root: HTMLElement): () => void {
   const transition = root.querySelector<HTMLElement>('#transition')!;
   const video = transition.querySelector('video')!;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const game = createGame(getGameConfig(kstDaySeed(new Date())));
+  const dayConfig = getGameConfig(kstDaySeed(new Date()));
+  const dayBest = bestPlan(dayConfig).score;
+  const game = createGame(dayConfig);
   const abort = new AbortController();
   const options = { signal: abort.signal };
   let started = false;
-  let tutorialStep = 0;
-  let tutorialSpecimenId: SalvageId | null = null;
-  let tutorialComplete = false;
+  let introSeen = readStored(INTRO_SEEN_KEY) === '1';
+  let tutorialDone = readStored(TUTORIAL_DONE_KEY) === '1';
+  const broken = new Set<SalvageId>();
+  let renderedManifest = '';
   let failureReason: 'specimen-broken' | 'capacity-exceeded' | null = null;
-  let bestScore = readBestScore();
+  let bestScore = readBestScore(dayConfig.seed);
   let newBest = false;
   let fatalMessage = '';
   let overlayKey = '';
@@ -119,8 +128,8 @@ export function mountApp(root: HTMLElement): () => void {
   let transitioning = false;
   let hudHidden = true;
   let transitionTimer = 0;
-  let autoSelectAt = 0;
   let voice: CommsLine | null = null;
+  let closeCaseAt = 0;
   let toleranceVoiced: SalvageId | null = null;
   let voiceKey = '';
   let voiceStartedAt = 0;
@@ -133,9 +142,7 @@ export function mountApp(root: HTMLElement): () => void {
   const input = createInputController({
     getSnapshot: () => game.snapshot(),
     dispatch: (command) => runtime.dispatch(command),
-    onInspectionMoved: () => {
-      if (!tutorialComplete && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 1);
-    },
+    onInspectionMoved: () => {},
   });
   handleRendererFatal = () => {
     input.cancel();
@@ -145,19 +152,20 @@ export function mountApp(root: HTMLElement): () => void {
 
   function consumeEvents(events: readonly GameEvent[]): void {
     for (const event of events) {
-      if (event.type === 'press-released' && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 2);
-      if (event.type === 'stored' && event.specimenId === tutorialSpecimenId) tutorialComplete = true;
+      // The tutorial is done once a first lot is banked; later runs on this device skip it.
+      if (event.type === 'stored' && !tutorialDone) { tutorialDone = true; writeStored(TUTORIAL_DONE_KEY, '1'); }
       if (event.type === 'failed') failureReason = event.reason;
+      if (event.type === 'failed' && event.reason === 'specimen-broken') { const id = game.snapshot().currentSpecimen?.id; if (id) broken.add(id); }
       if (event.type === 'completed' && event.score > (bestScore ?? 0)) {
         bestScore = event.score; newBest = true;
-        try { localStorage.setItem(BEST_SCORE_KEY, String(event.score)); } catch { /* keep the in-memory best */ }
+        writeStored(bestScoreKey(dayConfig.seed), String(event.score));
       }
       if (event.type === 'phase-changed' && event.to === 'idle') failureReason = null;
-      // Put the next lot in the press once the banked or discarded one has cleared.
-      if (event.type === 'stored' || event.type === 'discarded') autoSelectAt = performance.now() + 1000;
       const snapshot = game.snapshot();
       if (event.type === 'specimen-selected') toleranceVoiced = snapshot.currentSpecimen?.tolerance ? event.specimenId : null;
-      voice = reactionLine(event, snapshot) ?? voice;
+      voice = reactionLine(event, snapshot, dayConfig) ?? voice;
+      // Nothing left fits: let 도현's line land, then close the case.
+      if (voice === CASE_CLOSING_LINE && event.type === 'stored') closeCaseAt = performance.now() + 2200;
     }
   }
 
@@ -171,24 +179,19 @@ export function mountApp(root: HTMLElement): () => void {
     storyPage = null;
     outroPage = 0;
     endingSeen = false;
-    tutorialStep = 0;
-    tutorialComplete = false;
+    broken.clear();
     failureReason = null;
     newBest = false;
-    autoSelectAt = 0;
-    voice = null;
+    voice = ROUND_START_LINE;
+    closeCaseAt = 0;
     toleranceVoiced = null;
   }
 
   function beginRound(reset: boolean): void {
     clearRound();
     started = true;
+    // The player picks the first lot from the manifest after seeing all three.
     runtime.dispatch({ type: reset ? 'restart' : 'start' });
-    const firstId = game.snapshot().remainingSpecimenIds[0];
-    if (firstId) {
-      tutorialSpecimenId = firstId;
-      selectSpecimen(firstId);
-    }
     renderUi(game.snapshot());
     resize();
     hold.focus({ preventScroll: true });
@@ -291,6 +294,7 @@ export function mountApp(root: HTMLElement): () => void {
 
   function finishIntro(): void {
     storyPage = null;
+    if (!introSeen) { introSeen = true; writeStored(INTRO_SEEN_KEY, '1'); }
     if (started) {
       runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot());
       hold.focus({ preventScroll: true });
@@ -335,14 +339,15 @@ export function mountApp(root: HTMLElement): () => void {
         start: `<div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
           <h2 id="dialog-title">남길 것을<br>골라 주세요.</h2>
-          <button data-action="story-open" class="dialog-primary" type="button">시작하기</button>
+          ${introSeen ? '<button data-action="quick-start" class="dialog-primary" type="button">시작하기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 보기</button>'
+            : '<button data-action="story-open" class="dialog-primary" type="button">시작하기</button>'}
           <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Alfa Slab One (Jm Solé)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
         paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
-        complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><p class="result-score"><strong id="result-score"></strong>점</p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><div class="result-head"><p class="result-score"><strong id="result-score"></strong>점</p><p class="grade" id="result-grade"></p></div><p class="result-par" id="result-par"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
@@ -353,13 +358,25 @@ export function mountApp(root: HTMLElement): () => void {
     }
     renderStory(snapshot);
     const finalScore = overlay.querySelector<HTMLElement>('#result-score');
-    if (finalScore) finalScore.textContent = snapshot.score.toLocaleString('ko-KR');
+    if (finalScore) {
+      finalScore.textContent = snapshot.score.toLocaleString('ko-KR');
+      const { percent, grade } = gradeFor(snapshot.score, dayBest);
+      const gradeBadge = overlay.querySelector<HTMLElement>('#result-grade')!;
+      gradeBadge.textContent = grade;
+      gradeBadge.dataset.grade = grade;
+      gradeBadge.setAttribute('aria-label', `등급 ${grade}`);
+      overlay.querySelector<HTMLElement>('#result-par')!.textContent = `오늘 만점 ${dayBest.toLocaleString('ko-KR')}점 중 ${percent}%`;
+    }
     const copy = overlay.querySelector<HTMLElement>('#dialog-copy');
     const title = overlay.querySelector<HTMLElement>('#dialog-title');
     if (title && key === 'failed') title.textContent = failureTitle(failureReason);
     if (copy && key === 'failed') copy.textContent = failureText(failureReason);
     const items = overlay.querySelector<HTMLElement>('#dialog-items');
-    if (items) { items.innerHTML = resultItems(snapshot).map((row) => `<li>${row.map((cell) => `<span>${cell}</span>`).join('')}</li>`).join(''); items.hidden = !items.children.length; }
+    if (items) {
+      const outcomes = lotOutcomes(snapshot, broken);
+      const rows = resultRows(snapshot, dayConfig, outcomes).map((row, index) => `<li data-outcome="${outcomes[dayConfig.specimens[index]!.id]}">${row.map((cell) => `<span>${cell}</span>`).join('')}</li>`).join('');
+      if (items.innerHTML !== rows) items.innerHTML = rows;
+    }
     const record = overlay.querySelector<HTMLElement>('#dialog-record');
     if (record) { record.textContent = recordText(bestScore, newBest); record.hidden = !record.textContent; }
     const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
@@ -367,34 +384,42 @@ export function mountApp(root: HTMLElement): () => void {
     if (copy && key === 'fatal') copy.textContent = `안 되면 새로고침해 주세요. (${fatalMessage})`;
   }
 
-  /** The next remaining lot after the one in the press, for the swap control. */
-  function nextLot(snapshot: GameSnapshot): SalvageId | null {
-    const ids = snapshot.remainingSpecimenIds;
-    const current = snapshot.currentSpecimen;
-    if (!current || ids.length < 2) return null;
-    return ids[(ids.indexOf(current.id) + 1) % ids.length] ?? null;
+  /**
+   * All three lots from the start of the round (G1): size and value to plan with, then what became of
+   * each. A lot can be chosen whenever the core's select rule allows it (nothing pressed yet).
+   */
+  function renderManifest(snapshot: GameSnapshot): void {
+    const outcomes = lotOutcomes(snapshot, broken, dayConfig);
+    const mayChoose = snapshot.phase === 'idle' || snapshot.phase === 'stored'
+      || (snapshot.phase === 'inspecting' && snapshot.currentSpecimen?.compression01 === 0);
+    const html = dayConfig.specimens.map((lot) => {
+      const current = snapshot.currentSpecimen?.id === lot.id;
+      const outcome = outcomes[lot.id];
+      const stored = snapshot.storedSpecimens.find((item) => item.id === lot.id);
+      const meta = stored ? [`${stored.currentVolume.toFixed(2)}L`, `가치 ${stored.value}`]
+        : outcome === 'broken' ? ['부서짐'] : outcome === 'left' ? ['두고 옴'] : outcome === 'blocked' ? ['안 들어감'] : [`${lot.initialVolume.toFixed(2)}L`, `가치 ${lot.baseValue}`];
+      const selectable = outcome === 'pending' && !current && mayChoose;
+      return `<button type="button" class="lot" data-lot="${lot.id}" data-state="${current ? 'current' : outcome}"${selectable ? '' : ' disabled'}${current ? ' aria-current="true"' : ''}><span class="lot-name">${SPECIMEN_LABELS[lot.id]}</span><span class="lot-meta">${meta.map((part) => `<span>${part}</span>`).join('')}</span></button>`;
+    }).join('');
+    if (html !== renderedManifest) { renderedManifest = html; manifest.innerHTML = html; }
   }
 
   function renderUi(snapshot: GameSnapshot): void {
     score.textContent = snapshot.score.toLocaleString('ko-KR');
     capacity.textContent = remainingCapacity(snapshot).toFixed(2);
-    const label = snapshot.currentSpecimen ? SPECIMEN_LABELS[snapshot.currentSpecimen.id] : '빈 프레스';
-    // Swapping mirrors the core's select rule: only an untouched lot can go back.
-    swap.disabled = snapshot.phase !== 'inspecting' || snapshot.currentSpecimen?.compression01 !== 0 || nextLot(snapshot) === null;
-    if (swap.textContent !== label) swap.textContent = label;
-    swap.setAttribute('aria-label', swap.disabled ? label : `${label}, 다른 물건으로 바꾸기`);
+    renderManifest(snapshot);
     const pressure = Math.round(snapshot.pressure01 * 100);
-    pressureValue.textContent = `${pressure}%`;
     pressureBar.style.transform = `scaleX(${snapshot.pressure01})`;
     statusCard.style.setProperty('--light-x', `${14 + snapshot.pressure01 * 72}%`);
     hold.classList.toggle('pressing', snapshot.phase === 'compressing');
     const facts = specimenResult(snapshot).map((fact) => `<span${fact.warn ? ' class="warn"' : ''}>${fact.text}</span>`).join('');
     if (resultValue.innerHTML !== facts) resultValue.innerHTML = facts;
-    const tutorialActive = started && !tutorialComplete && snapshot.currentSpecimen?.id === tutorialSpecimenId && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
+    const tutorialActive = started && !tutorialDone && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
     const lot = snapshot.currentSpecimen;
     if (lot?.tolerance && toleranceVoiced !== lot.id) { toleranceVoiced = lot.id; voice = toleranceLine(lot.tolerance); }
-    // Live strain, then the first-lot tutorial, then the latest reaction.
-    const line = snapshot.phase === 'compressing' && snapshot.stress01 > 0 ? STRAIN_LINE : tutorialActive ? tutorialLine(tutorialStep) : voice;
+    // Live strain, then the first-run tutorial (read from the round), then the latest reaction.
+    const line = snapshot.phase === 'compressing' && snapshot.stress01 > 0 ? STRAIN_LINE
+      : tutorialActive ? tutorialLine(tutorialStage(snapshot), lot?.tolerance ?? null) : voice;
     comms.hidden = line === null;
     comms.classList.toggle('strained', line === STRAIN_LINE);
     const key = line ? `${line.speaker}:${line.text}` : '';
@@ -482,6 +507,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (action === 'discard') { runtime.dispatch({ type: 'discard' }); renderUi(game.snapshot()); }
     if (action === 'retry-renderer') retryRenderer();
     if (action === 'story-open') openStory();
+    if (action === 'quick-start') playTransition();
     if (action === 'story-next') advanceStory(false);
     if (action === 'story-skip') advanceStory(true);
   }, options);
@@ -494,9 +520,9 @@ export function mountApp(root: HTMLElement): () => void {
     if (event.key === 'Escape' && storyPage !== null && !fatalMessage) { storyPage = null; renderUi(game.snapshot()); }
   }, options);
   transition.addEventListener('keydown', (event) => { if (event.key === 'Escape') finishTransition(); }, options);
-  swap.addEventListener('click', () => {
-    const next = nextLot(game.snapshot());
-    if (next) selectSpecimen(next);
+  manifest.addEventListener('click', (event) => {
+    const id = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-lot]:not(:disabled)')?.dataset.lot as SalvageId | undefined;
+    if (id) selectSpecimen(id);
   }, options);
   store.addEventListener('click', () => runtime.dispatch({ type: 'store' }), options);
   discard.addEventListener('click', () => runtime.dispatch({ type: 'discard' }), options);
@@ -541,12 +567,7 @@ export function mountApp(root: HTMLElement): () => void {
   const frame = (now: number): void => {
     const dt = previousTime === null ? 0 : now - previousTime;
     previousTime = now;
-    const phase = game.snapshot().phase;
-    if (autoSelectAt && now >= autoSelectAt && (phase === 'idle' || phase === 'stored')) {
-      autoSelectAt = 0;
-      const next = game.snapshot().remainingSpecimenIds[0];
-      if (next) selectSpecimen(next);
-    }
+    if (closeCaseAt && now >= closeCaseAt && ['idle', 'stored'].includes(game.snapshot().phase)) { closeCaseAt = 0; runtime.dispatch({ type: 'cash-out' }); }
     runtime.frame(dt);
     renderUi(game.snapshot());
     frameId = requestAnimationFrame(frame);
