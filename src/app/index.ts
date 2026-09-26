@@ -296,7 +296,7 @@ export function mountApp(root: HTMLElement): () => void {
       const content: Record<string, string> = {
         start: `<div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-          <h2 id="dialog-title">남길 것을,<br>골라 주세요.</h2>
+          <h2 id="dialog-title">남길 것을<br>골라 주세요.</h2>
           <button data-action="story-open" class="dialog-primary" type="button">시작하기</button>
           <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Cafe24 PRO SLIM Max (카페24)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 이용 조건</a><a href="${logoOflUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
