@@ -3,9 +3,9 @@ import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
-import { CASE_CLOSING_LINE, INTRO_STORY, ROUND_START_LINE, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from './story';
+import { CASE_CLOSING_LINE, HULL_LINES, INTRO_STORY, ROUND_START_LINE, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from './story';
 import type { CommsLine, StoryLine } from './story';
-import { canStore, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords, kstDaySeed } from './presentation';
+import { canStore, caseFill, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords, kstDaySeed } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import logoLicenseUrl from './fonts/AlfaSlabOne-OFL.txt?url';
 import './style.css';
@@ -66,7 +66,7 @@ export function mountApp(root: HTMLElement): () => void {
   root.style.setProperty('--workshop-ambient', `url("${ambientUrl.href}")`);
   root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 끌어서 물건을 돌려 볼 수 있어요."></canvas>
     <div class="screen hud-hidden">
-      <header class="topbar" aria-label="현황"><div class="metrics"><p><span>점수</span><strong id="score">0</strong></p><p><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></p></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
+      <header class="topbar" aria-label="현황"><div class="metrics"><p><span>점수</span><strong id="score">0</strong></p><p><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></p><div class="case-fill" id="case-fill" aria-hidden="true"></div></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
       <section class="status-card" aria-label="오늘 건진 물건과 지금 물건">
         <div class="manifest" id="manifest" role="group" aria-label="오늘 건진 물건"></div>
         <p class="facts" id="result-value"></p>
@@ -79,6 +79,7 @@ export function mountApp(root: HTMLElement): () => void {
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>
+    <div class="hull" id="hull" aria-hidden="true"></div>
     <div class="transition" id="transition" hidden><video src="${asset('video/descent.mp4')}" muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video><button class="transition-skip" type="button">건너뛰기</button></div>`;
 
   let canvas = root.querySelector('canvas')!;
@@ -86,6 +87,7 @@ export function mountApp(root: HTMLElement): () => void {
   const score = root.querySelector<HTMLElement>('#score')!;
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
   const manifest = root.querySelector<HTMLElement>('#manifest')!;
+  const fill = root.querySelector<HTMLElement>('#case-fill')!;
   const comms = root.querySelector<HTMLElement>('#comms')!;
   const commsName = root.querySelector<HTMLElement>('#comms-name')!;
   const commsText = root.querySelector<HTMLElement>('#comms-text')!;
@@ -102,6 +104,7 @@ export function mountApp(root: HTMLElement): () => void {
   const liveStatus = root.querySelector<HTMLElement>('#live-status')!;
   const overlay = root.querySelector<HTMLElement>('#overlay')!;
   const transition = root.querySelector<HTMLElement>('#transition')!;
+  const hull = root.querySelector<HTMLElement>('#hull')!;
   const video = transition.querySelector('video')!;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const dayConfig = getGameConfig(kstDaySeed(new Date()));
@@ -130,6 +133,12 @@ export function mountApp(root: HTMLElement): () => void {
   let transitionTimer = 0;
   let voice: CommsLine | null = null;
   let closeCaseAt = 0;
+  // G13: a line is held on screen until read; lines already read never type out again.
+  let voiceHoldUntil = 0;
+  const readLines = new Set<string>();
+  // G10: the hull complains every so often while the player works.
+  let nextHullAt = 0;
+  let hullLine = 0;
   let toleranceVoiced: SalvageId | null = null;
   let voiceKey = '';
   let voiceStartedAt = 0;
@@ -184,6 +193,7 @@ export function mountApp(root: HTMLElement): () => void {
     newBest = false;
     voice = ROUND_START_LINE;
     closeCaseAt = 0;
+    nextHullAt = performance.now() + 20000;
     toleranceVoiced = null;
   }
 
@@ -224,7 +234,7 @@ export function mountApp(root: HTMLElement): () => void {
 
   function currentStory(snapshot: GameSnapshot): { lines: readonly StoryLine[]; index: number } | null {
     if (overlayKey === 'story' && storyPage !== null) return { lines: INTRO_STORY, index: storyPage };
-    if (overlayKey === 'outro') return { lines: endingStory(snapshot), index: outroPage };
+    if (overlayKey === 'outro') return { lines: endingStory(lotOutcomes(snapshot, broken)), index: outroPage };
     return null;
   }
 
@@ -235,7 +245,7 @@ export function mountApp(root: HTMLElement): () => void {
 
   /** Visual-novel stage: full-bleed scene, one standing speaker, a name plate and a typed line. */
   const STORY_MARKUP = `<section class="vn" role="dialog" aria-modal="true" aria-label="이야기">
-      <div class="vn-backdrop" aria-hidden="true"></div><img class="vn-sprite away" alt="" aria-hidden="true" width="1024" height="1536">
+      <div class="vn-backdrop" aria-hidden="true"></div><div class="vn-figure" aria-hidden="true"><img class="vn-sprite away" alt="" width="1024" height="1536"></div>
       <button class="vn-skip" data-action="story-skip" type="button">건너뛰기</button>
       <button class="vn-box" data-action="story-next" type="button"><span class="vn-name" hidden></span><span class="vn-text" aria-hidden="true"></span><span class="visually-hidden vn-line" aria-live="polite"></span><span class="vn-next" aria-hidden="true">▼</span></button>
     </section>`;
@@ -251,6 +261,7 @@ export function mountApp(root: HTMLElement): () => void {
       lineStartedAt = performance.now();
       lineRevealed = false;
       stage.dataset.scene = line.scene;
+      stage.dataset.mood = line.mood ?? '';
       stage.classList.toggle('narration', line.speaker === null);
       const name = stage.querySelector<HTMLElement>('.vn-name')!;
       name.hidden = line.speaker === null;
@@ -263,6 +274,8 @@ export function mountApp(root: HTMLElement): () => void {
         sprite.dataset.pose = line.pose;
         sprite.dataset.speaker = line.speaker ?? '';
         sprite.dataset.side = line.speaker === '윤서' ? 'left' : 'right';
+        // 윤서 speaks from the support ship: she appears on the comm screen, 도현 stands in the room.
+        stage.querySelector<HTMLElement>('.vn-figure')!.toggleAttribute('data-remote', line.speaker === '윤서');
         sprite.src = asset(`characters/${line.pose}.webp`);
         sprite.classList.remove('away', 'enter');
         if (entering) { void sprite.offsetWidth; sprite.classList.add('enter'); }
@@ -408,6 +421,8 @@ export function mountApp(root: HTMLElement): () => void {
     score.textContent = snapshot.score.toLocaleString('ko-KR');
     capacity.textContent = remainingCapacity(snapshot).toFixed(2);
     renderManifest(snapshot);
+    const fillHtml = caseFill(snapshot).map((segment) => `<span data-kind="${segment.kind}" style="width:${(segment.share * 100).toFixed(2)}%"></span>`).join('');
+    if (fill.innerHTML !== fillHtml) fill.innerHTML = fillHtml;
     const pressure = Math.round(snapshot.pressure01 * 100);
     pressureBar.style.transform = `scaleX(${snapshot.pressure01})`;
     statusCard.style.setProperty('--light-x', `${14 + snapshot.pressure01 * 72}%`);
@@ -425,10 +440,14 @@ export function mountApp(root: HTMLElement): () => void {
     const key = line ? `${line.speaker}:${line.text}` : '';
     if (key !== voiceKey) {
       voiceKey = key;
-      voiceStartedAt = performance.now();
+      // A line that was already read (for example, back from a strain warning) shows at once.
+      voiceStartedAt = readLines.has(key) ? -Infinity : performance.now();
+      voiceHoldUntil = line ? performance.now() + line.text.length * 24 + 1500 : 0;
       commsName.textContent = line?.speaker ?? '';
+      comms.dataset.speaker = line?.speaker ?? '';
       commsLine.textContent = line ? `${line.speaker}: ${line.text}` : '';
     }
+    if (line && performance.now() - voiceStartedAt >= line.text.length * 24) readLines.add(key);
     // The same typed delivery as the story, a little quicker at the bench.
     if (line) typeLine(commsText, line.text, reducedMotion.matches ? line.text.length : Math.floor((performance.now() - voiceStartedAt) / 24));
     statusCard.classList.toggle('strained', snapshot.stress01 > 0);
@@ -568,6 +587,13 @@ export function mountApp(root: HTMLElement): () => void {
     const dt = previousTime === null ? 0 : now - previousTime;
     previousTime = now;
     if (closeCaseAt && now >= closeCaseAt && ['idle', 'stored'].includes(game.snapshot().phase)) { closeCaseAt = 0; runtime.dispatch({ type: 'cash-out' }); }
+    // G10: presentation-only pressure. Waits for the current line to be read and never runs under a dialog.
+    const phase = game.snapshot().phase;
+    if (nextHullAt && now >= nextHullAt && started && !hudHidden && !overlayKey && ['idle', 'inspecting', 'stored'].includes(phase)) {
+      nextHullAt = now + 22000 + Math.random() * 12000;
+      hull.classList.remove('quake'); void hull.offsetWidth; hull.classList.add('quake');
+      if (now >= voiceHoldUntil && !(started && !tutorialDone)) { voice = HULL_LINES[hullLine % HULL_LINES.length]!; hullLine += 1; }
+    }
     runtime.frame(dt);
     renderUi(game.snapshot());
     frameId = requestAnimationFrame(frame);

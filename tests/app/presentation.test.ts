@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GameSnapshot } from '../../src/contracts';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { canStore, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, specimenResult, splitSentences, bindWords, kstDaySeed } from '../../src/app/presentation';
+import { canStore, caseFill, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, specimenResult, splitSentences, bindWords, kstDaySeed } from '../../src/app/presentation';
 import { authoredGameConfig } from '../../src/core';
 
 const snapshot = (patch: Partial<GameSnapshot>): GameSnapshot => ({ ...SNAPSHOT_FIXTURES.inspecting, ...patch });
@@ -101,5 +101,15 @@ describe('app presentation rules', () => {
   it('keys today\'s salvage to the Korean calendar date', () => {
     expect(kstDaySeed(new Date('2026-09-26T14:59:59Z'))).toBe(20260926);
     expect(kstDaySeed(new Date('2026-09-26T15:00:00Z'))).toBe(20260927);
+  });
+
+  it('draws the case as banked lots plus the lot in the press, flagging a preview that would overflow', () => {
+    const { stored, compressing } = SNAPSHOT_FIXTURES;
+    expect(caseFill(stored)).toEqual([{ id: 'salvage-core', share: 0.585, kind: 'stored' }]);
+    const pressing = caseFill({ ...compressing, previewVolume: 0.3 });
+    expect(pressing.at(-1)).toEqual({ id: compressing.currentSpecimen!.id, share: 0.3, kind: 'preview' });
+    const tight = caseFill({ ...compressing, volumeUsed: 0.9, previewVolume: 0.3 });
+    expect(tight.at(-1)).toMatchObject({ kind: 'overflow' });
+    expect(tight.at(-1)!.share).toBeCloseTo(0.1);
   });
 });

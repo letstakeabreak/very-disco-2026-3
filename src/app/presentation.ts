@@ -94,6 +94,23 @@ export function gradeFor(score: number, best: number): { percent: number; grade:
   return { percent, grade };
 }
 
+export interface FillSegment { readonly id: SalvageId; readonly share: number; readonly kind: 'stored' | 'damaged' | 'preview' | 'overflow' }
+
+/**
+ * The case as a bar (G7): banked lots in order, then the lot in the press at the size a release would
+ * commit. The preview turns to overflow when it would not fit, and is clipped to the room left.
+ */
+export function caseFill(snapshot: GameSnapshot): FillSegment[] {
+  const segments: FillSegment[] = snapshot.storedSpecimens.map((item) => ({ id: item.id, share: item.currentVolume / snapshot.capacity, kind: item.integrity01 < 1 ? 'damaged' : 'stored' }));
+  const lot = snapshot.currentSpecimen;
+  const volume = snapshot.previewVolume ?? lot?.currentVolume;
+  if (lot && volume !== undefined) {
+    const room = remainingCapacity(snapshot);
+    segments.push({ id: lot.id, share: Math.min(volume, room) / snapshot.capacity, kind: volume <= room + 1e-9 ? 'preview' : 'overflow' });
+  }
+  return segments;
+}
+
 /** Today's device best: a new best replaces the old line. */
 export function recordText(best: number | null, isNewBest: boolean): string {
   return isNewBest ? '오늘 새 기록이에요' : best !== null ? `오늘 최고 기록 ${best.toLocaleString('ko-KR')}점` : '';

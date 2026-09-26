@@ -71,6 +71,14 @@ p, li { text-wrap: pretty; }
 .metrics p > span { color: var(--muted); font-size: 11px; letter-spacing: .08em; }
 .metrics strong { color: var(--ink); font-size: 18px; font-weight: 400; font-variant-numeric: tabular-nums; line-height: 1; }
 .metrics small { margin-left: 2px; color: var(--amber); font-size: 11px; }
+.metrics { position: relative; overflow: hidden; }
+/* The case as a bar along the strip's bottom edge: banked lots, then the lot in the press. */
+.case-fill { position: absolute; left: 0; right: 0; bottom: 0; display: flex; height: 4px; gap: 1px; background: rgb(4 17 20 / 70%); }
+.case-fill span { display: block; height: 100%; transition: width 90ms linear; }
+.case-fill [data-kind='stored'] { background: var(--mint); }
+.case-fill [data-kind='damaged'] { background: #d9b27a; }
+.case-fill [data-kind='preview'] { background: repeating-linear-gradient(90deg, var(--amber) 0 6px, rgb(239 199 137 / 45%) 6px 9px); }
+.case-fill [data-kind='overflow'] { background: #e98f76; }
 .status-card {
   --light-x: 14%;
   position: relative; display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-2) var(--space-3);
@@ -112,6 +120,18 @@ p, li { text-wrap: pretty; }
 .comms { display: flex; align-items: flex-start; gap: 10px; min-height: calc(3.1em + 20px); margin: 0; padding: 10px 14px; border: 1px solid rgb(239 199 137 / 38%); border-radius: 6px; background: linear-gradient(180deg, rgb(9 29 32 / 90%), rgb(3 13 15 / 94%)); box-shadow: inset 0 1px rgb(240 230 198 / 14%); color: var(--ink); font-size: 14px; line-height: 1.55; text-shadow: 0 1px 3px rgb(0 0 0 / 70%); }
 .comms b { flex: none; padding: 0 8px; border: 1px solid rgb(239 199 137 / 65%); border-radius: var(--radius); background: #15292a; color: var(--amber); font-size: 12px; font-weight: 400; letter-spacing: .08em; line-height: 1.75; }
 .comms.strained { border-color: #c98b72; color: #ffc0a9; }
+/* 윤서 is on the radio: a teal, dashed name tag. */
+.comms[data-speaker='윤서'] b { border-style: dashed; border-color: rgb(120 220 210 / 60%); color: #9fe3da; }
+
+/* G10: the flooded lab. A slow red alarm glow at the top, and now and then a hull jolt with water drips. */
+.hull { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hull::before { content: ''; position: absolute; inset: 0 0 auto; height: 90px; background: radial-gradient(ellipse at 50% 0%, rgb(220 60 40 / 22%), transparent 70%); opacity: 0; animation: alarm 9s ease-in-out infinite; }
+.screen.hud-hidden ~ .hull::before { animation: none; }
+.hull.quake::after { content: ''; position: absolute; inset: 0; background: radial-gradient(1.5px 5px at 12% 0, rgb(160 220 230 / 70%), transparent), radial-gradient(1.5px 6px at 71% 0, rgb(160 220 230 / 60%), transparent), radial-gradient(1px 4px at 88% 0, rgb(160 220 230 / 60%), transparent); background-repeat: no-repeat; animation: drip 1.6s ease-in forwards; }
+#app:has(.hull.quake) .scene { animation: quake .6s ease-out; }
+@keyframes alarm { 0%, 70%, 100% { opacity: 0; } 80% { opacity: 1; } }
+@keyframes drip { from { transform: translateY(-10px); opacity: 1; } to { transform: translateY(70vh); opacity: 0; } }
+@keyframes quake { 15% { translate: -3px 1px; } 35% { translate: 3px -1px; } 55% { translate: -2px 0; } 75% { translate: 1px 1px; } }
 .ghost { border: 1px solid transparent; border-radius: var(--radius); background: transparent; color: var(--muted); }
 .press-button, .dialog-primary {
   border-color: rgb(238 197 135 / 60%);
@@ -167,12 +187,23 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 .vn-backdrop { position: absolute; inset: 0; background: var(--workshop-ambient) center top / cover; transform-origin: 72% 2%; filter: brightness(.5) saturate(.85); transition: transform 2.2s cubic-bezier(.3, .6, .2, 1), filter 2.2s ease; }
 .vn[data-scene='sea'] .vn-backdrop { transform: scale(3.4); filter: brightness(.8) saturate(1.1) blur(1px); }
 .vn::after { content: ''; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgb(2 11 12 / 85%)); pointer-events: none; }
+.vn-figure { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+/* G9: the remote speaker sits on a comm screen, the present one stands in the room. */
+.vn-figure[data-remote] { inset: 10% 11% auto; height: 50%; overflow: hidden; border: 1px solid rgb(120 220 210 / 45%); border-radius: 10px; background: #062629; box-shadow: 0 0 0 4px rgb(3 13 15 / 70%), 0 0 32px rgb(80 200 190 / 18%); }
+.vn-figure[data-remote] .vn-sprite { top: 0; bottom: auto; height: 190%; transform: translateX(-50%); filter: saturate(.75) contrast(1.05); }
+.vn-figure[data-remote]::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgb(0 0 0 / 22%) 0 1px, transparent 1px 3px), linear-gradient(rgb(60 190 180 / 16%), rgb(60 190 180 / 6%)); animation: comm-flicker 5s steps(1) infinite; }
+@keyframes comm-flicker { 0%, 95%, 100% { opacity: 1; } 96% { opacity: .7; } 97% { opacity: .95; } }
 .vn-sprite { position: absolute; bottom: 0; left: 50%; z-index: 1; width: auto; height: min(82%, 150vw); max-width: none; transform: translateX(calc(-50% + var(--sprite-x, 0%))); filter: drop-shadow(0 10px 28px rgb(0 0 0 / 55%)); transition: opacity .4s ease, transform .5s ease; pointer-events: none; }
 .vn-sprite[data-side='left'] { --sprite-x: -9%; }
 .vn-sprite[data-side='right'] { --sprite-x: 9%; }
 .vn-sprite.away { opacity: 0; }
 .vn-sprite.enter { animation: sprite-in .45s ease-out both; }
 @keyframes sprite-in { from { opacity: 0; margin-bottom: -18px; } }
+/* Moods (G21): a startled jolt, or a heavier dimmed beat. */
+.vn[data-mood='shock'] .vn-sprite { animation: sprite-jolt .35s ease-out; }
+.vn[data-mood='sad'] .vn-sprite { filter: drop-shadow(0 10px 28px rgb(0 0 0 / 55%)) brightness(.78) saturate(.7); }
+.vn[data-mood='sad'] .vn-backdrop { filter: brightness(.35) saturate(.6); }
+@keyframes sprite-jolt { 20% { translate: -6px 0; } 40% { translate: 5px 0; } 60% { translate: -3px 0; } 80% { translate: 2px 0; } }
 .vn-box {
   position: absolute; z-index: 2; left: var(--space-3); right: var(--space-3); bottom: max(var(--space-4), env(safe-area-inset-bottom));
   display: block; min-height: 136px; padding: 24px 20px 28px; text-align: left;
@@ -210,7 +241,7 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
   .mission-card h2 { font-size: 21px; margin-top: 16px; }
   .mission-card .dialog-primary { margin-top: var(--space-4); }
 }
-@media (prefers-reduced-motion: reduce) { .pressure-track span, .vn-backdrop, .vn-sprite { transition: none; } .vn-sprite.enter, .vn-next, .screen.entering { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .pressure-track span, .vn-backdrop, .vn-sprite { transition: none; } .vn-sprite.enter, .vn-next, .screen.entering, .vn[data-mood='shock'] .vn-sprite, .vn-figure[data-remote]::after, .hull::before, .hull.quake::after, #app:has(.hull.quake) .scene { animation: none; } }
 @media (prefers-reduced-transparency: reduce) {
   :root { --glass: linear-gradient(120deg, #1b3334, #102125); }
   .dialog-card { background: #102125; }

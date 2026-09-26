@@ -1,10 +1,14 @@
 import type { GameEvent, GameSnapshot, SalvageId, Tolerance } from '../contracts';
 import { canStillFit, remainingCapacity, SPECIMEN_LABELS } from './presentation';
+import type { LotOutcome } from './presentation';
 import type { GameConfig } from '../contracts';
 
 export type StoryPose = 'yunseo-concerned' | 'yunseo-relieved' | 'dohyeon-explaining' | 'dohyeon-resolved';
 /** sea: the flooded porthole, room: the workshop. */
 export type StoryScene = 'sea' | 'room';
+
+/** How a line is played (G21): a startled shake or a dimmed, heavier beat. */
+export type StoryMood = 'shock' | 'sad';
 
 /** One visual-novel line. A null speaker is narration and shows no sprite. */
 export interface StoryLine {
@@ -12,11 +16,12 @@ export interface StoryLine {
   readonly pose: StoryPose | null;
   readonly scene: StoryScene;
   readonly text: string;
+  readonly mood?: StoryMood;
 }
 
 const narration = (text: string): StoryLine => ({ speaker: null, pose: null, scene: 'sea', text });
-const yunseo = (pose: 'yunseo-concerned' | 'yunseo-relieved', text: string): StoryLine => ({ speaker: '윤서', pose, scene: 'room', text });
-const dohyeon = (pose: 'dohyeon-explaining' | 'dohyeon-resolved', text: string): StoryLine => ({ speaker: '도현', pose, scene: 'room', text });
+const yunseo = (pose: 'yunseo-concerned' | 'yunseo-relieved', text: string, mood?: StoryMood): StoryLine => ({ speaker: '윤서', pose, scene: 'room', text, ...(mood ? { mood } : {}) });
+const dohyeon = (pose: 'dohyeon-explaining' | 'dohyeon-resolved', text: string, mood?: StoryMood): StoryLine => ({ speaker: '도현', pose, scene: 'room', text, ...(mood ? { mood } : {}) });
 
 /** Six lines (PRD v1.2): who is speaking to whom, what was saved, the 1L limit and the press. */
 export const INTRO_STORY: readonly StoryLine[] = [
@@ -28,26 +33,34 @@ export const INTRO_STORY: readonly StoryLine[] = [
   dohyeon('dohyeon-resolved', '그럼 시작해 볼까요.'),
 ];
 
-/** The ending acknowledges only actual stored objects and their committed integrity. */
-export function endingStory(snapshot: GameSnapshot): readonly StoryLine[] {
-  const cassette = snapshot.storedSpecimens.find(item => item.id === 'salvage-cassette');
-  if (cassette) return cassette.integrity01 < 1 ? [
-    yunseo('yunseo-relieved', '카세트 챙겨 왔네요!'),
-    yunseo('yunseo-relieved', '조금 망가졌지만 남은 기록부터 읽어 볼게요.'),
-    dohyeon('dohyeon-resolved', '케이스는 제가 올려 보낼게요. 수고 많았어요.'),
-  ] : [
-    yunseo('yunseo-relieved', '기록이 멀쩡해요!'),
-    yunseo('yunseo-relieved', '연구소는 잠겼어도 우리가 본 건 남았네요. 고마워요.'),
-    dohyeon('dohyeon-resolved', '케이스는 제가 올려 보낼게요. 수고 많았어요.'),
-  ];
-  if (snapshot.storedSpecimens.length > 0) return [
-    dohyeon('dohyeon-resolved', '담은 부품은 제가 올려 보낼게요.'),
-    yunseo('yunseo-concerned', '기록은 못 건졌지만 이걸로 다시 시작해 봐요.'),
-  ];
-  return [
-    yunseo('yunseo-concerned', '케이스가 비어 있네요.'),
+/**
+ * The ending (G8) names what became of each lot: the records first, then the core and the lens, then
+ * the case. It never claims a lot the player broke was merely left behind, and 도현 only smiles when all
+ * three came home.
+ */
+export function endingStory(outcomes: Record<SalvageId, LotOutcome>): readonly StoryLine[] {
+  const kept = (id: SalvageId) => outcomes[id] === 'stored' || outcomes[id] === 'damaged';
+  const lines: StoryLine[] = [];
+  const cassette = outcomes['salvage-cassette'];
+  if (cassette === 'stored') lines.push(yunseo('yunseo-relieved', '기록이 멀쩡해요! 연구소는 잠겼어도 우리가 본 건 남았네요.'));
+  else if (cassette === 'damaged') lines.push(yunseo('yunseo-relieved', '카세트 챙겨 왔네요. 조금 망가졌지만 남은 기록부터 읽어 볼게요.'));
+  else if (cassette === 'broken') lines.push(yunseo('yunseo-concerned', '기록이 결국 부서졌네요. 그 안에 몇 년이 들어 있었는데요.', 'sad'));
+  else lines.push(yunseo('yunseo-concerned', '기록은 두고 왔네요. 아직 저 아래 있는 거죠.', 'sad'));
+  const core = outcomes['salvage-core'];
+  if (kept('salvage-core')) lines.push(dohyeon('dohyeon-explaining', '코어가 있으니 장비를 다시 켤 수 있어요.'));
+  else if (core === 'broken') lines.push(dohyeon('dohyeon-explaining', '코어가 부서졌으니 한동안은 예비 전원으로 버텨야겠어요.', 'sad'));
+  const lens = outcomes['salvage-lens'];
+  if (kept('salvage-lens')) lines.push(yunseo('yunseo-relieved', '렌즈도 왔네요. 다시 바다를 볼 수 있겠어요.'));
+  else if (lens === 'broken') lines.push(yunseo('yunseo-concerned', '렌즈는 깨져 버렸네요.', 'sad'));
+  const ids: readonly SalvageId[] = ['salvage-core', 'salvage-lens', 'salvage-cassette'];
+  if (!ids.some(kept)) return [
+    yunseo('yunseo-concerned', '케이스가 비어 있네요.', 'sad'),
     dohyeon('dohyeon-explaining', '처음엔 다 그래요. 조금씩 눌렀다 떼면서 다시 해 봐요.'),
   ];
+  lines.push(ids.every(kept)
+    ? dohyeon('dohyeon-resolved', '셋 다 들어갔어요. 케이스는 제가 올려 보낼게요. 수고 많았어요.')
+    : dohyeon('dohyeon-explaining', '담은 건 제가 올려 보낼게요. 수고 많았어요.'));
+  return lines;
 }
 
 /** One in-round voice line: the same two characters keep talking at the workbench. */
@@ -82,6 +95,13 @@ export const STRAIN_LINE: CommsLine = { speaker: '도현', text: '삐걱거려�
 
 /** At planning time, before anything is pressed: the one request the player can still keep (G6). */
 export const ROUND_START_LINE: CommsLine = { speaker: '윤서', text: '카세트엔 우리 기록이 있어요. 할 수 있으면 꼭 챙겨 줘요.' };
+
+/** Presentation-only pressure from the flooded lab (G10). They never change the rules. */
+export const HULL_LINES: readonly CommsLine[] = [
+  { speaker: '윤서', text: '수압이 계속 올라가요. 조금만 서둘러 줘요.' },
+  { speaker: '도현', text: '선체가 우는 소리예요. 아직은 버텨요.' },
+  { speaker: '도현', text: '물이 새기 시작했네요. 신경 쓰지 말고 계속해요.' },
+];
 
 /** When nothing left can fit, 도현 closes the case. */
 export const CASE_CLOSING_LINE: CommsLine = { speaker: '도현', text: '더 들어갈 게 없어요. 케이스 닫을게요.' };
@@ -127,8 +147,8 @@ export function reactionLine(event: GameEvent, snapshot: GameSnapshot, config?: 
   if (event.type === 'failed') {
     if (event.reason === 'capacity-exceeded') return { speaker: '도현', text: '이대로는 케이스에 안 들어가요.' };
     return snapshot.currentSpecimen?.id === 'salvage-cassette'
-      ? { speaker: '윤서', text: '기록이 부서져 버렸어요.' }
-      : { speaker: '윤서', text: '부서져 버렸네요.' };
+      ? { speaker: '윤서', text: '안 돼요. 기록이 부서져 버렸어요.' }
+      : { speaker: '윤서', text: '아. 부서져 버렸네요.' };
   }
   return null;
 }

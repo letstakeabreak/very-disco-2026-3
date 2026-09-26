@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
 import { CASE_CLOSING_LINE, INTRO_STORY, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from '../../src/app/story';
+import type { LotOutcome } from '../../src/app/presentation';
 import { authoredGameConfig } from '../../src/core';
 
 const text = (lines: readonly { text: string }[]) => lines.map(line => line.text).join(' ');
@@ -13,20 +14,32 @@ describe('recovery story follows committed cargo', () => {
     for (const line of INTRO_STORY) expect(line.speaker === null).toBe(line.pose === null);
   });
 
-  it('does not claim the selected or discarded cassette was recovered', () => {
-    const empty = { ...SNAPSHOT_FIXTURES.complete, storedSpecimens: [], storedSpecimenIds: [] };
-    expect(text(endingStory(empty))).toContain('비어 있네요');
-    expect(endingStory(empty)[0]!.pose).toBe('yunseo-concerned');
-    expect(text(endingStory(SNAPSHOT_FIXTURES.complete))).toContain('기록은 못 건졌지만');
+  const ending = (core: LotOutcome, lens: LotOutcome, cassette: LotOutcome) => endingStory({ 'salvage-core': core, 'salvage-lens': lens, 'salvage-cassette': cassette });
+
+  it('says the records broke when the player crushed them, and never smiles after a loss', () => {
+    const lines = ending('stored', 'stored', 'broken');
+    expect(text(lines)).toContain('기록이 결국 부서졌네요');
+    expect(text(lines)).not.toContain('두고 왔');
+    expect(lines.map((line) => line.pose)).not.toContain('dohyeon-resolved');
+    expect(lines.find((line) => line.text.includes('부서졌네요'))!.mood).toBe('sad');
   });
 
   it('acknowledges a stored cassette but does not call damaged records intact', () => {
-    const cassette = { ...SNAPSHOT_FIXTURES.complete.storedSpecimens[0]!, id: 'salvage-cassette' as const, integrity01: 1 };
-    const recovered = { ...SNAPSHOT_FIXTURES.complete, storedSpecimens: [cassette], storedSpecimenIds: ['salvage-cassette'] as const };
-    expect(text(endingStory(recovered))).toContain('기록이 멀쩡해요');
-    const damaged = text(endingStory({ ...recovered, storedSpecimens: [{ ...cassette, integrity01: .6 }] }));
+    expect(text(ending('stored', 'left', 'stored'))).toContain('기록이 멀쩡해요');
+    const damaged = text(ending('stored', 'left', 'damaged'));
     expect(damaged).toContain('조금 망가졌지만');
     expect(damaged).not.toContain('멀쩡해요');
+  });
+
+  it('names each lot that came home and saves the smile for all three', () => {
+    const all = ending('stored', 'damaged', 'stored');
+    expect(text(all)).toContain('장비를 다시 켤 수 있어요');
+    expect(text(all)).toContain('다시 바다를 볼 수 있겠어요');
+    expect(all.at(-1)!.pose).toBe('dohyeon-resolved');
+    expect(text(ending('broken', 'left', 'stored'))).toContain('예비 전원');
+    const empty = ending('left', 'broken', 'left');
+    expect(text(empty)).toContain('비어 있네요');
+    expect(empty[0]!.pose).toBe('yunseo-concerned');
   });
 });
 
