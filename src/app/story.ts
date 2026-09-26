@@ -1,51 +1,105 @@
-import type { GameSnapshot, SalvageId } from '../contracts';
+import type { GameEvent, GameSnapshot, SalvageId, Tolerance } from '../contracts';
+import { remainingCapacity } from './presentation';
 
-export interface StoryBeat {
-  readonly speaker: string;
-  readonly role: string;
-  readonly portrait: string;
-  readonly title: string;
+export type StoryPose = 'yunseo-concerned' | 'yunseo-relieved' | 'dohyeon-explaining' | 'dohyeon-resolved';
+/** sea: the flooded porthole, room: the workshop. */
+export type StoryScene = 'sea' | 'room';
+
+/** One visual-novel line. A null speaker is narration and shows no sprite. */
+export interface StoryLine {
+  readonly speaker: '윤서' | '도현' | null;
+  readonly pose: StoryPose | null;
+  readonly scene: StoryScene;
   readonly text: string;
-  readonly manifest?: boolean;
 }
 
-export const SPECIMEN_PURPOSE: Readonly<Record<SalvageId, string>> = {
-  'salvage-core': '장비에 다시 전원을 넣을 에너지 코어',
-  'salvage-lens': '바닷속을 관찰하던 장치의 광학 렌즈',
-  'salvage-cassette': '연구소의 관측 기록이 담긴 데이터 카세트',
-};
+const narration = (text: string): StoryLine => ({ speaker: null, pose: null, scene: 'sea', text });
+const yunseo = (pose: 'yunseo-concerned' | 'yunseo-relieved', text: string): StoryLine => ({ speaker: '윤서', pose, scene: 'room', text });
+const dohyeon = (pose: 'dohyeon-explaining' | 'dohyeon-resolved', text: string): StoryLine => ({ speaker: '도현', pose, scene: 'room', text });
 
-export const INTRO_STORY: readonly StoryBeat[] = [
-  {
-    speaker: '윤서', role: '연구원', portrait: 'yunseo-concerned', title: '물속에 남은 연구소',
-    text: '연구소가 침수됐어요. 도현이 잠긴 실험실에서 세 부품을 건져 이 작업실로 가져왔어요. 전원 장치, 관측 장치, 그리고 우리가 남긴 기록. 그냥 두고 갈 수는 없어요.',
-  },
-  {
-    speaker: '도현', role: '회수 기사', portrait: 'dohyeon-explaining', title: '가져갈 수 있는 건 1L',
-    text: '큰 운반함은 침수됐어요. 수면으로 올릴 회수 캡슐에는 이 1L 케이스만 들어가요. 세 부품은 그대로 모두 담을 수 없어요. 안에 남은 가치를 골라 가져가야 해요.', manifest: true,
-  },
-  {
-    speaker: '도현', role: '회수 기사', portrait: 'dohyeon-explaining', title: '겉을 줄여, 안을 지켜요',
-    text: '이 프레스로 바깥 하우징과 완충틀을 줄일 수 있어요. 너무 누르면 안쪽도 망가지죠. 먼저 돌려 살펴보고, 조금씩 눌렀다 떼세요. 크기와 가치를 확인한 뒤 케이스에 담으면 돼요.',
-  },
+export const INTRO_STORY: readonly StoryLine[] = [
+  narration('깊은 바닷속 연구소가 물에 잠겼다.'),
+  narration('남은 건 작업실 하나와 건져 낸 부품 세 개뿐이다.'),
+  yunseo('yunseo-concerned', '들려요? 저 윤서예요. 지금 지원선에서 연결했어요.'),
+  yunseo('yunseo-concerned', '건진 게 코어랑 렌즈랑 기록 카세트 맞죠? 셋 다 가져올 수 있으면 좋겠어요.'),
+  dohyeon('dohyeon-explaining', '문제는 케이스예요. 캡슐에 실을 수 있는 게 1리터짜리 하나뿐이거든요.'),
+  dohyeon('dohyeon-explaining', '그냥은 안 들어가요. 이 프레스로 눌러서 부피를 줄여야 해요.'),
+  dohyeon('dohyeon-explaining', '겉만 줄이는 거예요. 너무 세게 누르면 속까지 망가져요.'),
+  yunseo('yunseo-concerned', '부탁할게요. 가져올 수 있는 만큼만이라도요.'),
+  dohyeon('dohyeon-resolved', '그럼 작업대로 가요.'),
 ];
 
 /** The ending acknowledges only actual stored objects and their committed integrity. */
-export function endingStory(snapshot: GameSnapshot): StoryBeat {
+export function endingStory(snapshot: GameSnapshot): readonly StoryLine[] {
   const cassette = snapshot.storedSpecimens.find(item => item.id === 'salvage-cassette');
-  if (cassette) return {
-    speaker: '윤서', role: '연구원', portrait: 'yunseo-relieved',
-    title: cassette.integrity01 < 1 ? '남아 있는 기록부터' : '기록은 가라앉지 않아요',
-    text: cassette.integrity01 < 1
-      ? '데이터 카세트를 담았군요. 손상은 있지만, 남아 있는 기록부터 읽어 볼게요. 작은 케이스 안에 우리가 이어 갈 일이 남았어요. 이제 수면으로 보내 주세요.'
-      : '데이터 카세트를 지켜 줬군요. 연구소는 물속에 남아도, 우리가 본 것들은 사라지지 않겠어요. 이제 이 케이스를 수면으로 보내 주세요. 고마워요.',
-  };
-  if (snapshot.storedSpecimens.length > 0) return {
-    speaker: '도현', role: '회수 기사', portrait: 'dohyeon-resolved', title: '다시 시작할 부품들',
-    text: '담아 둔 부품은 제가 수면으로 올릴게요. 연구 기록까지 가져오진 못했지만, 이 부품으로 다시 시작할 수 있겠죠. 무엇을 남길지 끝까지 골라 줘서 고마워요.',
-  };
-  return {
-    speaker: '윤서', role: '연구원', portrait: 'yunseo-concerned', title: '아직, 빈 케이스',
-    text: '이번에는 가져올 물건을 담지 못했네요. 다음 작업에서는 조금씩 눌렀다 떼어 봐요. 작아지는 것보다 중요한 건 안에 남는 가치예요. 다시 해 볼 수 있어요.',
-  };
+  if (cassette) return cassette.integrity01 < 1 ? [
+    yunseo('yunseo-relieved', '카세트 챙겨 왔네요!'),
+    yunseo('yunseo-relieved', '조금 망가졌지만 남은 기록부터 읽어 볼게요.'),
+    dohyeon('dohyeon-resolved', '케이스는 제가 올려 보낼게요. 수고 많았어요.'),
+  ] : [
+    yunseo('yunseo-relieved', '기록이 멀쩡해요!'),
+    yunseo('yunseo-relieved', '연구소는 잠겼어도 우리가 본 건 남았네요. 고마워요.'),
+    dohyeon('dohyeon-resolved', '케이스는 제가 올려 보낼게요. 수고 많았어요.'),
+  ];
+  if (snapshot.storedSpecimens.length > 0) return [
+    dohyeon('dohyeon-resolved', '담은 부품은 제가 올려 보낼게요.'),
+    yunseo('yunseo-concerned', '기록은 못 건졌지만 이걸로 다시 시작해 봐요.'),
+  ];
+  return [
+    yunseo('yunseo-concerned', '케이스가 비어 있네요.'),
+    dohyeon('dohyeon-explaining', '처음엔 다 그래요. 조금씩 눌렀다 떼면서 다시 해 봐요.'),
+  ];
+}
+
+/** One in-round voice line: the same two characters keep talking at the workbench. */
+export interface CommsLine {
+  readonly speaker: '윤서' | '도현';
+  readonly text: string;
+}
+
+const TUTORIAL: readonly CommsLine[] = [
+  { speaker: '도현', text: '좌우로 끌어서 한번 돌려 봐요. 얼마나 버틸지 보일 거예요.' },
+  { speaker: '도현', text: '버튼을 꾹 누르고 있다가 원하는 만큼 줄면 손을 떼요.' },
+  { speaker: '도현', text: '크기랑 가치를 보고 괜찮으면 담아요.' },
+];
+
+/** Why each lot matters, said when it goes into the press. */
+const LOT_LINES: Readonly<Record<SalvageId, CommsLine>> = {
+  'salvage-core': { speaker: '윤서', text: '전원 코어예요. 이게 있어야 장비를 다시 켤 수 있어요.' },
+  'salvage-lens': { speaker: '윤서', text: '관측 렌즈네요. 이걸로 바닷속을 들여다봤어요.' },
+  'salvage-cassette': { speaker: '윤서', text: '연구 기록이 든 카세트예요. 이건 꼭 좀 챙겨 주세요.' },
+};
+
+const TOLERANCE_LINES: Readonly<Record<Tolerance, CommsLine>> = {
+  fragile: { speaker: '도현', text: '약해 보여요. 살살 눌러요.' },
+  normal: { speaker: '도현', text: '적당히 버티겠네요. 천천히 눌러 봐요.' },
+  sturdy: { speaker: '도현', text: '튼튼하네요. 세게 눌러도 괜찮아요.' },
+};
+
+export const STRAIN_LINE: CommsLine = { speaker: '도현', text: '삐걱거려요! 손 떼요!' };
+
+export function tutorialLine(step: number): CommsLine {
+  return TUTORIAL[Math.min(TUTORIAL.length - 1, Math.max(0, step))]!;
+}
+
+export function toleranceLine(tolerance: Tolerance): CommsLine {
+  return TOLERANCE_LINES[tolerance];
+}
+
+/** The characters' reaction to a round event, from the state after it; null keeps the current line. */
+export function reactionLine(event: GameEvent, snapshot: GameSnapshot): CommsLine | null {
+  if (event.type === 'specimen-selected') return LOT_LINES[event.specimenId];
+  if (event.type === 'stored') return event.specimenId === 'salvage-cassette'
+    ? { speaker: '윤서', text: '기록 담았네요. 정말 고마워요.' }
+    : { speaker: '도현', text: `담았어요. 이제 ${remainingCapacity(snapshot).toFixed(2)}리터 남았어요.` };
+  if (event.type === 'discarded') return event.specimenId === 'salvage-cassette'
+    ? { speaker: '윤서', text: '기록은 결국 두고 가네요.' }
+    : { speaker: '도현', text: '이건 여기 두고 가요.' };
+  if (event.type === 'failed') {
+    if (event.reason === 'capacity-exceeded') return { speaker: '도현', text: '이대로는 케이스에 안 들어가요.' };
+    return snapshot.currentSpecimen?.id === 'salvage-cassette'
+      ? { speaker: '윤서', text: '기록이 부서져 버렸어요.' }
+      : { speaker: '윤서', text: '부서져 버렸네요.' };
+  }
+  return null;
 }
