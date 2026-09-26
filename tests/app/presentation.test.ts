@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GameSnapshot } from '../../src/contracts';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult } from '../../src/app/presentation';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult, splitSentences, bindWords } from '../../src/app/presentation';
 
 const snapshot = (patch: Partial<GameSnapshot>): GameSnapshot => ({ ...SNAPSHOT_FIXTURES.inspecting, ...patch });
 const facts = (state: GameSnapshot): string[] => specimenResult(state).map((fact) => fact.warn ? `!${fact.text}` : fact.text);
@@ -62,5 +62,20 @@ describe('app presentation rules', () => {
 
   it('keeps phase language in one display map', () => {
     expect(phaseLabel('settling')).toBe('확인 중');
+  });
+
+  it('splits typed lines into sentences without breaking decimals', () => {
+    expect(splitSentences('담았어요. 이제 0.24리터 남았어요.')).toEqual([{ text: '담았어요.', start: 0 }, { text: '이제 0.24리터 남았어요.', start: 6 }]);
+    expect(splitSentences('삐걱거려요! 손 떼요!').map((part) => part.text)).toEqual(['삐걱거려요!', '손 떼요!']);
+    expect(splitSentences('그럼 작업대로 가요')).toEqual([{ text: '그럼 작업대로 가요', start: 0 }]);
+  });
+
+  it('keeps one-syllable words and sentence endings from standing alone on a line', () => {
+    const nb = '\u00A0';
+    expect(bindWords('남은 건 작업실 하나와 부품 세 개뿐이다.')).toBe(`남은${nb}건 작업실 하나와 부품 세${nb}개뿐이다.`);
+    expect(bindWords('이 프레스로 눌러서 부피를 줄여야 해요.')).toBe(`이${nb}프레스로 눌러서 부피를 줄여야${nb}해요.`);
+    expect(bindWords('캡슐에 실을 수 있는 게 1리터짜리 하나뿐이거든요.')).toBe(`캡슐에 실을${nb}수 있는${nb}게 1리터짜리${nb}하나뿐이거든요.`);
+    expect(bindWords('그럼')).toBe('그럼');
+    expect(bindWords('손 떼요!').length).toBe('손 떼요!'.length);
   });
 });

@@ -59,13 +59,13 @@ export interface CommsLine {
 
 const TUTORIAL: readonly CommsLine[] = [
   { speaker: '도현', text: '좌우로 끌어서 한번 돌려 봐요. 얼마나 버틸지 보일 거예요.' },
-  { speaker: '도현', text: '버튼을 꾹 누르고 있다가 원하는 만큼 줄면 손을 떼요.' },
+  { speaker: '도현', text: '압축하기를 꾹 누르고 있다가 원하는 만큼 줄면 손을 떼요.' },
   { speaker: '도현', text: '크기랑 가치를 보고 괜찮으면 담아요.' },
 ];
 
 /** Why each lot matters, said when it goes into the press. */
 const LOT_LINES: Readonly<Record<SalvageId, CommsLine>> = {
-  'salvage-core': { speaker: '윤서', text: '전원 코어예요. 이게 있어야 장비를 다시 켤 수 있어요.' },
+  'salvage-core': { speaker: '윤서', text: '전원 코어예요. 이게 있어야 장비가 다시 켜져요.' },
   'salvage-lens': { speaker: '윤서', text: '관측 렌즈네요. 이걸로 바닷속을 들여다봤어요.' },
   'salvage-cassette': { speaker: '윤서', text: '연구 기록이 든 카세트예요. 이건 꼭 좀 챙겨 주세요.' },
 };
