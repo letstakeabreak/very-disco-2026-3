@@ -5,7 +5,7 @@ Needs Pillow and ffmpeg (libx264). Output: public/assets/video/descent.mp4
 
 Shot: the camera starts on the flooded porthole, pulls back while the lab
 power comes on, then settles on the real first gameplay frame
-(game-first-frame.png, captured from the running game at 720x1080 with UI hidden).
+(game-first-frame.png, captured from the running game at 1024x1536 with the UI hidden).
 """
 import math
 import random
@@ -15,7 +15,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[3]
-W, H, FPS, SECONDS = 720, 1080, 30, 6.0
+W, H, FPS, SECONDS = 1024, 1536, 30, 6.0  # the plate's native size: no upscaling
 FRAMES = int(FPS * SECONDS)
 OUT = ROOT / 'public/assets/video/descent.mp4'
 
@@ -26,7 +26,7 @@ START = (600.0, 20.0, 900.0, 470.0)  # porthole close-up, 2:3
 END = (0.0, 0.0, float(PW), float(PH))
 
 rng = random.Random(7)
-bubbles = [(rng.uniform(0, W), rng.uniform(0, H), rng.uniform(2, 7), rng.uniform(40, 120)) for _ in range(46)]
+bubbles = [(rng.uniform(0, W), rng.uniform(0, H), rng.uniform(3, 10), rng.uniform(57, 170)) for _ in range(46)]
 
 
 def ease(t: float) -> float:
@@ -79,7 +79,7 @@ def frame(i: int) -> Image.Image:
 
 ffmpeg = subprocess.Popen([
     'ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
-    '-an', '-c:v', 'libx264', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-crf', '27', '-preset', 'slow',
+    '-an', '-c:v', 'libx264', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-crf', '29', '-preset', 'slow',
     '-movflags', '+faststart', str(OUT),
 ], stdin=subprocess.PIPE)
 for n in range(FRAMES):

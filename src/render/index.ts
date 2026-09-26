@@ -148,7 +148,12 @@ export function createRenderer({ canvas, onFatal }: RendererOptions): GameRender
     fragmentShader: `uniform sampler2D plate; uniform vec2 stageFraction; varying vec2 vUv;
       void main(){
         vec2 stageUv=(vUv-.5)/stageFraction+.5;
-        vec3 surround=mix(vec3(.0045,.006,.006),vec3(.002,.009,.012),vUv.x)*(.8+.2*(1.0-vUv.y));
+        // Beyond the plate the workshop continues: mirrored across the nearest edge, blurred with a
+        // mip bias and fading to dark, so a screen taller or wider than 2:3 has no flat bars.
+        vec2 beyond=max(max(-stageUv,stageUv-1.0),0.0);
+        float away=max(beyond.x,beyond.y);
+        vec2 mirrored=clamp(1.0-abs(1.0-abs(stageUv)),0.0,1.0);
+        vec3 surround=texture2D(plate,mirrored,2.5).rgb*mix(.62,.08,smoothstep(0.0,.45,away));
         vec3 workshop=texture2D(plate,clamp(stageUv,0.0,1.0)).rgb;
         vec2 edge=min(stageUv,1.0-stageUv);
         float blend=smoothstep(-.012,.015,min(edge.x,edge.y));

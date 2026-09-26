@@ -1,4 +1,4 @@
-# DEEP PRESS 모듈 계약 v1.1.0
+# DEEP PRESS 모듈 계약 v1.2.0
 
 이 문서는 공통 bootstrap 계약이다. `src/contracts/index.ts`가 타입 원본이며 `prd.md`가 제품 규칙 원본이다. 둘이 충돌하면 임의로 한쪽을 구현하지 말고 통합 담당 A에게 알린다. 현재 코드는 **통합 scaffold**다. 압력 입력·선택·시간·pause·snapshot 전달은 구현되어 있지만 압축 결과, 손상 판정, settling 종료, 보관, 폐기, 정산, 최종 화면은 역할 작업으로 남아 있다. fixture는 해당 결과를 흉내 내는 소비자 개발 자료다.
 
@@ -37,7 +37,7 @@ A의 core/content는 서로 import 가능하며 외부 패키지, DOM, 시간 AP
 - 렌더 세계: meter, +Y 위, XZ 바닥, +Z 앞. Euler rotation은 radian, `XYZ` 순서. scale은 배율이며 모두 양수.
 - 용량: `capacity`, `volumeUsed`, `initialVolume`, `minimumVolume`, `currentVolume` 모두 **liter**다. 화면에서 L로 표시하며 세계 좌표 m와 섞지 않는다.
 - `step(dtMs)`와 renderer `render(snapshot, dtMs)`는 millisecond. app은 `FIXED_STEP_MS = 1000/60`으로 core를 호출한다. core는 0–100ms만 허용하고 0은 no-op. app은 긴 프레임을 100ms까지만 따라잡으며 숨겨진 시간 전체를 시뮬레이션하지 않는다.
-- 같은 uint32 seed, config, 명령 순서, step 순서는 같은 snapshot/event 결과를 내야 한다. 나중에 무작위가 필요하면 A가 seed에서 생성하는 순수 난수 함수를 쓴다. 현재 stub는 난수를 쓰지 않는다.
+- 같은 uint32 seed, config, 명령 순서, step 순서는 같은 snapshot/event 결과를 내야 한다. 무작위는 A의 콘텐츠가 seed에서 만드는 순수 난수(mulberry32)로만 쓴다(v1.2.0 오늘의 회수). 코어 판정은 난수를 쓰지 않는다.
 - snapshot과 event는 deep readonly, JSON 직렬화 가능, 유한한 숫자만 포함한다. `Date`, `Map`, Three.js 객체, 함수, `undefined`, NaN/Infinity는 경계를 넘지 않는다. core는 입력 config를 복사하며, 반환 snapshot을 소비자가 수정할 수 없게 한다.
 - renderer는 snapshot을 수정하거나 판정·점수를 계산하지 않는다. 렌더 중 보간은 자체 시각 상태에만 저장한다.
 
@@ -69,7 +69,7 @@ mountApp(root: HTMLElement): () => void
 
 `resize`의 width/height는 CSS pixel, dpr은 device pixel ratio이며 B가 기본 2로 제한한다. canvas는 C가 만들고 전달하며 B가 소유 DOM을 추가하지 않는다. WebGL 초기화 또는 렌더 실패는 `onFatal({code,message})`로 전달한다. GPU 실패 시 C는 설명 가능한 오류 화면을 만든다. `dispose`는 반복 호출 가능하며 리스너·프레임·GPU 자원을 해제한다. core는 dispose 뒤 다른 메서드 호출 시 오류를 낸다. renderer는 dispose 뒤 호출을 무시한다.
 
-`drainEvents`는 발생 순서대로 이벤트를 **한 번만** 반환한다. C만 소비하고 UI/효과에 전달한다. B는 이벤트 큐를 직접 소비하지 않는다. phase-changed에 from/to/tick, 나머지 이벤트에 typed payload가 있다. 오디오 생성·로드·재생·컨트롤은 없다.
+`drainEvents`는 발생 순서대로 이벤트를 **한 번만** 반환한다. C만 소비하고 UI/효과에 전달한다. B는 이벤트 큐를 직접 소비하지 않는다. phase-changed에 from/to/tick, 나머지 이벤트에 typed payload가 있다. 효과음은 C가 이 이벤트와 snapshot으로 B의 CC0 녹음 파일을 재생한다(PRD 1.2.1). 코어와 렌더러에는 오디오가 없다.
 
 ## 상태와 명령
 
@@ -79,11 +79,11 @@ mountApp(root: HTMLElement): () => void
 | `select {specimenId}` | idle/stored 또는 inspecting의 압축 전 상태에서 남은 lot를 선택하여 inspecting. 압축 후 교체/같은 ID로 초기화 금지 |
 | `inspect {yawRad}` | 절대 Y축 회전. C가 drag를 radian으로 변환. 규칙에 영향 없음 |
 | `press-start` | inspecting에서 compressing으로 전환. 이전 적용 압력부터 추가 압축 |
-| `press-release` | compressing에서 settling, 300ms 후 inspecting 또는 failed. p=1이면 자동 settling 후 failed |
+| `press-release` | compressing에서 settling. 처음 120ms 동안 관성으로 압력이 더 오르고 300ms 후 inspecting 또는 failed. p=1이면 자동 settling 후 failed |
 | `store` | inspecting에서 압축 완료 specimen을 케이스에 bank. 성공 시 stored, currentSpecimen=null |
 | `discard` | 현재 lot를 제거하고 다음 선택을 위한 idle; 처리할 lot가 없으면 complete |
 | `cash-out` | 저장된 score를 정산하고 complete |
-| `pause` | 타이머 정지. 압축 중 미확정 stroke 취소, pressure01를 마지막 compression01로 복원, resumePhase=inspecting. settling은 남은 시간 보존 |
+| `pause` | 타이머 정지. 압축 중 미확정 stroke 취소, pressure01를 마지막 compression01로 복원, resumePhase=inspecting. settling은 남은 시간과 관성 보존 |
 | `resume` | 저장된 resumePhase로 복귀. 숨겨진 시간 보충 없음 |
 
 잘못된 phase의 유효 명령은 no-op. 비유한 숫자·잘못된 config는 즉시 오류다. paused에서 start/restart/resume 이외 명령은 무시한다. C는 pointer capture/cancel/lost capture/visibility를 처리하며 숨겨진 뒤 stale release가 다시 압축을 실행하지 않게 한다.
@@ -120,6 +120,18 @@ mountApp(root: HTMLElement): () => void
   - `SpecimenState`를 직접 만드는 소비자 테스트에 `tolerance: null` 추가 (B `tests/render/lifecycle.test.ts` 2곳)
   - B는 보관 외형을 `storedSpecimens`에서 읽는다.
   - C는 힌트, 예상 부피, 긴장도를 표시만 한다. B/C는 안전 압력이나 공식을 복제하지 않는다.
+
+## v1.2.0 변경 (2026-09-26, Goal v4)
+
+- **사유:** CEO 플레이 리뷰. 매 판 조건이 같아 2판이면 만점이었고, 삐걱 경고가 안전선에서 정확히 떠서 압착에 실력이 들어가지 않았다. 사용자가 오늘의 회수와 합성 오디오를 결정했다.
+- **바뀐 것** (타입 모양은 그대로다)
+  - `CONTRACT_VERSION` 1.2.0
+  - `GameConfig.seed`는 KST 날짜 `YYYYMMDD`다. C가 시계에서 그 숫자를 만들고(`kstDaySeed`), A의 `getGameConfig(seed)`가 그날의 물건 조건을 만든다. 코어와 콘텐츠는 시계를 읽지 않는다. 규칙은 PRD "오늘의 회수 생성기"다.
+  - 유압 관성: 떼고 120ms 동안 압력이 더 오른다.
+  - `stress01`은 안전 압력 0.08 앞에서 시작한다.
+  - `previewVolume`은 관성을 더한 부피다.
+- **호환:** 필드 모양은 그대로지만 의미가 바뀌었다. 1.1.0 snapshot은 거부한다.
+- **이전 방법:** fixture는 버전 상수만 따른다. C는 `getGameConfig()`와 `bestPlan(config)`로 적재 목록과 등급을 표시하고, 공식을 복제하지 않는다. B는 바뀐 `stress01` 범위를 그대로 연출 입력으로 쓴다.
 
 ## 공유 변경 절차
 

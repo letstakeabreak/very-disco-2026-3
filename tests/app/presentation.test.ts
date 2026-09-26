@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import type { GameSnapshot } from '../../src/contracts';
 import { SNAPSHOT_FIXTURES } from '../../src/contracts/fixtures';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, resultItems, remainingCapacity, specimenResult, splitSentences, bindWords } from '../../src/app/presentation';
+import { canStore, caseFill, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, specimenResult, splitSentences, bindWords, kstDaySeed } from '../../src/app/presentation';
+import { authoredGameConfig } from '../../src/core';
 
 const snapshot = (patch: Partial<GameSnapshot>): GameSnapshot => ({ ...SNAPSHOT_FIXTURES.inspecting, ...patch });
 const facts = (state: GameSnapshot): string[] => specimenResult(state).map((fact) => fact.warn ? `!${fact.text}` : fact.text);
@@ -21,7 +22,7 @@ describe('app presentation rules', () => {
 
   it('shows the core-committed volume, value and integrity of the lot in the press', () => {
     const specimen = SNAPSHOT_FIXTURES.inspecting.currentSpecimen!;
-    expect(facts(snapshot({ currentSpecimen: null }))).toEqual(['다음 물건을 올려요']);
+    expect(facts(snapshot({ currentSpecimen: null }))).toEqual(['담을 물건을 골라요']);
     expect(facts(snapshot({}))).toEqual(['0.90L', '가치 260']);
     expect(facts(snapshot({ currentSpecimen: { ...specimen, compression01: 0.7, currentVolume: 0.384, value: 330, integrity01: 0.7336 } })))
       .toEqual(['0.38L', '가치 330', '내구도 73%']);
@@ -53,11 +54,29 @@ describe('app presentation rules', () => {
     expect(facts({ ...compressing, stress01: 0.2 })).toEqual(['예상 0.65L', '들어가요']);
   });
 
-  it('lists stored lots and reports the device best', () => {
-    expect(resultItems(SNAPSHOT_FIXTURES.complete)).toEqual([['에너지 코어', '0.58L', '가치 260']]);
+  it('lists every lot with its outcome and points that add up to the score', () => {
+    const { complete } = SNAPSHOT_FIXTURES;
+    const config = authoredGameConfig();
+    const outcomes = lotOutcomes(complete, new Set(['salvage-cassette']));
+    expect(outcomes).toEqual({ 'salvage-core': 'stored', 'salvage-lens': 'left', 'salvage-cassette': 'broken' });
+    expect(resultRows(complete, config, outcomes)).toEqual([
+      ['에너지 코어', '0.58L', '260 + 100'],
+      ['광학 렌즈', '두고 옴', '0'],
+      ['데이터 카세트', '부서짐', '0'],
+    ]);
+    expect(lotOutcomes({ ...SNAPSHOT_FIXTURES.inspecting, storedSpecimens: [], storedSpecimenIds: [] }, new Set())['salvage-core']).toBe('pending');
+    const damaged = { ...complete, storedSpecimens: [{ ...complete.storedSpecimens[0]!, integrity01: 0.8, value: 208 }] };
+    expect(resultRows(damaged, config, lotOutcomes(damaged, new Set()))[0]).toEqual(['에너지 코어', '0.58L 손상', '208 + 100']);
+  });
+
+  it('grades against the day\'s best and reports today\'s device best', () => {
+    expect(gradeFor(1300, 1300)).toEqual({ percent: 100, grade: 'S' });
+    expect(gradeFor(1200, 1300)).toEqual({ percent: 92, grade: 'A' });
+    expect(gradeFor(1000, 1300)).toEqual({ percent: 76, grade: 'B' });
+    expect(gradeFor(822, 1300)).toEqual({ percent: 63, grade: 'C' });
     expect(recordText(null, false)).toBe('');
-    expect(recordText(900, false)).toBe('최고 기록 900점');
-    expect(recordText(360, true)).toBe('새 기록이에요');
+    expect(recordText(1200, false)).toBe('오늘 최고 기록 1,200점');
+    expect(recordText(1300, true)).toBe('오늘 새 기록이에요');
   });
 
   it('keeps phase language in one display map', () => {
@@ -77,5 +96,20 @@ describe('app presentation rules', () => {
     expect(bindWords('캡슐에 실을 수 있는 게 1리터짜리 하나뿐이거든요.')).toBe(`캡슐에 실을${nb}수 있는${nb}게 1리터짜리${nb}하나뿐이거든요.`);
     expect(bindWords('그럼')).toBe('그럼');
     expect(bindWords('손 떼요!').length).toBe('손 떼요!'.length);
+  });
+
+  it('keys today\'s salvage to the Korean calendar date', () => {
+    expect(kstDaySeed(new Date('2026-09-26T14:59:59Z'))).toBe(20260926);
+    expect(kstDaySeed(new Date('2026-09-26T15:00:00Z'))).toBe(20260927);
+  });
+
+  it('draws the case as banked lots plus the lot in the press, flagging a preview that would overflow', () => {
+    const { stored, compressing } = SNAPSHOT_FIXTURES;
+    expect(caseFill(stored)).toEqual([{ id: 'salvage-core', share: 0.585, kind: 'stored' }]);
+    const pressing = caseFill({ ...compressing, previewVolume: 0.3 });
+    expect(pressing.at(-1)).toEqual({ id: compressing.currentSpecimen!.id, share: 0.3, kind: 'preview' });
+    const tight = caseFill({ ...compressing, volumeUsed: 0.9, previewVolume: 0.3 });
+    expect(tight.at(-1)).toMatchObject({ kind: 'overflow' });
+    expect(tight.at(-1)!.share).toBeCloseTo(0.1);
   });
 });

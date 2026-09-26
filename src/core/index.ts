@@ -2,8 +2,14 @@ import { CONTRACT_VERSION, MAX_STEP_MS, type ActivePhase, type Game, type GameCo
 
 /** Rotating a lot this far while inspecting reveals its authored tolerance. */
 const REVEAL_YAW_RAD = Math.PI / 4;
+/** Hydraulic lag (PRD v1.2): after release the ram keeps pushing at the press rate this long. */
+const RELEASE_OVERSHOOT_MS = 120;
+/** Strain cues start this far below a lot's safe pressure (PRD v1.2). */
+const WARNING_BAND01 = 0.08;
 import { assertConfig, deepFreeze } from '../contracts/validate';
-export { getGameConfig } from '../content';
+import { lotOutcome } from '../content';
+export { authoredGameConfig, bestPlan, getGameConfig } from '../content';
+export type { Plan } from '../content';
 
 /** Deterministic DEEP PRESS rules. Rendering and input remain consumer-owned. */
 export function createGame(input: GameConfig): Game {
@@ -26,6 +32,7 @@ export function createGame(input: GameConfig): Game {
   const revealed = new Set<SalvageId>();
   let currentSpecimen: SpecimenState | null = null;
   let settleRemainingMs = 0;
+  let overshootRemainingMs = 0;
   let brokenOnSettle = false;
   let disposed = false;
   let events: GameEvent[] = [];
@@ -46,7 +53,7 @@ export function createGame(input: GameConfig): Game {
     const previousPhase = phase;
     tick = 0; elapsedMs = 0; pressure01 = 0; strokeStartPressure01 = 0; strokeElapsedMs = 0; inspectionYawRad = 0;
     volumeUsed = 0; score = 0; remainingSpecimenIds = [...initialIds]; storedSpecimenIds = []; storedSpecimens = []; revealed.clear();
-    currentSpecimen = null; resumePhase = null; settleRemainingMs = 0; brokenOnSettle = false;
+    currentSpecimen = null; resumePhase = null; settleRemainingMs = 0; overshootRemainingMs = 0; brokenOnSettle = false;
     events = [];
     phase = previousPhase;
     transition('idle');
@@ -58,13 +65,7 @@ export function createGame(input: GameConfig): Game {
     if (!currentSpecimen) return;
     const definition = specimenDefinition(currentSpecimen.id);
     const compression01 = pressure01;
-    const currentVolume = definition.initialVolume - (definition.initialVolume - definition.minimumVolume) * compression01;
-    const damage = compression01 <= definition.safePressure01
-      ? 0
-      : Math.min(1, ((compression01 - definition.safePressure01) / (1 - definition.safePressure01)) ** 2);
-    const integrity01 = 1 - damage;
-    const value = Math.round(definition.baseValue * integrity01);
-    currentSpecimen = { ...currentSpecimen, currentVolume, integrity01, value, compression01 };
+    currentSpecimen = { ...currentSpecimen, ...lotOutcome(definition, compression01), compression01 };
     if (brokenOnSettle) {
       events.push({ type: 'failed', tick, reason: 'specimen-broken' });
       transition('failed');
@@ -140,6 +141,7 @@ export function createGame(input: GameConfig): Game {
         if (phase !== 'compressing') return;
         brokenOnSettle = false;
         settleRemainingMs = config.settleDurationMs;
+        overshootRemainingMs = RELEASE_OVERSHOOT_MS;
         events.push({ type: 'press-released', tick, pressure01 });
         transition('settling');
         if (settleRemainingMs === 0) commitCompression();
@@ -206,6 +208,13 @@ export function createGame(input: GameConfig): Game {
             if (settleRemainingMs === 0) commitCompression();
           }
         } else if (phase === 'settling') {
+          // The ram's lag runs inside the settle window: pressure keeps rising and may still break the lot.
+          if (overshootRemainingMs > 0) {
+            const pushMs = Math.min(remainingMs, overshootRemainingMs);
+            overshootRemainingMs -= pushMs;
+            pressure01 = Math.min(1, stablePressure(pressure01 + config.pressRatePerSecond * pushMs / 1000));
+            if (pressure01 >= 1) { brokenOnSettle = true; overshootRemainingMs = 0; }
+          }
           const usedMs = Math.min(remainingMs, settleRemainingMs);
           settleRemainingMs -= usedMs;
           remainingMs -= usedMs;
@@ -223,11 +232,13 @@ export function createGame(input: GameConfig): Game {
     snapshot(): GameSnapshot {
       alive();
       const definition = currentSpecimen === null ? null : specimenDefinition(currentSpecimen.id);
-      // Cue input only: how far the live pressure sits past the lot's safe pressure.
-      const stress01 = definition === null || pressure01 <= definition.safePressure01
-        ? 0 : Math.min(1, (pressure01 - definition.safePressure01) / (1 - definition.safePressure01));
+      // Cue input only: rises from WARNING_BAND01 below the lot's safe pressure to 1 at full pressure.
+      const warning01 = definition === null ? 1 : definition.safePressure01 - WARNING_BAND01;
+      const stress01 = definition === null || pressure01 <= warning01 ? 0 : Math.min(1, (pressure01 - warning01) / (1 - warning01));
+      // What a release now would commit, including the ram's remaining lag.
+      const lagMs = phase === 'compressing' ? RELEASE_OVERSHOOT_MS : phase === 'settling' ? overshootRemainingMs : 0;
       const previewVolume = definition === null ? null
-        : definition.initialVolume - (definition.initialVolume - definition.minimumVolume) * pressure01;
+        : lotOutcome(definition, Math.min(1, pressure01 + config.pressRatePerSecond * lagMs / 1000)).currentVolume;
       return deepFreeze({
         contractVersion: CONTRACT_VERSION, implementation: 'game', seed: config.seed,
         tick, elapsedMs, phase, resumePhase, pressure01, volumeUsed, capacity: config.capacity,

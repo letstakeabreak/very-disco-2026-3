@@ -1,26 +1,38 @@
-import { createGame, getGameConfig } from '../core';
+import { bestPlan, createGame, getGameConfig } from '../core';
 import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
+import { createAudio } from './audio';
+import { parseSettings, typingDelay } from './settings';
+import type { Settings, TextSpeed } from './settings';
 import { createInputController, isGameplayPhase } from './input';
-import { INTRO_STORY, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine } from './story';
+import { CASE_CLOSING_LINE, HULL_LINES, INTRO_STORY, ROUND_START_LINE, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from './story';
 import type { CommsLine, StoryLine } from './story';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords } from './presentation';
+import { canStore, caseFill, discardLabel, failureText, failureTitle, gradeFor, lotOutcomes, phaseLabel, recordText, remainingCapacity, resultRows, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords, kstDaySeed } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import logoLicenseUrl from './fonts/AlfaSlabOne-OFL.txt?url';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
-const BEST_SCORE_KEY = 'deep-press:best-score';
+const INTRO_SEEN_KEY = 'deep-press:intro-seen';
+const TUTORIAL_DONE_KEY = 'deep-press:tutorial-done';
+const MUTED_KEY = 'deep-press:muted';
+const SETTINGS_KEY = 'deep-press:settings';
 const TYPE_MS_PER_CHAR = 38;
 const asset = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
+/** Today's device best lives under the day seed, so each day's salvage keeps its own record. */
+const bestScoreKey = (seed: number): string => `deep-press:best:${seed}`;
 
-/** Device-local best only; storage may be unavailable (private mode, blocked site data). */
-function readBestScore(): number | null {
-  try {
-    const value = Number(localStorage.getItem(BEST_SCORE_KEY));
-    return Number.isInteger(value) && value > 0 ? value : null;
-  } catch { return null; }
+/** Device-local memory only; storage may be unavailable (private mode, blocked site data). */
+function readStored(key: string): string | null {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+function writeStored(key: string, value: string): void {
+  try { localStorage.setItem(key, value); } catch { /* keep the in-memory value */ }
+}
+function readBestScore(seed: number): number | null {
+  const value = Number(readStored(bestScoreKey(seed)));
+  return Number.isInteger(value) && value > 0 ? value : null;
 }
 
 /**
@@ -51,7 +63,7 @@ function typeLine(target: HTMLElement, text: string, count: number): void {
   }
 }
 
-/** App-owned DOM, pointer lifecycle, HUD, tutorial and result flow. No audio. */
+/** App-owned DOM, pointer lifecycle, HUD, tutorial, result flow and synthesized sound. */
 export function mountApp(root: HTMLElement): () => void {
   // Resolve here: a relative custom-property URL is otherwise resolved against
   // the bundled stylesheet in assets/, adding a second assets/ directory.
@@ -59,33 +71,35 @@ export function mountApp(root: HTMLElement): () => void {
   root.style.setProperty('--workshop-ambient', `url("${ambientUrl.href}")`);
   root.innerHTML = `<canvas class="scene" aria-label="DEEP PRESS 작업대. 끌어서 물건을 돌려 볼 수 있어요."></canvas>
     <div class="screen hud-hidden">
-      <header class="topbar" aria-label="현황"><div class="metrics"><p><span>점수</span><strong id="score">0</strong></p><p><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></p></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
-      <section class="status-card" aria-label="지금 물건과 압력">
-        <div class="status-head"><button class="swap" id="swap" type="button" disabled></button><strong class="pressure-value" id="pressure-value" aria-label="압력">0%</strong></div>
+      <header class="topbar" aria-label="현황"><div class="metrics"><p><span>점수</span><strong id="score">0</strong></p><p><span>남은 공간</span><strong><span id="capacity">1.00</span><small>L</small></strong></p><div class="case-fill" id="case-fill" aria-hidden="true"></div></div><button class="icon-button" id="pause" type="button" aria-label="일시 정지">Ⅱ</button></header>
+      <section class="status-card" aria-label="오늘 건진 물건과 지금 물건">
+        <div class="manifest" id="manifest" role="group" aria-label="오늘 건진 물건"></div>
         <p class="facts" id="result-value"></p>
         <div class="pressure-track" aria-hidden="true"><span id="pressure-bar"></span></div>
       </section>
-      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
+      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div><div class="drag-hint" id="drag-hint" hidden aria-hidden="true"><span></span></div></main>
       <footer class="controls" aria-label="조작">
         <p class="comms" id="comms" hidden><b id="comms-name"></b><span id="comms-text" aria-hidden="true"></span><span class="visually-hidden" id="comms-line" aria-live="polite"></span></p>
         <div class="operation-row" role="group" aria-label="현재 물건 처리"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">압축하기</button><button class="secondary" id="store" type="button">담기</button><button class="ghost" id="discard" type="button">버리기</button></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>
+    <div class="hull" id="hull" aria-hidden="true"></div>
     <div class="transition" id="transition" hidden><video src="${asset('video/descent.mp4')}" muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video><button class="transition-skip" type="button">건너뛰기</button></div>`;
 
   let canvas = root.querySelector('canvas')!;
   const screen = root.querySelector<HTMLElement>('.screen')!;
   const score = root.querySelector<HTMLElement>('#score')!;
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
-  const swap = root.querySelector<HTMLButtonElement>('#swap')!;
+  const manifest = root.querySelector<HTMLElement>('#manifest')!;
+  const fill = root.querySelector<HTMLElement>('#case-fill')!;
+  const dragHint = root.querySelector<HTMLElement>('#drag-hint')!;
   const comms = root.querySelector<HTMLElement>('#comms')!;
   const commsName = root.querySelector<HTMLElement>('#comms-name')!;
   const commsText = root.querySelector<HTMLElement>('#comms-text')!;
   const commsLine = root.querySelector<HTMLElement>('#comms-line')!;
   const statusCard = root.querySelector<HTMLElement>('.status-card')!;
   const workbenchInput = root.querySelector<HTMLElement>('#workbench-input')!;
-  const pressureValue = root.querySelector<HTMLElement>('#pressure-value')!;
   const pressureBar = root.querySelector<HTMLElement>('#pressure-bar')!;
   const resultValue = root.querySelector<HTMLElement>('#result-value')!;
   const hold = root.querySelector<HTMLButtonElement>('#hold')!;
@@ -96,17 +110,25 @@ export function mountApp(root: HTMLElement): () => void {
   const liveStatus = root.querySelector<HTMLElement>('#live-status')!;
   const overlay = root.querySelector<HTMLElement>('#overlay')!;
   const transition = root.querySelector<HTMLElement>('#transition')!;
+  const hull = root.querySelector<HTMLElement>('#hull')!;
   const video = transition.querySelector('video')!;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const game = createGame(getGameConfig());
+  const dayConfig = getGameConfig(kstDaySeed(new Date()));
+  const dayBest = bestPlan(dayConfig).score;
+  const game = createGame(dayConfig);
+  let settings: Settings = parseSettings(readStored(SETTINGS_KEY), readStored(MUTED_KEY) === '1');
+  let settingsOpen = false;
+  const audio = createAudio(settings.music / 100, settings.effects / 100);
+  root.classList.toggle('no-shake', !settings.shake);
   const abort = new AbortController();
   const options = { signal: abort.signal };
   let started = false;
-  let tutorialStep = 0;
-  let tutorialSpecimenId: SalvageId | null = null;
-  let tutorialComplete = false;
+  let introSeen = readStored(INTRO_SEEN_KEY) === '1';
+  let tutorialDone = readStored(TUTORIAL_DONE_KEY) === '1';
+  const broken = new Set<SalvageId>();
+  let renderedManifest = '';
   let failureReason: 'specimen-broken' | 'capacity-exceeded' | null = null;
-  let bestScore = readBestScore();
+  let bestScore = readBestScore(dayConfig.seed);
   let newBest = false;
   let fatalMessage = '';
   let overlayKey = '';
@@ -119,8 +141,23 @@ export function mountApp(root: HTMLElement): () => void {
   let transitioning = false;
   let hudHidden = true;
   let transitionTimer = 0;
-  let autoSelectAt = 0;
   let voice: CommsLine | null = null;
+  let closeCaseAt = 0;
+  // G13: a line is held on screen until read; lines already read never type out again.
+  let voiceHoldUntil = 0;
+  const readLines = new Set<string>();
+  // G10: the hull complains every so often while the player works.
+  let nextHullAt = 0;
+  let hullLine = 0;
+  let nextAlarmAt = 0;
+  // G12: let the break play before the choices appear.
+  let failedRevealAt = 0;
+  // G16: the title waits for its fonts and the 3D workbench (or 15 s, whichever comes first).
+  let fontsReady = false;
+  let assetsReady = false;
+  const mountedAt = performance.now();
+  let lastValue: { id: SalvageId; value: number } | null = null;
+  let typedTick = 0;
   let toleranceVoiced: SalvageId | null = null;
   let voiceKey = '';
   let voiceStartedAt = 0;
@@ -133,9 +170,7 @@ export function mountApp(root: HTMLElement): () => void {
   const input = createInputController({
     getSnapshot: () => game.snapshot(),
     dispatch: (command) => runtime.dispatch(command),
-    onInspectionMoved: () => {
-      if (!tutorialComplete && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 1);
-    },
+    onInspectionMoved: () => {},
   });
   handleRendererFatal = () => {
     input.cancel();
@@ -145,19 +180,25 @@ export function mountApp(root: HTMLElement): () => void {
 
   function consumeEvents(events: readonly GameEvent[]): void {
     for (const event of events) {
-      if (event.type === 'press-released' && game.snapshot().currentSpecimen?.id === tutorialSpecimenId) tutorialStep = Math.max(tutorialStep, 2);
-      if (event.type === 'stored' && event.specimenId === tutorialSpecimenId) tutorialComplete = true;
+      audio.event(event, game.snapshot());
+      // The tutorial is done once a first lot is banked; later runs on this device skip it.
+      if (event.type === 'stored' && !tutorialDone) { tutorialDone = true; writeStored(TUTORIAL_DONE_KEY, '1'); }
       if (event.type === 'failed') failureReason = event.reason;
+      if (event.type === 'failed' && event.reason === 'specimen-broken') {
+        const id = game.snapshot().currentSpecimen?.id; if (id) broken.add(id);
+        failedRevealAt = performance.now() + (reducedMotion.matches ? 0 : 1200);
+        root.classList.remove('shatter'); void root.offsetWidth; root.classList.add('shatter');
+      }
       if (event.type === 'completed' && event.score > (bestScore ?? 0)) {
         bestScore = event.score; newBest = true;
-        try { localStorage.setItem(BEST_SCORE_KEY, String(event.score)); } catch { /* keep the in-memory best */ }
+        writeStored(bestScoreKey(dayConfig.seed), String(event.score));
       }
       if (event.type === 'phase-changed' && event.to === 'idle') failureReason = null;
-      // Put the next lot in the press once the banked or discarded one has cleared.
-      if (event.type === 'stored' || event.type === 'discarded') autoSelectAt = performance.now() + 1000;
       const snapshot = game.snapshot();
       if (event.type === 'specimen-selected') toleranceVoiced = snapshot.currentSpecimen?.tolerance ? event.specimenId : null;
-      voice = reactionLine(event, snapshot) ?? voice;
+      voice = reactionLine(event, snapshot, dayConfig) ?? voice;
+      // Nothing left fits: let 도현's line land, then close the case.
+      if (voice === CASE_CLOSING_LINE && event.type === 'stored') closeCaseAt = performance.now() + 2200;
     }
   }
 
@@ -171,24 +212,23 @@ export function mountApp(root: HTMLElement): () => void {
     storyPage = null;
     outroPage = 0;
     endingSeen = false;
-    tutorialStep = 0;
-    tutorialComplete = false;
+    broken.clear();
     failureReason = null;
     newBest = false;
-    autoSelectAt = 0;
-    voice = null;
+    voice = ROUND_START_LINE;
+    closeCaseAt = 0;
+    failedRevealAt = 0;
+    lastValue = null;
+    nextHullAt = performance.now() + 20000;
+    nextAlarmAt = performance.now() + 9000;
     toleranceVoiced = null;
   }
 
   function beginRound(reset: boolean): void {
     clearRound();
     started = true;
+    // The player picks the first lot from the manifest after seeing all three.
     runtime.dispatch({ type: reset ? 'restart' : 'start' });
-    const firstId = game.snapshot().remainingSpecimenIds[0];
-    if (firstId) {
-      tutorialSpecimenId = firstId;
-      selectSpecimen(firstId);
-    }
     renderUi(game.snapshot());
     resize();
     hold.focus({ preventScroll: true });
@@ -202,6 +242,14 @@ export function mountApp(root: HTMLElement): () => void {
     renderUi(game.snapshot());
   }
 
+  function saveSettings(next: Settings): void {
+    settings = next;
+    writeStored(SETTINGS_KEY, JSON.stringify(next));
+    audio.setVolumes(next.music / 100, next.effects / 100);
+    root.classList.toggle('no-shake', !next.shake);
+    renderUi(game.snapshot());
+  }
+
   function requestPause(): void {
     // A cancelled gesture may already have paused; otherwise pause here.
     input.cancel();
@@ -211,28 +259,31 @@ export function mountApp(root: HTMLElement): () => void {
 
   function overlayState(snapshot: GameSnapshot): string {
     if (fatalMessage) return 'fatal';
+    if (settingsOpen) return 'settings';
     if (storyPage !== null) return 'story';
+    if (!started && !assetsReady) return 'loading';
     if (!started && snapshot.phase === 'idle') return 'start';
     if (snapshot.phase === 'paused') return 'paused';
-    if (snapshot.phase === 'failed') return 'failed';
+    if (snapshot.phase === 'failed') return performance.now() >= failedRevealAt ? 'failed' : '';
     if (snapshot.phase === 'complete') return endingSeen ? 'complete' : 'outro';
     return '';
   }
 
   function currentStory(snapshot: GameSnapshot): { lines: readonly StoryLine[]; index: number } | null {
     if (overlayKey === 'story' && storyPage !== null) return { lines: INTRO_STORY, index: storyPage };
-    if (overlayKey === 'outro') return { lines: endingStory(snapshot), index: outroPage };
+    if (overlayKey === 'outro') return { lines: endingStory(lotOutcomes(snapshot, broken)), index: outroPage };
     return null;
   }
 
   function visibleCharacters(line: StoryLine): number {
     if (lineRevealed || reducedMotion.matches) return line.text.length;
-    return Math.min(line.text.length, Math.floor((performance.now() - lineStartedAt) / TYPE_MS_PER_CHAR));
+    const delay = typingDelay(TYPE_MS_PER_CHAR, settings.textSpeed);
+    return delay ? Math.min(line.text.length, Math.floor((performance.now() - lineStartedAt) / delay)) : line.text.length;
   }
 
   /** Visual-novel stage: full-bleed scene, one standing speaker, a name plate and a typed line. */
   const STORY_MARKUP = `<section class="vn" role="dialog" aria-modal="true" aria-label="이야기">
-      <div class="vn-backdrop" aria-hidden="true"></div><img class="vn-sprite away" alt="" aria-hidden="true" width="1024" height="1536">
+      <div class="vn-backdrop" aria-hidden="true"></div><div class="vn-figure" aria-hidden="true"><img class="vn-sprite away" alt="" width="1024" height="1536"></div>
       <button class="vn-skip" data-action="story-skip" type="button">건너뛰기</button>
       <button class="vn-box" data-action="story-next" type="button"><span class="vn-name" hidden></span><span class="vn-text" aria-hidden="true"></span><span class="visually-hidden vn-line" aria-live="polite"></span><span class="vn-next" aria-hidden="true">▼</span></button>
     </section>`;
@@ -248,6 +299,7 @@ export function mountApp(root: HTMLElement): () => void {
       lineStartedAt = performance.now();
       lineRevealed = false;
       stage.dataset.scene = line.scene;
+      stage.dataset.mood = line.mood ?? '';
       stage.classList.toggle('narration', line.speaker === null);
       const name = stage.querySelector<HTMLElement>('.vn-name')!;
       name.hidden = line.speaker === null;
@@ -260,12 +312,17 @@ export function mountApp(root: HTMLElement): () => void {
         sprite.dataset.pose = line.pose;
         sprite.dataset.speaker = line.speaker ?? '';
         sprite.dataset.side = line.speaker === '윤서' ? 'left' : 'right';
+        // 윤서 speaks from the support ship: she appears on the comm screen, 도현 stands in the room.
+        stage.querySelector<HTMLElement>('.vn-figure')!.toggleAttribute('data-remote', line.speaker === '윤서');
         sprite.src = asset(`characters/${line.pose}.webp`);
         sprite.classList.remove('away', 'enter');
         if (entering) { void sprite.offsetWidth; sprite.classList.add('enter'); }
       } else sprite.classList.remove('away');
     }
     const shown = visibleCharacters(line);
+    // A soft tick every few letters while a story line types out.
+    if (shown < line.text.length && shown - typedTick >= 3) { typedTick = shown; audio.cue('type'); }
+    if (shown < typedTick) typedTick = shown;
     typeLine(stage.querySelector<HTMLElement>('.vn-text')!, line.text, shown);
     stage.classList.toggle('typing', shown < line.text.length);
   }
@@ -291,6 +348,7 @@ export function mountApp(root: HTMLElement): () => void {
 
   function finishIntro(): void {
     storyPage = null;
+    if (!introSeen) { introSeen = true; writeStored(INTRO_SEEN_KEY, '1'); }
     if (started) {
       runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot());
       hold.focus({ preventScroll: true });
@@ -332,80 +390,150 @@ export function mountApp(root: HTMLElement): () => void {
       overlay.className = `overlay overlay-${key}`;
       screen.inert = Boolean(key);
       const content: Record<string, string> = {
-        start: `<div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
+        start: `<button class="icon-button title-settings" data-action="settings-open" type="button" aria-label="설정"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.7 7.7 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.7 7.7 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg></button><div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-          <h2 id="dialog-title">남길 것을<br>골라 주세요.</h2>
-          <button data-action="story-open" class="dialog-primary" type="button">시작하기</button>
-          <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Alfa Slab One (Jm Solé)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
+          <h2 id="dialog-title">눌러서 줄이고<br>1리터에 담아요.</h2>
+          ${introSeen ? '<button data-action="quick-start" class="dialog-primary" type="button">시작하기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 보기</button>'
+            : '<button data-action="story-open" class="dialog-primary" type="button">시작하기</button>'}
+          <details class="font-credits"><summary>출처</summary><p>글꼴 리디바탕 (리디주식회사)<br>로고 Alfa Slab One (Jm Solé)<br>소리 Freesound CC0 녹음 (Fission9 craigsmith Andriejus EagleStealthTeam unfa kyles Jofae suspensiondigital JoMungus Ubehag mlsprovideos Guialgarve Kolombooo)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
+        loading: '<div class="loading" role="status" aria-label="불러오는 중"><span class="loading-ring"></span></div>',
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
-        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
-        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
-        complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><p class="result-score"><strong id="result-score"></strong>점</p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="settings-open" class="dialog-secondary" type="button">설정</button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
+        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button" id="dialog-cash-out">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
+        complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><div class="result-head"><p class="result-score"><strong id="result-score"></strong>점</p><p class="grade" id="result-grade"></p></div><p class="result-par" id="result-par"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
+        settings: `<section class="dialog-card settings-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">설정</h2>
+          <label class="setting"><span>배경음</span><input type="range" min="0" max="100" step="5" data-setting="music"><output data-for="music"></output></label>
+          <label class="setting"><span>효과음</span><input type="range" min="0" max="100" step="5" data-setting="effects"><output data-for="effects"></output></label>
+          <div class="setting"><span id="speed-label">대사 속도</span><div class="segmented" role="group" aria-labelledby="speed-label"><button type="button" data-action="speed" data-value="normal">보통</button><button type="button" data-action="speed" data-value="fast">빠르게</button><button type="button" data-action="speed" data-value="instant">바로</button></div></div>
+          <div class="setting"><span id="shake-label">화면 흔들림</span><button type="button" class="switch" role="switch" data-action="shake" aria-labelledby="shake-label"></button></div>
+          <button data-action="tutorial-reset" class="dialog-secondary" type="button" id="tutorial-reset">튜토리얼 다시 보기</button>
+          <button data-action="settings-close" class="dialog-primary" type="button">닫기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
       overlay.innerHTML = content[key] ?? '';
       renderedLine = '';
+      // The title frames the workbench between the logo and its card (G17).
+      if (key === 'start' || previousKey === 'start') resize();
       if (key) overlay.querySelector<HTMLButtonElement>('.dialog-primary, .vn-box')?.focus({ preventScroll: true });
       else if (previousKey === 'paused' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
       else if (previousKey === 'fatal' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
     }
     renderStory(snapshot);
     const finalScore = overlay.querySelector<HTMLElement>('#result-score');
-    if (finalScore) finalScore.textContent = snapshot.score.toLocaleString('ko-KR');
+    if (finalScore) {
+      finalScore.textContent = snapshot.score.toLocaleString('ko-KR');
+      const { percent, grade } = gradeFor(snapshot.score, dayBest);
+      const gradeBadge = overlay.querySelector<HTMLElement>('#result-grade')!;
+      gradeBadge.textContent = grade;
+      gradeBadge.dataset.grade = grade;
+      gradeBadge.setAttribute('aria-label', `등급 ${grade}`);
+      overlay.querySelector<HTMLElement>('#result-par')!.textContent = `오늘 만점 ${dayBest.toLocaleString('ko-KR')}점 중 ${percent}%`;
+    }
     const copy = overlay.querySelector<HTMLElement>('#dialog-copy');
     const title = overlay.querySelector<HTMLElement>('#dialog-title');
     if (title && key === 'failed') title.textContent = failureTitle(failureReason);
     if (copy && key === 'failed') copy.textContent = failureText(failureReason);
     const items = overlay.querySelector<HTMLElement>('#dialog-items');
-    if (items) { items.innerHTML = resultItems(snapshot).map((row) => `<li>${row.map((cell) => `<span>${cell}</span>`).join('')}</li>`).join(''); items.hidden = !items.children.length; }
+    if (items) {
+      const outcomes = lotOutcomes(snapshot, broken);
+      const rows = resultRows(snapshot, dayConfig, outcomes).map((row, index) => `<li data-outcome="${outcomes[dayConfig.specimens[index]!.id]}">${row.map((cell) => `<span>${cell}</span>`).join('')}</li>`).join('');
+      if (items.innerHTML !== rows) items.innerHTML = rows;
+    }
     const record = overlay.querySelector<HTMLElement>('#dialog-record');
     if (record) { record.textContent = recordText(bestScore, newBest); record.hidden = !record.textContent; }
+    if (key === 'settings') {
+      for (const input of overlay.querySelectorAll<HTMLInputElement>('input[data-setting]')) {
+        const name = input.dataset.setting as 'music' | 'effects';
+        if (document.activeElement !== input) input.value = String(settings[name]);
+        overlay.querySelector<HTMLElement>(`output[data-for="${name}"]`)!.textContent = settings[name] ? String(settings[name]) : '끔';
+      }
+      for (const button of overlay.querySelectorAll<HTMLElement>('[data-action="speed"]')) button.setAttribute('aria-pressed', String(button.dataset.value === settings.textSpeed));
+      const shakeSwitch = overlay.querySelector<HTMLElement>('.switch')!;
+      shakeSwitch.setAttribute('aria-checked', String(settings.shake));
+      shakeSwitch.textContent = settings.shake ? '켜짐' : '꺼짐';
+      const replay = overlay.querySelector<HTMLButtonElement>('#tutorial-reset')!;
+      replay.disabled = !tutorialDone;
+      replay.textContent = tutorialDone ? '튜토리얼 다시 보기' : '다음 판에 튜토리얼이 나와요';
+    }
     const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
     if (discardChoice) discardChoice.textContent = discardLabel(snapshot);
+    // G19: with no other lot left, finishing here is the same as discarding: offer one button.
+    const cashOutChoice = overlay.querySelector<HTMLElement>('#dialog-cash-out');
+    if (cashOutChoice) cashOutChoice.hidden = snapshot.remainingSpecimenIds.length <= 1;
     if (copy && key === 'fatal') copy.textContent = `안 되면 새로고침해 주세요. (${fatalMessage})`;
   }
 
-  /** The next remaining lot after the one in the press, for the swap control. */
-  function nextLot(snapshot: GameSnapshot): SalvageId | null {
-    const ids = snapshot.remainingSpecimenIds;
-    const current = snapshot.currentSpecimen;
-    if (!current || ids.length < 2) return null;
-    return ids[(ids.indexOf(current.id) + 1) % ids.length] ?? null;
+  /**
+   * All three lots from the start of the round (G1): size and value to plan with, then what became of
+   * each. A lot can be chosen whenever the core's select rule allows it (nothing pressed yet).
+   */
+  function renderManifest(snapshot: GameSnapshot): void {
+    const outcomes = lotOutcomes(snapshot, broken, dayConfig);
+    const mayChoose = snapshot.phase === 'idle' || snapshot.phase === 'stored'
+      || (snapshot.phase === 'inspecting' && snapshot.currentSpecimen?.compression01 === 0);
+    const html = dayConfig.specimens.map((lot) => {
+      const current = snapshot.currentSpecimen?.id === lot.id;
+      const outcome = outcomes[lot.id];
+      const stored = snapshot.storedSpecimens.find((item) => item.id === lot.id);
+      const meta = stored ? [`${stored.currentVolume.toFixed(2)}L`, `가치 ${stored.value}`]
+        : outcome === 'broken' ? ['부서짐'] : outcome === 'left' ? ['두고 옴'] : outcome === 'blocked' ? ['안 들어감'] : [`${lot.initialVolume.toFixed(2)}L`, `가치 ${lot.baseValue}`];
+      const selectable = outcome === 'pending' && !current && mayChoose;
+      return `<button type="button" class="lot" data-lot="${lot.id}" data-state="${current && outcome !== 'broken' ? 'current' : outcome}"${selectable ? '' : ' disabled'}${current ? ' aria-current="true"' : ''}><span class="lot-name">${SPECIMEN_LABELS[lot.id]}</span><span class="lot-meta">${meta.map((part) => `<span>${part}</span>`).join('')}</span></button>`;
+    }).join('');
+    if (html !== renderedManifest) { renderedManifest = html; manifest.innerHTML = html; }
   }
 
   function renderUi(snapshot: GameSnapshot): void {
     score.textContent = snapshot.score.toLocaleString('ko-KR');
     capacity.textContent = remainingCapacity(snapshot).toFixed(2);
-    const label = snapshot.currentSpecimen ? SPECIMEN_LABELS[snapshot.currentSpecimen.id] : '빈 프레스';
-    // Swapping mirrors the core's select rule: only an untouched lot can go back.
-    swap.disabled = snapshot.phase !== 'inspecting' || snapshot.currentSpecimen?.compression01 !== 0 || nextLot(snapshot) === null;
-    if (swap.textContent !== label) swap.textContent = label;
-    swap.setAttribute('aria-label', swap.disabled ? label : `${label}, 다른 물건으로 바꾸기`);
+    renderManifest(snapshot);
+    const fillHtml = caseFill(snapshot).map((segment) => `<span data-kind="${segment.kind}" style="width:${(segment.share * 100).toFixed(2)}%"></span>`).join('');
+    if (fill.innerHTML !== fillHtml) fill.innerHTML = fillHtml;
     const pressure = Math.round(snapshot.pressure01 * 100);
-    pressureValue.textContent = `${pressure}%`;
     pressureBar.style.transform = `scaleX(${snapshot.pressure01})`;
     statusCard.style.setProperty('--light-x', `${14 + snapshot.pressure01 * 72}%`);
     hold.classList.toggle('pressing', snapshot.phase === 'compressing');
+    // G12: a committed loss of value is called out next to the facts for a moment.
+    const committed = snapshot.phase === 'inspecting' ? snapshot.currentSpecimen : null;
+    if (committed && lastValue?.id === committed.id && committed.value < lastValue.value) {
+      const drop = document.createElement('span');
+      drop.className = 'value-drop';
+      drop.textContent = `가치 −${lastValue.value - committed.value}`;
+      drop.addEventListener('animationend', () => drop.remove());
+      statusCard.append(drop);
+    }
+    if (committed) lastValue = { id: committed.id, value: committed.value };
+    else if (!snapshot.currentSpecimen) lastValue = null;
     const facts = specimenResult(snapshot).map((fact) => `<span${fact.warn ? ' class="warn"' : ''}>${fact.text}</span>`).join('');
     if (resultValue.innerHTML !== facts) resultValue.innerHTML = facts;
-    const tutorialActive = started && !tutorialComplete && snapshot.currentSpecimen?.id === tutorialSpecimenId && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
+    const tutorialActive = started && !tutorialDone && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
     const lot = snapshot.currentSpecimen;
     if (lot?.tolerance && toleranceVoiced !== lot.id) { toleranceVoiced = lot.id; voice = toleranceLine(lot.tolerance); }
-    // Live strain, then the first-lot tutorial, then the latest reaction.
-    const line = snapshot.phase === 'compressing' && snapshot.stress01 > 0 ? STRAIN_LINE : tutorialActive ? tutorialLine(tutorialStep) : voice;
+    // G20: during the first run, show where to drag, and which chips can be picked.
+    const stage = tutorialActive ? tutorialStage(snapshot) : null;
+    dragHint.hidden = stage !== 'rotate' || snapshot.phase !== 'inspecting';
+    manifest.toggleAttribute('data-plan', stage === 'plan');
+    // Live strain, then the first-run tutorial (read from the round), then the latest reaction.
+    const line = snapshot.phase === 'compressing' && snapshot.stress01 > 0 ? STRAIN_LINE
+      : tutorialActive ? tutorialLine(tutorialStage(snapshot), lot?.tolerance ?? null) : voice;
     comms.hidden = line === null;
     comms.classList.toggle('strained', line === STRAIN_LINE);
     const key = line ? `${line.speaker}:${line.text}` : '';
     if (key !== voiceKey) {
       voiceKey = key;
-      voiceStartedAt = performance.now();
+      // A line that was already read (for example, back from a strain warning) shows at once.
+      voiceStartedAt = readLines.has(key) ? -Infinity : performance.now();
+      voiceHoldUntil = line ? performance.now() + line.text.length * typingDelay(24, settings.textSpeed) + 1500 : 0;
       commsName.textContent = line?.speaker ?? '';
+      comms.dataset.speaker = line?.speaker ?? '';
       commsLine.textContent = line ? `${line.speaker}: ${line.text}` : '';
     }
+    const benchDelay = typingDelay(24, settings.textSpeed);
+    if (line && performance.now() - voiceStartedAt >= line.text.length * benchDelay) readLines.add(key);
     // The same typed delivery as the story, a little quicker at the bench.
-    if (line) typeLine(commsText, line.text, reducedMotion.matches ? line.text.length : Math.floor((performance.now() - voiceStartedAt) / 24));
+    if (line) typeLine(commsText, line.text, reducedMotion.matches || !benchDelay ? line.text.length : Math.floor((performance.now() - voiceStartedAt) / benchDelay));
     statusCard.classList.toggle('strained', snapshot.stress01 > 0);
     // Stay enabled while held: disabling the pressed button blurs it and drops capture.
     hold.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'compressing';
@@ -428,22 +556,34 @@ export function mountApp(root: HTMLElement): () => void {
     }
   }
 
+  /**
+   * Portrait keeps the 2:3 workshop at full width and the canvas covering the whole screen. The
+   * working band (gauge at 14% to the case slots at 80%) is centred between the top UI (`start`) and
+   * the bottom UI (`end`), never with the gauge under the top UI. The renderer centres its stage in
+   * the canvas, so the canvas grows past the screen edges as needed to put the stage there; beyond
+   * the plate the renderer continues the workshop, so no bars or margins show.
+   */
   function resize(): void {
     const width = root.clientWidth;
-    let height = root.clientHeight || window.innerHeight;
+    const screenHeight = root.clientHeight || window.innerHeight;
     let top = 0;
-    if (!hudHidden && width < height) {
-      // The fixed 2:3 workshop's gauge and case occupy its central 14–88%, and
-      // the renderer centres that stage vertically. When the HUD would cover the
-      // gauge there, fit the working area between HUD and controls instead.
+    let height = screenHeight;
+    const stage = width * 1.5;
+    if (width < screenHeight) {
       const rootTop = root.getBoundingClientRect().top;
-      const start = statusCard.getBoundingClientRect().bottom - rootTop + 10;
-      const stage = Math.min(height, width * 1.5);
-      if (start > (height - stage) / 2 + stage * .14) {
-        const end = root.querySelector<HTMLElement>('.controls')!.getBoundingClientRect().top - rootTop - 10;
-        height = Math.max(1, Math.min(width * 1.5, (end - start) / .74));
-        top = start - height * .14;
-      }
+      const identity = overlay.querySelector<HTMLElement>('.mission-identity');
+      const card = overlay.querySelector<HTMLElement>('.mission-card');
+      const title = hudHidden && overlayKey === 'start' && identity && card;
+      const start = title ? identity.getBoundingClientRect().bottom - rootTop + 4
+        : hudHidden ? 0 : statusCard.getBoundingClientRect().bottom - rootTop + 8;
+      const end = title ? card.getBoundingClientRect().top - rootTop
+        : hudHidden ? screenHeight : root.querySelector<HTMLElement>('.controls')!.getBoundingClientRect().top - rootTop - 8;
+      const stageTop = Math.max((start + end) / 2 - stage * .47, start - stage * .14);
+      const centre = stageTop + stage / 2;
+      const half = Math.max(centre, screenHeight - centre);
+      // At least the stage's own height, so the renderer keeps it at full width on short screens too.
+      height = Math.max(half * 2, stage);
+      top = centre - height / 2;
     }
     canvas.style.top = `${top}px`;
     canvas.style.height = `${height}px`;
@@ -464,6 +604,7 @@ export function mountApp(root: HTMLElement): () => void {
     renderUi(game.snapshot());
   }
 
+  void Promise.all([document.fonts.load('72px "Alfa Slab One"'), document.fonts.load('16px "RIDI Batang"')]).finally(() => { fontsReady = true; });
   const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(resize);
   observer?.observe(root);
   observer?.observe(statusCard);
@@ -474,6 +615,12 @@ export function mountApp(root: HTMLElement): () => void {
   overlay.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
     const action = target.closest<HTMLButtonElement>('button[data-action]')?.dataset.action ?? (target.closest('.vn') ? 'story-next' : undefined);
+    if (action && action !== 'story-next') audio.cue('tap');
+    if (action === 'settings-open') { settingsOpen = true; renderUi(game.snapshot()); }
+    if (action === 'settings-close') { settingsOpen = false; renderUi(game.snapshot()); }
+    if (action === 'speed') saveSettings({ ...settings, textSpeed: (target.closest<HTMLElement>('[data-value]')!.dataset.value as TextSpeed) });
+    if (action === 'shake') saveSettings({ ...settings, shake: !settings.shake });
+    if (action === 'tutorial-reset') { tutorialDone = false; writeStored(TUTORIAL_DONE_KEY, '0'); renderUi(game.snapshot()); }
     if (action === 'restart') beginRound(true);
     if (action === 'title') returnToTitle();
     if (action === 'resume') { runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot()); }
@@ -482,6 +629,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (action === 'discard') { runtime.dispatch({ type: 'discard' }); renderUi(game.snapshot()); }
     if (action === 'retry-renderer') retryRenderer();
     if (action === 'story-open') openStory();
+    if (action === 'quick-start') playTransition();
     if (action === 'story-next') advanceStory(false);
     if (action === 'story-skip') advanceStory(true);
   }, options);
@@ -491,16 +639,24 @@ export function mountApp(root: HTMLElement): () => void {
   video.addEventListener('error', finishTransition, options);
   screen.addEventListener('animationend', () => screen.classList.remove('entering'), options);
   overlay.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && settingsOpen) { settingsOpen = false; renderUi(game.snapshot()); return; }
     if (event.key === 'Escape' && storyPage !== null && !fatalMessage) { storyPage = null; renderUi(game.snapshot()); }
   }, options);
-  transition.addEventListener('keydown', (event) => { if (event.key === 'Escape') finishTransition(); }, options);
-  swap.addEventListener('click', () => {
-    const next = nextLot(game.snapshot());
-    if (next) selectSpecimen(next);
+  overlay.addEventListener('input', (event) => {
+    const input = (event.target as HTMLElement).closest<HTMLInputElement>('input[data-setting]');
+    if (input) saveSettings({ ...settings, [input.dataset.setting as 'music' | 'effects']: Number(input.value) });
   }, options);
+  transition.addEventListener('keydown', (event) => { if (event.key === 'Escape') finishTransition(); }, options);
+  manifest.addEventListener('click', (event) => {
+    const id = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-lot]:not(:disabled)')?.dataset.lot as SalvageId | undefined;
+    if (id) selectSpecimen(id);
+  }, options);
+  // iOS only lets sound start inside a user gesture: every first touch or key press unlocks it.
+  root.addEventListener('pointerdown', () => audio.unlock(), { ...options, capture: true });
+  root.addEventListener('keydown', () => audio.unlock(), { ...options, capture: true });
   store.addEventListener('click', () => runtime.dispatch({ type: 'store' }), options);
   discard.addEventListener('click', () => runtime.dispatch({ type: 'discard' }), options);
-  pauseButton.addEventListener('click', requestPause, options);
+  pauseButton.addEventListener('click', () => { audio.cue('tap'); requestPause(); }, options);
 
   function capture(target: HTMLElement, pointerId: number): void {
     try { target.setPointerCapture(pointerId); } catch { input.cancel(pointerId); }
@@ -534,6 +690,7 @@ export function mountApp(root: HTMLElement): () => void {
   hold.addEventListener('blur', () => { input.cancel(KEYBOARD_POINTER_ID); }, options);
   document.addEventListener('visibilitychange', () => {
     previousTime = null;
+    audio.setSuspended(document.hidden);
     if (document.hidden) { finishTransition(); requestPause(); }
   }, options);
 
@@ -541,11 +698,18 @@ export function mountApp(root: HTMLElement): () => void {
   const frame = (now: number): void => {
     const dt = previousTime === null ? 0 : now - previousTime;
     previousTime = now;
+    if (!assetsReady && ((fontsReady && canvas.dataset.renderState === 'ready') || now - mountedAt > 15000)) assetsReady = true;
+    audio.update(game.snapshot());
+    if (root.dataset.audio !== audio.state) root.dataset.audio = audio.state;
+    if (closeCaseAt && now >= closeCaseAt && ['idle', 'stored'].includes(game.snapshot().phase)) { closeCaseAt = 0; runtime.dispatch({ type: 'cash-out' }); }
+    if (nextAlarmAt && now >= nextAlarmAt && started && !hudHidden && !overlayKey) { nextAlarmAt = now + 18000; audio.cue('alarm'); }
+    // G10: presentation-only pressure. Waits for the current line to be read and never runs under a dialog.
     const phase = game.snapshot().phase;
-    if (autoSelectAt && now >= autoSelectAt && (phase === 'idle' || phase === 'stored')) {
-      autoSelectAt = 0;
-      const next = game.snapshot().remainingSpecimenIds[0];
-      if (next) selectSpecimen(next);
+    if (nextHullAt && now >= nextHullAt && started && !hudHidden && !overlayKey && ['idle', 'inspecting', 'stored'].includes(phase)) {
+      nextHullAt = now + 22000 + Math.random() * 12000;
+      hull.classList.remove('quake'); void hull.offsetWidth; hull.classList.add('quake');
+      audio.cue('hull');
+      if (now >= voiceHoldUntil && !(started && !tutorialDone)) { voice = HULL_LINES[hullLine % HULL_LINES.length]!; hullLine += 1; }
     }
     runtime.frame(dt);
     renderUi(game.snapshot());
@@ -553,5 +717,5 @@ export function mountApp(root: HTMLElement): () => void {
   };
   frameId = requestAnimationFrame(frame);
   renderUi(game.snapshot());
-  return () => { input.clear(); abort.abort(); observer?.disconnect(); cancelAnimationFrame(frameId); window.clearTimeout(transitionTimer); runtime.dispose(); root.replaceChildren(); root.style.removeProperty('--workshop-ambient'); };
+  return () => { input.clear(); abort.abort(); observer?.disconnect(); cancelAnimationFrame(frameId); window.clearTimeout(transitionTimer); audio.dispose(); runtime.dispose(); root.replaceChildren(); root.style.removeProperty('--workshop-ambient'); };
 }

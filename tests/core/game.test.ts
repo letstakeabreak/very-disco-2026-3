@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createGame, getGameConfig } from '../../src/core';
+import { authoredGameConfig, createGame } from '../../src/core';
 import { DEFAULT_GAME_CONFIG } from '../../src/contracts/fixtures';
 import { assertSnapshot } from '../../src/contracts/validate';
 
@@ -40,7 +40,7 @@ describe('deterministic DEEP PRESS core', () => {
 
 describe('DEEP PRESS authored game rules', () => {
   function selected(id: 'salvage-core' | 'salvage-lens' | 'salvage-cassette' = 'salvage-core') {
-    const game = createGame(getGameConfig());
+    const game = createGame(authoredGameConfig());
     game.dispatch({ type: 'start' });
     game.dispatch({ type: 'select', specimenId: id });
     return game;
@@ -58,36 +58,48 @@ describe('DEEP PRESS authored game rules', () => {
 
   it('commits the documented compression, integrity, value and storage bonus after settling', () => {
     const game = selected();
-    press(game, 20); // p = 0.5
+    press(game, 20); // released at p = 0.5, the ram's lag adds 0.03
     expect(game.snapshot().currentSpecimen?.compression01).toBe(0);
     settle(game);
     const result = game.snapshot().currentSpecimen!;
     expect(game.snapshot().phase).toBe('inspecting');
-    expect(result.currentVolume).toBeCloseTo(0.585);
+    expect(result.compression01).toBeCloseTo(0.53);
+    expect(result.currentVolume).toBeCloseTo(0.4914);
     expect(result.integrity01).toBe(1);
     expect(result.value).toBe(260);
-    expect(result.compression01).toBeCloseTo(0.5);
     game.dispatch({ type: 'store' });
-    expect(game.snapshot()).toMatchObject({ phase: 'stored', score: 360, volumeUsed: 0.585, currentSpecimen: null, pressure01: 0 });
+    expect(game.snapshot()).toMatchObject({ phase: 'stored', score: 360, currentSpecimen: null, pressure01: 0 });
+    expect(game.snapshot().volumeUsed).toBeCloseTo(0.4914);
     expect(game.snapshot().remainingSpecimenIds).not.toContain('salvage-core');
     expect(game.snapshot().storedSpecimenIds).toEqual(['salvage-core']);
   });
 
   it('applies the safe-pressure damage curve and fails after an automatic full-pressure stroke', () => {
     const game = selected();
-    press(game, 36); // p = 0.9, core integrity = 0.75
+    press(game, 36); // released at 0.9, committed at 0.93: core integrity = 1 - (0.13 / 0.2)^2
     settle(game);
-    expect(game.snapshot().currentSpecimen?.currentVolume).toBeCloseTo(0.333);
-    expect(game.snapshot().currentSpecimen?.integrity01).toBeCloseTo(0.75);
-    expect(game.snapshot().currentSpecimen).toMatchObject({ value: 195 });
-    expect(game.snapshot().currentSpecimen?.compression01).toBeCloseTo(0.9);
+    expect(game.snapshot().currentSpecimen?.compression01).toBeCloseTo(0.93);
+    expect(game.snapshot().currentSpecimen?.currentVolume).toBeCloseTo(0.2434);
+    expect(game.snapshot().currentSpecimen?.integrity01).toBeCloseTo(0.5775);
+    expect(game.snapshot().currentSpecimen).toMatchObject({ value: 150 });
     const broken = selected('salvage-lens');
     broken.dispatch({ type: 'press-start' });
     for (let i = 0; i < 40; i++) broken.step(100);
     expect(broken.snapshot().phase).toBe('settling');
     settle(broken);
-    expect(broken.snapshot()).toMatchObject({ phase: 'failed', pressure01: 1, currentSpecimen: { currentVolume: 0.3, integrity01: 0, value: 0, compression01: 1 } });
+    expect(broken.snapshot()).toMatchObject({ phase: 'failed', pressure01: 1, currentSpecimen: { currentVolume: 0.24, integrity01: 0, value: 0, compression01: 1 } });
     expect(broken.drainEvents().some((event) => event.type === 'failed' && event.reason === 'specimen-broken')).toBe(true);
+  });
+
+  it('keeps pushing for the ram lag after release and can break the lot inside it', () => {
+    const lagged = selected('salvage-lens');
+    lagged.dispatch({ type: 'press-start' });
+    for (let i = 0; i < 39; i++) lagged.step(100); // p = 0.975
+    lagged.dispatch({ type: 'press-release' });
+    lagged.step(100); // lag pushes to 1.0 before the settle window ends
+    expect(lagged.snapshot()).toMatchObject({ phase: 'settling', pressure01: 1 });
+    settle(lagged);
+    expect(lagged.snapshot()).toMatchObject({ phase: 'failed', currentSpecimen: { integrity01: 0, compression01: 1 } });
   });
 
   it('keeps committed compression monotonic, preserves settling across pause, and cancels an active stroke', () => {
@@ -95,14 +107,14 @@ describe('DEEP PRESS authored game rules', () => {
     press(game, 20); settle(game);
     game.dispatch({ type: 'press-start' }); game.step(100); game.dispatch({ type: 'pause' });
     expect(game.snapshot()).toMatchObject({ phase: 'paused', resumePhase: 'inspecting' });
-    expect(game.snapshot().pressure01).toBeCloseTo(0.5);
-    expect(game.snapshot().currentSpecimen?.compression01).toBeCloseTo(0.5);
+    expect(game.snapshot().pressure01).toBeCloseTo(0.53);
+    expect(game.snapshot().currentSpecimen?.compression01).toBeCloseTo(0.53);
     game.step(100); game.dispatch({ type: 'resume' });
     game.dispatch({ type: 'press-release' });
     expect(game.snapshot().phase).toBe('inspecting');
-    press(game, 4); // adds 0.1, rather than restarting from zero
+    press(game, 4); // adds 0.1 and the 0.03 lag, rather than restarting from zero
     settle(game);
-    expect(game.snapshot().currentSpecimen?.compression01).toBeCloseTo(0.6);
+    expect(game.snapshot().currentSpecimen?.compression01).toBeCloseTo(0.66);
 
     game.dispatch({ type: 'press-start' }); game.step(100); game.dispatch({ type: 'press-release' });
     game.step(100); game.dispatch({ type: 'pause' });
@@ -116,10 +128,12 @@ describe('DEEP PRESS authored game rules', () => {
 
   it('rejects overcapacity without changing banked items and supports discard, cash-out and deterministic restart', () => {
     const game = selected('salvage-core');
-    press(game, 20); settle(game); game.dispatch({ type: 'store' });
+    press(game, 1); settle(game); game.dispatch({ type: 'store' }); // a light touch keeps the core large
+    const banked = game.snapshot().volumeUsed;
     game.dispatch({ type: 'select', specimenId: 'salvage-lens' });
-    press(game, 20); settle(game); game.dispatch({ type: 'store' });
-    expect(game.snapshot()).toMatchObject({ phase: 'failed', score: 360, volumeUsed: 0.585, storedSpecimenIds: ['salvage-core'], remainingSpecimenIds: ['salvage-lens', 'salvage-cassette'], currentSpecimen: { id: 'salvage-lens' } });
+    press(game, 1); settle(game); game.dispatch({ type: 'store' });
+    expect(game.snapshot()).toMatchObject({ phase: 'failed', score: 360, storedSpecimenIds: ['salvage-core'], remainingSpecimenIds: ['salvage-lens', 'salvage-cassette'], currentSpecimen: { id: 'salvage-lens' } });
+    expect(game.snapshot().volumeUsed).toBe(banked);
     game.dispatch({ type: 'discard' });
     expect(game.snapshot().phase).toBe('idle');
     expect(game.drainEvents().some((event) => event.type === 'discarded' && event.specimenId === 'salvage-lens')).toBe(true);
@@ -135,17 +149,21 @@ describe('DEEP PRESS authored game rules', () => {
     expect(game.snapshot()).toEqual(complete);
     expect(game.snapshot().phase).toBe('complete');
     game.dispatch({ type: 'restart' });
-    expect(game.snapshot()).toEqual(createGame(getGameConfig()).snapshot());
+    expect(game.snapshot()).toEqual(createGame(authoredGameConfig()).snapshot());
   });
 
   it('applies the raw-volume capacity tolerance at its exact boundary', () => {
-    const config = getGameConfig();
-    const fitsTolerance = createGame({ ...config, capacity: 0.585 - 0.5e-9 });
+    const config = authoredGameConfig();
+    const probe = createGame(config);
+    probe.dispatch({ type: 'select', specimenId: 'salvage-core' });
+    press(probe, 20); settle(probe);
+    const volume = probe.snapshot().currentSpecimen!.currentVolume;
+    const fitsTolerance = createGame({ ...config, capacity: volume - 0.5e-9 });
     fitsTolerance.dispatch({ type: 'select', specimenId: 'salvage-core' });
     press(fitsTolerance, 20); settle(fitsTolerance); fitsTolerance.dispatch({ type: 'store' });
-    expect(fitsTolerance.snapshot()).toMatchObject({ phase: 'stored', volumeUsed: 0.585 });
+    expect(fitsTolerance.snapshot()).toMatchObject({ phase: 'stored', volumeUsed: volume });
 
-    const exceedsTolerance = createGame({ ...config, capacity: 0.585 - 2e-9 });
+    const exceedsTolerance = createGame({ ...config, capacity: volume - 2e-9 });
     exceedsTolerance.dispatch({ type: 'select', specimenId: 'salvage-core' });
     press(exceedsTolerance, 20); settle(exceedsTolerance); exceedsTolerance.dispatch({ type: 'store' });
     expect(exceedsTolerance.snapshot()).toMatchObject({ phase: 'failed', volumeUsed: 0, score: 0 });
@@ -165,7 +183,7 @@ describe('DEEP PRESS authored game rules', () => {
   });
 
   it('validates invalid command values and protects selection boundaries', () => {
-    const game = createGame(getGameConfig());
+    const game = createGame(authoredGameConfig());
     game.dispatch({ type: 'store' }); game.dispatch({ type: 'discard' }); game.dispatch({ type: 'press-release' });
     expect(game.snapshot()).toMatchObject({ phase: 'idle', score: 0, volumeUsed: 0, currentSpecimen: null });
     game.dispatch({ type: 'select', specimenId: 'salvage-core' });
@@ -212,7 +230,7 @@ describe('DEEP PRESS authored game rules', () => {
   });
 
   it('restarts repeatedly from active phases without leaking prior-round state or events', () => {
-    const config = getGameConfig();
+    const config = authoredGameConfig();
     const game = createGame(config);
     for (const id of ['salvage-core', 'salvage-lens', 'salvage-cassette'] as const) {
       game.dispatch({ type: 'select', specimenId: id });
@@ -226,9 +244,9 @@ describe('DEEP PRESS authored game rules', () => {
   });
 });
 
-describe('contract 1.1 inspection hints, stress cue, preview and stored states', () => {
+describe('contract 1.2 inspection hints, stress cue, preview and stored states', () => {
   const start = (id: 'salvage-core' | 'salvage-lens' | 'salvage-cassette') => {
-    const game = createGame(getGameConfig());
+    const game = createGame(authoredGameConfig());
     game.dispatch({ type: 'start' }); game.dispatch({ type: 'select', specimenId: id });
     return game;
   };
@@ -253,26 +271,28 @@ describe('contract 1.1 inspection hints, stress cue, preview and stored states',
     expect(game.snapshot().currentSpecimen?.tolerance).toBeNull();
   });
 
-  it('keeps stress at zero up to the safe pressure and reaches one at full pressure', () => {
-    const game = start('salvage-core'); // safe 0.80
+  it('keeps stress at zero until 0.08 before the safe pressure and reaches one at full pressure', () => {
+    const game = start('salvage-core'); // safe 0.80, warning from 0.72
     expect(game.snapshot().stress01).toBe(0);
-    stroke(game, 32); // p = 0.80
-    expect(game.snapshot().pressure01).toBeCloseTo(0.8);
+    stroke(game, 28); // p = 0.70
+    expect(game.snapshot().pressure01).toBeCloseTo(0.7);
     expect(game.snapshot().stress01).toBe(0);
-    game.step(100); game.step(100); // p = 0.85
-    expect(game.snapshot().stress01).toBeCloseTo(0.25);
-    for (let i = 0; i < 6; i++) game.step(100); // auto-settles at full pressure
+    game.step(100); game.step(100); // p = 0.75, warning before any damage
+    expect(game.snapshot().stress01).toBeCloseTo(0.03 / 0.28);
+    game.step(100); game.step(100); // p = 0.80
+    expect(game.snapshot().stress01).toBeCloseTo(0.08 / 0.28);
+    for (let i = 0; i < 8; i++) game.step(100); // auto-settles at full pressure
     expect(game.snapshot().stress01).toBe(1);
-    const idle = createGame(getGameConfig()).snapshot();
+    const idle = createGame(authoredGameConfig()).snapshot();
     expect(idle.stress01).toBe(0); expect(idle.previewVolume).toBeNull();
   });
 
-  it('previews the volume at the live pressure and settles to the committed volume', () => {
-    const game = start('salvage-cassette'); // 0.72 → 0.24 L
-    expect(game.snapshot().previewVolume).toBeCloseTo(0.72);
-    stroke(game, 20); // p = 0.5
-    expect(game.snapshot().previewVolume).toBeCloseTo(0.48);
-    expect(game.snapshot().currentSpecimen?.currentVolume).toBeCloseTo(0.72);
+  it('previews the volume a release would commit, lag included, and settles to it', () => {
+    const game = start('salvage-cassette'); // 0.64 → 0.18 L
+    expect(game.snapshot().previewVolume).toBeCloseTo(0.64);
+    stroke(game, 20); // p = 0.5, a release now commits 0.53
+    expect(game.snapshot().previewVolume).toBeCloseTo(0.64 - 0.46 * 0.53);
+    expect(game.snapshot().currentSpecimen?.currentVolume).toBeCloseTo(0.64);
     game.dispatch({ type: 'press-release' }); for (let i = 0; i < 3; i++) game.step(100);
     expect(game.snapshot().previewVolume).toBe(game.snapshot().currentSpecimen?.currentVolume);
     game.dispatch({ type: 'store' });

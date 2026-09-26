@@ -1,0 +1,18 @@
+{
+ "bed-sea": {
+  "start": 0.25,
+  "end": 20.25
+ },
+ "bed-hull": {
+  "start": 0.25,
+  "end": 20.25
+ },
+ "press": {
+  "start": 0.25,
+  "end": 8.25
+ },
+ "creak": {
+  "start": 0.25,
+  "end": 12.25
+ }
+}
