@@ -2,6 +2,7 @@ import { bestPlan, createGame, getGameConfig } from '../core';
 import { createRenderer } from '../render';
 import type { GameEvent, GameSnapshot, SalvageId } from '../contracts';
 import { createRuntime } from './runtime';
+import { createAudio } from './audio';
 import { createInputController, isGameplayPhase } from './input';
 import { CASE_CLOSING_LINE, HULL_LINES, INTRO_STORY, ROUND_START_LINE, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine, tutorialStage } from './story';
 import type { CommsLine, StoryLine } from './story';
@@ -13,6 +14,7 @@ import './style.css';
 const KEYBOARD_POINTER_ID = -1;
 const INTRO_SEEN_KEY = 'deep-press:intro-seen';
 const TUTORIAL_DONE_KEY = 'deep-press:tutorial-done';
+const MUTED_KEY = 'deep-press:muted';
 const TYPE_MS_PER_CHAR = 38;
 const asset = (path: string): string => `${import.meta.env.BASE_URL}assets/${path}`;
 /** Today's device best lives under the day seed, so each day's salvage keeps its own record. */
@@ -58,7 +60,7 @@ function typeLine(target: HTMLElement, text: string, count: number): void {
   }
 }
 
-/** App-owned DOM, pointer lifecycle, HUD, tutorial and result flow. No audio. */
+/** App-owned DOM, pointer lifecycle, HUD, tutorial, result flow and synthesized sound. */
 export function mountApp(root: HTMLElement): () => void {
   // Resolve here: a relative custom-property URL is otherwise resolved against
   // the bundled stylesheet in assets/, adding a second assets/ directory.
@@ -110,6 +112,7 @@ export function mountApp(root: HTMLElement): () => void {
   const dayConfig = getGameConfig(kstDaySeed(new Date()));
   const dayBest = bestPlan(dayConfig).score;
   const game = createGame(dayConfig);
+  const audio = createAudio(readStored(MUTED_KEY) === '1');
   const abort = new AbortController();
   const options = { signal: abort.signal };
   let started = false;
@@ -139,6 +142,11 @@ export function mountApp(root: HTMLElement): () => void {
   // G10: the hull complains every so often while the player works.
   let nextHullAt = 0;
   let hullLine = 0;
+  let nextAlarmAt = 0;
+  // G12: let the break play before the choices appear.
+  let failedRevealAt = 0;
+  let lastValue: { id: SalvageId; value: number } | null = null;
+  let typedTick = 0;
   let toleranceVoiced: SalvageId | null = null;
   let voiceKey = '';
   let voiceStartedAt = 0;
@@ -161,10 +169,15 @@ export function mountApp(root: HTMLElement): () => void {
 
   function consumeEvents(events: readonly GameEvent[]): void {
     for (const event of events) {
+      audio.event(event, game.snapshot());
       // The tutorial is done once a first lot is banked; later runs on this device skip it.
       if (event.type === 'stored' && !tutorialDone) { tutorialDone = true; writeStored(TUTORIAL_DONE_KEY, '1'); }
       if (event.type === 'failed') failureReason = event.reason;
-      if (event.type === 'failed' && event.reason === 'specimen-broken') { const id = game.snapshot().currentSpecimen?.id; if (id) broken.add(id); }
+      if (event.type === 'failed' && event.reason === 'specimen-broken') {
+        const id = game.snapshot().currentSpecimen?.id; if (id) broken.add(id);
+        failedRevealAt = performance.now() + (reducedMotion.matches ? 0 : 1200);
+        root.classList.remove('shatter'); void root.offsetWidth; root.classList.add('shatter');
+      }
       if (event.type === 'completed' && event.score > (bestScore ?? 0)) {
         bestScore = event.score; newBest = true;
         writeStored(bestScoreKey(dayConfig.seed), String(event.score));
@@ -193,7 +206,10 @@ export function mountApp(root: HTMLElement): () => void {
     newBest = false;
     voice = ROUND_START_LINE;
     closeCaseAt = 0;
+    failedRevealAt = 0;
+    lastValue = null;
     nextHullAt = performance.now() + 20000;
+    nextAlarmAt = performance.now() + 9000;
     toleranceVoiced = null;
   }
 
@@ -227,7 +243,7 @@ export function mountApp(root: HTMLElement): () => void {
     if (storyPage !== null) return 'story';
     if (!started && snapshot.phase === 'idle') return 'start';
     if (snapshot.phase === 'paused') return 'paused';
-    if (snapshot.phase === 'failed') return 'failed';
+    if (snapshot.phase === 'failed') return performance.now() >= failedRevealAt ? 'failed' : '';
     if (snapshot.phase === 'complete') return endingSeen ? 'complete' : 'outro';
     return '';
   }
@@ -282,6 +298,9 @@ export function mountApp(root: HTMLElement): () => void {
       } else sprite.classList.remove('away');
     }
     const shown = visibleCharacters(line);
+    // A soft tick every few letters while a story line types out.
+    if (shown < line.text.length && shown - typedTick >= 3) { typedTick = shown; audio.cue('type'); }
+    if (shown < typedTick) typedTick = shown;
     typeLine(stage.querySelector<HTMLElement>('.vn-text')!, line.text, shown);
     stage.classList.toggle('typing', shown < line.text.length);
   }
@@ -358,8 +377,8 @@ export function mountApp(root: HTMLElement): () => void {
         </section>`,
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
-        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
-        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
+        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="sound" class="dialog-secondary" type="button" id="sound-toggle"></button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
+        failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button" id="dialog-cash-out">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
         complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><div class="result-head"><p class="result-score"><strong id="result-score"></strong>점</p><p class="grade" id="result-grade"></p></div><p class="result-par" id="result-par"></p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
       };
@@ -392,8 +411,13 @@ export function mountApp(root: HTMLElement): () => void {
     }
     const record = overlay.querySelector<HTMLElement>('#dialog-record');
     if (record) { record.textContent = recordText(bestScore, newBest); record.hidden = !record.textContent; }
+    const soundToggle = overlay.querySelector<HTMLElement>('#sound-toggle');
+    if (soundToggle) soundToggle.textContent = audio.muted ? '소리 켜기' : '소리 끄기';
     const discardChoice = overlay.querySelector<HTMLElement>('#dialog-discard');
     if (discardChoice) discardChoice.textContent = discardLabel(snapshot);
+    // G19: with no other lot left, finishing here is the same as discarding: offer one button.
+    const cashOutChoice = overlay.querySelector<HTMLElement>('#dialog-cash-out');
+    if (cashOutChoice) cashOutChoice.hidden = snapshot.remainingSpecimenIds.length <= 1;
     if (copy && key === 'fatal') copy.textContent = `안 되면 새로고침해 주세요. (${fatalMessage})`;
   }
 
@@ -412,7 +436,7 @@ export function mountApp(root: HTMLElement): () => void {
       const meta = stored ? [`${stored.currentVolume.toFixed(2)}L`, `가치 ${stored.value}`]
         : outcome === 'broken' ? ['부서짐'] : outcome === 'left' ? ['두고 옴'] : outcome === 'blocked' ? ['안 들어감'] : [`${lot.initialVolume.toFixed(2)}L`, `가치 ${lot.baseValue}`];
       const selectable = outcome === 'pending' && !current && mayChoose;
-      return `<button type="button" class="lot" data-lot="${lot.id}" data-state="${current ? 'current' : outcome}"${selectable ? '' : ' disabled'}${current ? ' aria-current="true"' : ''}><span class="lot-name">${SPECIMEN_LABELS[lot.id]}</span><span class="lot-meta">${meta.map((part) => `<span>${part}</span>`).join('')}</span></button>`;
+      return `<button type="button" class="lot" data-lot="${lot.id}" data-state="${current && outcome !== 'broken' ? 'current' : outcome}"${selectable ? '' : ' disabled'}${current ? ' aria-current="true"' : ''}><span class="lot-name">${SPECIMEN_LABELS[lot.id]}</span><span class="lot-meta">${meta.map((part) => `<span>${part}</span>`).join('')}</span></button>`;
     }).join('');
     if (html !== renderedManifest) { renderedManifest = html; manifest.innerHTML = html; }
   }
@@ -427,6 +451,17 @@ export function mountApp(root: HTMLElement): () => void {
     pressureBar.style.transform = `scaleX(${snapshot.pressure01})`;
     statusCard.style.setProperty('--light-x', `${14 + snapshot.pressure01 * 72}%`);
     hold.classList.toggle('pressing', snapshot.phase === 'compressing');
+    // G12: a committed loss of value is called out next to the facts for a moment.
+    const committed = snapshot.phase === 'inspecting' ? snapshot.currentSpecimen : null;
+    if (committed && lastValue?.id === committed.id && committed.value < lastValue.value) {
+      const drop = document.createElement('span');
+      drop.className = 'value-drop';
+      drop.textContent = `가치 −${lastValue.value - committed.value}`;
+      drop.addEventListener('animationend', () => drop.remove());
+      statusCard.append(drop);
+    }
+    if (committed) lastValue = { id: committed.id, value: committed.value };
+    else if (!snapshot.currentSpecimen) lastValue = null;
     const facts = specimenResult(snapshot).map((fact) => `<span${fact.warn ? ' class="warn"' : ''}>${fact.text}</span>`).join('');
     if (resultValue.innerHTML !== facts) resultValue.innerHTML = facts;
     const tutorialActive = started && !tutorialDone && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
@@ -518,6 +553,8 @@ export function mountApp(root: HTMLElement): () => void {
   overlay.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
     const action = target.closest<HTMLButtonElement>('button[data-action]')?.dataset.action ?? (target.closest('.vn') ? 'story-next' : undefined);
+    if (action && action !== 'story-next') audio.cue('tap');
+    if (action === 'sound') { audio.setMuted(!audio.muted); writeStored(MUTED_KEY, audio.muted ? '1' : '0'); renderUi(game.snapshot()); }
     if (action === 'restart') beginRound(true);
     if (action === 'title') returnToTitle();
     if (action === 'resume') { runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot()); }
@@ -543,9 +580,12 @@ export function mountApp(root: HTMLElement): () => void {
     const id = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-lot]:not(:disabled)')?.dataset.lot as SalvageId | undefined;
     if (id) selectSpecimen(id);
   }, options);
+  // iOS only lets sound start inside a user gesture: every first touch or key press unlocks it.
+  root.addEventListener('pointerdown', () => audio.unlock(), { ...options, capture: true });
+  root.addEventListener('keydown', () => audio.unlock(), { ...options, capture: true });
   store.addEventListener('click', () => runtime.dispatch({ type: 'store' }), options);
   discard.addEventListener('click', () => runtime.dispatch({ type: 'discard' }), options);
-  pauseButton.addEventListener('click', requestPause, options);
+  pauseButton.addEventListener('click', () => { audio.cue('tap'); requestPause(); }, options);
 
   function capture(target: HTMLElement, pointerId: number): void {
     try { target.setPointerCapture(pointerId); } catch { input.cancel(pointerId); }
@@ -579,6 +619,7 @@ export function mountApp(root: HTMLElement): () => void {
   hold.addEventListener('blur', () => { input.cancel(KEYBOARD_POINTER_ID); }, options);
   document.addEventListener('visibilitychange', () => {
     previousTime = null;
+    audio.setSuspended(document.hidden);
     if (document.hidden) { finishTransition(); requestPause(); }
   }, options);
 
@@ -586,12 +627,16 @@ export function mountApp(root: HTMLElement): () => void {
   const frame = (now: number): void => {
     const dt = previousTime === null ? 0 : now - previousTime;
     previousTime = now;
+    audio.update(game.snapshot());
+    if (root.dataset.audio !== audio.state) root.dataset.audio = audio.state;
     if (closeCaseAt && now >= closeCaseAt && ['idle', 'stored'].includes(game.snapshot().phase)) { closeCaseAt = 0; runtime.dispatch({ type: 'cash-out' }); }
+    if (nextAlarmAt && now >= nextAlarmAt && started && !hudHidden && !overlayKey) { nextAlarmAt = now + 18000; audio.cue('alarm'); }
     // G10: presentation-only pressure. Waits for the current line to be read and never runs under a dialog.
     const phase = game.snapshot().phase;
     if (nextHullAt && now >= nextHullAt && started && !hudHidden && !overlayKey && ['idle', 'inspecting', 'stored'].includes(phase)) {
       nextHullAt = now + 22000 + Math.random() * 12000;
       hull.classList.remove('quake'); void hull.offsetWidth; hull.classList.add('quake');
+      audio.cue('hull');
       if (now >= voiceHoldUntil && !(started && !tutorialDone)) { voice = HULL_LINES[hullLine % HULL_LINES.length]!; hullLine += 1; }
     }
     runtime.frame(dt);
@@ -600,5 +645,5 @@ export function mountApp(root: HTMLElement): () => void {
   };
   frameId = requestAnimationFrame(frame);
   renderUi(game.snapshot());
-  return () => { input.clear(); abort.abort(); observer?.disconnect(); cancelAnimationFrame(frameId); window.clearTimeout(transitionTimer); runtime.dispose(); root.replaceChildren(); root.style.removeProperty('--workshop-ambient'); };
+  return () => { input.clear(); abort.abort(); observer?.disconnect(); cancelAnimationFrame(frameId); window.clearTimeout(transitionTimer); audio.dispose(); runtime.dispose(); root.replaceChildren(); root.style.removeProperty('--workshop-ambient'); };
 }
