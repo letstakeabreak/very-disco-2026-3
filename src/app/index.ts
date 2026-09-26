@@ -520,32 +520,34 @@ export function mountApp(root: HTMLElement): () => void {
     }
   }
 
+  /**
+   * Portrait keeps the 2:3 workshop at full width and the canvas covering the whole screen. The
+   * working band (gauge at 14% to the case slots at 80%) is centred between the top UI (`start`) and
+   * the bottom UI (`end`), never with the gauge under the top UI. The renderer centres its stage in
+   * the canvas, so the canvas grows past the screen edges as needed to put the stage there; beyond
+   * the plate the renderer continues the workshop, so no bars or margins show.
+   */
   function resize(): void {
     const width = root.clientWidth;
-    let height = root.clientHeight || window.innerHeight;
+    const screenHeight = root.clientHeight || window.innerHeight;
     let top = 0;
-    if (!hudHidden && width < height) {
-      // The fixed 2:3 workshop's gauge and case occupy its central 14–88%, and
-      // the renderer centres that stage vertically. When the HUD would cover the
-      // gauge there, fit the working area between HUD and controls instead.
+    let height = screenHeight;
+    const stage = width * 1.5;
+    if (width < screenHeight) {
       const rootTop = root.getBoundingClientRect().top;
-      const start = statusCard.getBoundingClientRect().bottom - rootTop + 10;
-      const stage = Math.min(height, width * 1.5);
-      if (start > (height - stage) / 2 + stage * .14) {
-        const end = root.querySelector<HTMLElement>('.controls')!.getBoundingClientRect().top - rootTop - 10;
-        height = Math.max(1, Math.min(width * 1.5, (end - start) / .74));
-        top = start - height * .14;
-      }
-    }
-    const identity = overlay.querySelector<HTMLElement>('.mission-identity');
-    const card = overlay.querySelector<HTMLElement>('.mission-card');
-    if (hudHidden && overlayKey === 'start' && identity && card && width < height) {
-      // G17: fit the gauge-to-case band between the logo and the start card so neither covers them.
-      const rootTop = root.getBoundingClientRect().top;
-      const start = identity.getBoundingClientRect().bottom - rootTop + 6;
-      const end = card.getBoundingClientRect().top - rootTop - 6;
-      height = Math.max(1, Math.min(width * 1.5, (end - start) / .74));
-      top = start - height * .14;
+      const identity = overlay.querySelector<HTMLElement>('.mission-identity');
+      const card = overlay.querySelector<HTMLElement>('.mission-card');
+      const title = hudHidden && overlayKey === 'start' && identity && card;
+      const start = title ? identity.getBoundingClientRect().bottom - rootTop + 4
+        : hudHidden ? 0 : statusCard.getBoundingClientRect().bottom - rootTop + 8;
+      const end = title ? card.getBoundingClientRect().top - rootTop
+        : hudHidden ? screenHeight : root.querySelector<HTMLElement>('.controls')!.getBoundingClientRect().top - rootTop - 8;
+      const stageTop = Math.max((start + end) / 2 - stage * .47, start - stage * .14);
+      const centre = stageTop + stage / 2;
+      const half = Math.max(centre, screenHeight - centre);
+      // At least the stage's own height, so the renderer keeps it at full width on short screens too.
+      height = Math.max(half * 2, stage);
+      top = centre - height / 2;
     }
     canvas.style.top = `${top}px`;
     canvas.style.height = `${height}px`;
