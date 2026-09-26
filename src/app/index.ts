@@ -7,8 +7,7 @@ import { INTRO_STORY, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tut
 import type { CommsLine, StoryLine } from './story';
 import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
-import logoLicenseUrl from './fonts/Cafe24PROSlimMax-license.pdf?url';
-import logoOflUrl from './fonts/Cafe24PROSlimMax-license.txt?url';
+import logoLicenseUrl from './fonts/AlfaSlabOne-OFL.txt?url';
 import './style.css';
 
 const KEYBOARD_POINTER_ID = -1;
@@ -139,12 +138,11 @@ export function mountApp(root: HTMLElement): () => void {
     runtime.dispatch({ type: 'select', specimenId: id });
   }
 
-  function beginRound(reset: boolean): void {
+  function clearRound(): void {
     input.clear();
     storyPage = null;
     outroPage = 0;
     endingSeen = false;
-    started = true;
     tutorialStep = 0;
     tutorialComplete = false;
     failureReason = null;
@@ -152,6 +150,11 @@ export function mountApp(root: HTMLElement): () => void {
     autoSelectAt = 0;
     voice = null;
     toleranceVoiced = null;
+  }
+
+  function beginRound(reset: boolean): void {
+    clearRound();
+    started = true;
     runtime.dispatch({ type: reset ? 'restart' : 'start' });
     const firstId = game.snapshot().remainingSpecimenIds[0];
     if (firstId) {
@@ -161,6 +164,14 @@ export function mountApp(root: HTMLElement): () => void {
     renderUi(game.snapshot());
     resize();
     hold.focus({ preventScroll: true });
+  }
+
+  /** Abandon the round and show the title again. */
+  function returnToTitle(): void {
+    clearRound();
+    started = false;
+    runtime.dispatch({ type: 'restart' });
+    renderUi(game.snapshot());
   }
 
   function requestPause(): void {
@@ -298,11 +309,11 @@ export function mountApp(root: HTMLElement): () => void {
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
           <h2 id="dialog-title">남길 것을<br>골라 주세요.</h2>
           <button data-action="story-open" class="dialog-primary" type="button">시작하기</button>
-          <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Cafe24 PRO SLIM Max (카페24)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 이용 조건</a><a href="${logoOflUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
+          <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Alfa Slab One (Jm Solé)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
-        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button></section>`,
+        paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
         failed: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">부서졌어요</h2><p id="dialog-copy"></p><button data-action="discard" class="dialog-primary" type="button" id="dialog-discard">버리고 계속하기</button><button data-action="cash-out" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="restart" class="dialog-secondary" type="button">처음부터</button></section>`,
         complete: `<section class="dialog-card result-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">회수를 마쳤어요</h2><p class="result-score"><strong id="result-score"></strong>점</p><ul class="dialog-items" id="dialog-items"></ul><p class="dialog-record" id="dialog-record"></p><button data-action="restart" class="dialog-primary" type="button">다시 하기</button></section>`,
         fatal: `<section class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">화면을 불러오지 못했어요</h2><p id="dialog-copy"></p><button data-action="retry-renderer" class="dialog-primary" type="button">다시 시도</button></section>`,
@@ -438,6 +449,7 @@ export function mountApp(root: HTMLElement): () => void {
     const target = event.target as HTMLElement;
     const action = target.closest<HTMLButtonElement>('button[data-action]')?.dataset.action ?? (target.closest('.vn') ? 'story-next' : undefined);
     if (action === 'restart') beginRound(true);
+    if (action === 'title') returnToTitle();
     if (action === 'resume') { runtime.dispatch({ type: 'resume' }); renderUi(game.snapshot()); }
     if (action === 'cash-out') { runtime.dispatch({ type: 'cash-out' }); renderUi(game.snapshot()); }
     if (action === 'finish') { runtime.dispatch({ type: 'resume' }); runtime.dispatch({ type: 'cash-out' }); renderUi(game.snapshot()); }

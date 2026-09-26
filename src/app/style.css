@@ -1,5 +1,5 @@
 @font-face { font-family: 'RIDI Batang'; src: url('./fonts/RIDIBatang.otf') format('opentype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Cafe24 PRO SLIM Max'; src: url('./fonts/Cafe24PROSlimMax.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Alfa Slab One'; src: url('./fonts/AlfaSlabOne.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 
 :root {
   color: #eee9db;
@@ -114,7 +114,7 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 .dev-note { color: #ffc98e; font-size: 10px; line-height: 1.4; text-align: center; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
 .overlay { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; overflow-y: auto; padding: max(var(--space-6), env(safe-area-inset-top)) max(var(--space-4), env(safe-area-inset-right)) max(var(--space-6), env(safe-area-inset-bottom)) max(var(--space-4), env(safe-area-inset-left)); background: rgb(3 12 14 / 35%); }
-.overlay-start { background: linear-gradient(90deg, rgb(3 13 15 / 28%), transparent 75%); }
+.overlay-start { background: linear-gradient(rgb(3 13 15 / 50%), transparent 32%, transparent 58%, rgb(3 13 15 / 45%)); }
 .overlay-fatal { background: rgb(3 12 14 / 70%); }
 .dialog-card { width: min(100%, 380px); margin: auto; padding: var(--space-6); background: linear-gradient(125deg, rgb(31 63 61 / 60%), rgb(4 20 23 / 82%)); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .dialog-card h2 { margin-top: 8px; font-family: 'RIDI Batang', serif; font-size: clamp(23px, 6vw, 29px); font-weight: 400; line-height: 1.5; }
@@ -129,12 +129,13 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 .dialog-card button + button { margin-top: var(--space-2); }
 .dialog-secondary { background: rgb(5 23 26 / 30%); font-size: 14px; }
 .mission-card { border-top-color: rgb(235 206 158 / 58%); }
-.wordmark { width: fit-content; margin-top: 16px; padding-block: 8px 4px; border-block: 1px solid rgb(239 199 137 / 40%); font-family: 'Cafe24 PRO SLIM Max', sans-serif; font-size: clamp(44px, 14vw, 72px); font-weight: 400; line-height: .9; letter-spacing: .035em; color: #ede5d4; text-shadow: 0 1px #fff8df, 0 3px 0 #1c302e, 0 5px 16px #000; }
-.wordmark span { color: var(--amber); margin-left: .12em; }
+.wordmark { width: fit-content; margin: 16px auto 0; padding-block: 10px 8px; border-block: 1px solid rgb(239 199 137 / 40%); font-family: 'Alfa Slab One', serif; font-size: clamp(54px, 17vw, 88px); font-weight: 400; line-height: .98; letter-spacing: .03em; text-align: center; color: #ede5d4; text-shadow: 0 1px #fff8df, 0 4px 0 #1c302e, 0 8px 20px #000; }
+.wordmark span { display: block; color: var(--amber); }
 .mission-card h2 { margin-top: 25px; font-size: 24px; }
-.mission-card .dialog-primary { display: flex; justify-content: space-between; align-items: center; padding-inline: var(--space-4); }
+.mission-card { text-align: center; }
+.mission-card .dialog-primary { padding-inline: var(--space-4); }
 .font-credits { margin-top: var(--space-2); color: #bcc8c0; font-size: 11px; line-height: 1.6; }
-.font-credits summary { cursor: pointer; width: fit-content; min-height: 32px; padding-block: var(--space-2); }
+.font-credits summary { cursor: pointer; width: fit-content; min-height: 32px; margin-inline: auto; padding-block: var(--space-2); }
 .font-credits a { display: inline-flex; align-items: center; min-height: var(--control-size); color: var(--muted); margin-right: var(--space-3); }
 
 /* Visual-novel stage. Figure (speaker, line) over a dimmed ground (scene);
@@ -200,7 +201,7 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 /* Leave the workshop visible above the opening dispatch instead of blurring
    the entire scene behind a centered modal. */
 .overlay-start { grid-template-rows: auto 1fr; gap: 24px; }
-.mission-identity { justify-self: start; align-self: start; padding: var(--space-2) var(--space-1); text-shadow: 0 2px 12px #041013; }
+.mission-identity { justify-self: center; align-self: start; padding: var(--space-2) var(--space-1); text-shadow: 0 2px 12px #041013; }
 .mission-card { align-self: end; margin-block: auto 0; }
 .mission-card h2 { margin-top: 0; }
 @media (max-height: 650px) { .overlay-start { gap: 16px; padding-block: 16px; } }
@@ -212,7 +213,7 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
   .controls { grid-area: controls; align-self: end; }
   .operation-row { grid-template-columns: 1fr 1fr; }
   .press-button { grid-column: 1 / -1; }
-  .overlay-start { justify-items: start; align-content: center; grid-template-rows: auto auto; padding-left: max(24px, calc((100vw - 1100px) / 2)); }
+  .overlay-start { justify-items: center; align-content: center; grid-template-rows: auto auto; }
   .mission-card, .mission-identity { margin: 0; }
 }
 @media (min-width: 1000px) and (min-aspect-ratio: 3/2) {
@@ -224,7 +225,7 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 @media (max-height: 650px) and (min-aspect-ratio: 3/2) and (min-width: 700px) {
   .overlay-start { grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); grid-template-rows: auto; align-content: start; align-items: center; padding: 16px 24px; gap: 24px; }
   .mission-identity { align-self: center; }
-  .mission-identity .wordmark { font-size: clamp(40px, 6vw, 60px); }
+  .mission-identity .wordmark { font-size: clamp(44px, 7vw, 64px); }
   .mission-card { padding: var(--space-3) var(--space-4); }
   .mission-card h2 { font-size: 20px; line-height: 1.4; }
   .mission-card .dialog-primary { margin-top: var(--space-3); }
