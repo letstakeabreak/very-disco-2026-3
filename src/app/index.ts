@@ -74,7 +74,7 @@ export function mountApp(root: HTMLElement): () => void {
         <p class="facts" id="result-value"></p>
         <div class="pressure-track" aria-hidden="true"><span id="pressure-bar"></span></div>
       </section>
-      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
+      <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div><div class="drag-hint" id="drag-hint" hidden aria-hidden="true"><span></span></div></main>
       <footer class="controls" aria-label="조작">
         <p class="comms" id="comms" hidden><b id="comms-name"></b><span id="comms-text" aria-hidden="true"></span><span class="visually-hidden" id="comms-line" aria-live="polite"></span></p>
         <div class="operation-row" role="group" aria-label="현재 물건 처리"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">압축하기</button><button class="secondary" id="store" type="button">담기</button><button class="ghost" id="discard" type="button">버리기</button></div>
@@ -90,6 +90,7 @@ export function mountApp(root: HTMLElement): () => void {
   const capacity = root.querySelector<HTMLElement>('#capacity')!;
   const manifest = root.querySelector<HTMLElement>('#manifest')!;
   const fill = root.querySelector<HTMLElement>('#case-fill')!;
+  const dragHint = root.querySelector<HTMLElement>('#drag-hint')!;
   const comms = root.querySelector<HTMLElement>('#comms')!;
   const commsName = root.querySelector<HTMLElement>('#comms-name')!;
   const commsText = root.querySelector<HTMLElement>('#comms-text')!;
@@ -145,6 +146,10 @@ export function mountApp(root: HTMLElement): () => void {
   let nextAlarmAt = 0;
   // G12: let the break play before the choices appear.
   let failedRevealAt = 0;
+  // G16: the title waits for its fonts and the 3D workbench (or 15 s, whichever comes first).
+  let fontsReady = false;
+  let assetsReady = false;
+  const mountedAt = performance.now();
   let lastValue: { id: SalvageId; value: number } | null = null;
   let typedTick = 0;
   let toleranceVoiced: SalvageId | null = null;
@@ -241,6 +246,7 @@ export function mountApp(root: HTMLElement): () => void {
   function overlayState(snapshot: GameSnapshot): string {
     if (fatalMessage) return 'fatal';
     if (storyPage !== null) return 'story';
+    if (!started && !assetsReady) return 'loading';
     if (!started && snapshot.phase === 'idle') return 'start';
     if (snapshot.phase === 'paused') return 'paused';
     if (snapshot.phase === 'failed') return performance.now() >= failedRevealAt ? 'failed' : '';
@@ -370,11 +376,12 @@ export function mountApp(root: HTMLElement): () => void {
       const content: Record<string, string> = {
         start: `<div class="mission-identity"><p class="wordmark" aria-label="DEEP PRESS">DEEP<span>PRESS</span></p></div>
         <section class="dialog-card mission-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-          <h2 id="dialog-title">남길 것을<br>골라 주세요.</h2>
+          <h2 id="dialog-title">눌러서 줄이고<br>1리터에 담아요.</h2>
           ${introSeen ? '<button data-action="quick-start" class="dialog-primary" type="button">시작하기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 보기</button>'
             : '<button data-action="story-open" class="dialog-primary" type="button">시작하기</button>'}
           <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Alfa Slab One (Jm Solé)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
+        loading: '<div class="loading" role="status" aria-label="불러오는 중"><span class="loading-ring"></span></div>',
         story: STORY_MARKUP,
         outro: STORY_MARKUP,
         paused: `<section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title">잠깐 멈췄어요</h2><button data-action="resume" class="dialog-primary" type="button">계속하기</button><button data-action="finish" class="dialog-secondary" type="button">여기서 마치기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 다시 보기</button><button data-action="sound" class="dialog-secondary" type="button" id="sound-toggle"></button><button data-action="title" class="dialog-secondary" type="button">처음으로</button></section>`,
@@ -384,6 +391,8 @@ export function mountApp(root: HTMLElement): () => void {
       };
       overlay.innerHTML = content[key] ?? '';
       renderedLine = '';
+      // The title frames the workbench between the logo and its card (G17).
+      if (key === 'start' || previousKey === 'start') resize();
       if (key) overlay.querySelector<HTMLButtonElement>('.dialog-primary, .vn-box')?.focus({ preventScroll: true });
       else if (previousKey === 'paused' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
       else if (previousKey === 'fatal' && !pauseButton.hidden) pauseButton.focus({ preventScroll: true });
@@ -467,6 +476,10 @@ export function mountApp(root: HTMLElement): () => void {
     const tutorialActive = started && !tutorialDone && snapshot.phase !== 'failed' && snapshot.phase !== 'complete';
     const lot = snapshot.currentSpecimen;
     if (lot?.tolerance && toleranceVoiced !== lot.id) { toleranceVoiced = lot.id; voice = toleranceLine(lot.tolerance); }
+    // G20: during the first run, show where to drag, and which chips can be picked.
+    const stage = tutorialActive ? tutorialStage(snapshot) : null;
+    dragHint.hidden = stage !== 'rotate' || snapshot.phase !== 'inspecting';
+    manifest.toggleAttribute('data-plan', stage === 'plan');
     // Live strain, then the first-run tutorial (read from the round), then the latest reaction.
     const line = snapshot.phase === 'compressing' && snapshot.stress01 > 0 ? STRAIN_LINE
       : tutorialActive ? tutorialLine(tutorialStage(snapshot), lot?.tolerance ?? null) : voice;
@@ -524,6 +537,16 @@ export function mountApp(root: HTMLElement): () => void {
         top = start - height * .14;
       }
     }
+    const identity = overlay.querySelector<HTMLElement>('.mission-identity');
+    const card = overlay.querySelector<HTMLElement>('.mission-card');
+    if (hudHidden && overlayKey === 'start' && identity && card && width < height) {
+      // G17: fit the gauge-to-case band between the logo and the start card so neither covers them.
+      const rootTop = root.getBoundingClientRect().top;
+      const start = identity.getBoundingClientRect().bottom - rootTop + 6;
+      const end = card.getBoundingClientRect().top - rootTop - 6;
+      height = Math.max(1, Math.min(width * 1.5, (end - start) / .74));
+      top = start - height * .14;
+    }
     canvas.style.top = `${top}px`;
     canvas.style.height = `${height}px`;
     renderer.resize({ width, height, dpr: window.devicePixelRatio });
@@ -543,6 +566,7 @@ export function mountApp(root: HTMLElement): () => void {
     renderUi(game.snapshot());
   }
 
+  void Promise.all([document.fonts.load('72px "Alfa Slab One"'), document.fonts.load('16px "RIDI Batang"')]).finally(() => { fontsReady = true; });
   const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(resize);
   observer?.observe(root);
   observer?.observe(statusCard);
@@ -627,6 +651,7 @@ export function mountApp(root: HTMLElement): () => void {
   const frame = (now: number): void => {
     const dt = previousTime === null ? 0 : now - previousTime;
     previousTime = now;
+    if (!assetsReady && ((fontsReady && canvas.dataset.renderState === 'ready') || now - mountedAt > 15000)) assetsReady = true;
     audio.update(game.snapshot());
     if (root.dataset.audio !== audio.state) root.dataset.audio = audio.state;
     if (closeCaseAt && now >= closeCaseAt && ['idle', 'stored'].includes(game.snapshot().phase)) { closeCaseAt = 0; runtime.dispatch({ type: 'cash-out' }); }

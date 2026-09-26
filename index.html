@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#14261f" />
     <title>DEEP PRESS</title>
+    <!-- G16: dark from the first frame, with a quiet loading ring until the app mounts. -->
+    <style>
+      html, body { margin: 0; background: #08191b; }
+      #app:empty { min-height: 100vh; }
+      #app:empty::after { content: ''; position: fixed; left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px; border: 2px solid rgb(239 199 137 / 22%); border-top-color: #efc789; border-radius: 50%; animation: boot-spin 1s linear infinite; }
+      @keyframes boot-spin { to { transform: rotate(360deg); } }
+    </style>
   </head>
   <body>
     <div id="app"></div>

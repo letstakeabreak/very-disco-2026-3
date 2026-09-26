@@ -1,5 +1,5 @@
 @font-face { font-family: 'RIDI Batang'; src: url('./fonts/RIDIBatang.otf') format('opentype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Alfa Slab One'; src: url('./fonts/AlfaSlabOne.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Alfa Slab One'; src: url('./fonts/AlfaSlabOne.woff2') format('woff2'); font-weight: 400; font-display: block; }
 
 :root {
   color: #eee9db;
@@ -110,7 +110,14 @@ p, li { text-wrap: pretty; }
 .facts span:first-child { color: var(--ink); }
 .facts .warn { color: #ffc0a9; }
 .status-card.strained { border-color: #c98b72; background: radial-gradient(ellipse at var(--light-x) 0%, rgb(199 71 34 / 30%), transparent 80%), var(--glass); }
-.work-area { display: flex; min-height: 0; pointer-events: none; }
+.work-area { position: relative; display: flex; min-height: 0; pointer-events: none; }
+/* G20: a finger sweeping across the lot shows where to drag. */
+.drag-hint { position: absolute; left: 50%; top: 44%; width: 140px; height: 44px; margin: -22px 0 0 -70px; pointer-events: none; }
+.drag-hint::before { content: '⟷'; position: absolute; inset: 0; display: grid; place-items: center; color: rgb(239 199 137 / 75%); font-size: 28px; text-shadow: 0 2px 8px #000; }
+.drag-hint span { position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; margin: -11px; border-radius: 50%; background: rgb(255 240 210 / 60%); box-shadow: 0 0 0 7px rgb(239 199 137 / 20%); animation: drag-hint 1.6s ease-in-out infinite; }
+@keyframes drag-hint { 0%, 100% { translate: -46px 0; } 50% { translate: 46px 0; } }
+.manifest[data-plan] .lot:not(:disabled) { animation: chip-pulse 1.8s ease-in-out infinite; }
+@keyframes chip-pulse { 50% { border-color: var(--amber); box-shadow: 0 0 14px rgb(239 199 137 / 28%); } }
 .workbench-input { flex: 1 1 auto; min-height: 24px; touch-action: none; pointer-events: auto; }
 .controls { display: flex; flex-direction: column; gap: var(--space-2); }
 /* One amber action, one follow-up, one quiet way out. */
@@ -151,6 +158,10 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 .overlay { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; overflow-y: auto; padding: max(var(--space-6), env(safe-area-inset-top)) max(var(--space-4), env(safe-area-inset-right)) max(var(--space-6), env(safe-area-inset-bottom)) max(var(--space-4), env(safe-area-inset-left)); background: rgb(3 12 14 / 35%); }
 .overlay-start { background: linear-gradient(rgb(3 13 15 / 50%), transparent 32%, transparent 58%, rgb(3 13 15 / 45%)); }
 .overlay-fatal { background: rgb(3 12 14 / 70%); }
+/* G16: until fonts and the 3D workbench are ready, only a loading ring on dark. */
+.overlay-loading { background: #08191b; }
+.loading-ring { display: block; width: 40px; height: 40px; border: 2px solid rgb(239 199 137 / 22%); border-top-color: var(--amber); border-radius: 50%; animation: boot-spin 1s linear infinite; }
+@keyframes boot-spin { to { transform: rotate(360deg); } }
 /* G12: after a break the choices sit low, so the crushed lot in the press stays in view. */
 .overlay-failed { align-items: end; background: linear-gradient(transparent 35%, rgb(3 12 14 / 75%)); }
 .overlay-failed .dialog-card { margin-bottom: 0; }
@@ -180,11 +191,12 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 .dialog-card button + button { margin-top: var(--space-2); }
 .dialog-secondary { background: rgb(5 23 26 / 30%); font-size: 14px; }
 .mission-card { border-top-color: rgb(235 206 158 / 58%); }
-.wordmark { width: fit-content; margin: 16px auto 0; padding-block: 10px 8px; border-block: 1px solid rgb(239 199 137 / 40%); font-family: 'Alfa Slab One', serif; font-size: clamp(54px, 17vw, 88px); font-weight: 400; line-height: .98; letter-spacing: .03em; text-align: center; color: #ede5d4; text-shadow: 0 1px #fff8df, 0 4px 0 #1c302e, 0 8px 20px #000; }
+.wordmark { width: fit-content; margin: 8px auto 0; padding-block: 8px 6px; border-block: 1px solid rgb(239 199 137 / 40%); font-family: 'Alfa Slab One', serif; font-size: clamp(46px, 13vw, 80px); font-weight: 400; line-height: .98; letter-spacing: .03em; text-align: center; color: #ede5d4; text-shadow: 0 1px #fff8df, 0 4px 0 #1c302e, 0 8px 20px #000; }
 .wordmark span { display: block; color: var(--amber); }
-.mission-card h2 { margin-top: 25px; font-size: 24px; }
+.mission-card h2 { margin-top: 25px; font-size: 22px; }
 .mission-card { text-align: center; }
-.mission-card .dialog-primary { padding-inline: var(--space-4); }
+.mission-card .dialog-primary { margin-top: var(--space-4); padding-inline: var(--space-4); }
+.mission-card { padding-block: var(--space-4); }
 .font-credits { margin-top: var(--space-2); color: #bcc8c0; font-size: 11px; line-height: 1.6; }
 .font-credits summary { cursor: pointer; width: fit-content; min-height: 32px; margin-inline: auto; padding-block: var(--space-2); }
 .font-credits a { display: inline-flex; align-items: center; min-height: var(--control-size); color: var(--muted); margin-right: var(--space-3); }
@@ -194,7 +206,16 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 .overlay-story, .overlay-outro { display: block; padding: 0; overflow: hidden; background: #020b0c; }
 .vn { position: relative; width: min(100%, calc(100svh * 3 / 4)); height: 100%; margin-inline: auto; overflow: hidden; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
 .vn-backdrop { position: absolute; inset: 0; background: var(--workshop-ambient) center top / cover; transform-origin: 72% 2%; filter: brightness(.5) saturate(.85); transition: transform 2.2s cubic-bezier(.3, .6, .2, 1), filter 2.2s ease; }
-.vn[data-scene='sea'] .vn-backdrop { transform: scale(3.4); filter: brightness(.8) saturate(1.1) blur(1px); }
+.vn[data-scene='sea'] .vn-backdrop { transform: scale(2); filter: brightness(.8) saturate(1.1); }
+/* G18: bubbles drift up past the porthole so the sea is alive instead of an enlarged still. */
+.vn-backdrop::after { content: ''; position: absolute; inset: 0; opacity: 0; background:
+  radial-gradient(circle at 20% 80%, rgb(190 235 240 / 50%) 0 2px, transparent 3px),
+  radial-gradient(circle at 62% 60%, rgb(190 235 240 / 45%) 0 1.5px, transparent 2.5px),
+  radial-gradient(circle at 80% 90%, rgb(190 235 240 / 40%) 0 2.5px, transparent 3.5px),
+  radial-gradient(circle at 40% 30%, rgb(190 235 240 / 35%) 0 1px, transparent 2px);
+  background-size: 180px 260px, 140px 220px, 220px 300px, 120px 180px; transition: opacity 1s; animation: bubbles 9s linear infinite; }
+.vn[data-scene='sea'] .vn-backdrop::after { opacity: 1; }
+@keyframes bubbles { to { background-position: 0 -260px, 0 -220px, 0 -300px, 0 -180px; } }
 .vn::after { content: ''; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgb(2 11 12 / 85%)); pointer-events: none; }
 .vn-figure { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 /* G9: the remote speaker sits on a comm screen, the present one stands in the room. */
@@ -233,8 +254,8 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
 @media (min-width: 700px) { .vn-text { font-size: 19px; } }
 
 /* Descent video: plays over the live round, then fades to reveal it. */
-.transition { position: absolute; inset: 0; z-index: 6; background: #000; cursor: pointer; transition: opacity .6s ease; }
-.transition video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.transition { position: absolute; inset: 0; z-index: 6; background: #020b0c; cursor: pointer; transition: opacity .6s ease; }
+.transition video { display: block; width: 100%; height: 100%; object-fit: contain; }
 .transition.leaving { opacity: 0; pointer-events: none; }
 .screen.entering { animation: hud-in .7s ease-out both; }
 @keyframes hud-in { from { opacity: 0; } }
@@ -250,7 +271,7 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
   .mission-card h2 { font-size: 21px; margin-top: 16px; }
   .mission-card .dialog-primary { margin-top: var(--space-4); }
 }
-@media (prefers-reduced-motion: reduce) { .pressure-track span, .vn-backdrop, .vn-sprite { transition: none; } .vn-sprite.enter, .vn-next, .screen.entering, .vn[data-mood='shock'] .vn-sprite, .vn-figure[data-remote]::after, .hull::before, .hull.quake::after, #app:has(.hull.quake) .scene, #app.shatter .scene { animation: none; } #app.shatter::after { display: none; } }
+@media (prefers-reduced-motion: reduce) { .pressure-track span, .vn-backdrop, .vn-sprite { transition: none; } .drag-hint span, .manifest[data-plan] .lot, .vn-backdrop::after, .vn-sprite.enter, .vn-next, .screen.entering, .vn[data-mood='shock'] .vn-sprite, .vn-figure[data-remote]::after, .hull::before, .hull.quake::after, #app:has(.hull.quake) .scene, #app.shatter .scene { animation: none; } #app.shatter::after { display: none; } }
 @media (prefers-reduced-transparency: reduce) {
   :root { --glass: linear-gradient(120deg, #1b3334, #102125); }
   .dialog-card { background: #102125; }
@@ -275,17 +296,19 @@ button:not(:disabled):active { box-shadow: inset 0 2px 8px rgb(0 0 0 / 50%); bor
   .controls { grid-area: controls; align-self: end; }
   .operation-row { grid-template-columns: 1fr 1fr; }
   .press-button { grid-column: 1 / -1; }
-  .overlay-start { justify-items: center; align-content: center; grid-template-rows: auto auto; }
-  .mission-card, .mission-identity { margin: 0; }
+  /* G17: on wide screens the logo and the start card sit in the gutters beside the workbench. */
+  .overlay-start { grid-template-columns: minmax(0, 1fr) calc(100svh * 2 / 3) minmax(0, 1fr); grid-template-rows: 1fr; align-items: center; justify-items: center; gap: var(--space-6); background: none; }
+  .mission-identity { grid-column: 1; margin: 0; }
+  .mission-card { grid-column: 3; align-self: center; width: min(100%, 340px); margin: 0; }
 }
+/* Reuse the shipping ImageGen plate as a blurred ambient backdrop around the WebGL stage, so a
+   fitted or narrowed stage never shows hard edges against flat colour. */
+#app::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: var(--workshop-ambient) center / cover; filter: blur(32px) brightness(.35) saturate(.65); transform: scale(1.08); }
 @media (min-width: 1000px) and (min-aspect-ratio: 3/2) {
-  /* Reuse the shipping ImageGen plate as a static ambient backdrop in the
-     desktop gutters. The actual workshop remains the central WebGL stage. */
-  #app::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: var(--workshop-ambient) center / cover; filter: blur(32px) brightness(.35) saturate(.65); transform: scale(1.08); }
   .scene { clip-path: inset(0 max(0px, calc((100% - 100svh * 2 / 3) / 2))); }
 }
 @media (max-height: 650px) and (min-aspect-ratio: 3/2) and (min-width: 700px) {
-  .overlay-start { grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); grid-template-rows: auto; align-content: start; align-items: center; padding: 16px 24px; gap: 24px; }
+  .overlay-start { padding: 16px 24px; gap: 16px; }
   .mission-identity { align-self: center; }
   .mission-identity .wordmark { font-size: clamp(44px, 7vw, 64px); }
   .mission-card { padding: var(--space-3) var(--space-4); }
