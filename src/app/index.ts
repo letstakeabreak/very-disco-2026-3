@@ -379,7 +379,7 @@ export function mountApp(root: HTMLElement): () => void {
           <h2 id="dialog-title">눌러서 줄이고<br>1리터에 담아요.</h2>
           ${introSeen ? '<button data-action="quick-start" class="dialog-primary" type="button">시작하기</button><button data-action="story-open" class="dialog-secondary" type="button">이야기 보기</button>'
             : '<button data-action="story-open" class="dialog-primary" type="button">시작하기</button>'}
-          <details class="font-credits"><summary>글꼴 출처</summary><p>리디바탕 (리디주식회사)<br>Alfa Slab One (Jm Solé)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
+          <details class="font-credits"><summary>출처</summary><p>글꼴 리디바탕 (리디주식회사)<br>로고 Alfa Slab One (Jm Solé)<br>소리 Freesound CC0 녹음 (Fission9 craigsmith Andriejus EagleStealthTeam unfa kyles Jofae suspensiondigital JoMungus Ubehag mlsprovideos Guialgarve Kolombooo)</p><a href="${ridiLicenseUrl}" target="_blank" rel="noopener">리디바탕 이용 조건</a><a href="${logoLicenseUrl}" target="_blank" rel="noopener">로고 글꼴 OFL 전문</a></details>
         </section>`,
         loading: '<div class="loading" role="status" aria-label="불러오는 중"><span class="loading-ring"></span></div>',
         story: STORY_MARKUP,

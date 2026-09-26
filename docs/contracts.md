@@ -69,7 +69,7 @@ mountApp(root: HTMLElement): () => void
 
 `resize`의 width/height는 CSS pixel, dpr은 device pixel ratio이며 B가 기본 2로 제한한다. canvas는 C가 만들고 전달하며 B가 소유 DOM을 추가하지 않는다. WebGL 초기화 또는 렌더 실패는 `onFatal({code,message})`로 전달한다. GPU 실패 시 C는 설명 가능한 오류 화면을 만든다. `dispose`는 반복 호출 가능하며 리스너·프레임·GPU 자원을 해제한다. core는 dispose 뒤 다른 메서드 호출 시 오류를 낸다. renderer는 dispose 뒤 호출을 무시한다.
 
-`drainEvents`는 발생 순서대로 이벤트를 **한 번만** 반환한다. C만 소비하고 UI/효과에 전달한다. B는 이벤트 큐를 직접 소비하지 않는다. phase-changed에 from/to/tick, 나머지 이벤트에 typed payload가 있다. 효과음은 C가 이 이벤트와 snapshot으로 앱 안에서 합성한다(v1.2.0). 코어와 렌더러에는 오디오가 없다.
+`drainEvents`는 발생 순서대로 이벤트를 **한 번만** 반환한다. C만 소비하고 UI/효과에 전달한다. B는 이벤트 큐를 직접 소비하지 않는다. phase-changed에 from/to/tick, 나머지 이벤트에 typed payload가 있다. 효과음은 C가 이 이벤트와 snapshot으로 B의 CC0 녹음 파일을 재생한다(PRD 1.2.1). 코어와 렌더러에는 오디오가 없다.
 
 ## 상태와 명령
 
