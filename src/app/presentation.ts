@@ -74,3 +74,37 @@ export function failureText(reason: 'specimen-broken' | 'capacity-exceeded' | nu
 export function discardLabel(snapshot: GameSnapshot): string {
   return snapshot.remainingSpecimenIds.length > 1 ? '버리고 계속하기' : '버리고 마치기';
 }
+
+/**
+ * Sentences with their offsets in the original line. A period only ends a
+ * sentence before a space or the end, so "0.24리터" stays whole.
+ */
+export function splitSentences(text: string): { readonly text: string; readonly start: number }[] {
+  const parts: { text: string; start: number }[] = [];
+  for (const match of text.matchAll(/.+?(?:[.?!](?=\s|$)|$)\s*/gu)) {
+    if (match[0].trim()) parts.push({ text: match[0].trimEnd(), start: match.index });
+  }
+  return parts;
+}
+
+const DEPENDENT_NOUNS = new Set(['것', '게', '거', '수', '건', '줄', '데', '때', '뿐', '채', '듯', '척']);
+
+/**
+ * Korean line-break hints on top of word wrapping. A one-syllable dependent
+ * noun (게, 수, 건…) stays with the word before it, any other one-syllable
+ * word (세, 셋, 이, 꼭, 안…) stays with the word after it, and a sentence
+ * never ends on a lone word. Spaces become no-break spaces, so lengths are
+ * unchanged.
+ */
+export function bindWords(sentence: string): string {
+  const words = sentence.split(' ');
+  const single = (word: string) => [...word.replace(/[.?!]+$/u, '')].length === 1;
+  return words.reduce((out, word, index) => {
+    if (index === 0) return word;
+    const previous = words[index - 1]!;
+    const glue = index === words.length - 1
+      || (single(word) && DEPENDENT_NOUNS.has(word.replace(/[.?!]+$/u, '')))
+      || (single(previous) && !DEPENDENT_NOUNS.has(previous.replace(/[.?!]+$/u, '')));
+    return out + (glue ? '\u00A0' : ' ') + word;
+  }, '');
+}

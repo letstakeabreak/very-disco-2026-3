@@ -57,6 +57,12 @@ button:disabled { cursor: not-allowed; color: #8eaaa2; }
 .screen.hud-hidden { visibility: hidden; }
 h2, p { margin: 0; }
 h2 { font-size: 14px; font-weight: 400; line-height: 1.4; }
+/* Korean wraps between words (keep-all); headings balance, prose avoids orphans. */
+h2 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+/* Typed lines bind their own words (bindWords); pretty would re-break them as they type. */
+.phrase { display: inline-block; max-width: 100%; text-wrap: wrap; }
+.untyped { visibility: hidden; }
 /* Compact HUD: one session strip, one lot card. Only what a press decision needs. */
 .topbar { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: var(--space-2); }
 .icon-button { width: 44px; min-width: 44px; height: 44px; min-height: 44px; padding: 0; color: var(--muted); font-size: 15px; }

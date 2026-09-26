@@ -5,7 +5,7 @@ import { createRuntime } from './runtime';
 import { createInputController, isGameplayPhase } from './input';
 import { INTRO_STORY, STRAIN_LINE, endingStory, reactionLine, toleranceLine, tutorialLine } from './story';
 import type { CommsLine, StoryLine } from './story';
-import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult } from './presentation';
+import { canStore, discardLabel, failureText, failureTitle, phaseLabel, recordText, remainingCapacity, resultItems, SPECIMEN_LABELS, specimenResult, splitSentences, bindWords } from './presentation';
 import ridiLicenseUrl from './fonts/RIDIBatang-license.txt?url';
 import logoLicenseUrl from './fonts/AlfaSlabOne-OFL.txt?url';
 import './style.css';
@@ -21,6 +21,34 @@ function readBestScore(): number | null {
     const value = Number(localStorage.getItem(BEST_SCORE_KEY));
     return Number.isInteger(value) && value > 0 ? value : null;
   } catch { return null; }
+}
+
+/**
+ * Writes a typed line without reflow: every sentence is laid out in full from
+ * the first frame (untyped text stays hidden in place) and wraps as one unit,
+ * so words never jump lines while typing and a sentence starts a fresh line
+ * when it does not fit beside the previous one.
+ */
+function typeLine(target: HTMLElement, text: string, count: number): void {
+  if (target.dataset.line !== text) {
+    target.dataset.line = text;
+    target.replaceChildren(...splitSentences(text).map(({ text, start }) => ({ text: bindWords(text), start })).flatMap(({ text: sentence, start }, index) => {
+      const phrase = document.createElement('span');
+      phrase.className = 'phrase';
+      phrase.dataset.text = sentence;
+      phrase.dataset.start = String(start);
+      phrase.append(document.createElement('span'), document.createElement('span'));
+      phrase.lastElementChild!.className = 'untyped';
+      phrase.lastElementChild!.textContent = sentence;
+      return index ? [' ', phrase] : [phrase];
+    }));
+  }
+  for (const phrase of target.querySelectorAll<HTMLElement>('.phrase')) {
+    const sentence = phrase.dataset.text!;
+    const shown = Math.min(sentence.length, Math.max(0, count - Number(phrase.dataset.start)));
+    const [typed, untyped] = phrase.children as unknown as [HTMLElement, HTMLElement];
+    if (typed.textContent!.length !== shown) { typed.textContent = sentence.slice(0, shown); untyped.textContent = sentence.slice(shown); }
+  }
 }
 
 /** App-owned DOM, pointer lifecycle, HUD, tutorial and result flow. No audio. */
@@ -40,7 +68,7 @@ export function mountApp(root: HTMLElement): () => void {
       <main class="work-area"><div class="workbench-input" id="workbench-input" role="img" aria-label="물건 돌리기"></div></main>
       <footer class="controls" aria-label="조작">
         <p class="comms" id="comms" hidden><b id="comms-name"></b><span id="comms-text" aria-hidden="true"></span><span class="visually-hidden" id="comms-line" aria-live="polite"></span></p>
-        <div class="operation-row" role="group" aria-label="현재 물건 처리"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">꾹 눌러 압축</button><button class="secondary" id="store" type="button">담기</button><button class="ghost" id="discard" type="button">버리기</button></div>
+        <div class="operation-row" role="group" aria-label="현재 물건 처리"><button class="press-button" id="hold" type="button" aria-label="누르고 있는 동안 물건을 압축해요">압축하기</button><button class="secondary" id="store" type="button">담기</button><button class="ghost" id="discard" type="button">버리기</button></div>
         <p id="dev-note" class="dev-note" hidden></p><p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
       </footer>
     </div><div class="overlay" id="overlay" hidden></div>
@@ -237,10 +265,9 @@ export function mountApp(root: HTMLElement): () => void {
         if (entering) { void sprite.offsetWidth; sprite.classList.add('enter'); }
       } else sprite.classList.remove('away');
     }
-    const shown = line.text.slice(0, visibleCharacters(line));
-    const text = stage.querySelector<HTMLElement>('.vn-text')!;
-    if (text.textContent !== shown) text.textContent = shown;
-    stage.classList.toggle('typing', shown.length < line.text.length);
+    const shown = visibleCharacters(line);
+    typeLine(stage.querySelector<HTMLElement>('.vn-text')!, line.text, shown);
+    stage.classList.toggle('typing', shown < line.text.length);
   }
 
   function openStory(): void {
@@ -378,8 +405,7 @@ export function mountApp(root: HTMLElement): () => void {
       commsLine.textContent = line ? `${line.speaker}: ${line.text}` : '';
     }
     // The same typed delivery as the story, a little quicker at the bench.
-    const typed = line ? line.text.slice(0, reducedMotion.matches ? undefined : Math.floor((performance.now() - voiceStartedAt) / 24)) : '';
-    if (commsText.textContent !== typed) commsText.textContent = typed;
+    if (line) typeLine(commsText, line.text, reducedMotion.matches ? line.text.length : Math.floor((performance.now() - voiceStartedAt) / 24));
     statusCard.classList.toggle('strained', snapshot.stress01 > 0);
     // Stay enabled while held: disabling the pressed button blurs it and drops capture.
     hold.disabled = snapshot.phase !== 'inspecting' && snapshot.phase !== 'compressing';
