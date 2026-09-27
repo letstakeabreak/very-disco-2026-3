@@ -29,8 +29,9 @@ CUTS = {
     'bed-hull': ('ambience-hull', 46.0, 20.0, 'loop', 0, 0, -24),
     'press': ('press-loop', 4.0, 8.0, 'loop', 0, 0, -18),
     'creak': ('creak', 1.5, 12.0, 'loop', 0, 0, -18),
-    'break-glass': ('break-glass', 0.0, 1.9, 'shot', 0.0, 0.3, -2),
-    'break-metal': ('break-metal', 2.4, 2.0, 'shot', 0.01, 0.5, -2),
+    # Breaks start on the hit (the recordings open with 0.3 s of near silence) so they land on the break frame.
+    'break-glass': ('break-glass', 0.30, 1.6, 'shot', 0.005, 0.3, -2),
+    'break-metal': ('break-metal', 2.62, 1.8, 'shot', 0.005, 0.5, -2),
     'release': ('release', 0.0, 2.2, 'shot', 0.0, 0.6, -6),
     'store': ('store', 0.0, 0.44, 'shot', 0.0, 0.08, -3),
     'discard': ('discard', 0.0, 1.6, 'shot', 0.0, 0.5, -4),
